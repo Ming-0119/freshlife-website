@@ -1,0 +1,11 @@
+FreshLife 官网 · EdgeOne Makers/Pages 静态部署包
+
+1. 在 EdgeOne Makers/Pages 新建项目，选择直接上传或 Pages Drop。
+2. 上传本压缩包，平台生成测试网址后先检查首页和四个子页面。
+3. 在域名管理中添加 freshlifeapp.cn，并按平台给出的记录修改阿里云 DNS。
+4. 等平台显示域名和免费 HTTPS 证书正常后，再删除旧的两个 A 记录。
+5. 保留 _openai-site-verification TXT 记录不会影响新网站；确认稳定后可再删除。
+
+公开页面：/、/privacy、/terms、/support、/safety
+默认首页：index.html
+错误页面：404.html

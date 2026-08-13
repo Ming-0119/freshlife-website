@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://freshlifeapp.cn/sitemap.xml
+Host: https://freshlifeapp.cn
