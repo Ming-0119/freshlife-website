@@ -283,3 +283,81 @@ footer{padding:64px max(5vw,50vw - 600px) 26px}
   .mock-card,.metrics-card,.priority-list,.food-item{border-radius:14px}
   .mock-tabbar{border-radius:0 0 31px 31px}
 }
+
+/* =====================================================
+   Deep polish — subtract, de-cardify, hierarchy by type
+   ===================================================== */
+
+/* Remove avatar (identity already in Profile tab) */
+.avatar{display:none}
+.user-strip{grid-template-columns:1fr auto;padding:2px 1px 8px}
+
+/* Priority = the single card; editorial, no big icon box */
+.today-focus{background:#fff;border:1px solid rgba(24,27,29,.07);border-radius:20px;padding:14px;box-shadow:0 1px 2px rgba(24,27,29,.04),0 10px 28px rgba(24,27,29,.06)}
+.today-focus-top{grid-template-columns:1fr auto;gap:6px}
+.today-focus-top .icon-container{display:none}
+.today-focus-top>div{gap:3px}
+.today-focus-top small{font-size:7px;font-weight:700;color:#767c82}
+.today-focus-top b{font-size:16px;letter-spacing:-.02em}
+.today-focus-top em{font-size:7px;padding:3px 8px;border-radius:999px;color:#a06b2c;background:#f6eee0;font-style:normal;font-weight:650}
+.today-focus>p{font-size:7.5px;margin:8px 0 0;color:#6d7278}
+
+/* Kitchen: on background, not a card */
+.metrics-card{background:transparent;border:none;box-shadow:none;padding:0;grid-template-columns:1fr auto;align-items:baseline}
+.metrics-card>span{border:none;flex-direction:row;align-items:baseline;gap:5px}
+.metrics-card b{font-size:22px;letter-spacing:-.02em}
+.metrics-card small{font-size:8px;color:#767c82}
+.metrics-card>p{grid-column:1/-1;border-top:1px solid #e9ecea;margin:7px 0 0;padding-top:6px;font-size:7px;color:#767c82}
+
+/* Next: compact divider rows, no card */
+.priority-list{background:transparent;border:none;box-shadow:none;border-radius:0}
+.priority-list>div{grid-template-columns:20px 1fr auto;gap:8px;min-height:42px;padding:7px 0;border-bottom:1px solid #edf0ee}
+.priority-list>div:last-child{border-bottom:none}
+.priority-icon{width:20px;height:20px;background:transparent;color:inherit}
+
+/* AI: subtle insight bar, not a card */
+.today-action{background:#edf5f0;border:none;box-shadow:none;border-radius:14px;padding:10px 12px;grid-template-columns:20px 1fr auto}
+.ai-seed-small{width:20px;height:20px;background:transparent;color:var(--ai-deep)}
+
+/* Remove colored icon boxes everywhere (linear icons only) */
+.icon-container{background:transparent;color:var(--green-deep);width:24px;height:24px;border-radius:0}
+
+/* FAB smaller, quieter */
+.mock-action-dock{border-radius:20px;padding:3px}
+.mock-action-dock a{width:44px;height:44px}
+
+/* Tab bar finer, neutral labels */
+.mock-tabbar{height:50px;padding:4px 6px 1px;background:rgba(255,255,255,.96)}
+.mock-tabbar button{font-size:6px;color:#9aa0a5;font-weight:600}
+.mock-tabbar .active{color:var(--green);font-weight:680}
+
+/* Device lighter: remove side buttons, thinner bezel, smaller sensor */
+.product-device:before,.product-device:after{display:none}
+.product-device{padding:2.5px;border-radius:54px}
+.device-screen{border-radius:50px}
+.dynamic-island{width:44px;height:11px;border-radius:6px;top:9px;background:#0b0d0f;opacity:.9}
+.device-shadow{opacity:.4}
+
+/* Mobile: pure app preview (no heavy shell) */
+@media (width<=600px){
+  .product-device{background:#f6f7f4;border:1px solid rgba(24,27,29,.1);border-radius:30px;padding:0;box-shadow:0 12px 32px rgba(24,27,29,.10)}
+  .device-screen{border-radius:30px}
+  .dynamic-island{display:none}
+}
+
+/* Override colored icon boxes (specific selectors win) */
+.icon-container.warning,
+.icon-container.primary,
+.icon-container.ai,
+.icon-container.food,
+.icon-container.health,
+.icon-container.community,
+.priority-icon.food,
+.priority-icon.primary,
+.ai-seed-small,
+.planner-card .icon-container,
+.explore-priority .icon-container{background:transparent}
+.icon-container.warning{color:#c88324}
+.icon-container.ai{color:var(--ai-deep)}
+.priority-icon.food{color:#c88324}
+.priority-icon.primary{color:var(--green)}
