@@ -1,0 +1,145 @@
+/* ==========================================================================
+   FreshLife — Visual Redesign 2026-08-17
+   Refined, calmer, more product-grade. Loaded after the main bundle.
+   ========================================================================== */
+
+:root{
+  --container: 1200px;
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 26px;
+  --green:#1ab86b;
+  --green-deep:#0e9657;
+  --green-soft:#e1f7eb;
+  --ai:#40b8a6;
+  --ai-deep:#278f80;
+  --ink:#181b1d;
+  --text:#5d6267;
+  --muted:#8b9095;
+  --line:#e7e9e7;
+  --bg:#f7f8f6;
+  --paper:#ffffff;
+  --shadow-card:0 1px 2px rgba(24,27,29,.04), 0 10px 30px rgba(24,27,29,.06);
+  --shadow-float:0 24px 60px rgba(24,27,29,.12);
+  --shadow-device:0 40px 90px rgba(24,27,29,.26), 0 12px 30px rgba(24,27,29,.16);
+}
+
+html,body{overflow-x:hidden}
+
+/* ---------- Header: fixed + glass ---------- */
+.site-header{position:fixed;top:0;left:0;right:0;background:rgba(247,248,246,.72);-webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%);border-bottom:1px solid rgba(24,27,29,.06)}
+.site-nav{height:68px;width:min(var(--container),100% - 48px)}
+.nav-links{gap:28px;font-size:13px;font-weight:600;color:#4b5056}
+.nav-links a:after{background:var(--green)}
+.nav-cta{border-radius:12px;padding:9px 14px;font-size:12px;font-weight:700;background:rgba(255,255,255,.7);border:1px solid rgba(24,27,29,.1)}
+.hero{padding-top:120px}
+
+/* ---------- Type scale ---------- */
+.hero h1{font-size:clamp(56px,5.4vw,82px);line-height:1.04;letter-spacing:-.06em;margin-bottom:24px}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero-copy>p{font-size:18px;line-height:1.75;max-width:560px;color:var(--text)}
+.hero-eyebrow{font-size:12px!important;font-weight:800;letter-spacing:.09em}
+.editorial-heading h2,.section-intro h2{font-size:clamp(36px,3.8vw,54px);letter-spacing:-.05em;line-height:1.08}
+.section-intro>p:last-child{font-size:15px}
+
+/* ---------- Spacing: shorter page ---------- */
+.section-pad{padding-top:96px;padding-bottom:96px}
+.hero{min-height:820px;padding-bottom:72px}
+.philosophy{gap:56px 80px}
+.loop-rail{margin-top:48px}
+.showcase-stage{min-height:640px;padding:34px 72px}
+.scenario-grid{margin-top:44px}
+.faq-list{margin-top:44px}
+
+/* ---------- Cards: unified, lighter ---------- */
+.scenario-card{border-radius:var(--r-lg);border:1px solid rgba(24,27,29,.05);box-shadow:var(--shadow-card);min-height:260px;padding:28px}
+.scenario-card:after{opacity:.45}
+.scenario-card h3{font-size:22px}
+.scenario-card>p{font-size:12px}
+.scenario-icon{width:44px;height:44px;border-radius:14px;margin-bottom:26px}
+.loop-step{padding:24px 22px 18px 0}
+.loop-icon{width:44px;height:44px;border-radius:14px}
+.support-callout{border-radius:20px;padding:22px}
+.legal-callout{border-radius:14px}
+.data-table{border-radius:15px}
+
+/* ---------- Hero device: bigger, centered ---------- */
+.product-device{width:330px;height:678px;border-radius:50px}
+.hero-visual{min-height:660px}
+.hero-caption{border-radius:16px;box-shadow:var(--shadow-float)}
+.hero-proof{border-radius:14px;box-shadow:var(--shadow-float)}
+.hero-halo.one{width:440px;height:440px}
+.hero-halo.two{width:520px;height:520px}
+
+/* ---------- Trust ribbon ---------- */
+.trust-ribbon{gap:18px;font-size:10px;font-weight:620}
+
+/* ---------- Principle / editorial ---------- */
+.principle-line span{padding:26px 30px}
+.philosophy-body>p{font-size:15px}
+
+/* ---------- Loop connector (editorial flow) ---------- */
+.loop-rail{grid-template-columns:repeat(5,1fr)}
+.loop-step:before{width:8px;height:8px}
+.loop-step b{font-size:14px}
+.loop-step small{font-size:10px;line-height:1.5}
+
+/* ---------- Capability (simpler, lighter) ---------- */
+.capability-table{margin-top:44px}
+.capability-head,.capability-row{gap:24px;padding:0 16px;min-height:60px}
+.capability-row>span{font-size:12px}
+.capability-row em{font-size:9px;padding:5px 7px}
+.capability-row small{font-size:10px}
+
+/* ---------- Privacy ---------- */
+.privacy-links a{border-radius:12px}
+
+/* ---------- FAQ ---------- */
+.faq-list summary{min-height:74px}
+.faq-list summary b{font-size:15px}
+
+/* ---------- CTA ---------- */
+.download{min-height:420px;border-radius:0}
+.store-badge{border-radius:16px}
+
+/* ---------- Footer: calmer ---------- */
+footer{padding:64px max(5vw,50vw - 600px) 26px}
+.footer-main{gap:44px;padding-bottom:40px}
+.footer-main>div:not(:first-child)>b{font-size:11px}
+.footer-main>div:not(:first-child){font-size:11px;gap:11px}
+.footer-bottom{font-size:9px}
+
+/* ---------- Buttons ---------- */
+.button{min-height:50px;padding:0 22px;font-size:13px;border-radius:14px}
+
+/* ---------- Focus ---------- */
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:6px}
+
+/* ---------- Motion ---------- */
+.scenario-card,.button,.nav-cta,.store-badge{transition:transform .22s ease, box-shadow .22s ease, background .22s ease}
+.scenario-card:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(24,27,29,.09)}
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+
+/* ---------- Mobile ---------- */
+@media (width<=820px){
+  .section-pad{padding:72px 24px}
+  .hero{min-height:auto;padding-top:110px;padding-bottom:64px}
+  .hero h1{font-size:clamp(44px,11vw,62px)}
+  .hero-copy>p{font-size:16px}
+  .product-device{width:292px;height:600px}
+  .scenario-grid{gap:12px}
+  .loop-rail{grid-template-columns:1fr}
+  .showcase-stage{padding:30px 18px;gap:40px}
+}
+@media (width<=560px){
+  .site-nav{height:62px;width:calc(100% - 32px)}
+  .site-nav .brand{font-size:17px}
+  .nav-cta{padding:8px 11px;font-size:10px}
+  .hero h1{font-size:42px;line-height:1.08}
+  .hero-assurances{flex-wrap:wrap;gap:8px 12px}
+  .trust-ribbon{overflow-x:auto;justify-content:flex-start}
+  .showcase-tabs{margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px;overflow-x:auto}
+  .footer-main{grid-template-columns:1fr}
+}
