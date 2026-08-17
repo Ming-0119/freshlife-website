@@ -106,9 +106,22 @@ find . -name '*.pem' -o -name '*.key' -o -name '.env' 等          # 无敏感�
 
 ## 部署方式
 
-静态产物手动上传至阿里云 OSS，由 ESA 边缘加速对外提供 `www.freshlifeapp.cn`。
-仓库内无 GitHub Actions、无部署脚本、无阿里云 CLI/凭证 → 无自动发布链路。
-本次修改无法自动发布，需 Owner 将更新后的文件上传到 OSS（见下）。
+真实架构（已用 ESA CLI 实测确认，非 OSS）：
+
+```text
+GitHub: Ming-0119/freshlife-website
+  ↓  esa-cli deploy（静态 Pages 项目）
+阿里云 ESA Functions & Pages 项目 "freshlife-website"
+  ↓  域名绑定
+www.freshlifeapp.cn
+```
+
+- ESA 站点：`freshlifeapp.cn`
+- Functions & Pages 项目：`freshlife-website`
+- 域名绑定：`www.freshlifeapp.cn` → 该项目
+- 部署方式：`esa-cli` 上传静态文件 → 生成版本 → 部署到 production
+- 无 GitHub 集成（0 webhooks / 0 Actions / 0 App 安装），发布为手动 `esa-cli deploy`
+- 本分支内容已通过 `esa-cli` 部署到 production（版本 `1786965065536258163`）
 
 ## 当前正式域名
 
@@ -118,7 +131,6 @@ https://www.freshlifeapp.cn/
 
 ## Owner Action（需人工完成）
 
-1. 将本分支更新后的静态文件上传至阿里云 OSS 对应 Bucket（覆盖同名文件，新增 `assets/a11y.css` 与新版 `404.html`）。
-2. 在 OSS 静态网站托管设置中将「错误文档」指向 `404.html`，确保缺失路径返回真实 404 而非 ESA 默认页。
-3. 确认正式个人开发者法律姓名展示格式（当前为 “Ming（个人开发者）”），并在 Footer / Privacy / Terms 中统一。
-4. 确认 `部署说明.txt` 是否仍需要保留（其描述为 EdgeOne + 无 www，与当前阿里云 ESA/OSS + www 不符）。
+1. 在 ESA 控制台为该站点/项目配置「自定义 404 页」指向 `404.html`（当前缺失路径返回 ESA 默认 404 页体；`/404` 已能访问到品牌 404 页）。
+2. 确认正式个人开发者法律姓名展示格式（当前为 “Ming（个人开发者）”），并在 Footer / Privacy / Terms 中统一。
+3. 确认 `部署说明.txt` 是否仍需要保留（其描述为 EdgeOne + 无 www，已与当前阿里云 ESA + www 不符）。
