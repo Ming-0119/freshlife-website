@@ -366,3 +366,27 @@ footer{padding:64px max(5vw,50vw - 600px) 26px}
 
 /* Clip horizontal overflow at content level without creating a scroll container */
 main{overflow-x:clip}
+
+/* =====================================================
+   DESIGN SYSTEM v2 — definitive values (overrides legacy)
+   ===================================================== */
+
+/* Button system: mature, optically balanced */
+.button{
+  min-height:44px;
+  padding:0 20px;
+  font-size:13px;
+  font-weight:650;
+  border-radius:12px;
+  gap:9px;
+  letter-spacing:-.01em;
+}
+.button.primary{background:var(--green);box-shadow:0 8px 20px rgba(26,184,107,.22)}
+.button.primary:hover{background:var(--green-deep);transform:translateY(-1px)}
+.button.quiet{background:rgba(255,255,255,.85);border:1px solid rgba(24,27,29,.12);color:#4b5056}
+.button.quiet:hover{background:#fff;transform:translateY(-1px)}
+.nav-cta{min-height:36px;padding:0 14px;font-size:12px;font-weight:650;border-radius:10px;gap:7px}
+.store-badge{border-radius:12px}
+
+/* Arrow spacing / optical balance in CTAs */
+.button svg,.nav-cta svg{flex:none}
