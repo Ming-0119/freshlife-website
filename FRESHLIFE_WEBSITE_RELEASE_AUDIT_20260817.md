@@ -90,7 +90,11 @@ find . -name '*.pem' -o -name '*.key' -o -name '.env' 等          # 无敏感�
 
 ## 当前 Git commit
 
-（提交后填写）
+`aa9c6f6` Polish FreshLife website for production release
+
+## Push 状态
+
+`git push -u origin website-polish-20260817` 未完成：本机无可用 GitHub 凭据（credential.helper=osxkeychain 但 keychain 无 github.com 记录，且无 gh CLI / SSH key）。需 Owner 在已登录 GitHub 的终端执行推送，或将分支合并到 `main` 后按现有方式发布。
 
 ## 当前 Git branch
 
