@@ -390,3 +390,9 @@ main{overflow-x:clip}
 
 /* Arrow spacing / optical balance in CTAs */
 .button svg,.nav-cta svg{flex:none}
+
+/* Today kitchen summary: 12 件食品 · 2 件值得留意 (hide 新鲜/过期 dashboard columns) */
+.metrics-card>span:nth-of-type(2){display:none}
+.metrics-card>span:nth-of-type(3){display:flex}
+.metrics-card>span:nth-of-type(4){display:none}
+.metrics-card>span{border-right:none}
