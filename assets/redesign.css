@@ -143,3 +143,58 @@ footer{padding:64px max(5vw,50vw - 600px) 26px}
   .showcase-tabs{margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px;overflow-x:auto}
   .footer-main{grid-template-columns:1fr}
 }
+
+/* =====================================================
+   Device refinement + interaction closure (UI final)
+   ===================================================== */
+
+/* Sticky-header anchor offset (all section ids) */
+[id]{scroll-margin-top:84px}
+
+/* Unified device: thinner bezel, natural proportions, softer shadow */
+.product-device{
+  width:322px;
+  height:690px;
+  border-radius:56px;
+  padding:3px;
+  background:linear-gradient(160deg,#2c3135 0%,#141719 55%,#0e1113 100%);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 28px 70px rgba(18,22,24,.22),0 8px 22px rgba(18,22,24,.12);
+}
+.device-screen{border-radius:52px;background:#f5f6f4}
+.dynamic-island{width:60px;height:15px;border-radius:8px;top:10px;background:#0a0c0e;opacity:.95}
+.mock-status{height:34px;padding:0 20px;font-size:8px}
+.screen-content{padding:6px 12px 64px}
+.mock-tabbar{height:56px;padding:4px 6px 2px;border-radius:0 0 52px 52px}
+.mock-tabbar button{font-size:6.5px}
+.device-shadow{opacity:.5;width:270px;height:44px;filter:blur(30px);background:#14181a2e;bottom:-16px}
+
+/* Hero device centered, no persistent float */
+.hero .product-device{margin:0 auto}
+.hero-visual{min-height:640px}
+
+/* Mobile: screen-first (no heavy "phone-in-phone" shell) */
+@media (width<=600px){
+  .product-device{
+    width:min(320px, calc(100vw - 44px));
+    height:auto;
+    min-height:560px;
+    border-radius:34px;
+    padding:2px;
+    background:linear-gradient(160deg,#2c3135,#141719);
+    border:1px solid rgba(24,27,29,.12);
+    box-shadow:0 14px 40px rgba(18,22,24,.16);
+  }
+  .device-screen{border-radius:31px}
+  .dynamic-island{width:46px;height:12px;top:8px}
+  .mock-tabbar{height:52px;border-radius:0 0 31px 31px}
+  .mock-tabbar button{font-size:6px}
+  .hero-visual{min-height:0}
+  .device-shadow{width:240px;height:38px;opacity:.4}
+}
+
+/* Focus + hover consistency */
+.button:focus-visible,.nav-cta:focus-visible,.showcase-tabs button:focus-visible,.faq-list summary:focus-visible{outline:2px solid var(--green);outline-offset:2px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){
+  .product-device,.hero-halo{animation:none!important}
+}
