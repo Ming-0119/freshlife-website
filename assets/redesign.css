@@ -198,3 +198,88 @@ footer{padding:64px max(5vw,50vw - 600px) 26px}
 @media (prefers-reduced-motion:reduce){
   .product-device,.hero-halo{animation:none!important}
 }
+
+/* =====================================================
+   FreshLife App Demo UI — unified, calm, de-dashboarded
+   ===================================================== */
+
+/* Unified app card */
+.mock-card{background:#fff;border-radius:16px;border:1px solid rgba(24,27,29,.06);box-shadow:0 1px 2px rgba(24,27,29,.03),0 4px 12px rgba(24,27,29,.03)}
+.metrics-card,.priority-list,.food-item,.meal-slot{border-radius:16px}
+
+/* Compact, quiet header */
+.avatar{width:30px;height:30px;font-size:10px;border-radius:50%}
+.user-strip{grid-template-columns:30px 1fr auto;gap:9px;padding:2px 1px 9px}
+.user-strip h3{font-size:14px;letter-spacing:-.02em}
+.user-strip p{font-size:7.5px;color:#6d7278;margin:0}
+.user-strip small{font-size:6.5px}
+.notification-mark{width:27px;height:27px}
+.notification-mark i{width:4px;height:4px;top:4px;right:4px}
+
+/* Priority card: one task, no progress bar */
+.today-focus{padding:11px;border-radius:16px;background:linear-gradient(150deg,#fff 5%,#fbf6ee)}
+.today-focus-top{grid-template-columns:32px 1fr auto;gap:8px}
+.icon-container{width:32px;height:32px;border-radius:10px}
+.today-focus-top small{font-size:6.5px;font-weight:700}
+.today-focus-top b{font-size:11px}
+.today-focus-top em{font-size:6.5px;padding:4px 6px;border-radius:8px}
+.today-focus>p{font-size:7px;margin:7px 0 0;line-height:1.45}
+.today-progress{display:none}
+
+/* Section headings lighter */
+.mock-section-heading{margin:9px 2px 5px}
+.mock-section-heading b{font-size:9px}
+.mock-section-heading small{font-size:6px}
+.mock-section-heading>span{font-size:6.5px}
+
+/* Kitchen summary: 2 metrics, not 4-KPI dashboard */
+.metrics-card{grid-template-columns:1fr 1fr;padding:9px 8px}
+.metrics-card>span{border-right:1px solid #edeef1}
+.metrics-card>span:nth-of-type(2){border-right:0}
+.metrics-card>span:nth-of-type(3){display:none}
+.metrics-card>span:nth-of-type(4){display:none}
+.metrics-card b{font-size:15px}
+.metrics-card small{font-size:6.5px}
+.metrics-card>p{margin:6px 0 0;padding-top:6px;font-size:6.5px;color:var(--green-deep)}
+
+/* Next actions: compact rows */
+.priority-list>div{grid-template-columns:26px 1fr auto;gap:7px;min-height:39px;padding:5px 8px;border-bottom:1px solid #eff0ef}
+.priority-list b{font-size:8px}
+.priority-list small{font-size:6px}
+.priority-list em{font-size:6px;font-weight:700}
+.priority-icon{width:26px;height:26px;border-radius:8px}
+
+/* AI card: compact, supportive */
+.today-action{padding:8px;border-radius:14px;grid-template-columns:30px 1fr auto;gap:7px}
+.ai-seed-small{width:30px;height:30px;border-radius:10px}
+.today-action b{font-size:8px}
+.today-action small{font-size:6px}
+.today-action p{font-size:6px}
+
+/* FAB: single add, not a dual-button pill */
+.mock-action-dock{gap:0;padding:3px;border-radius:22px;bottom:64px;right:11px}
+.mock-action-dock a{width:32px;height:32px}
+.mock-action-dock a.ai{display:none}
+
+/* Tab bar unified */
+.mock-tabbar{height:52px;border-radius:0 0 52px 52px;padding:4px 6px 2px}
+.mock-tabbar button{gap:2px;font-size:6px}
+.mock-tabbar .active{color:var(--green);font-weight:720}
+
+/* Softer icon background blocks (reduce "dashboard" feel) */
+.icon-container.warning{color:#c88324;background:#f7efe4}
+.icon-container.primary{color:var(--green);background:#e8f6ee}
+.icon-container.ai{color:var(--ai-deep);background:#e4f4f0}
+
+/* Pantry / Meals / Explore / Profile consistency */
+.food-item>div b,.meal-slot b,.destination-item b{font-size:8px}
+.food-item em,.meal-slot span{font-size:6px}
+.filter-pills span{font-size:6.5px;padding:4px 8px}
+.planner-card{padding:9px;border-radius:14px}
+.planner-action,.shopping-action{font-size:6.5px;border-radius:8px}
+.explore-priority,.profile-hero,.profile-metrics,.settings-list>div{border-radius:14px}
+
+@media (width<=600px){
+  .mock-card,.metrics-card,.priority-list,.food-item{border-radius:14px}
+  .mock-tabbar{border-radius:0 0 31px 31px}
+}
