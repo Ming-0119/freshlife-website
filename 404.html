@@ -1,1 +1,51 @@
-Not Found
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>页面不存在 — FreshLife</title>
+<meta name="description" content="你访问的页面不存在或已被移动。返回 FreshLife 首页或前往帮助中心。"/>
+<meta name="robots" content="noindex, follow"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="/app-icon.png"/>
+<style>
+  :root{--green:#1ab86b;--green-deep:#0e9657;--green-soft:#e1f7eb;--ink:#181b1d;--text:#5d6267;--muted:#8b9095;--line:#e7e9e7}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{color:var(--ink);background:radial-gradient(circle at 80% 15%,#1ab86b14,#0000 30%),#f6f8f5;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px}
+  .wrap{max-width:520px;text-align:center}
+  .mark{display:inline-flex;align-items:center;gap:10px;margin-bottom:34px}
+  .leaf{width:40px;height:40px;border-radius:11px;background:linear-gradient(145deg,#1ab86b,#0e9657);display:grid;place-items:center;box-shadow:0 8px 20px #1ab86b33}
+  .leaf i{width:15px;height:21px;border-radius:100% 0;background:#fff;transform:rotate(-35deg)}
+  .mark b{font-size:18px;letter-spacing:-.02em}
+  .code{color:var(--green);font-size:88px;font-weight:800;letter-spacing:-.05em;line-height:1}
+  h1{font-size:26px;letter-spacing:-.03em;margin:16px 0 12px}
+  p{color:var(--text);font-size:15px;line-height:1.8}
+  .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  a{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 22px;border-radius:14px;font-size:13px;font-weight:700;text-decoration:none;transition:transform .2s,background .2s,box-shadow .2s}
+  a.primary{color:#fff;background:var(--green);box-shadow:0 12px 28px #1ab86b33}
+  a.primary:hover{background:var(--green-deep);transform:translateY(-2px)}
+  a.quiet{color:#555a64;background:#fff;border:1px solid #dfe1e5}
+  a.quiet:hover{transform:translateY(-2px)}
+  footer{padding:28px 24px;text-align:center;color:var(--muted);font-size:12px}
+  :focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:6px}
+  @media (prefers-reduced-motion:reduce){a{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <div class="wrap">
+    <div class="mark"><span class="leaf"><i></i></span><b>FreshLife</b></div>
+    <div class="code">404</div>
+    <h1>这个页面不存在或已被移动。</h1>
+    <p>你访问的地址可能拼写有误，或对应内容已经调整。可以返回首页，或前往帮助中心查看常见问题与联系方式。</p>
+    <div class="actions">
+      <a class="primary" href="/">返回首页</a>
+      <a class="quiet" href="/support/">帮助中心</a>
+    </div>
+  </div>
+</main>
+<footer>© 2026 FreshLife</footer>
+</body>
+</html>
