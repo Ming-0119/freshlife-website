@@ -28,7 +28,7 @@
 html,body{overflow-x:hidden}
 
 /* ---------- Header: fixed + glass ---------- */
-.site-header{position:fixed;top:0;left:0;right:0;background:rgba(247,248,246,.72);-webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%);border-bottom:1px solid rgba(24,27,29,.06)}
+.site-header{position:fixed;top:0;left:0;right:0;background:rgba(247,248,246,.97);border-bottom:1px solid rgba(24,27,29,.06)}
 .site-nav{height:68px;width:min(var(--container),100% - 48px)}
 .nav-links{gap:28px;font-size:13px;font-weight:600;color:#4b5056}
 .nav-links a:after{background:var(--green)}
@@ -359,3 +359,7 @@ footer{padding:64px max(5vw,50vw - 600px) 26px}
 .icon-container.ai{color:var(--ai-deep)}
 .priority-icon.food{color:#c88324}
 .priority-icon.primary{color:var(--green)}
+
+/* P0 freeze fix: neutralize GPU-heavy backdrop-filter during smooth scroll */
+.hero-caption,.hero-proof,.mock-tabbar,.mock-action-dock,.nav-cta,.privacy-fact,.companion-panel,.recognition-sheet{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.hero-caption,.hero-proof{background:rgba(255,255,255,.96)}
