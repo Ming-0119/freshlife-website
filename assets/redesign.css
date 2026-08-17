@@ -551,3 +551,98 @@ main{overflow-x:clip}
 .icon-container.food{color:var(--fl-green-deep)}
 .icon-container.health{color:#E8604C}
 .icon-container.community{color:#5B7C9E}
+
+/* =====================================================
+   DESIGN V4 — Product Experience final (authentic app preview)
+   ===================================================== */
+
+/* --- Hero: delete decorative halo + floating cards (inert if present) --- */
+.hero-halo{display:none}
+.hero-caption,.hero-proof{display:none}
+
+/* --- Device → App Preview Frame (thin neutral, no hardware) --- */
+.product-device{
+  width:340px;height:684px;
+  border-radius:40px;
+  padding:10px;
+  background:#ffffff;
+  border:1px solid #e6e1d7;
+  box-shadow:0 30px 70px rgba(24,27,29,.10),0 6px 18px rgba(24,27,29,.05);
+}
+.product-device:before,.product-device:after{display:none}
+.device-screen{border-radius:31px;border:1px solid #ece7df}
+.dynamic-island{display:none}
+.device-shadow{opacity:.35;width:270px;height:44px;filter:blur(34px);background:#14181a24;bottom:-20px}
+
+/* --- Showcase: two-column (selector + preview) --- */
+.app-showcase{display:grid;grid-template-columns:minmax(280px,1fr) minmax(360px,1.5fr);gap:56px;align-items:center;max-width:1180px;margin:0 auto}
+.showcase-stage{min-height:0;padding:0;display:flex;justify-content:center;align-items:center}
+.device-wrap{position:relative}
+
+/* --- Selector: light nav, left accent on selected --- */
+.showcase-selector{display:flex;flex-direction:column;gap:4px}
+.showcase-selector button{
+  position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:3px;
+  padding:15px 18px;border-radius:12px;text-align:left;cursor:pointer;
+  background:transparent;border:none;min-height:64px;width:100%;
+}
+.showcase-selector button:hover{background:rgba(24,27,29,.03)}
+.showcase-selector button b{font-size:17px;font-weight:650;color:#6b675f;transition:color .15s ease}
+.showcase-selector button small{font-size:13px;color:#9a958c;line-height:1.4}
+.showcase-selector button.active::before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:3px;border-radius:2px;background:var(--fl-green)}
+.showcase-selector button.active b{color:#191a1c}
+.showcase-selector button:focus-visible{outline:2px solid var(--fl-green);outline-offset:2px}
+
+/* --- App Home header: 今天 + date, bare toolbar --- */
+.today-title{display:flex;flex-direction:column;gap:2px}
+.today-title b{font-size:20px;font-weight:650;letter-spacing:-.01em;color:var(--fl-ink);line-height:1.1}
+.today-title .today-date{font-size:9px;color:var(--fl-muted);font-weight:500;letter-spacing:.3px}
+.today-tools{gap:14px}
+.tool-btn{width:26px;height:26px;border:none;border-radius:0;background:transparent;color:#4b4f52}
+.tool-btn svg{width:18px;height:18px}
+.tool-btn i{top:3px;right:2px;width:4px;height:4px;background:#E8604C}
+
+/* --- Food highlight: system sans, calmer card --- */
+.today-focus{margin-top:30px;padding:20px 22px;border-radius:20px;background:#fff;border:1px solid #ece7df;box-shadow:0 1px 2px rgba(24,27,29,.03)}
+.today-focus .focus-title{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",sans-serif;font-size:24px;font-weight:650;letter-spacing:-.01em}
+.today-focus .focus-title .days{font-size:13px;font-weight:550;color:var(--fl-amber)}
+.today-focus>p{margin-top:6px;font-size:9.5px}
+
+/* --- AI: seed mark, no blockquote line --- */
+.today-ai{margin-top:22px;display:flex;gap:9px;align-items:flex-start}
+.today-ai .ai-mark{width:20px;height:20px;color:var(--fl-green-deep);flex:none;display:flex}
+.today-ai .ai-mark svg{width:16px;height:16px}
+.today-ai .ai-label{font-size:8px;letter-spacing:.5px;color:var(--fl-green-deep);font-weight:650}
+.today-ai p{font-size:9px;color:var(--fl-text);margin-top:2px;line-height:1.5}
+
+/* --- Rows: firmer chevron, tighter height --- */
+.tl-row{padding:12px 1px}
+.tl-row>b{font-size:12px}
+.tl-row>span{font-size:9px}
+.tl-row svg{width:12px;height:12px;color:#a8a29a}
+
+/* --- Tab bar: tighter, lighter top divider --- */
+.mock-tabbar{height:46px;padding:3px 6px 1px;border-top:0.5px solid #f0ebe2}
+.mock-tabbar button{gap:2px;font-size:6.5px}
+.mock-tabbar button svg{width:20px;height:20px;stroke-width:1.6}
+.mock-tabbar .active{color:var(--fl-green-deep)}
+
+/* --- CTA buttons: mature, less pill-like --- */
+.button{min-height:52px;padding:0 22px;font-size:13px;font-weight:600;border-radius:16px;gap:9px}
+.button.primary{background:var(--fl-green);box-shadow:0 8px 20px rgba(26,158,95,.20)}
+.button.primary:hover{background:var(--fl-green-deep);transform:translateY(-1px)}
+.button.quiet{background:#fff;border:1px solid #e4e0d8;color:#4b4f52}
+.button.quiet:hover{background:#faf9f7;transform:translateY(-1px)}
+
+/* --- Mobile: pure app surface, no device shell --- */
+@media (width<=820px){
+  .app-showcase{grid-template-columns:1fr;gap:32px}
+  .showcase-selector{flex-direction:row;overflow-x:auto;gap:8px;padding-bottom:4px}
+  .showcase-selector button{min-width:128px;min-height:56px}
+  .showcase-selector button.active::before{top:auto;left:12px;right:12px;bottom:0;width:auto;height:3px}
+}
+@media (width<=600px){
+  .product-device{width:min(360px,calc(100vw - 32px));height:auto;min-height:560px;background:transparent;border:none;box-shadow:none;padding:0;border-radius:24px}
+  .device-screen{border-radius:24px;border:1px solid #ece7df}
+  .device-shadow{display:none}
+}
