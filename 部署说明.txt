@@ -1,11 +1,19 @@
-FreshLife 官网 · EdgeOne Makers/Pages 静态部署包
+FreshLife 官网 · 部署说明（2026-08-17 更新）
 
-1. 在 EdgeOne Makers/Pages 新建项目，选择直接上传或 Pages Drop。
-2. 上传本压缩包，平台生成测试网址后先检查首页和四个子页面。
-3. 在域名管理中添加 freshlifeapp.cn，并按平台给出的记录修改阿里云 DNS。
-4. 等平台显示域名和免费 HTTPS 证书正常后，再删除旧的两个 A 记录。
-5. 保留 _openai-site-verification TXT 记录不会影响新网站；确认稳定后可再删除。
+真实架构：
+  Source:   GitHub — github.com/Ming-0119/freshlife-website
+  Hosting:  Aliyun ESA（边缘安全加速）Functions & Pages
+  Project:  freshlife-website
+  Domain:   https://www.freshlifeapp.cn/
+  Deploy:   esa-cli deploy（静态 Pages 项目）
 
-公开页面：/、/privacy、/terms、/support、/safety
+部署步骤：
+  1. npm install esa-cli -g
+  2. esa-cli login --access-key-id <AK> --access-key-secret <SK>
+  3. esa-cli deploy -n freshlife-website -a <静态文件目录> -e production -d "<版本说明>"
+
+公开页面：/、/privacy/、/terms/、/support/、/safety/
 默认首页：index.html
-错误页面：404.html
+品牌 404：/404（对应 404.html）
+
+（历史备注：早期曾考虑 Tencent EdgeOne Makers/Pages 与阿里云 OSS 静态托管方案，现已弃用，不再使用。）
