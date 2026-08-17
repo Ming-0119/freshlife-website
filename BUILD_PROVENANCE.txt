@@ -1,6 +1,6 @@
 Source repo: freshlife-app
-Source commit: 0b269b0
-Build date: 2026-08-17T17:55:05Z
+Source commit: 5da20ca
+Build date: 2026-08-17T17:59:02Z
 Build command: node_modules/.bin/vinext build
 Framework: vinext 0.0.50
-Artifact checksum (sha256): 3693e8f309e4b12bbc59aa85b502e048405cbf1af8d0b327ce4b9c8d458b9aa9
+Artifact checksum (sha256): a4128713fe1551786e51c54c70b86585eb9e76b7dc9936090d324812290d46d6
