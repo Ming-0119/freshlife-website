@@ -25,7 +25,7 @@
   --shadow-device:0 40px 90px rgba(24,27,29,.26), 0 12px 30px rgba(24,27,29,.16);
 }
 
-html,body{overflow-x:hidden}
+html,body{overflow-x:clip}
 
 /* ---------- Header: fixed + glass ---------- */
 .site-header{position:fixed;top:0;left:0;right:0;background:rgba(247,248,246,.97);border-bottom:1px solid rgba(24,27,29,.06)}
