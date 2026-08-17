@@ -195,9 +195,6 @@ footer{padding:64px max(5vw,50vw - 600px) 26px}
 
 /* Focus + hover consistency */
 .button:focus-visible,.nav-cta:focus-visible,.showcase-tabs button:focus-visible,.faq-list summary:focus-visible{outline:2px solid var(--green);outline-offset:2px;border-radius:8px}
-@media (prefers-reduced-motion:reduce){
-  .product-device,.hero-halo{animation:none!important}
-}
 
 /* =====================================================
    FreshLife App Demo UI — unified, calm, de-dashboarded
