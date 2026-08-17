@@ -5,9 +5,9 @@
 
 :root{
   --container: 1200px;
-  --r-sm: 12px;
-  --r-md: 18px;
-  --r-lg: 26px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
   --green:#1ab86b;
   --green-deep:#0e9657;
   --green-soft:#e1f7eb;
@@ -61,12 +61,12 @@ html,body{overflow-x:hidden}
 .loop-icon{width:44px;height:44px;border-radius:14px}
 .support-callout{border-radius:20px;padding:22px}
 .legal-callout{border-radius:14px}
-.data-table{border-radius:15px}
+.data-table{border-radius:14px}
 
 /* ---------- Hero device: bigger, centered ---------- */
 .product-device{width:330px;height:678px;border-radius:50px}
 .hero-visual{min-height:660px}
-.hero-caption{border-radius:16px;box-shadow:var(--shadow-float)}
+.hero-caption{border-radius:14px;box-shadow:var(--shadow-float)}
 .hero-proof{border-radius:14px;box-shadow:var(--shadow-float)}
 .hero-halo.one{width:440px;height:440px}
 .hero-halo.two{width:520px;height:520px}
@@ -100,7 +100,7 @@ html,body{overflow-x:hidden}
 
 /* ---------- CTA ---------- */
 .download{min-height:420px;border-radius:0}
-.store-badge{border-radius:16px}
+.store-badge{border-radius:14px}
 
 /* ---------- Footer: calmer ---------- */
 footer{padding:64px max(5vw,50vw - 600px) 26px}
@@ -201,8 +201,8 @@ footer{padding:64px max(5vw,50vw - 600px) 26px}
    ===================================================== */
 
 /* Unified app card */
-.mock-card{background:#fff;border-radius:16px;border:1px solid rgba(24,27,29,.06);box-shadow:0 1px 2px rgba(24,27,29,.03),0 4px 12px rgba(24,27,29,.03)}
-.metrics-card,.priority-list,.food-item,.meal-slot{border-radius:16px}
+.mock-card{background:#fff;border-radius:14px;border:1px solid rgba(24,27,29,.06);box-shadow:0 1px 2px rgba(24,27,29,.03),0 4px 12px rgba(24,27,29,.03)}
+.metrics-card,.priority-list,.food-item,.meal-slot{border-radius:14px}
 
 /* Compact, quiet header */
 .avatar{width:30px;height:30px;font-size:10px;border-radius:50%}
@@ -214,7 +214,7 @@ footer{padding:64px max(5vw,50vw - 600px) 26px}
 .notification-mark i{width:4px;height:4px;top:4px;right:4px}
 
 /* Priority card: one task, no progress bar */
-.today-focus{padding:11px;border-radius:16px;background:linear-gradient(150deg,#fff 5%,#fbf6ee)}
+.today-focus{padding:11px;border-radius:14px;background:linear-gradient(150deg,#fff 5%,#fbf6ee)}
 .today-focus-top{grid-template-columns:32px 1fr auto;gap:8px}
 .icon-container{width:32px;height:32px;border-radius:10px}
 .today-focus-top small{font-size:6.5px;font-weight:700}
@@ -254,7 +254,7 @@ footer{padding:64px max(5vw,50vw - 600px) 26px}
 .today-action p{font-size:6px}
 
 /* FAB: single add, not a dual-button pill */
-.mock-action-dock{gap:0;padding:3px;border-radius:22px;bottom:64px;right:11px}
+.mock-action-dock{gap:0;padding:3px;border-radius:20px;bottom:64px;right:11px}
 .mock-action-dock a{width:32px;height:32px}
 .mock-action-dock a.ai{display:none}
 
