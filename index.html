@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-5db02d3823.css"/>
+<link rel="stylesheet" href="/assets/main-1e77e23482.css"/>
 </head>
 <body>
 
@@ -122,6 +122,56 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
 <a class="daily-card reveal" href="#story-3"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg></div><span class="when">下班 · 回家路上</span></div><h3>今晚吃什么，先定好</h3><p>打开膳食页看看手头食材能做什么，快过期的优先安排；缺的几样记进购物清单，顺路带回家。</p><span class="daily-card-cta">看看它怎样安排 <span aria-hidden="true">→</span></span></a>
 <a class="daily-card reveal" href="#story-4"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><span class="when">购物 · 在超市</span></div><h3>对照清单，不买重不漏买</h3><p>缺什么一目了然，站在货架前不再凭感觉；买回来拍照入库，这一轮就闭环了。</p><span class="daily-card-cta">看看这一轮怎样闭环 <span aria-hidden="true">→</span></span></a>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= 用户先看到结果，而不是功能名词 ================= -->
+  <section class="section section--alt section--compact" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Why FreshLife</p>
+        <h2>不是多管一件事，<br/>是每天少操一点心。</h2>
+        <p class="lead">功能放在它真正有用的时刻出现：打开时看见重点，做饭前得到答案，购物时只看缺什么。</p>
+      </div>
+      <div class="why-grid why-grid--outcomes">
+        <div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 10h14"/><path d="M10 10v3"/></svg></div><h3>一眼知道家里有什么</h3><p>库存、位置、数量和到期时间集中在一处，少翻一次冰箱，也少买一份重复的。</p></div>
+<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2.5H4.5L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></div><h3>先把该吃的吃掉</h3><p>临期食材自然排到前面，在还能安排的时候轻轻提醒，不必天天自己核对。</p></div>
+<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v5a2.5 2.5 0 0 0 5 0V3"/><path d="M9.5 3v18"/><path d="M18 3v18"/><path d="M18 3c-3 3-3 9 0 12"/></svg></div><h3>晚饭从现有食材开始</h3><p>先看手头能做什么，再告诉你还缺什么；不用面对一堆食谱重新做选择。</p></div>
+<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><h3>买菜时心里有数</h3><p>缺的集中进清单，买回后再确认入库，让记录、安排和采购顺手接起来。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 家庭节奏愿景：紧接每天使用理由 ================= -->
+  <section class="section" id="vision">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Vision</p>
+        <h2>先帮好今天，<br/>再慢慢懂得你们家的节奏。</h2>
+        <p class="lead">每家吃饭的节奏都不同。FreshLife 先把库存、临期、餐食和购物接起来；以后只在你同意的前提下，逐步让建议更贴近这个家庭真实的生活。</p>
+      </div>
+      <div class="vision-grid">
+        <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div><span class="vision-tag current">现在 · 今天已具备</span></div><h3>把每天记清楚</h3><p>本地库存、临期提醒、餐食建议与购物清单，先让「今天」有数。这是目前 FreshLife 的全部能力，也是最扎实的地基。</p></div>
+<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></div><span class="vision-tag next">下一步 · 尚未上线</span></div><h3>记住你们家的节奏</h3><p>慢慢了解你们家的口味、忌口与常买清单，让建议更贴切。记忆类能力只在本机、先说明、后启用。</p></div>
+<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div><span class="vision-tag long">长期 · 方向</span></div><h3>成为家庭的食品智能层</h3><p>理解一整年的节奏——季节、习惯与预算，在合适的时候给出合适的建议。这是长期方向，不是今天的功能。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 路线图：只讲最近三步，完整愿景放在理念页 ================= -->
+  <section class="section section--alt section--compact" id="roadmap">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Roadmap</p>
+        <h2>每一步，都先让日常更轻松。</h2>
+        <p class="lead">以下都是尚未上线的方向：先减轻录入，再理解家庭节奏，然后把一周的规划与补货做得更顺。不会把远期想法包装成今天的功能。</p>
+      </div>
+      <div class="roadmap-rail reveal">
+        <div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">01</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L17 4l3 3L8 19l-4 1z"/><path d="M14.5 6.5l3 3"/></svg></span><h3>更轻松的录入</h3><p>让「记一笔」更快、更省心：少打字、少核对，也少出错。</p></div>
+<div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">02</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></span><h3>家庭节奏与个性化上下文</h3><p>在设备上慢慢记住你们家的偏好：口味、忌口、常买的清单，让建议越来越贴切。</p></div>
+<div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">03</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20v-6M12 20V8M18 20v-10"/></svg></span><h3>更好的规划与补货</h3><p>从「今天吃什么」走向「这周怎么吃」：更聪明的餐食计划与补货建议，减少冲动购买与浪费。</p></div>
+      </div>
+      <p class="section-more reveal"><a href="/philosophy/">为什么这样安排？阅读完整理念与长期方向 <span aria-hidden="true">→</span></a></p>
     </div>
   </section>
 
@@ -352,47 +402,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
           </article>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ================= 为什么 ================= -->
-  <section class="section section--alt" id="why">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Why FreshLife</p>
-        <h2>每天省下的一点纠结，攒起来就是从容。</h2>
-        <p class="lead">FreshLife 不做复杂的厨房管家，只做三件小事——帮你记着、提醒你、给你现成的答案。</p>
-      </div>
-      <div class="why-grid">
-        <div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 10h14"/><path d="M10 10v3"/></svg></div><h3>记住家里有什么</h3><p>不用再对着冰箱发呆：谁买的、什么时候买的、还剩多久，都在本机记着。</p></div>
-<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2.5H4.5L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></div><h3>到期前，轻轻提醒</h3><p>不会突然打扰你，只在该用的时候提醒一声：这个先吃正好。</p></div>
-<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></div><h3>数据留在自己设备上</h3><p>核心功能在本地完成，不需要注册账号，没有广告，也没有跨 App 追踪。</p></div>
-      </div>
-      <div class="flow-strip reveal" aria-label="日常使用流程">
-        <div class="flow-item"><span class="num">01</span><span class="ft"><b>放进库存</b><small>拍照、扫码、相册或手动，几步就能记下一件。</small></span></div>
-<div class="flow-item"><span class="num">02</span><span class="ft"><b>快到期的先吃</b><small>到期前，本地通知轻轻提醒；首页和膳食页把临期食材排在前面。</small></span></div>
-<div class="flow-item"><span class="num">03</span><span class="ft"><b>看看能做什么</b><small>根据现有食材生成餐食方案，全程本地完成，离线也能用。</small></span></div>
-<div class="flow-item"><span class="num">04</span><span class="ft"><b>吃了、补了都记上</b><small>用掉或丢弃后更新库存；缺的食材进入购物清单，买回直接入库。</small></span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 家庭节奏愿景 =================
-       长期愿景要讲清楚：现在能做什么、下一步是什么、更远的方向是什么；
-       明确不把「长期记忆 / 自动购物 / 家庭食品图谱」说成今天已具备。 -->
-  <section class="section" id="vision">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Vision</p>
-        <h2>慢慢了解你们家的节奏。</h2>
-        <p class="lead">每家吃饭的节奏都不一样：工作日赶时间、周末慢慢做、有人挑食、有人忌口。FreshLife 希望逐步成为每个家庭独有的<strong>食品生活助手</strong>：在你同意后，慢慢理解这个家有什么、喜欢怎么吃、通常怎么买，让建议更贴近真实生活。</p>
-      </div>
-      <div class="vision-grid">
-        <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div><span class="vision-tag current">现在 · 今天已具备</span></div><h3>把每天记清楚</h3><p>本地库存、临期提醒、餐食建议与购物清单，先让「今天」有数。这是目前 FreshLife 的全部能力，也是最扎实的地基。</p></div>
-<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></div><span class="vision-tag next">下一步 · 尚未上线</span></div><h3>记住你们家的节奏</h3><p>慢慢了解你们家的口味、忌口与常买清单，让建议更贴切。记忆类能力只在本机、先说明、后启用。</p></div>
-<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div><span class="vision-tag long">长期 · 方向</span></div><h3>成为家庭的食品智能层</h3><p>理解一整年的节奏——季节、习惯与预算，在合适的时候给出合适的建议。这是长期方向，不是今天的功能。</p></div>
-      </div>
-      <p class="roadmap-caveat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.8v5.4c0 4.4-3 7.6-7 8.8-4-1.2-7-4.4-7-8.8V5.8L12 3z"/></svg><span>这些阶段按顺序推进：先把录入变轻松，再谈理解与规划。<strong>现在的版本没有家庭长期记忆、不会自动购物，也没有完整家庭食品图谱</strong>——那些都是长期方向，不是今天的承诺。每一步上线前，都会先在本页与 App 内讲清楚。<a href="/philosophy/">了解我们的理念 →</a></span></p>
     </div>
   </section>
 
@@ -901,9 +910,10 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
 <div class="ai-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4V5z"/></svg></div><h3>远程 AI 助手（可选） <span class="badge online">需要联网</span></h3><p class="desc">当前版本尚未启用远程 AI。未来如果上线，会默认关闭、由你主动开启，并且只发送完成请求所需的最少信息。</p></div>
 <div class="ai-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.8v5.4c0 4.4-3 7.6-7 8.8-4-1.2-7-4.4-7-8.8V5.8L12 3z"/><path d="M9 11.5l2 2 4-4"/></svg></div><h3>边界与确认 <span class="badge shipped">现在就能用</span></h3><p class="desc">AI 只负责识别与建议，不会自动改动库存。识别结果、餐食方案与购物变更，都会先经过你的确认再生效。</p></div>
       </div>
-      <div class="ai-note reveal">
-        <strong>关于远程 AI 助手：</strong>当前版本（1.0.0）尚未启用远程 AI。未来如果上线，会默认关闭；启用前将说明需要处理的信息并征得你的明确同意，只发送完成当次请求所需的内容。过敏信息、健康目标、个人资料、AI 记忆、餐食与购物历史及长期行为记录，不属于当前规划中的远程 AI 请求内容。服务商 API 密钥不会内置在 App 中，App 也不会要求你提供 API Key。AI 建议仅供参考，不构成医疗建议。
-      </div>
+      <details class="disclosure reveal">
+        <summary>远程 AI 会处理什么信息？查看完整边界</summary>
+        <div class="disclosure-body"><p>当前版本（1.0.0）尚未启用远程 AI。未来如果上线，会默认关闭；启用前会说明需要处理的信息并征得你的明确同意，只发送完成当次请求所需的内容。过敏信息、健康目标、个人资料、AI 记忆、餐食与购物历史及长期行为记录，不属于当前规划中的远程 AI 请求内容。服务商 API 密钥不会内置在 App 中，App 也不会要求你提供 API Key。AI 建议仅供参考，不构成医疗建议。</p></div>
+      </details>
     </div>
   </section>
 
@@ -919,9 +929,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
         <div class="privacy-item reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></div><div><h3>本地优先</h3><p>库存、偏好等核心数据，保存在你自己的设备上。</p></div></div>
 <div class="privacy-item reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.2-3.6 4.1-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></svg></div><div><h3>无需注册</h3><p>没有账号系统，个人资料只留在本机。</p></div></div>
 <div class="privacy-item reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.8v5.4c0 4.4-3 7.6-7 8.8-4-1.2-7-4.4-7-8.8V5.8L12 3z"/><path d="M9 11.5l2 2 4-4"/></svg></div><div><h3>没有广告 SDK</h3><p>不含广告 SDK、第三方统计与跨 App 追踪。</p></div></div>
-<div class="privacy-item reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2.5H4.5L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></div><div><h3>用到才问权限</h3><p>使用相机、相册与通知时，才会请求对应权限，并说明用途。</p></div></div>
 <div class="privacy-item reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 13v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6"/></svg></div><div><h3>数据由你掌控</h3><p>随时导出、重置 AI 记忆或删除全部本地数据。</p></div></div>
-<div class="privacy-item reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></div><div><h3>AI 数据边界</h3><p>远程 AI 当前版本未启用；未来启用时默认关闭，需你明确同意，且只发送最少信息。</p></div></div>
       </div>
       <div class="legend reveal">
         <span class="item"><span class="swatch" style="background:var(--green)"></span>现在就能用</span>
@@ -933,66 +941,21 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= 功能清单 ================= -->
+  <!-- ================= 功能速览：详细说明进入独立页面 ================= -->
   <section class="section" id="features">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Feature List</p>
-        <h2>哪些现在就能用，哪些在计划里。</h2>
-        <p class="lead">我们不夸大状态：标注「现在就能用」的是当前版本包含的能力，「在计划里」的暂未上线。功能以实际发布的版本为准。<a href="/features/">查看每项功能的完整说明 →</a></p>
+        <p class="eyebrow">At a Glance</p>
+        <h2>需要的时候，功能就在手边。</h2>
+        <p class="lead">首页只保留最常用的四类能力。每项功能怎么用、有什么限制、现在是否可用，都在完整功能页逐项说明。</p>
       </div>
-
-      <div class="legend reveal">
-        <span class="item"><span class="swatch" style="background:var(--green)"></span>现在就能用<small> · 已包含在当前版本中</small></span>
-<span class="item"><span class="swatch" style="background:var(--blue)"></span>本机离线可用<small> · 在设备本地完成，不需要联网</small></span>
-<span class="item"><span class="swatch" style="background:var(--amber)"></span>需要联网<small> · 只在主动使用时才联网</small></span>
-<span class="item"><span class="swatch" style="background:var(--ink-3)"></span>在计划里<small> · 暂未上线，属于今后的路线</small></span>
+      <div class="feature-glance-grid">
+        <a class="feature-glance-card reveal" href="/features/#pantry"><span class="feature-glance-number">01</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 10h14"/><path d="M10 10v3"/></svg></span><h3>库存与提醒</h3><ul><li><span>库存管理</span><span class="badge shipped">现在就能用</span></li><li><span>新鲜 / 临期 / 过期状态</span><span class="badge shipped">现在就能用</span></li></ul><span class="feature-glance-cta">查看这一类 <span aria-hidden="true">→</span></span></a>
+<a class="feature-glance-card reveal" href="/features/#add"><span class="feature-glance-number">02</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="3"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-2.5h5L16 7"/></svg></span><h3>录入方式</h3><ul><li><span>拍照识别</span><span class="badge local">本机离线可用</span></li><li><span>相册识别</span><span class="badge local">本机离线可用</span></li></ul><span class="feature-glance-cta">查看这一类 <span aria-hidden="true">→</span></span></a>
+<a class="feature-glance-card reveal" href="/features/#meals"><span class="feature-glance-number">03</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v5a2.5 2.5 0 0 0 5 0V3"/><path d="M9.5 3v18"/><path d="M18 3v18"/><path d="M18 3c-3 3-3 9 0 12"/></svg></span><h3>餐食与购物</h3><ul><li><span>餐食规划</span><span class="badge local">本机离线可用</span></li><li><span>烹饪模式</span><span class="badge shipped">现在就能用</span></li></ul><span class="feature-glance-cta">查看这一类 <span aria-hidden="true">→</span></span></a>
+<a class="feature-glance-card reveal" href="/features/#devices"><span class="feature-glance-number">04</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.8v5.4c0 4.4-3 7.6-7 8.8-4-1.2-7-4.4-7-8.8V5.8L12 3z"/><path d="M9 11.5l2 2 4-4"/></svg></span><h3>个性化与数据</h3><ul><li><span>外观模式</span><span class="badge shipped">现在就能用</span></li><li><span>语言与单位</span><span class="badge shipped">现在就能用</span></li></ul><span class="feature-glance-cta">查看这一类 <span aria-hidden="true">→</span></span></a>
       </div>
-
-      <div class="feature-group reveal"><h3>库存与提醒</h3><div class="feature-table"><div class="feature-row"><b>库存管理</b><span class="fd">分类、存放位置、数量、搜索、筛选与排序</span><span class="badge shipped">现在就能用</span></div>
-<div class="feature-row"><b>新鲜 / 临期 / 过期状态</b><span class="fd">按到期日自动分组，跨日与回到 App 时重新计算</span><span class="badge shipped">现在就能用</span></div>
-<div class="feature-row"><b>本地到期提醒</b><span class="fd">iOS 本地通知，提醒天数可以自己调</span><span class="badge local">本机离线可用</span></div>
-<div class="feature-row"><b>重复自动合并</b><span class="fd">同名、同位置、同到期日自动合并数量</span><span class="badge shipped">现在就能用</span></div>
-<div class="feature-row"><b>使用与丢弃记录</b><span class="fd">记下吃掉、丢弃、捐赠与冷冻，慢慢形成自己的数据</span><span class="badge shipped">现在就能用</span></div></div></div>
-<div class="feature-group reveal"><h3>录入方式</h3><div class="feature-table"><div class="feature-row"><b>拍照识别</b><span class="fd">本机 Apple Vision 识别，不需要 API Key</span><span class="badge local">本机离线可用</span></div>
-<div class="feature-row"><b>相册识别</b><span class="fd">从相册选图识别，在设备本地完成</span><span class="badge local">本机离线可用</span></div>
-<div class="feature-row"><b>扫描 FreshLife 二维码</b><span class="fd">本版本只支持 FreshLife 食品二维码</span><span class="badge local">本机离线可用</span></div>
-<div class="feature-row"><b>手动录入</b><span class="fd">精确填写名称、数量、位置与到期日</span><span class="badge shipped">现在就能用</span></div></div></div>
-<div class="feature-group reveal"><h3>餐食与购物</h3><div class="feature-table"><div class="feature-row"><b>餐食规划</b><span class="fd">根据现有与临期食材生成方案，离线可用</span><span class="badge local">本机离线可用</span></div>
-<div class="feature-row"><b>烹饪模式</b><span class="fd">分步计时，完成后自动消耗对应库存</span><span class="badge shipped">现在就能用</span></div>
-<div class="feature-row"><b>购物清单</b><span class="fd">补货建议、已购标记、到货直接入库</span><span class="badge shipped">现在就能用</span></div></div></div>
-<div class="feature-group reveal"><h3>个性化与数据</h3><div class="feature-table"><div class="feature-row"><b>外观模式</b><span class="fd">浅色 / 深色 / 跟随系统</span><span class="badge shipped">现在就能用</span></div>
-<div class="feature-row"><b>语言与单位</b><span class="fd">简体中文与 English；公制 / 英制</span><span class="badge shipped">现在就能用</span></div>
-<div class="feature-row"><b>偏好设置</b><span class="fd">家庭人数、提醒方式、烹饪时长上限</span><span class="badge shipped">现在就能用</span></div>
-<div class="feature-row"><b>数据导出与删除</b><span class="fd">导出文本、重置 AI 记忆、删除全部本地数据</span><span class="badge shipped">现在就能用</span></div>
-<div class="feature-row"><b>本地备份恢复</b><span class="fd">备份机制已实现，App 内入口在计划里</span><span class="badge planned">在计划里</span></div></div></div>
-<div class="feature-group reveal"><h3>FreshLife AI</h3><div class="feature-table"><div class="feature-row"><b>本机识别与本地推荐</b><span class="fd">Apple Vision 辅助识别 + 基于库存的本地餐食建议</span><span class="badge local">本机离线可用</span></div>
-<div class="feature-row"><b>AI 记忆</b><span class="fd">偏好记忆只保存在本机，可随时编辑或删除</span><span class="badge local">本机离线可用</span></div>
-<div class="feature-row"><b>远程 AI 助手</b><span class="fd">当前版本未启用；未来上线时默认关闭，需明确同意</span><span class="badge online">需要联网</span></div></div></div>
-<div class="feature-group reveal"><h3>在计划里（暂未上线）</h3><div class="feature-table"><div class="feature-row"><b>云端同步与多设备</b><span class="fd">需要账号与合规流程，当前版本不提供</span><span class="badge planned">在计划里</span></div>
-<div class="feature-row"><b>家庭共享</b><span class="fd">共享库存与购物清单，生产版本尚未开放</span><span class="badge planned">在计划里</span></div>
-<div class="feature-row"><b>社区</b><span class="fd">社区原型仅用于调试，正式服务在计划里</span><span class="badge planned">在计划里</span></div>
-<div class="feature-row"><b>健康洞察</b><span class="fd">界面原型已存在，正式分析能力在计划里</span><span class="badge planned">在计划里</span></div>
-<div class="feature-row"><b>FreshLife 会员与市场</b><span class="fd">需完成 App Store 产品配置与服务审核</span><span class="badge planned">在计划里</span></div></div></div>
-    </div>
-  </section>
-
-  <!-- ================= 接下来的路 ================= -->
-  <section class="section section--alt" id="roadmap">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Roadmap</p>
-        <h2>接下来，想慢慢做的事。</h2>
-        <p class="lead">方向有明确的顺序：先把「记一笔」变轻松，再学着理解你们家的节奏，然后是更好的规划与补货、安全的家庭协作，最后才是生态连接。标注「在计划里」的均未上线。</p>
-      </div>
-      <div class="roadmap-grid">
-        <div class="roadmap-card reveal"><span class="roadmap-step">01</span><div class="roadmap-body"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L17 4l3 3L8 19l-4 1z"/><path d="M14.5 6.5l3 3"/></svg></span>更轻松的录入<span class="flag">在计划里</span></h3><p>让「记一笔」更快、更省心：少打字、少核对，也少出错。</p><ul class="roadmap-items"><li>相册批量导入，一次带进多件</li><li>更聪明的识别核对，不确定时才请你确认</li><li>常用食品模板，重复的东西一键带出</li></ul></div></div>
-<div class="roadmap-card reveal"><span class="roadmap-step">02</span><div class="roadmap-body"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></span>家庭节奏与个性化上下文<span class="flag">在计划里</span></h3><p>在设备上慢慢记住你们家的偏好：口味、忌口、常买的清单，让建议越来越贴切。</p><ul class="roadmap-items"><li>本机偏好与节奏记忆，先说明、后启用</li><li>按家庭成员区分口味与忌口</li><li>节假日与季节的变化，也被考虑进去</li></ul></div></div>
-<div class="roadmap-card reveal"><span class="roadmap-step">03</span><div class="roadmap-body"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20v-6M12 20V8M18 20v-10"/></svg></span>更好的规划与补货<span class="flag">在计划里</span></h3><p>从「今天吃什么」走向「这周怎么吃」：更聪明的餐食计划与补货建议，减少冲动购买与浪费。</p><ul class="roadmap-items"><li>一周餐食计划，围绕家里已有的食材</li><li>按用量估算的补货建议</li><li>基于真实记录的长期趋势，仅供生活参考</li></ul></div></div>
-<div class="roadmap-card reveal"><span class="roadmap-step">04</span><div class="roadmap-body"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.9-3 3.4-4.5 6.5-4.5s5.6 1.5 6.5 4.5"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 15.5c2.6.2 4.6 1.6 5 4.5"/></svg></span>安全的家庭协作<span class="flag">在计划里</span></h3><p>与家人共享库存与购物清单，人人有各自的权限与记录。需要先完成账号体系与合规流程。</p><ul class="roadmap-items"><li>家庭成员与角色权限</li><li>共享库存与购物清单，改动有记录</li><li>云端同步与账号找回（前提：账号体系与合规）</li></ul></div></div>
-<div class="roadmap-card reveal"><span class="roadmap-step">05</span><div class="roadmap-body"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></span>生态连接<span class="flag">在计划里</span></h3><p>让信息在更多地方流动：食谱、购物渠道与厨房设备，按你的选择连接，不是默认全开。</p><ul class="roadmap-items"><li>与食谱服务连接</li><li>购物渠道对接，清单一键带走</li><li>智能厨房设备联动</li></ul></div></div>
-      </div>
-      <p class="roadmap-caveat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>这些方向不会一步到位：会先完成本地与合规基础，再分阶段实现。具体时间取决于账号体系、服务审核与合规流程的进展；每阶段上线前都会如实更新状态。<a href="/philosophy/">了解我们的理念 →</a></span></p>
+      <p class="section-more reveal"><a href="/features/">查看全部功能、状态与使用说明 <span aria-hidden="true">→</span></a></p>
     </div>
   </section>
 
@@ -1069,6 +1032,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   </div>
 </footer>
 
-<script src="/assets/main-e0c9d6bca8.js" defer></script>
+<script src="/assets/main-76d77f90f0.js" defer></script>
 </body>
 </html>

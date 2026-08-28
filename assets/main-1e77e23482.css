@@ -174,6 +174,7 @@ main { animation: pageIn 0.45s ease; }
 /* ---------- 布局 ---------- */
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 .section { padding: 96px 0; }
+.section--compact { padding: 78px 0; }
 .section--alt { background: var(--bg-elev); border-block: 1px solid var(--line); }
 .readable { max-width: var(--readable); }
 
@@ -389,13 +390,21 @@ main { animation: pageIn 0.45s ease; }
 .button.small { min-height: 40px; padding: 0 16px; font-size: 14px; border-radius: 12px; }
 
 /* ---------- 为什么 ---------- */
-.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 34px; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.why-grid--outcomes { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .why-card {
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
-  padding: 28px 26px;
+  padding: 26px 24px; position: relative; overflow: hidden;
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
+.why-card::after {
+  content: ""; position: absolute; inset: auto 24px 0; height: 2px;
+  background: linear-gradient(90deg, var(--green), var(--apricot));
+  transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform 0.55s var(--ease-out);
+}
 .why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--green) 35%, var(--line)); }
+.why-card:hover::after, .why-card:focus-within::after { transform: scaleX(1); }
 .why-card .ico {
   width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center;
   background: var(--green-soft); color: var(--green-strong); margin-bottom: 16px;
@@ -916,6 +925,32 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   padding: 14px 18px; border-radius: 0 var(--radius) var(--radius) 0;
 }
 
+/* 长边界按需展开：首屏保持轻，愿意深读的人仍能看到完整说明。 */
+.disclosure {
+  margin-top: 20px; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: clip;
+}
+.disclosure summary {
+  list-style: none; cursor: pointer; color: var(--ink); font-size: 14px; font-weight: 700;
+  padding: 16px 50px 16px 18px; position: relative;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.disclosure summary::-webkit-details-marker { display: none; }
+.disclosure summary::after {
+  content: "+"; position: absolute; right: 18px; top: 50%;
+  width: 24px; height: 24px; margin-top: -12px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--green-soft); color: var(--green-strong);
+  font-size: 18px; line-height: 1; transition: transform 0.42s var(--ease-spring), background 0.2s ease;
+}
+.disclosure summary:hover { background: var(--green-softer); color: var(--green-strong); }
+.disclosure[open] summary::after { transform: rotate(45deg); }
+.disclosure-body { border-top: 1px solid var(--line); padding: 16px 18px 18px; }
+.disclosure-body p { font-size: 13.5px; line-height: 1.8; color: var(--ink-3); max-width: 86ch; }
+@media (prefers-reduced-motion: no-preference) {
+  .disclosure[open] .disclosure-body { animation: disclosureIn 0.38s var(--ease-out); }
+}
+@keyframes disclosureIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
 /* ---------- 隐私 ---------- */
 /* 用分隔线列表代替卡片，减少卡片堆叠感，层级更清楚 */
 .privacy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 32px; }
@@ -948,6 +983,52 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 .feature-row b { font-size: 15px; color: var(--ink); font-weight: 600; }
 .feature-row .fd { font-size: 13.5px; color: var(--ink-2); }
 .feature-row .badge { justify-self: end; }
+
+/* 首页功能速览：只展示四类入口，完整表格仍在 /features/。 */
+.feature-glance-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.feature-glance-card {
+  min-width: 0; display: flex; flex-direction: column; color: inherit;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: 24px; position: relative; overflow: hidden;
+  transition: transform 0.28s var(--ease-out), box-shadow 0.28s ease, border-color 0.28s ease;
+}
+.feature-glance-card::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 3px;
+  background: linear-gradient(90deg, var(--green), color-mix(in srgb, var(--green) 35%, var(--apricot)));
+  transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.5s var(--ease-out);
+}
+.feature-glance-card:hover { color: inherit; transform: translateY(-5px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--green) 35%, var(--line)); }
+.feature-glance-card:hover::before { transform: scaleX(1); }
+.feature-glance-number { position: absolute; top: 18px; right: 20px; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: var(--ink-3); }
+.feature-glance-card > .ico { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: var(--green-soft); color: var(--green-strong); margin-bottom: 16px; }
+.feature-glance-card > .ico svg { width: 21px; height: 21px; }
+.feature-glance-card h3 { font-size: 17px; color: var(--ink); font-weight: 700; margin-bottom: 14px; }
+.feature-glance-card ul { list-style: none; display: grid; gap: 10px; margin-bottom: 20px; }
+.feature-glance-card li { display: grid; gap: 6px; align-items: start; font-size: 13.5px; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 10px; }
+.feature-glance-card li .badge { width: fit-content; font-size: 10.5px; padding: 3px 8px; }
+.feature-glance-cta { margin-top: auto; display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; color: var(--green-strong); }
+.feature-glance-cta span { transition: transform 0.28s var(--ease-out); }
+.feature-glance-card:hover .feature-glance-cta span { transform: translateX(4px); }
+
+.section-more { margin-top: 26px; font-size: 14.5px; font-weight: 700; }
+.section-more a { display: inline-flex; align-items: center; gap: 7px; }
+.section-more a span { transition: transform 0.28s var(--ease-out); }
+.section-more a:hover span { transform: translateX(4px); }
+
+/* 三步路线轨道：连接线进入视口后铺开，方向清晰但不喧宾夺主。 */
+.roadmap-rail { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.roadmap-rail::before {
+  content: ""; position: absolute; left: 8%; right: 8%; top: 22px; height: 2px;
+  background: linear-gradient(90deg, var(--green), var(--blue), var(--apricot));
+  opacity: 0.35; transform: scaleX(0); transform-origin: 0 50%; transition: transform 1.1s var(--ease-out) 0.18s;
+}
+.roadmap-rail.in-view::before { transform: scaleX(1); }
+.roadmap-rail-step { position: relative; z-index: 1; min-width: 0; padding: 0 18px 0 0; }
+.roadmap-rail-number { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line-strong); box-shadow: var(--shadow-sm); color: var(--green-strong); font-size: 13px; font-weight: 800; margin-bottom: 22px; }
+.roadmap-rail-step > .ico { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: var(--green-soft); color: var(--green-strong); margin-bottom: 12px; }
+.roadmap-rail-step > .ico svg { width: 17px; height: 17px; }
+.roadmap-rail-step h3 { font-size: 17px; color: var(--ink); font-weight: 700; margin-bottom: 6px; }
+.roadmap-rail-step p { font-size: 14px; color: var(--ink-2); line-height: 1.72; }
 
 /* ---------- 路线（五阶段，按顺序纵向排布） ---------- */
 .roadmap-grid { display: grid; gap: 14px; max-width: var(--readable); margin: 0 auto; }
@@ -1384,6 +1465,7 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 
 @media (max-width: 960px) {
   .section { padding: 72px 0; }
+  .why-grid--outcomes, .feature-glance-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nav-links { display: none; }
   .nav-toggle { display: inline-flex; }
   .nav-cta { display: none; }
@@ -1394,6 +1476,17 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 @media (max-width: 720px) {
   .container { padding: 0 18px; }
   .section { padding: 60px 0; }
+  .why-grid--outcomes, .feature-glance-grid { grid-template-columns: 1fr; }
+  .roadmap-rail { grid-template-columns: 1fr; gap: 28px; }
+  .roadmap-rail::before {
+    left: 21px; right: auto; top: 20px; bottom: 22px; width: 2px; height: auto;
+    background: linear-gradient(180deg, var(--green), var(--blue), var(--apricot));
+    transform: scaleY(0); transform-origin: 50% 0;
+  }
+  .roadmap-rail.in-view::before { transform: scaleY(1); }
+  .roadmap-rail-step { padding-left: 64px; padding-right: 0; }
+  .roadmap-rail-number { position: absolute; left: 0; top: 0; margin: 0; }
+  .feature-glance-card { padding: 22px 20px; }
   .hero { padding: 60px 0 52px; }
   .nav-links { display: none; }
   .nav-toggle { display: inline-flex; }

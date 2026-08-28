@@ -286,7 +286,7 @@
   /* 同一组卡片轻微错峰，最大延迟控制在 280ms，保持节奏而不拖沓。 */
   document.querySelectorAll(
     ".daily-grid, .why-grid, .method-grid, .ai-grid, .vision-grid, " +
-    ".roadmap-grid, .privacy-grid, .misread-grid"
+    ".roadmap-grid, .roadmap-rail, .feature-glance-grid, .privacy-grid, .misread-grid"
   ).forEach(function (group) {
     Array.prototype.slice.call(group.children).forEach(function (child, i) {
       if (child.classList.contains("reveal")) {

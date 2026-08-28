@@ -481,12 +481,50 @@ def build_ai_modes(features):
 
 def build_privacy_points(features):
     out = []
-    for p in features["privacyPoints"]:
+    # 首页只保留最关键的四点，完整边界交给隐私与安全页面，避免首页信息过载。
+    points = features["privacyPoints"]
+    for p in [points[i] for i in (0, 1, 2, 4) if i < len(points)]:
         out.append(
             '<div class="privacy-item reveal">'
             '<div class="ico">%s</div>'
             "<div><h3>%s</h3><p>%s</p></div></div>"
             % (icon(p["icon"]), esc(p["title"]), esc(p["desc"]))
+        )
+    return "\n".join(out)
+
+
+def build_feature_glance(features, lang="zh"):
+    """首页功能速览：只给足判断信息，完整解释留在功能页。"""
+    anchors = ("pantry", "add", "meals", "devices")
+    icons = ("fridge", "camera", "fork", "shield")
+    base = "/features/" if lang == "zh" else "/en/features/"
+    cta = "查看这一类" if lang == "zh" else "Explore this area"
+    out = []
+    for i, g in enumerate(features["featureGroups"][:4]):
+        items = "".join(
+            '<li><span>%s</span>%s</li>'
+            % (esc(item["name"]), build_badge(features, item["status"]))
+            for item in g["items"][:2]
+        )
+        out.append(
+            '<a class="feature-glance-card reveal" href="%s#%s">'
+            '<span class="feature-glance-number">%02d</span>'
+            '<span class="ico">%s</span><h3>%s</h3><ul>%s</ul>'
+            '<span class="feature-glance-cta">%s <span aria-hidden="true">→</span></span></a>'
+            % (base, anchors[i], i + 1, icon(icons[i]), esc(g["group"]), items, cta)
+        )
+    return "\n".join(out)
+
+
+def build_roadmap_compact(features):
+    """首页只展示最接近用户的三步方向；长期生态留在独立理念页。"""
+    out = []
+    for r in features["roadmap"][:3]:
+        out.append(
+            '<div class="roadmap-rail-step reveal">'
+            '<span class="roadmap-rail-number">%s</span>'
+            '<span class="ico">%s</span><h3>%s</h3><p>%s</p></div>'
+            % (esc(r["phase"]), icon(r["icon"]), esc(r["title"]), esc(r["desc"]))
         )
     return "\n".join(out)
 
@@ -627,6 +665,8 @@ def render_lang(lang, cfg, features, content_dir, css_tag, js_tag):
         "add_methods": build_add_methods(features),
         "ai_modes": build_ai_modes(features),
         "privacy_points": build_privacy_points(features),
+        "feature_glance": build_feature_glance(features, lang),
+        "roadmap_compact": build_roadmap_compact(features),
         "legend": build_legend(features, with_hints=True),
         "legend_inline": build_legend(features, with_hints=False),
         "feature_groups": build_feature_groups(features),

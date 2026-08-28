@@ -41,6 +41,49 @@
     </div>
   </section>
 
+  <!-- ================= Lead with outcomes, not feature labels ================= -->
+  <section class="section section--alt section--compact" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Why FreshLife</p>
+        <h2>Not one more thing to manage.<br/>One less thing to think about.</h2>
+        <p class="lead">Each feature appears at the moment it is useful: priorities when you open the app, an answer before dinner, and only what is missing while you shop.</p>
+      </div>
+      <div class="why-grid why-grid--outcomes">
+        {{why_cards}}
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Family rhythm vision follows the daily reason ================= -->
+  <section class="section" id="vision">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Vision</p>
+        <h2>Help with today first.<br/>Learn your household’s rhythm over time.</h2>
+        <p class="lead">No two households eat the same way. FreshLife begins by connecting pantry, due dates, meals and shopping; later, and only with your permission, suggestions can gradually fit the way your household actually lives.</p>
+      </div>
+      <div class="vision-grid">
+        {{vision_cards}}
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Roadmap: the nearest three steps only ================= -->
+  <section class="section section--alt section--compact" id="roadmap">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Roadmap</p>
+        <h2>Every step should make daily life easier.</h2>
+        <p class="lead">Everything below is still planned: make logging lighter first, then understand household rhythm, then improve weekly planning and restocking. Long-term ideas are never presented as today’s product.</p>
+      </div>
+      <div class="roadmap-rail reveal">
+        {{roadmap_compact}}
+      </div>
+      <p class="section-more reveal"><a href="/en/philosophy/">Why this order? Read the full philosophy and long-term direction <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
   <!-- ================= Story: from fridge to table ================= -->
   <section class="section story" id="story" aria-label="From fridge to table">
     <div class="container">
@@ -268,38 +311,6 @@
     </div>
   </section>
 
-  <!-- ================= Why ================= -->
-  <section class="section section--alt" id="why">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Why FreshLife</p>
-        <h2>Small moments saved, every day.</h2>
-        <p class="lead">FreshLife isn’t a complicated kitchen manager. It does three small things: remembers for you, reminds you, and gives you an answer when you need one.</p>
-      </div>
-      <div class="why-grid">
-        {{why_cards}}
-      </div>
-      <div class="flow-strip reveal" aria-label="How you use it day to day">
-        {{workflow_steps}}
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Family rhythm vision ================= -->
-  <section class="section" id="vision">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Vision</p>
-        <h2>Getting to know your family’s rhythm.</h2>
-        <p class="lead">Every household has its own rhythm: rushed weekdays, slower weekends, different tastes and dietary needs. FreshLife aims to become a <strong>personal food intelligence layer for each household</strong>—learning, with your permission, what you keep at home, how you like to eat, and how you usually shop, so everyday suggestions fit real life better.</p>
-      </div>
-      <div class="vision-grid">
-        {{vision_cards}}
-      </div>
-      <p class="roadmap-caveat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.8v5.4c0 4.4-3 7.6-7 8.8-4-1.2-7-4.4-7-8.8V5.8L12 3z"/></svg><span>These stages move in order: first make recording food easier, then build toward understanding and planning. <strong>Version 1.0 has no long-term household memory, automatic shopping or complete household food graph</strong>—those are long-term directions, not promises for today. Every step will be explained here and in the app before it ships. <a href="/en/philosophy/">Read our philosophy →</a></span></p>
-    </div>
-  </section>
-
   <!-- ================= Product stage: iPhone + iPad ================= -->
   <section class="section" id="product">
     <div class="container">
@@ -383,9 +394,10 @@
       <div class="ai-grid">
         {{ai_modes}}
       </div>
-      <div class="ai-note reveal">
-        <strong>About the remote AI assistant:</strong> the current version (1.0.0) has no remote AI enabled. If it ships later, it will be off by default; before you enable it, the app will explain what information is processed and ask for your clear consent, and only the minimum needed for that request will be sent. Allergy information, health goals, profile details, AI memory, meal and shopping history, and long-term behavior records are not part of any planned remote AI requests. No service-provider API keys are built into the app, and the app will never ask you for one. AI suggestions are reference only — not medical advice.
-      </div>
+      <details class="disclosure reveal">
+        <summary>What would remote AI process? Read the full boundary</summary>
+        <div class="disclosure-body"><p>The current version (1.0.0) has no remote AI enabled. If it ships later, it will be off by default; before you enable it, the app will explain what information is processed and ask for your clear consent, and only the minimum needed for that request will be sent. Allergy information, health goals, profile details, AI memory, meal and shopping history, and long-term behavior records are not part of any planned remote AI requests. No service-provider API keys are built into the app, and the app will never ask you for one. AI suggestions are reference only — not medical advice.</p></div>
+      </details>
     </div>
   </section>
 
@@ -407,35 +419,18 @@
     </div>
   </section>
 
-  <!-- ================= Feature list ================= -->
+  <!-- ================= Feature glance; full detail lives on its own page ================= -->
   <section class="section" id="features">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Feature List</p>
-        <h2>What’s here today, and what’s planned.</h2>
-        <p class="lead">No overstating: “Available today” means it ships in the current version; “Planned” means it doesn’t yet. The shipped version is the source of truth. <a href="/en/features/">Read the full breakdown of every feature →</a></p>
+        <p class="eyebrow">At a Glance</p>
+        <h2>There when you need it.</h2>
+        <p class="lead">The homepage keeps only the four areas you will use most. How each feature works, its limits and its current availability are explained item by item on the full feature page.</p>
       </div>
-
-      <div class="legend reveal">
-        {{legend}}
+      <div class="feature-glance-grid">
+        {{feature_glance}}
       </div>
-
-      {{feature_groups}}
-    </div>
-  </section>
-
-  <!-- ================= What's next ================= -->
-  <section class="section section--alt" id="roadmap">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Roadmap</p>
-        <h2>What we’ll build, step by step.</h2>
-        <p class="lead">The order matters: first make logging effortless, then learn your family’s rhythm, then better planning and restocking, then safe family collaboration, and finally ecosystem connections. Everything below is marked “Planned” — none of it is live yet.</p>
-      </div>
-      <div class="roadmap-grid">
-        {{roadmap_phases}}
-      </div>
-      <p class="roadmap-caveat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>None of this will land in one jump: local and compliance foundations come first, then each stage ships one at a time. Timing depends on accounts, service review and compliance processes — and we’ll update the status honestly before each stage goes live. <a href="/en/philosophy/">Read our philosophy →</a></span></p>
+      <p class="section-more reveal"><a href="/en/features/">See every feature, status and usage note <span aria-hidden="true">→</span></a></p>
     </div>
   </section>
 
