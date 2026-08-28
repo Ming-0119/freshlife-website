@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-1e77e23482.css"/>
+<link rel="stylesheet" href="/assets/main-e16c2f1238.css"/>
 </head>
 <body>
 
@@ -150,7 +150,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
         <h2>先帮好今天，<br/>再慢慢懂得你们家的节奏。</h2>
         <p class="lead">每家吃饭的节奏都不同。FreshLife 先把库存、临期、餐食和购物接起来；以后只在你同意的前提下，逐步让建议更贴近这个家庭真实的生活。</p>
       </div>
-      <div class="vision-grid">
+      <div class="vision-grid reveal">
         <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div><span class="vision-tag current">现在 · 今天已具备</span></div><h3>把每天记清楚</h3><p>本地库存、临期提醒、餐食建议与购物清单，先让「今天」有数。这是目前 FreshLife 的全部能力，也是最扎实的地基。</p></div>
 <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></div><span class="vision-tag next">下一步 · 尚未上线</span></div><h3>记住你们家的节奏</h3><p>慢慢了解你们家的口味、忌口与常买清单，让建议更贴切。记忆类能力只在本机、先说明、后启用。</p></div>
 <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div><span class="vision-tag long">长期 · 方向</span></div><h3>成为家庭的食品智能层</h3><p>理解一整年的节奏——季节、习惯与预算，在合适的时候给出合适的建议。这是长期方向，不是今天的功能。</p></div>
@@ -1026,8 +1026,12 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year>2026</span> FreshLife · 开发者与运营者：Ming（个人开发者）</span>
-      <span>中文优先 · <a href="/sitemap.xml">站点地图</a></span>
+      <span class="footer-owner">© <span data-year>2026</span> FreshLife · 开发者与运营者：Ming（个人开发者）</span>
+      <nav class="footer-utility" aria-label="页脚辅助导航">
+        <a href="/en/" hreflang="en" lang="en">English</a>
+        <a href="/safety/">安全与透明度</a>
+        <a href="/sitemap.xml">站点地图</a>
+      </nav>
     </div>
   </div>
 </footer>

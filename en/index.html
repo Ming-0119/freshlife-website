@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-1e77e23482.css"/>
+<link rel="stylesheet" href="/assets/main-e16c2f1238.css"/>
 </head>
 <body>
 
@@ -150,7 +150,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
         <h2>Help with today first.<br/>Learn your household’s rhythm over time.</h2>
         <p class="lead">No two households eat the same way. FreshLife begins by connecting pantry, due dates, meals and shopping; later, and only with your permission, suggestions can gradually fit the way your household actually lives.</p>
       </div>
-      <div class="vision-grid">
+      <div class="vision-grid reveal">
         <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div><span class="vision-tag current">Now · In the app today</span></div><h3>Keep each day straight</h3><p>A local pantry, expiry reminders, meal ideas and a shopping list — first, make today clear. This is everything FreshLife does today, and the foundation it builds on.</p></div>
 <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></div><span class="vision-tag next">Next · Not shipped yet</span></div><h3>Learn your family’s rhythm</h3><p>Gradually learn your household’s tastes, dietary restrictions and usual buys, so suggestions fit better. Memory stays on your device—explained first and enabled by you.</p></div>
 <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div><span class="vision-tag long">Long term · Direction</span></div><h3>A food intelligence layer for your home</h3><p>Understand a whole year’s rhythm — seasons, habits, budget — and suggest the right thing at the right time. A direction, not today’s feature.</p></div>
@@ -1023,8 +1023,12 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year>2026</span> FreshLife · Developer & operator: Ming (independent developer)</span>
-      <span>English · <a href="/sitemap.xml">Sitemap</a></span>
+      <span class="footer-owner">© <span data-year>2026</span> FreshLife · Developer & operator: Ming (independent developer)</span>
+      <nav class="footer-utility" aria-label="Footer utility navigation">
+        <a href="/" hreflang="zh-CN" lang="zh-CN">简体中文</a>
+        <a href="/en/safety/">Safety & Transparency</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </nav>
     </div>
   </div>
 </footer>

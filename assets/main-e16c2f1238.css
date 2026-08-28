@@ -421,23 +421,6 @@ main { animation: pageIn 0.45s ease; }
 .why-card h3 { font-size: 18px; color: var(--ink); font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
 .why-card p { font-size: 14.5px; color: var(--ink-2); }
 
-.flow-strip {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px;
-  max-width: var(--readable); margin: 0 auto;
-}
-.flow-item {
-  display: flex; gap: 12px; align-items: flex-start;
-  background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 16px 18px;
-}
-.flow-item .num {
-  font-size: 13px; font-weight: 800; color: var(--green-strong);
-  background: var(--green-soft); border-radius: 9px;
-  width: 34px; height: 34px; flex: none; display: grid; place-items: center;
-}
-.flow-item .ft b { display: block; font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
-.flow-item .ft small { font-size: 12.5px; color: var(--ink-3); line-height: 1.5; display: block; }
-
 /* ---------- 品牌滚动叙事：从放进冰箱，到端上餐桌 ----------
    桌面（≥860px + JS + 未开启减少动效）：sticky 手机舞台 + 章节联动交叉淡入；
    小屏 / 无 JS / reduced-motion：退化为顺序故事卡片 + 静态画面。
@@ -1254,10 +1237,12 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 .footer-col a:hover { color: var(--green-strong); }
 .footer-bottom {
   margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line);
-  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap;
   font-size: 13px; color: var(--ink-3);
 }
-.footer-bottom a { color: var(--ink-2); }
+.footer-utility { display: flex; align-items: center; justify-content: flex-end; gap: 8px 18px; flex-wrap: wrap; }
+.footer-utility a { color: var(--ink-2); font-weight: 600; transition: color 0.18s ease; }
+.footer-utility a:hover { color: var(--green-strong); }
 
 /* ---------- 法律 / 支持页 ---------- */
 .legal-shell { min-height: 100vh; display: flex; flex-direction: column; }
@@ -1361,7 +1346,7 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 .daily-card:hover .daily-card-cta span { transform: translateX(3px); }
 
 /* ---------- 家庭节奏愿景 ---------- */
-.vision-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.vision-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; position: relative; }
 .vision-card {
   background: var(--surface); border: 1px solid var(--line);
   border-top: 3px solid var(--green); border-radius: var(--radius-lg);
@@ -1477,6 +1462,31 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   .container { padding: 0 18px; }
   .section { padding: 60px 0; }
   .why-grid--outcomes, .feature-glance-grid { grid-template-columns: 1fr; }
+  /* 四步流程固定为完整的一行，不再出现 3 + 1 的孤立卡片。 */
+  .story-progress { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+  .story-progress-link { justify-content: center; gap: 5px; min-width: 0; padding: 8px 5px; font-size: 12px; }
+  .story-progress-link .n { min-width: 18px; height: 18px; padding: 0 4px; font-size: 10px; }
+
+  /* 愿景在手机上改成连续时间线，避免三张大卡片机械堆叠。 */
+  .vision-grid { grid-template-columns: 1fr; gap: 0; }
+  .vision-grid::before {
+    content: ""; position: absolute; left: 20px; top: 18px; bottom: 20px; width: 2px;
+    background: linear-gradient(180deg, var(--green), var(--blue), var(--apricot));
+    opacity: 0.34; transform: scaleY(0); transform-origin: 50% 0;
+    transition: transform 1.05s var(--ease-out) 0.18s;
+  }
+  .vision-grid.in-view::before { transform: scaleY(1); }
+  .vision-card {
+    border: 0; border-radius: 0; background: transparent;
+    padding: 0 0 32px 62px; position: relative; overflow: visible;
+  }
+  .vision-card:last-child { padding-bottom: 0; }
+  .vision-card .top { min-height: 42px; margin-bottom: 10px; justify-content: flex-start; }
+  .vision-card .ico { position: absolute; left: 0; top: 0; z-index: 1; background: var(--surface); border: 1px solid var(--line-strong); box-shadow: var(--shadow-sm); }
+  .vision-card .vision-tag { white-space: normal; }
+  .vision-card h3 { font-size: 18px; margin-bottom: 6px; }
+  .vision-card p { max-width: 34ch; }
+
   .roadmap-rail { grid-template-columns: 1fr; gap: 28px; }
   .roadmap-rail::before {
     left: 21px; right: auto; top: 20px; bottom: 22px; width: 2px; height: auto;
@@ -1493,7 +1503,20 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   .nav-cta { display: none; }
   .theme-toggle { height: 42px; width: 42px; padding: 0; justify-content: center; }
   .theme-toggle .theme-toggle-label { display: none; }
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .site-footer { padding: 46px 0 28px; }
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 18px; }
+  .footer-brand { grid-column: 1 / -1; padding-bottom: 4px; }
+  .footer-brand p { max-width: 38ch; }
+  .footer-col:last-child { grid-column: 1 / -1; }
+  .footer-col:last-child a { display: inline-flex; margin: 0 12px 4px 0; }
+  .footer-bottom { display: grid; gap: 14px; margin-top: 34px; padding-top: 18px; line-height: 1.7; }
+  .footer-owner { max-width: 36ch; }
+  .footer-utility { justify-content: flex-start; gap: 8px; }
+  .footer-utility a {
+    display: inline-flex; align-items: center; min-height: 34px; padding: 5px 11px;
+    border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+    font-size: 12.5px;
+  }
   .feature-row { grid-template-columns: 1fr; gap: 6px; padding: 16px 18px; }
   .feature-row .badge { justify-self: start; }
   .device-switch { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; max-width: 390px; }

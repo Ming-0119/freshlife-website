@@ -77,7 +77,6 @@ LANG_STRINGS = {
         "status_features": ("功能清单与状态", "/#features"),
         "status_roadmap": ("接下来的路", "/#roadmap"),
         "developer_prefix": "开发者与运营者：",
-        "lang_line": "中文优先",
         "sitemap_label": "站点地图",
         "back_text": "返回首页",
         "nf_title": "这个页面不存在或已被移动。",
@@ -106,7 +105,6 @@ LANG_STRINGS = {
         "status_features": ("Feature list & status", "/en/#features"),
         "status_roadmap": ("What’s next", "/en/#roadmap"),
         "developer_prefix": "Developer & operator: ",
-        "lang_line": "English",
         "sitemap_label": "Sitemap",
         "back_text": "Back to home",
         "nf_title": "This page doesn’t exist or has moved.",
@@ -343,7 +341,12 @@ def build_site_footer(product_links, legal_links, year, developer, js_tag, lang)
         "status_roadmap_href": esc(road_href),
         "year": year,
         "developer_line": L["developer_prefix"] + developer,
-        "lang_line": L["lang_line"],
+        "footer_utility_aria": "页脚辅助导航" if lang == "zh" else "Footer utility navigation",
+        "footer_language_href": "/en/" if lang == "zh" else "/",
+        "footer_language_hreflang": "en" if lang == "zh" else "zh-CN",
+        "footer_language_label": "English" if lang == "zh" else "简体中文",
+        "safety_href": "/safety/" if lang == "zh" else "/en/safety/",
+        "safety_label": "安全与透明度" if lang == "zh" else "Safety & Transparency",
         "sitemap_label": L["sitemap_label"],
         "js": js_tag,
     })
@@ -435,17 +438,6 @@ def build_vision_cards(features):
             "<h3>%s</h3><p>%s</p></div>"
             % (icon(v["icon"]), esc(v["tag"]), esc(v["tagLabel"]),
                esc(v["title"]), esc(v["desc"]))
-        )
-    return "\n".join(out)
-
-
-def build_workflow(features):
-    out = []
-    for w in features["workflow"]:
-        out.append(
-            '<div class="flow-item"><span class="num">%s</span>'
-            "<span class=\"ft\"><b>%s</b><small>%s</small></span></div>"
-            % (esc(w["step"]), esc(w["title"]), esc(w["desc"]))
         )
     return "\n".join(out)
 
@@ -661,7 +653,6 @@ def render_lang(lang, cfg, features, content_dir, css_tag, js_tag):
         "why_cards": build_why(features),
         "daily_cards": build_daily_scenarios(features),
         "vision_cards": build_vision_cards(features),
-        "workflow_steps": build_workflow(features),
         "add_methods": build_add_methods(features),
         "ai_modes": build_ai_modes(features),
         "privacy_points": build_privacy_points(features),

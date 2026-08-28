@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-1e77e23482.css"/>
+<link rel="stylesheet" href="/assets/main-e16c2f1238.css"/>
 </head>
 <body>
 
@@ -208,8 +208,12 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year>2026</span> FreshLife · 开发者与运营者：Ming（个人开发者）</span>
-      <span>中文优先 · <a href="/sitemap.xml">站点地图</a></span>
+      <span class="footer-owner">© <span data-year>2026</span> FreshLife · 开发者与运营者：Ming（个人开发者）</span>
+      <nav class="footer-utility" aria-label="页脚辅助导航">
+        <a href="/en/" hreflang="en" lang="en">English</a>
+        <a href="/safety/">安全与透明度</a>
+        <a href="/sitemap.xml">站点地图</a>
+      </nav>
     </div>
   </div>
 </footer>
