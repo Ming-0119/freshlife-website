@@ -506,12 +506,17 @@ html[lang="en"] .hero h1 { max-width: 20ch; }
 }
 .story-copy > p { font-size: 15.5px; color: var(--ink-2); line-height: 1.85; max-width: 40ch; }
 .story-state {
-  display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  margin-top: 16px; padding: 7px 14px; border-radius: 999px;
+  display: inline-flex; align-items: flex-start; gap: 8px;
+  margin-top: 16px; padding: 9px 14px; border-radius: 16px;
   background: var(--green-softer); border: 1px solid var(--line);
   font-size: 13px; color: var(--ink-2); line-height: 1.6;
 }
-.story-state::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex: none; }
+.story-state::before {
+  content: ""; width: 6px; height: 6px; margin-top: 0.55em;
+  border-radius: 50%; background: var(--green); flex: none;
+}
+.story-state > span { min-width: 0; }
+.story-state .keep-together { white-space: nowrap; }
 
 /* 固定舞台：手机屏幕交叉淡入 + 底部步骤圆点（只动 transform/opacity） */
 .story-screens { position: absolute; left: 0; right: 0; top: 44px; bottom: 46px; }

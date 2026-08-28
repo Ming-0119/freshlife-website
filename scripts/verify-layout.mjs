@@ -152,6 +152,18 @@ const overflow320 = await cdp.eval(`(() => {
   return { scrollW, clientW, overflow: scrollW > clientW + 1, big };
 })()`);
 check("首页 320px 无横向溢出", !overflow320.overflow, `scrollW=${overflow320.scrollW} clientW=${overflow320.clientW} big=${JSON.stringify(overflow320.big)}`);
+const storyState320 = await cdp.eval(`(() => {
+  const state = document.querySelector("#story-3 .story-state");
+  const phrase = state.querySelector(".keep-together");
+  const style = getComputedStyle(state);
+  return {
+    overflow: state.scrollWidth > state.clientWidth + 1,
+    phraseFragments: phrase.getClientRects().length,
+    phraseWhiteSpace: getComputedStyle(phrase).whiteSpace,
+    radius: parseFloat(style.borderTopLeftRadius),
+  };
+})()`);
+check("320px 故事提示无孤行且不溢出", !storyState320.overflow && storyState320.phraseFragments === 1 && storyState320.phraseWhiteSpace === "nowrap" && storyState320.radius <= 20, JSON.stringify(storyState320));
 const ipad320 = await cdp.eval(`(() => {
   document.querySelector('[data-device-view="ipad"]').click();
   const pad = document.getElementById("ipad-device");
