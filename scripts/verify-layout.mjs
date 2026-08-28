@@ -78,7 +78,15 @@ await cdp.send("Runtime.enable");
 async function goto(url, w, h) {
   await cdp.send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w <= 720 });
   await cdp.send("Page.navigate", { url });
-  await sleep(2200);
+  // 等待页面 DOM 就绪（主内容出现），避免冷启动/网络导致的固定延时不足
+  for (let i = 0; i < 50; i++) {
+    await sleep(120);
+    let ready = false;
+    try {
+      ready = await cdp.eval(`document.readyState === "complete" && !!document.getElementById("main")`);
+    } catch (e) { ready = false; }
+    if (ready) break;
+  }
 }
 
 // 将主题显式设为指定值（与系统主题无关，保证断言确定性）
@@ -145,7 +153,7 @@ const overflow320 = await cdp.eval(`(() => {
 })()`);
 check("首页 320px 无横向溢出", !overflow320.overflow, `scrollW=${overflow320.scrollW} clientW=${overflow320.clientW} big=${JSON.stringify(overflow320.big)}`);
 const ipad320 = await cdp.eval(`(() => {
-  const pad = document.querySelector(".ipad");
+  const pad = document.getElementById("ipad-device");
   const r = pad.getBoundingClientRect();
   return { w: Math.round(r.width), within: r.width <= 320 };
 })()`);
@@ -180,9 +188,9 @@ check("features 页 320px 无横向溢出", !featOverflow.overflow, `scrollW=${f
 // ---- 390px iPhone 尺寸 ----
 await goto("http://localhost:8099/", 390, 844);
 const iphone = await cdp.eval(`(() => {
-  const phone = document.querySelector(".phone");
+  const phone = document.querySelector('[data-device-col="phone"] .phone');
   const r = phone.getBoundingClientRect();
-  const pad = document.querySelector(".ipad").getBoundingClientRect();
+  const pad = document.getElementById("ipad-device").getBoundingClientRect();
   return { phoneW: Math.round(r.width), padW: Math.round(pad.width), padWOver: pad.width > 390 };
 })()`);
 check("390px 下手机演示适配", iphone.phoneW <= 390, `phoneW=${iphone.phoneW}`);
