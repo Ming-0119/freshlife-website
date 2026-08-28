@@ -17,5 +17,5 @@ serve: build
 clean:
 	rm -f index.html 404.html robots.txt sitemap.xml _headers BUILD_PROVENANCE.txt
 	rm -f app-icon.png favicon.svg
-	rm -rf assets privacy terms support safety
+	rm -rf assets features philosophy en privacy terms support safety
 	@echo "已清理生成产物；运行 'make build' 重新生成。"

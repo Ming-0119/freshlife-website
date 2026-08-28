@@ -29,7 +29,9 @@ import urllib.request
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 SITE = "http://localhost:8099"
 DEBUG_PORT = 9335
-PAGES = ["/", "/features/", "/privacy/", "/terms/", "/support/", "/safety/"]
+PAGES = ["/", "/features/", "/philosophy/", "/privacy/", "/terms/", "/support/", "/safety/",
+         "/en/", "/en/features/", "/en/philosophy/", "/en/privacy/", "/en/terms/",
+         "/en/support/", "/en/safety/"]
 
 results = []
 
@@ -231,7 +233,9 @@ def main():
         check("偏好写入 localStorage", after["saved"] == expected_after)
 
         # 各页面继承偏好 + 都有主题按钮
-        for path in ["/features/", "/privacy/", "/terms/", "/support/", "/safety/"]:
+        for path in ["/features/", "/philosophy/", "/privacy/", "/terms/", "/support/", "/safety/",
+                     "/en/", "/en/features/", "/en/philosophy/", "/en/privacy/",
+                     "/en/terms/", "/en/support/", "/en/safety/"]:
             goto(path, 1440, 1200)
             st = cdp.evaluate("(() => ({ attr: document.documentElement.getAttribute('data-theme'), toggles: document.querySelectorAll('.theme-toggle').length, main: !!document.getElementById('main') }))()")
             check("%s 继承主题且双主题可用" % path,
@@ -369,7 +373,11 @@ def main():
                 check("资产 %s 可访问" % name, r.status == 200)
         with urllib.request.urlopen(SITE + "/sitemap.xml", timeout=5) as r:
             sitemap = r.read().decode("utf-8", "replace")
-        check("sitemap 包含 /features/", "/features/" in sitemap and "/privacy/" in sitemap)
+        check("sitemap 含全部页面与 hreflang",
+              "/features/" in sitemap and "/privacy/" in sitemap
+              and "/philosophy/" in sitemap and "/en/" in sitemap
+              and "/en/philosophy/" in sitemap
+              and 'hreflang="zh-CN"' in sitemap and 'hreflang="en"' in sitemap)
         with urllib.request.urlopen(SITE + "/robots.txt", timeout=5) as r:
             robots = r.read().decode("utf-8", "replace")
         check("robots 含 Sitemap 声明", "Sitemap:" in robots)

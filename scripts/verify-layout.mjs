@@ -7,6 +7,11 @@ const PROFILE = "/tmp/freshlife-cdp-profile2";
 const PORT = 9334;
 
 import { spawn } from "node:child_process";
+import { rmSync, mkdirSync } from "node:fs";
+
+// 每次运行用干净的 profile，避免 localStorage 残留导致主题断言不确定
+rmSync(PROFILE, { recursive: true, force: true });
+mkdirSync(PROFILE, { recursive: true });
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const chrome = spawn(CHROME, [
@@ -76,25 +81,46 @@ async function goto(url, w, h) {
   await sleep(2200);
 }
 
+// 将主题显式设为指定值（与系统主题无关，保证断言确定性）
+async function setTheme(theme) {
+  await cdp.eval(`(() => {
+    let i = 0;
+    while (document.documentElement.getAttribute("data-theme") !== "${theme}" && i < 4) {
+      const t = document.getElementById("theme-toggle");
+      if (!t) break;
+      t.click();
+      i++;
+    }
+  })()`);
+  await sleep(400);
+}
+
 // ---- 隐私页主题 ----
 await goto("http://localhost:8099/privacy/", 1440, 1200);
 const legalTheme = await cdp.eval(`(() => {
   const t = document.getElementById("theme-toggle");
-  return { has: !!t, count: document.querySelectorAll(".theme-toggle").length };
+  return { has: !!t, count: document.querySelectorAll(".theme-toggle").length,
+           attr: document.documentElement.getAttribute("data-theme"),
+           saved: localStorage.getItem("freshlife-theme"),
+           sysDark: matchMedia("(prefers-color-scheme: dark)").matches };
 })()`);
 check("隐私页有主题按钮", legalTheme.has && legalTheme.count === 1);
+// 首次访问跟随系统（profile 可能残留历史偏好，遵循 localStorage 优先）
+const expectedStart = (legalTheme.saved === "light" || legalTheme.saved === "dark")
+  ? legalTheme.saved : (legalTheme.sysDark ? "dark" : "light");
+const expectedAfter = expectedStart === "dark" ? "light" : "dark";
 
 await cdp.eval(`document.getElementById("theme-toggle").click()`);
 await sleep(500);
 const legalLight = await cdp.eval(`document.documentElement.getAttribute("data-theme")`);
-check("隐私页切换白天生效", legalLight === "light");
+check("隐私页切换主题生效", legalLight === expectedAfter, `attr=${legalLight}`);
 const legalSaved = await cdp.eval(`localStorage.getItem("freshlife-theme")`);
-check("隐私页偏好全局记忆", legalSaved === "light");
+check("隐私页偏好全局记忆", legalSaved === expectedAfter);
 
-// 回首页应保持 light
+// 回首页应保持该偏好
 await goto("http://localhost:8099/", 1440, 3400);
 const homeTheme = await cdp.eval(`document.documentElement.getAttribute("data-theme")`);
-check("首页继承隐私页选择（light）", homeTheme === "light");
+check("首页继承隐私页选择", homeTheme === expectedAfter);
 
 // ---- 404 页（404.html 由托管平台对未匹配路径生效；本地直接加载验证内容） ----
 await goto("http://localhost:8099/404.html", 1440, 1000);
@@ -134,12 +160,11 @@ const feat = await cdp.eval(`(() => {
   const badAnchor = indexLinks.filter(h => h.startsWith("#") && !document.getElementById(h.slice(1)));
   return { sections, indexLinks, hasToggle, badAnchor, nSections: sections.length };
 })()`);
-check("features 页七个功能分区", feat.nSections === 7, feat.sections.join(","));
+check("features 页七个功能分区", ["pantry", "add", "meals", "shopping", "devices", "privacy", "ai"].every(id => feat.sections.includes(id)) && feat.sections.includes("status"), feat.sections.join(","));
 check("features 页目录锚点全部有效", feat.badAnchor.length === 0 && feat.indexLinks.length >= 7, JSON.stringify(feat.indexLinks));
 check("features 页有主题按钮", feat.hasToggle);
 
-await cdp.eval(`document.getElementById("theme-toggle").click()`);
-await sleep(500);
+await setTheme("dark");
 const featDark = await cdp.eval(`document.documentElement.getAttribute("data-theme")`);
 check("features 页切夜间生效", featDark === "dark");
 
@@ -183,11 +208,11 @@ async function themeColors() {
     return { bg, ink, ink3, theme: document.documentElement.getAttribute("data-theme") };
   })()`);
 }
+await setTheme("light");
 const lightCols = await themeColors();
 check("白天模式背景为温暖米白", lightCols.bg === "rgb(248, 246, 239)" && lightCols.theme === "light", JSON.stringify(lightCols));
 
-await cdp.eval(`document.getElementById("theme-toggle").click()`);
-await sleep(600);
+await setTheme("dark");
 const darkCols = await themeColors();
 check("夜间模式背景为深绿黑（非纯黑）", darkCols.bg === "rgb(16, 23, 21)" && darkCols.theme === "dark", JSON.stringify(darkCols));
 
@@ -247,13 +272,15 @@ const secrets = await cdp.eval(`(async () => {
 check("全站无敏感信息（密钥/口令）", secrets.length === 0, JSON.stringify(secrets));
 
 // 全站链接（所有页面锚点/路径）
-for (const p of ["privacy/", "terms/", "support/", "safety/", "features/"]) {
+for (const p of ["privacy/", "terms/", "support/", "safety/", "features/", "philosophy/",
+                 "en/", "en/features/", "en/philosophy/", "en/privacy/", "en/terms/",
+                 "en/support/", "en/safety/"]) {
   await goto("http://localhost:8099/" + p, 1440, 1200);
   const audit = await cdp.eval(`(() => {
     const hrefs = [...document.querySelectorAll("a[href]")].map(a => a.getAttribute("href"));
     const badAnchor = hrefs.filter(h => h.startsWith("#") && h.length > 1 && !document.getElementById(h.slice(1)));
-    const badRel = hrefs.filter(h => /^\\/(?!privacy|terms|support|safety|features|index|sitemap|assets|favicon|app-icon|robots)/.test(h));
-    return { badAnchor, badRel: badRel.filter(h => !h.startsWith("/#")) };
+    const badRel = hrefs.filter(h => /^\\/(?!privacy|terms|support|safety|features|philosophy|en|index|sitemap|assets|favicon|app-icon|robots)/.test(h));
+    return { badAnchor, badRel: badRel.filter(h => h !== "/" && !h.startsWith("/#")) };
   })()`);
   check(`${p} 页锚点有效`, audit.badAnchor.length === 0, JSON.stringify(audit.badAnchor));
   check(`${p} 页链接目标有效`, audit.badRel.length === 0, JSON.stringify(audit.badRel));

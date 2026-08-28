@@ -1,0 +1,305 @@
+{
+  "statusLegend": [
+    { "key": "shipped", "label": "Available today", "hint": "Included in the current version" },
+    { "key": "local", "label": "On-device, offline", "hint": "Done locally on your device, no network needed" },
+    { "key": "online", "label": "Needs network", "hint": "Only connects when you actively use it" },
+    { "key": "planned", "label": "Planned", "hint": "Not shipped yet — on the roadmap" }
+  ],
+  "fiveTabs": [
+    {
+      "id": "today",
+      "name": "Today",
+      "en": "Today",
+      "desc": "What to eat and use first, at a glance",
+      "points": ["Today at a glance: use-me-first items on top", "Gentle reminders for food about to expire", "Today’s meals and shopping in one view", "Ask FreshLife AI when you need to"]
+    },
+    {
+      "id": "pantry",
+      "name": "Pantry",
+      "en": "Pantry",
+      "desc": "What you have, and how long it keeps",
+      "points": ["Fresh / expiring / expired, grouped automatically", "Browse by category, storage spot and quantity", "Search, filter and sort the way you like", "Log used, tossed, donated or frozen in one tap"]
+    },
+    {
+      "id": "meals",
+      "name": "Meals",
+      "en": "Meals",
+      "desc": "See what you can cook with what’s on hand",
+      "points": ["Meal plans built from your actual ingredients", "Expiring items get used first", "See what’s missing at a glance", "Step-by-step cooking mode with timers"]
+    },
+    {
+      "id": "explore",
+      "name": "Explore",
+      "en": "Explore",
+      "desc": "Shopping, wellness and a little inspiration",
+      "points": ["Smart shopping and your shopping list", "Wellness content entry point", "Community and challenges (planned)", "Recipes and everyday inspiration"]
+    },
+    {
+      "id": "profile",
+      "name": "Profile",
+      "en": "Profile",
+      "desc": "Preferences, notifications and data — all yours",
+      "points": ["On-device profile, no sign-up", "Notification and reminder settings", "Privacy center: export and delete", "Appearance, language and units"]
+    }
+  ],
+  "addMethods": [
+    {
+      "icon": "camera",
+      "title": "Snap a photo",
+      "desc": "Take a picture of the food and on-device Apple Vision tries to read its name, category and date.",
+      "flow": "Snap → Recognize → Check → Add",
+      "status": "local",
+      "note": "No API key, no network; you can edit anything before saving"
+    },
+    {
+      "icon": "qr",
+      "title": "Scan a QR code",
+      "desc": "Scan a FreshLife food QR code to bring the item in quickly.",
+      "flow": "Scan → Read → Confirm → Add",
+      "status": "local",
+      "note": "This version supports FreshLife QR codes only; retail barcode lookup isn’t available yet"
+    },
+    {
+      "icon": "photo",
+      "title": "Pick from your library",
+      "desc": "Choose a photo you’ve already taken, recognize it, and add it to your pantry.",
+      "flow": "Choose → Recognize → Check → Add",
+      "status": "local",
+      "note": "Recognition happens on your device — photos never leave your phone"
+    },
+    {
+      "icon": "pencil",
+      "title": "Type it yourself",
+      "desc": "Enter name, category, quantity, storage spot and expiry date yourself — most reliable, most flexible.",
+      "flow": "Fill in → Save → Done",
+      "status": "shipped",
+      "note": "Great for unusual packaging or when you want exact records"
+    }
+  ],
+  "workflow": [
+    { "step": "01", "title": "Add it to your pantry", "desc": "Snap, scan, pick or type — a few steps and it’s recorded." },
+    { "step": "02", "title": "Use what is due first", "desc": "A local notification gives you time to act, while near-date items rise to the top of Today and Meals." },
+    { "step": "03", "title": "See what you can make", "desc": "Meal ideas come from your actual pantry, computed locally — works offline." },
+    { "step": "04", "title": "Log what you ate, restock what you need", "desc": "Update your pantry when you use or toss something; missing items go to your shopping list, then straight back in." }
+  ],
+  "why": [
+    { "icon": "fridge", "title": "Know what’s at home", "desc": "No more staring into the fridge: what you bought, when, and how long it keeps — all remembered on your device." },
+    { "icon": "bell", "title": "A timely reminder before food is due", "desc": "No nagging—just one useful reminder when an ingredient is worth using soon." },
+    { "icon": "lock", "title": "Your data stays on your device", "desc": "Core features run locally. No account, no ads, no cross-app tracking." }
+  ],
+  "dailyScenarios": [
+    {
+      "icon": "sunrise",
+      "when": "Morning · Before you leave",
+      "title": "Know your day in 30 seconds",
+      "desc": "Expiry reminders sit on your Home screen: take the milk that’s almost out for breakfast, or line it up for tonight. No fridge archaeology on the way out."
+    },
+    {
+      "icon": "moon",
+      "when": "Evening · On the way home",
+      "title": "Decide dinner before you get there",
+      "desc": "Open Meals to see what you can cook with what’s on hand — expiring items go first. Add the missing bits to your shopping list and pick them up on the way."
+    },
+    {
+      "icon": "basket",
+      "when": "Shopping · In the aisle",
+      "title": "Check the list, buy once",
+      "desc": "See what’s missing at a glance instead of guessing in the aisle. Back home, snap the new items into your pantry and the loop closes."
+    }
+  ],
+  "visionCards": [
+    {
+      "icon": "check",
+      "tag": "current",
+      "tagLabel": "Now · In the app today",
+      "title": "Keep each day straight",
+      "desc": "A local pantry, expiry reminders, meal ideas and a shopping list — first, make today clear. This is everything FreshLife does today, and the foundation it builds on."
+    },
+    {
+      "icon": "sparkle",
+      "tag": "next",
+      "tagLabel": "Next · Not shipped yet",
+      "title": "Learn your family’s rhythm",
+      "desc": "Gradually learn your household’s tastes, dietary restrictions and usual buys, so suggestions fit better. Memory stays on your device—explained first and enabled by you."
+    },
+    {
+      "icon": "globe",
+      "tag": "long",
+      "tagLabel": "Long term · Direction",
+      "title": "A food intelligence layer for your home",
+      "desc": "Understand a whole year’s rhythm — seasons, habits, budget — and suggest the right thing at the right time. A direction, not today’s feature."
+    }
+  ],
+  "aiModes": [
+    {
+      "icon": "chip",
+      "title": "On-device recognition & suggestions",
+      "status": "local",
+      "desc": "Photo and album recognition use Apple Vision on your device; meal suggestions are computed locally from your real pantry and work offline."
+    },
+    {
+      "icon": "chat",
+      "title": "Optional remote AI assistant",
+      "status": "online",
+      "desc": "Not enabled in the current version. If it ships later, it will be off by default, switched on by you, and will send only the minimum needed for your request."
+    },
+    {
+      "icon": "shield",
+      "title": "Boundaries & confirmation",
+      "status": "shipped",
+      "desc": "AI recognizes and suggests — it never changes your pantry on its own. Recognition results, meal plans and shopping changes all need your confirmation first."
+    }
+  ],
+  "privacyPoints": [
+    { "icon": "phone", "title": "Local-first", "desc": "Your pantry, preferences and other core data live on your own device." },
+    { "icon": "user", "title": "No account needed", "desc": "There is no account system; your profile stays on your device." },
+    { "icon": "shield", "title": "No ad SDKs", "desc": "No ad SDKs, no third-party analytics, no cross-app tracking." },
+    { "icon": "bell", "title": "Permissions only when needed", "desc": "Camera, photos and notifications are requested only when you use them — and the app explains why." },
+    { "icon": "export", "title": "You control your data", "desc": "Export, reset AI memory or delete all local data whenever you like." },
+    { "icon": "lock", "title": "AI data boundaries", "desc": "Remote AI isn’t enabled in this version; if it ships, it stays off by default, needs your clear consent, and sends only the minimum." }
+  ],
+  "featureGroups": [
+    {
+      "group": "Pantry & reminders",
+      "items": [
+        { "name": "Pantry management", "desc": "Categories, storage spots, quantities, search, filter and sort", "status": "shipped" },
+        { "name": "Fresh / expiring / expired status", "desc": "Grouped by expiry date, recalculated across midnight and on app open", "status": "shipped" },
+        { "name": "Local expiry reminders", "desc": "iOS local notifications, with reminder lead time you can adjust", "status": "local" },
+        { "name": "Automatic duplicate merging", "desc": "Same name, spot and expiry date merge into one quantity", "status": "shipped" },
+        { "name": "Used & tossed records", "desc": "Log eaten, tossed, donated and frozen — your data grows with you", "status": "shipped" }
+      ]
+    },
+    {
+      "group": "Ways to add food",
+      "items": [
+        { "name": "Snap a photo", "desc": "On-device Apple Vision recognition, no API key", "status": "local" },
+        { "name": "Pick from your library", "desc": "Recognize from a saved photo, done on your device", "status": "local" },
+        { "name": "Scan FreshLife QR codes", "desc": "This version supports FreshLife food QR codes only", "status": "local" },
+        { "name": "Type it yourself", "desc": "Enter name, quantity, spot and expiry date exactly", "status": "shipped" }
+      ]
+    },
+    {
+      "group": "Meals & shopping",
+      "items": [
+        { "name": "Meal planning", "desc": "Plans from your current and expiring ingredients, works offline", "status": "local" },
+        { "name": "Cooking mode", "desc": "Step-by-step timers; finishing auto-consumes the ingredients", "status": "shipped" },
+        { "name": "Shopping list", "desc": "Restock suggestions, bought markers, direct re-entry into pantry", "status": "shipped" }
+      ]
+    },
+    {
+      "group": "Personalization & data",
+      "items": [
+        { "name": "Appearance", "desc": "Light / dark / follow system", "status": "shipped" },
+        { "name": "Language & units", "desc": "Simplified Chinese and English; metric / imperial", "status": "shipped" },
+        { "name": "Preferences", "desc": "Household size, reminder style, cooking time limits", "status": "shipped" },
+        { "name": "Export & delete", "desc": "Export text, reset AI memory, delete all local data", "status": "shipped" },
+        { "name": "Local backup & restore", "desc": "Backup mechanism implemented; in-app entry point planned", "status": "planned" }
+      ]
+    },
+    {
+      "group": "FreshLife AI",
+      "items": [
+        { "name": "On-device recognition & local suggestions", "desc": "Apple Vision assisted recognition + pantry-based local meal ideas", "status": "local" },
+        { "name": "AI memory", "desc": "Preference memory stays on your device; edit or delete anytime", "status": "local" },
+        { "name": "Remote AI assistant", "desc": "Not enabled in this version; off by default with clear consent when it ships", "status": "online" }
+      ]
+    },
+    {
+      "group": "Planned (not shipped yet)",
+      "items": [
+        { "name": "Cloud sync & multi-device", "desc": "Requires accounts and compliance; not in the current version", "status": "planned" },
+        { "name": "Family sharing", "desc": "Shared pantry and shopping list; not included in the launch version", "status": "planned" },
+        { "name": "Community", "desc": "Community prototype is debug-only; the real service is planned", "status": "planned" },
+        { "name": "Wellness insights", "desc": "Interface prototype exists; real analysis is planned", "status": "planned" },
+        { "name": "FreshLife membership & marketplace", "desc": "Needs App Store product configuration and service review", "status": "planned" }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "icon": "pencil",
+      "phase": "01",
+      "title": "Easier food entry",
+      "desc": "Make recording food faster and easier: less typing, fewer checks, fewer mistakes.",
+      "items": [
+        "Batch import from your photo library",
+        "Smarter recognition checks — ask only when unsure",
+        "Templates for the items you buy all the time"
+      ]
+    },
+    {
+      "icon": "sparkle",
+      "phase": "02",
+      "title": "Family rhythm & personal context",
+      "desc": "Learn your household’s preferences on-device: tastes, dietary restrictions and regular purchases, so suggestions fit better over time.",
+      "items": [
+        "On-device preference memory, explained first, enabled by you",
+        "Separate tastes and dietary restrictions for each household member",
+        "Holidays and seasons taken into account"
+      ]
+    },
+    {
+      "icon": "chart",
+      "phase": "03",
+      "title": "Better planning & restocking",
+      "desc": "Move from planning tonight’s meal to seeing how the whole week fits together, with smarter meal plans and restock suggestions based on real use.",
+      "items": [
+        "A weekly meal plan built around what you already have",
+        "Restock suggestions based on how much you actually use",
+        "Long-term trends from your own records, for lifestyle reference only"
+      ]
+    },
+    {
+      "icon": "users",
+      "phase": "04",
+      "title": "Safe family collaboration",
+      "desc": "Share pantry and shopping lists with your family, each with their own permissions and history. Requires accounts and compliance work first.",
+      "items": [
+        "Family members with roles and permissions",
+        "Shared pantry and shopping list, with a change history",
+        "Cloud sync and account recovery (after accounts and compliance)"
+      ]
+    },
+    {
+      "icon": "globe",
+      "phase": "05",
+      "title": "Ecosystem connections",
+      "desc": "Let information flow further: recipes, shopping channels and kitchen devices — connected by your choice, never switched on by default.",
+      "items": [
+        "Connections to recipe services",
+        "Shopping integrations — take your list with you",
+        "Smart kitchen device links"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I have to create an account to use it?",
+      "a": "No. Pantry, reminders, meals and shopping all work out of the box, and your profile stays on your device. Accounts and cloud sync are planned capabilities — they’re not in the current version."
+    },
+    {
+      "q": "Does it work without a network?",
+      "a": "Yes. Pantry, expiry reminders, meal planning and everything you’ve saved keep working offline. Remote AI is a future optional capability; it isn’t enabled in the current version."
+    },
+    {
+      "q": "How reliable is photo recognition?",
+      "a": "Recognition runs on-device with Apple Vision and counts as a suggestion. When the app isn’t sure, it asks you to check — and you can always edit the result or type the item yourself. This version doesn’t support retail barcode lookup."
+    },
+    {
+      "q": "Will AI change my pantry on its own?",
+      "a": "No. AI only recognizes and suggests; it never changes your pantry directly. Recognition results, meal plans and shopping changes all take effect only after you confirm them."
+    },
+    {
+      "q": "Can I fully trust expiry dates and nutrition info?",
+      "a": "No. Dates and nutrition come from your entry, packaging or recognition — they’re management references. Packaging labels, recall notices, and how food smells and looks come first."
+    },
+    {
+      "q": "Will FreshLife gradually learn my family’s habits?",
+      "a": "That’s a long-term direction, not a feature of the current version. Today’s FreshLife has no long-term memory and does no automatic shopping. If memory or automatic-suggestion features ever ship, they’ll be off by default, explained first, used only with your consent, and kept on your device. We won’t “learn you” silently in the background."
+    },
+    {
+      "q": "How do I export or delete my data?",
+      "a": "In the app, go to Profile → Privacy Center. You can export text data, reset AI memory, or delete all local data. Deleted local data may not be recoverable."
+    }
+  ]
+}

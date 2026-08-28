@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="color-scheme" content="light dark"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; form-action 'self'; upgrade-insecure-requests"/>
+<title>Privacy Policy — FreshLife</title>
+<meta name="description" content="FreshLife’s privacy policy: local-first, no ad SDKs, no cross-app tracking, and how optional AI and data controls work."/>
+<meta name="theme-color" content="#f8f6ef"/>
+
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://www.freshlifeapp.cn/en/privacy/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://www.freshlifeapp.cn/privacy/"/>
+<link rel="alternate" hreflang="en" href="https://www.freshlifeapp.cn/en/privacy/"/>
+<link rel="alternate" hreflang="x-default" href="https://www.freshlifeapp.cn/privacy/"/>
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="/app-icon.png"/>
+<link rel="apple-touch-icon" href="/app-icon.png"/>
+<script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
+try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
+<link rel="stylesheet" href="/assets/main-0cab2be9e1.css"/>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="legal-shell">
+  <nav class="legal-nav" aria-label="Main navigation">
+    <a class="brand" href="/en/"><img src="/app-icon.png" alt="" width="30" height="30"/><span>FreshLife</span></a>
+    <div class="legal-nav-right">
+      <a class="lang-switch" href="/privacy/" hreflang="zh-CN" lang="zh-CN">中文</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+  <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.2 5.2l1.8 1.8M17 17l1.8 1.8M18.8 5.2 17 7M7 17l-1.8 1.8"/></svg>
+  <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+  <span class="theme-toggle-label">Night</span>
+</button>
+
+      <a class="back" href="/en/">Back to home<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M10 17l-5-5 5-5"/></svg></a>
+    </div>
+  </nav>
+  <main id="main">
+    <article class="legal-page">
+      <p class="kicker">Privacy · Policy</p>
+<h1>Privacy Policy</h1>
+<p class="intro">FreshLife believes the everyday details of your household don’t need to leave your device. This policy tries to say, in plain language: what stays on your device, when anything ever connects, and what you can do at any time.</p>
+<div class="legal-meta"><span>Last updated: August 2026</span><span>Applies to the FreshLife iOS app (current version 1.0.0)</span></div>
+
+<h2>1. The one-sentence version</h2>
+<p>The current version of FreshLife <strong>requires no account and has no cloud sync</strong>. Core data like your pantry and preferences stays on your device by default; there are no ad SDKs, no third-party analytics and no cross-app tracking. Only when you actively use the optional remote AI (if it ships) would the minimum needed for your request be sent.</p>
+
+<h2>2. Data stored on your device</h2>
+<p>FreshLife stores the following locally on your device — it is not uploaded anywhere automatically:</p>
+<ul>
+  <li>Item records: name, category, storage spot, expiry date, quantity, unit, notes and optional photos;</li>
+  <li>Food history: when items were added, how much was used, whether anything was discarded;</li>
+  <li>Completed meals and shopping list entries;</li>
+  <li>Preference and onboarding settings: goals, eating style, liked and avoided foods, allergy information;</li>
+  <li>An optional profile: nickname, avatar, gender, birthday, region and bio (not required for core features);</li>
+  <li>Local activity summaries generated from food records: daily counts, completed meals, water entries and streaks;</li>
+  <li>AI memory (if enabled) and notification preferences;</li>
+  <li>Local JSON backups in the app’s support directory (up to 5 copies).</li>
+</ul>
+<p>The current version does not collect height, weight, basal metabolism, calorie intake, diagnosis or treatment records. Preferences such as allergies, dietary and health goals — even though they live only on your device today — are treated as sensitive information.</p>
+
+<h2>3. What is never collected automatically</h2>
+<p>The current version sends no location, advertising identifiers, usage statistics or crash reports to third parties. Debug logs exist only in developer builds. Remote requests would only ever be made when using an enabled AI service, under a locally generated anonymous installation identifier.</p>
+
+<h2>4. Optional AI services</h2>
+<p>The current version (1.0.0) <strong>does not enable remote AI</strong>. If it is enabled in the future, it will only ever work the following way, after your explicit consent:</p>
+<ul>
+  <li>Photos from the camera or album may be sent to a gateway for food recognition;</li>
+  <li>Conversation text and minimal pantry context (item names, quantities, units and expiry status) may be sent;</li>
+  <li>Allergy information, health goals, profile details, AI memory, meal history, shopping history and long-term behavior records are not part of any planned remote AI requests; if that scope ever changes, we will update this policy and obtain consent as required by law;</li>
+  <li>No service-provider API keys are built into the app or submitted by it;</li>
+  <li>The gateway issues short-lived anonymous tokens bound to your local installation identifier and stores no prompts or images.</li>
+</ul>
+<p>If AI-generated text, images or other content is ever provided, it will be labeled “AI-generated” in the interface so you can recognize it. In the current version, photo recognition uses Apple Vision on your device — photos never leave it.</p>
+
+<h2>5. QR codes</h2>
+<p>FreshLife food QR codes are parsed locally on your device; no network is used for this. Retail barcode lookup is not part of the current version.</p>
+
+<h2>6. Retention, export and deletion</h2>
+<p>Data stays on your device until you decide to delete it. Uninstalling the app removes its sandbox; OS backups and keychain entries follow platform behavior. At any time, in the Privacy Center, you can:</p>
+<ul>
+  <li>Export pantry, history, completed meals, shopping list and language preferences (currently as text);</li>
+  <li>Delete all local data, including AI memory, backups and the local identity;</li>
+  <li>Reset AI memory on its own.</li>
+</ul>
+
+<h2>7. Permissions</h2>
+<p>Camera, photo and notification permissions are managed by iOS. Declining optional permissions doesn’t affect manual pantry management; you can change authorizations anytime in system Settings, and the Privacy Center shows their current state.</p>
+
+<h2>8. Children’s privacy</h2>
+<p>FreshLife is not a service aimed at children and is not used for medical diagnosis. If we ever provide services for children, we will first complete the appropriate age rating and children’s privacy assessment.</p>
+
+<h2>9. Security</h2>
+<p>The app uses the iOS sandbox, standard iOS data protection and the Keychain (for the local identity); any remote communication uses HTTPS.</p>
+
+<h2>10. Policy updates</h2>
+<p>For important changes, we update the date on this page and, where appropriate, notify you inside the app.</p>
+
+<h2>11. China (mainland) release notes</h2>
+<p>Before a public release in mainland China, we need to finalize and publish the operating entity and contact channels, the personal information processing notice, separate consent for sensitive information, and applicable app filing procedures. If remote AI transfers personal information outside China, the overseas recipient and transfer mechanism must also be stated. This page will be updated once those facts are settled.</p>
+
+<h2>12. Disclaimer</h2>
+<p>AI suggestions and meal plans are for reference only and are not medical, diagnostic or emergency advice.</p>
+
+<h2>13. Contact and complaints</h2>
+<p>Developer &amp; operator: Ming (independent developer). Before the App Store launch, you can reach us through Profile → Help &amp; Feedback in the app; the official support email will be published before release.</p>
+<p>For questions or complaints about personal information handling, contact us through the channel above first — we will review and reply in good faith. You can also report to the app platform, or file a complaint with the competent authority (such as the cyberspace administration) as provided by law.</p>
+
+<h2>14. About this page</h2>
+<p>This page explains FreshLife’s privacy practices for the website and is not legal advice. For specific rights and obligations, refer to the law, regulatory requirements and professional advice; once the operating entity, filing and contact details are confirmed, this page will be updated.</p>
+
+    </article>
+  </main>
+  <footer class="site-footer" style="margin-top:0">
+    <div class="container">
+      <div class="footer-bottom" style="margin-top:0;border-top:0;justify-content:center">
+        <span>© <span data-year>2026</span> FreshLife · Developer & operator: Ming (independent developer) · <a href="/sitemap.xml">Sitemap</a> · <a class="lang-switch" href="/privacy/" hreflang="zh-CN" lang="zh-CN">中文</a></span>
+      </div>
+    </div>
+  </footer>
+</div>
+<script src="/assets/main-4943a380ce.js" defer></script>
+</body>
+</html>

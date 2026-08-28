@@ -1,31 +1,34 @@
 {{head}}
 <header class="site-header">
   <div class="container">
-    <a class="brand" href="/#top" aria-label="FreshLife 首页">
+    <a class="brand" href="/#top" aria-label="{{brand_aria}}">
       <img src="/app-icon.png" alt="" width="30" height="30"/>
       <span>FreshLife</span>
     </a>
+    {{lang_switch}}
     {{theme_toggle}}
-    <a class="nav-cta" href="/features/">查看完整功能<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></a>
+    <a class="nav-cta" href="{{nav_cta_href}}">{{nav_cta_label}}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></a>
   </div>
 </header>
 <main id="main">
   <section class="notfound">
     <div class="container">
       <div class="code">404</div>
-      <h1>这个页面不存在或已被移动。</h1>
-      <p>你访问的地址可能拼写有误，或对应内容已经调整。可以返回首页，或前往帮助中心看看常见问题。</p>
+      <h1>{{nf_title}}</h1>
+      <p>{{nf_desc}}</p>
       <div class="hero-actions">
-        <a class="button primary" href="/">返回首页</a>
-        <a class="button quiet" href="/features/">查看完整功能</a>
+        <a class="button primary" href="/">{{nf_home}}</a>
+        <a class="button quiet" href="/features/">{{nf_features}}</a>
+        <a class="button quiet" href="/philosophy/">{{nf_philosophy}}</a>
       </div>
+      <p class="nf-lang"><a href="/en/" hreflang="en" lang="en">FreshLife in English</a></p>
     </div>
   </section>
 </main>
 <footer class="site-footer">
   <div class="container">
     <div class="footer-bottom" style="margin-top:0;border-top:0;justify-content:center">
-      <span>© <span data-year>{{year}}</span> FreshLife · <a href="/">FreshLife 首页</a></span>
+      <span>© <span data-year>{{year}}</span> FreshLife · {{nf_footer}}</span>
     </div>
   </div>
 </footer>

@@ -1,0 +1,129 @@
+{
+  "site": {
+    "name": "FreshLife",
+    "domain": "https://www.freshlifeapp.cn",
+    "language": "en",
+    "copyrightYear": 2026,
+    "developer": "Ming (independent developer)",
+    "appStoreStatus": "preparing",
+    "appVersion": "1.0.0"
+  },
+  "nav": [
+    {
+      "label": "Demo",
+      "href": "/en/#product"
+    },
+    {
+      "label": "Why",
+      "href": "/en/#why"
+    },
+    {
+      "label": "FreshLife AI",
+      "href": "/en/#ai"
+    },
+    {
+      "label": "Privacy",
+      "href": "/en/#privacy"
+    },
+    {
+      "label": "Philosophy",
+      "href": "/en/philosophy/"
+    }
+  ],
+  "mobileCta": {
+    "href": "/en/features/",
+    "label": "All features",
+    "hint": "What’s here, and what’s coming"
+  },
+  "footerProductLinks": [
+    {
+      "label": "All features",
+      "href": "/en/features/"
+    },
+    {
+      "label": "Demo (iPhone · iPad)",
+      "href": "/en/#product"
+    },
+    {
+      "label": "Ways to add food",
+      "href": "/en/#add"
+    },
+    {
+      "label": "FreshLife AI",
+      "href": "/en/#ai"
+    },
+    {
+      "label": "Our philosophy",
+      "href": "/en/philosophy/"
+    },
+    {
+      "label": "Launch status",
+      "href": "/en/#download"
+    }
+  ],
+  "footerLegalLinks": [
+    {
+      "label": "Privacy Policy",
+      "href": "/en/privacy/"
+    },
+    {
+      "label": "Terms of Use",
+      "href": "/en/terms/"
+    },
+    {
+      "label": "Help Center",
+      "href": "/en/support/"
+    },
+    {
+      "label": "Safety & Transparency",
+      "href": "/en/safety/"
+    }
+  ],
+  "pages": {
+    "index": {
+      "title": "FreshLife — What should we eat today?",
+      "description": "FreshLife keeps what’s in your kitchen, what’s about to expire, what to cook and what to buy in one private place. Local-first, no account needed, iPhone and iPad.",
+      "path": "en/index.html"
+    },
+    "features": {
+      "title": "All Features — FreshLife",
+      "description": "Every FreshLife feature explained: inventory and expiry reminders, four ways to add food, meals and cooking, shopping list, iPhone and iPad, privacy and data control, FreshLife AI — with current status for each.",
+      "path": "en/features/index.html"
+    },
+    "philosophy": {
+      "title": "Our Philosophy — FreshLife",
+      "description": "What FreshLife believes, what it is building today, and its long-term direction: personal food intelligence that grows with each household.",
+      "path": "en/philosophy/index.html",
+      "content": "philosophy.html"
+    },
+    "privacy": {
+      "title": "Privacy Policy — FreshLife",
+      "description": "FreshLife’s privacy policy: local-first, no ad SDKs, no cross-app tracking, and how optional AI and data controls work.",
+      "path": "en/privacy/index.html",
+      "content": "privacy.html"
+    },
+    "terms": {
+      "title": "Terms of Use — FreshLife",
+      "description": "FreshLife’s terms of use: what the app is for, why AI is not medical advice, and the boundaries of AI-generated content and device data.",
+      "path": "en/terms/index.html",
+      "content": "terms.html"
+    },
+    "support": {
+      "title": "Help Center — FreshLife",
+      "description": "FreshLife help: adding food, photos and scanning, the AI assistant, and common questions about privacy and your data.",
+      "path": "en/support/index.html",
+      "content": "support.html"
+    },
+    "safety": {
+      "title": "Safety & Transparency — FreshLife",
+      "description": "What you can trust in FreshLife, and what you should double-check: the boundaries of recognition, meals, nutrition and reminders.",
+      "path": "en/safety/index.html",
+      "content": "safety.html"
+    },
+    "notfound": {
+      "title": "Page not found — FreshLife",
+      "description": "This page doesn’t exist or has moved. Head back to the FreshLife homepage or the Help Center.",
+      "path": "404.html"
+    }
+  }
+}

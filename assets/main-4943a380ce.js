@@ -10,6 +10,24 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var THEME_KEY = "freshlife-theme";
 
+  /* 界面文案按页面语言（html lang）切换：英文页不会被脚本注入中文。 */
+  var isZh = document.documentElement.lang === "zh-CN";
+  var STR = isZh ? {
+    toDay: "切换到日间模式",
+    toNight: "切换到夜间模式",
+    day: "日间",
+    night: "夜间",
+    openMenu: "打开菜单",
+    closeMenu: "关闭菜单",
+  } : {
+    toDay: "Switch to light mode",
+    toNight: "Switch to dark mode",
+    day: "Day",
+    night: "Night",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+  };
+
   /* ---------- 日夜主题 ---------- */
   var root = document.documentElement;
 
@@ -29,12 +47,9 @@
       var next = theme === "dark" ? "light" : "dark";
       var dark = theme === "dark";
       btn.setAttribute("aria-pressed", dark ? "true" : "false");
-      btn.setAttribute(
-        "aria-label",
-        dark ? "切换到日间模式" : "切换到夜间模式"
-      );
+      btn.setAttribute("aria-label", dark ? STR.toDay : STR.toNight);
       var label = btn.querySelector(".theme-toggle-label");
-      if (label) label.textContent = dark ? "日间" : "夜间";
+      if (label) label.textContent = dark ? STR.day : STR.night;
       btn.setAttribute("data-theme-next", next);
     });
   }
@@ -84,7 +99,7 @@
     toggle.addEventListener("click", function () {
       var open = panel.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.setAttribute("aria-label", open ? "关闭菜单" : "打开菜单");
+      toggle.setAttribute("aria-label", open ? STR.closeMenu : STR.openMenu);
     });
     panel.addEventListener("click", function (e) {
       if (e.target.closest("a")) {

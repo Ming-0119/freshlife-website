@@ -7,19 +7,17 @@ FreshLife 官网构建脚本（零依赖，仅 Python 标准库）
     python3 scripts/build.py [--check-only]
 
 职责：
-  1. 从 site/templates（含共享 partial）+ site/content 渲染页面到仓库根目录
-     （GitHub → 阿里云静态托管可直接使用根目录内容）；
+  1. 从 site/templates（含共享 partial）+ site/content 渲染中英双语页面到仓库根目录
+     （中文在根目录，英文在 /en/ 下；GitHub → 阿里云静态托管可直接使用根目录内容）；
   2. 将 CSS/JS 以内容哈希文件名输出到 assets/（配合 _headers 的
      immutable 缓存规则，发布滚动安全）；
-  3. 生成 robots.txt / sitemap.xml / _headers / BUILD_PROVENANCE.txt；
+  3. 生成 robots.txt / sitemap.xml（含 hreflang 交替链接）/ _headers / BUILD_PROVENANCE.txt；
   4. 清理上一次构建遗留的旧产物（.vite/、旧 assets 等）；
-  5. 构建后自检：内部链接、锚点 id、未替换占位符。
+  5. 构建后自检：内部链接、锚点 id、canonical/hreflang、未替换占位符。
 
-页面：
-  index.html 首页（品牌价值 + 日常场景 + 功能清单 + 上线状态）
-  features/index.html 完整功能页（每项功能：能帮什么/怎么用/注意什么/当前状态）
-  privacy/ terms/ support/ safety/ 法律与支持页
-  404.html 页面不存在
+页面（中文）：index / features / philosophy / privacy / terms / support / safety / 404
+页面（英文）：/en/ 及 /en/features/、/en/philosophy/、/en/privacy/、/en/terms/、
+             /en/support/、/en/safety/（结构独立，文案自然英文，非逐字翻译）
 """
 import hashlib
 import json
@@ -34,13 +32,91 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
 TEMPLATES = SITE / "templates"
 CONTENT = SITE / "content"
+CONTENT_EN = CONTENT / "en"
 STATIC = SITE / "static"
 STYLES = SITE / "styles"
 SCRIPTS = SITE / "scripts"
 ASSETS = ROOT / "assets"
 
 CONFIG = json.loads((SITE / "config.json").read_text(encoding="utf-8"))
+CONFIG_EN = json.loads((SITE / "config.en.json").read_text(encoding="utf-8"))
 FEATURES = json.loads((CONTENT / "features.json").read_text(encoding="utf-8"))
+FEATURES_EN = json.loads((CONTENT_EN / "features.json").read_text(encoding="utf-8"))
+
+DOMAIN = CONFIG["site"]["domain"]
+
+# 中英页面对（canonical / hreflang / 语言切换用）
+PAGE_PAIRS = {
+    "index": ("/", "/en/"),
+    "features": ("/features/", "/en/features/"),
+    "philosophy": ("/philosophy/", "/en/philosophy/"),
+    "privacy": ("/privacy/", "/en/privacy/"),
+    "terms": ("/terms/", "/en/terms/"),
+    "support": ("/support/", "/en/support/"),
+    "safety": ("/safety/", "/en/safety/"),
+}
+
+# 语言相关的界面文案（模板与 partial 中的中文/英文从这里注入）
+LANG_STRINGS = {
+    "zh": {
+        "html_lang": "zh-CN",
+        "skip_text": "跳到主要内容",
+        "brand_aria": "FreshLife 首页",
+        "nav_aria": "主导航",
+        "mobile_nav_aria": "移动端导航",
+        "toggle_aria": "打开菜单",
+        "theme_label": "夜间",
+        "theme_aria": "切换到夜间模式",
+        "theme_mobile_label": "切换到夜间模式",
+        "theme_mobile_aria": "切换到夜间模式",
+        "footer_tagline": "保质期管理与餐食规划。本地优先，少一点浪费，让每天吃什么更从容。",
+        "col_product": "产品",
+        "col_support": "支持",
+        "col_status": "状态说明",
+        "status_launch": ("上线状态", "/features/#status"),
+        "status_features": ("功能清单与状态", "/#features"),
+        "status_roadmap": ("接下来的路", "/#roadmap"),
+        "developer_prefix": "开发者与运营者：",
+        "lang_line": "中文优先",
+        "sitemap_label": "站点地图",
+        "back_text": "返回首页",
+        "nf_title": "这个页面不存在或已被移动。",
+        "nf_desc": "你访问的地址可能拼写有误，或对应内容已经调整。可以返回首页、了解我们的理念，或看看完整功能。",
+        "nf_home": "返回首页",
+        "nf_features": "查看完整功能",
+        "nf_philosophy": "了解我们的理念",
+        "nf_footer": "FreshLife 首页",
+    },
+    "en": {
+        "html_lang": "en",
+        "skip_text": "Skip to main content",
+        "brand_aria": "FreshLife home",
+        "nav_aria": "Main navigation",
+        "mobile_nav_aria": "Mobile navigation",
+        "toggle_aria": "Open menu",
+        "theme_label": "Night",
+        "theme_aria": "Switch to dark mode",
+        "theme_mobile_label": "Switch to dark mode",
+        "theme_mobile_aria": "Switch to dark mode",
+        "footer_tagline": "Food expiry and meal planning. Local-first, less waste, and dinner decisions that feel easy.",
+        "col_product": "Product",
+        "col_support": "Support",
+        "col_status": "Status",
+        "status_launch": ("Launch status", "/en/features/#status"),
+        "status_features": ("Feature list & status", "/en/#features"),
+        "status_roadmap": ("What’s next", "/en/#roadmap"),
+        "developer_prefix": "Developer & operator: ",
+        "lang_line": "English",
+        "sitemap_label": "Sitemap",
+        "back_text": "Back to home",
+        "nf_title": "This page doesn’t exist or has moved.",
+        "nf_desc": "The address may be mistyped, or the page has moved. Head back to the homepage, read our philosophy, or browse all features.",
+        "nf_home": "Back to home",
+        "nf_features": "All features",
+        "nf_philosophy": "Our philosophy",
+        "nf_footer": "FreshLife home",
+    },
+}
 
 # --------------------------------------------------------------------------
 # 图标（SF-Symbols 风格线性图标，stroke 1.8，统一 24 viewBox）
@@ -74,15 +150,28 @@ ICONS = {
     "leaf": '<path d="M5 19C5 9 12 4 20 4c0 8-5 15-15 15z"/><path d="M5 19c3-6 8-10 12-12"/>',
     "globe": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/>',
     "moon": '<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/>',
+    # 每日场景：日出（早晨）与购物篮（超市）
+    "sunrise": '<circle cx="12" cy="13.5" r="4"/><path d="M12 3.5v2M5.3 5.3l1.4 1.4M3 13.5h2M19 13.5h2M17.3 6.7l-1.4 1.4M4.5 19.5h15M8.5 16.5h7"/>',
+    "basket": '<path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/>',
 }
 
-# 首页专用的 Open Graph 标签（其余页面不输出）
-INDEX_OG = (
-    '<meta property="og:type" content="website"/>\n'
-    '<meta property="og:title" content="FreshLife — 记住家里有什么，吃得更从容"/>\n'
-    '<meta property="og:description" content="本地优先的家庭食物管理：库存、临期提醒、餐食规划与购物清单。iPhone 与 iPad 通用，无需注册账号。"/>\n'
-    '<meta property="og:image" content="/app-icon.png"/>'
-)
+# 首页专用的 Open Graph 标签（其余页面只输出 canonical + hreflang）
+INDEX_OG = {
+    "zh": (
+        '<meta property="og:type" content="website"/>\n'
+        '<meta property="og:locale" content="zh_CN"/>\n'
+        '<meta property="og:title" content="FreshLife — 每天吃什么，不必每次从头想"/>\n'
+        '<meta property="og:description" content="本地优先的家庭食品决策助手：库存、临期提醒、餐食规划与购物清单。iPhone 与 iPad 通用，无需注册账号。"/>\n'
+        '<meta property="og:image" content="/app-icon.png"/>'
+    ),
+    "en": (
+        '<meta property="og:type" content="website"/>\n'
+        '<meta property="og:locale" content="en_US"/>\n'
+        '<meta property="og:title" content="FreshLife — What should we eat today?"/>\n'
+        '<meta property="og:description" content="A local-first helper for daily food decisions: what’s in your kitchen, what’s expiring, what to cook, and what to buy. iPhone and iPad, no account needed."/>\n'
+        '<meta property="og:image" content="/app-icon.png"/>'
+    ),
+}
 
 _PARTIALS = {}
 
@@ -128,12 +217,16 @@ def write_if_changed(path, content):
 # 渲染辅助
 # --------------------------------------------------------------------------
 
-def render_template(tpl_name, subs):
-    tpl = (TEMPLATES / tpl_name).read_text(encoding="utf-8")
+def apply(tpl, subs):
     for key, value in subs.items():
         tpl = tpl.replace("{{" + key + "}}", value)
+    return tpl
+
+
+def render_template(tpl_name, subs):
+    tpl = (TEMPLATES / tpl_name).read_text(encoding="utf-8")
     # 统一为一个结尾换行，避免 partial 自带换行造成构建产物出现空白尾行。
-    return tpl.rstrip() + "\n"
+    return apply(tpl, subs).rstrip() + "\n"
 
 
 def theme_toggle(cls="", id_suffix="", aria_label="切换到夜间模式", label="夜间"):
@@ -146,105 +239,136 @@ def theme_toggle(cls="", id_suffix="", aria_label="切换到夜间模式", label
     )
 
 
-def build_head(title, description, css_tag, robots="index, follow", og_tags=""):
+def build_head(title, description, css_tag, html_lang="zh-CN", canonical="",
+               hreflang="", robots="index, follow", og_tags=""):
     tpl = partial("_head.html")
+    canonical_tag = '<link rel="canonical" href="%s"/>' % esc(canonical) if canonical else ""
     return (
         tpl.replace("{{title}}", esc(title))
         .replace("{{description}}", esc(description))
+        .replace("{{html_lang}}", esc(html_lang))
+        .replace("{{canonical}}", canonical_tag)
+        .replace("{{hreflang}}", hreflang or "")
         .replace("{{robots}}", esc(robots))
         .replace("{{og_tags}}", og_tags)
         .replace("{{css}}", css_tag)
     )
 
 
-def build_site_header(nav_html, nav_mobile_html, cta_href="/features/", cta_label="查看完整功能"):
+def hreflang_tags(zh_path, en_path):
+    return (
+        '<link rel="alternate" hreflang="zh-CN" href="%s%s"/>\n'
+        '<link rel="alternate" hreflang="en" href="%s%s"/>\n'
+        '<link rel="alternate" hreflang="x-default" href="%s%s"/>'
+        % (DOMAIN, zh_path, DOMAIN, en_path, DOMAIN, zh_path)
+    )
+
+
+def lang_switch(page_key, lang, mobile=False):
+    """对应页面的语言切换链接：中文页 → English，英文页 → 中文。"""
+    if page_key in PAGE_PAIRS:
+        zh_path, en_path = PAGE_PAIRS[page_key]
+    else:
+        zh_path, en_path = "/", "/en/"
+    if lang == "zh":
+        href, hreflang, text, elang = en_path, "en", "English", "en"
+    else:
+        href, hreflang, text, elang = zh_path, "zh-CN", "中文", "zh-CN"
+    cls = "lang-switch" + (" lang-switch--mobile" if mobile else "")
+    return '<a class="%s" href="%s" hreflang="%s" lang="%s">%s</a>' % (
+        cls, esc(href), hreflang, elang, esc(text))
+
+
+def build_site_header(nav_html, nav_mobile_html, lang, page_key,
+                      cta_href="/features/", cta_label="查看完整功能"):
+    L = LANG_STRINGS[lang]
     tpl = partial("_site_header.html")
-    return (
-        tpl.replace("{{nav}}", nav_html)
-        .replace("{{nav_mobile}}", nav_mobile_html)
-        .replace("{{theme_toggle}}", theme_toggle())
-        .replace("{{nav_cta_href}}", esc(cta_href))
-        .replace("{{nav_cta_label}}", esc(cta_label))
-        .replace(
-            "{{theme_toggle_mobile}}",
-            theme_toggle(
-                cls=" theme-toggle--mobile",
-                id_suffix="-mobile",
-                aria_label="切换到夜间模式",
-                label="切换到夜间模式",
-            ),
-        )
-    )
+    return apply(tpl, {
+        "skip_text": L["skip_text"],
+        "home_href": "/" if lang == "zh" else "/en/",
+        "brand_aria": L["brand_aria"],
+        "nav_aria": L["nav_aria"],
+        "toggle_aria": L["toggle_aria"],
+        "mobile_nav_aria": L["mobile_nav_aria"],
+        "nav": nav_html,
+        "nav_mobile": nav_mobile_html,
+        "lang_switch": lang_switch(page_key, lang),
+        "lang_switch_mobile": lang_switch(page_key, lang, mobile=True),
+        "theme_toggle": theme_toggle(aria_label=L["theme_aria"], label=L["theme_label"]),
+        "theme_toggle_mobile": theme_toggle(
+            cls=" theme-toggle--mobile",
+            id_suffix="-mobile",
+            aria_label=L["theme_mobile_aria"],
+            label=L["theme_mobile_label"],
+        ),
+        "nav_cta_href": esc(cta_href),
+        "nav_cta_label": esc(cta_label),
+    })
 
 
-def build_site_footer(product_links, legal_links, year, developer, js_tag):
+def build_site_footer(product_links, legal_links, year, developer, js_tag, lang):
+    L = LANG_STRINGS[lang]
     tpl = partial("_site_footer.html")
-    return (
-        tpl.replace("{{footer_product}}", product_links)
-        .replace("{{footer_legal}}", legal_links)
-        .replace("{{year}}", year)
-        .replace("{{developer}}", developer)
-        .replace("{{js}}", js_tag)
-    )
+    launch, launch_href = L["status_launch"]
+    feat, feat_href = L["status_features"]
+    road, road_href = L["status_roadmap"]
+    return apply(tpl, {
+        "footer_tagline": L["footer_tagline"],
+        "col_product": L["col_product"],
+        "col_support": L["col_support"],
+        "col_status": L["col_status"],
+        "footer_product": product_links,
+        "footer_legal": legal_links,
+        "status_launch": esc(launch),
+        "status_launch_href": esc(launch_href),
+        "status_features": esc(feat),
+        "status_features_href": esc(feat_href),
+        "status_roadmap": esc(road),
+        "status_roadmap_href": esc(road_href),
+        "year": year,
+        "developer_line": L["developer_prefix"] + developer,
+        "lang_line": L["lang_line"],
+        "sitemap_label": L["sitemap_label"],
+        "js": js_tag,
+    })
 
 
-def build_nav():
+def build_nav(cfg):
     links = []
-    for item in CONFIG["nav"]:
+    for item in cfg["nav"]:
         links.append('<a href="%s">%s</a>' % (esc(item["href"]), esc(item["label"])))
     return "\n".join(links)
 
 
-def build_nav_mobile():
+def build_nav_mobile(cfg):
     links = []
-    for item in CONFIG["nav"]:
+    for item in cfg["nav"]:
         links.append(
             '<a href="%s">%s<small>FreshLife</small></a>'
             % (esc(item["href"]), esc(item["label"]))
         )
-    links.append('<a href="/features/">查看完整功能<small>完整功能与上线状态</small></a>')
+    cta = cfg.get("mobileCta", {"href": "/features/", "label": "查看完整功能", "hint": "完整功能与上线状态"})
+    links.append('<a href="%s">%s<small>%s</small></a>'
+                 % (esc(cta["href"]), esc(cta["label"]), esc(cta["hint"])))
     return "\n".join(links)
 
 
-def build_why():
-    out = []
-    for w in FEATURES["why"]:
-        out.append(
-            '<div class="why-card reveal">'
-            '<div class="ico">%s</div>'
-            "<h3>%s</h3><p>%s</p></div>"
-            % (icon(w["icon"]), esc(w["title"]), esc(w["desc"]))
-        )
-    return "\n".join(out)
-
-
-def build_workflow():
-    out = []
-    for w in FEATURES["workflow"]:
-        out.append(
-            '<div class="flow-item"><span class="num">%s</span>'
-            "<span class=\"ft\"><b>%s</b><small>%s</small></span></div>"
-            % (esc(w["step"]), esc(w["title"]), esc(w["desc"]))
-        )
-    return "\n".join(out)
-
-
-def build_footer_links(key):
+def build_footer_links(cfg, key):
     return "\n".join(
         '<a href="%s">%s</a>' % (esc(i["href"]), esc(i["label"]))
-        for i in CONFIG["footer" + key]
+        for i in cfg["footer" + key]
     )
 
 
-def build_badge(key, label=None):
-    meta = {m["key"]: m for m in FEATURES["statusLegend"]}
+def build_badge(features, key, label=None):
+    meta = {m["key"]: m for m in features["statusLegend"]}
     text = label or meta[key]["label"]
     return '<span class="badge %s">%s</span>' % (esc(key), esc(text))
 
 
-def build_legend(with_hints=True):
+def build_legend(features, with_hints=True):
     items = []
-    for m in FEATURES["statusLegend"]:
+    for m in features["statusLegend"]:
         swatch = "var(--green)" if m["key"] == "shipped" else (
             "var(--blue)" if m["key"] == "local" else (
                 "var(--amber)" if m["key"] == "online" else "var(--ink-3)"
@@ -258,38 +382,88 @@ def build_legend(with_hints=True):
     return "\n".join(items)
 
 
-def build_add_methods():
+def build_why(features):
     out = []
-    for m in FEATURES["addMethods"]:
+    for w in features["why"]:
+        out.append(
+            '<div class="why-card reveal">'
+            '<div class="ico">%s</div>'
+            "<h3>%s</h3><p>%s</p></div>"
+            % (icon(w["icon"]), esc(w["title"]), esc(w["desc"]))
+        )
+    return "\n".join(out)
+
+
+def build_daily_scenarios(features):
+    out = []
+    for d in features["dailyScenarios"]:
+        out.append(
+            '<div class="daily-card reveal">'
+            '<div class="top"><div class="ico">%s</div>'
+            '<span class="when">%s</span></div>'
+            "<h3>%s</h3><p>%s</p></div>"
+            % (icon(d["icon"]), esc(d["when"]), esc(d["title"]), esc(d["desc"]))
+        )
+    return "\n".join(out)
+
+
+def build_vision_cards(features):
+    out = []
+    for v in features["visionCards"]:
+        out.append(
+            '<div class="vision-card reveal">'
+            '<div class="top"><div class="ico">%s</div>'
+            '<span class="vision-tag %s">%s</span></div>'
+            "<h3>%s</h3><p>%s</p></div>"
+            % (icon(v["icon"]), esc(v["tag"]), esc(v["tagLabel"]),
+               esc(v["title"]), esc(v["desc"]))
+        )
+    return "\n".join(out)
+
+
+def build_workflow(features):
+    out = []
+    for w in features["workflow"]:
+        out.append(
+            '<div class="flow-item"><span class="num">%s</span>'
+            "<span class=\"ft\"><b>%s</b><small>%s</small></span></div>"
+            % (esc(w["step"]), esc(w["title"]), esc(w["desc"]))
+        )
+    return "\n".join(out)
+
+
+def build_add_methods(features):
+    out = []
+    for m in features["addMethods"]:
         out.append(
             '<div class="method-card reveal">'
             '<div class="top"><div class="ico">%s</div>%s</div>'
             "<h3>%s</h3><p class=\"desc\">%s</p>"
             '<p class="flow">%s</p>'
             '<p class="note">%s</p></div>'
-            % (icon(m["icon"]), build_badge(m["status"]),
+            % (icon(m["icon"]), build_badge(features, m["status"]),
                esc(m["title"]), esc(m["desc"]),
                esc(m["flow"]), esc(m["note"]))
         )
     return "\n".join(out)
 
 
-def build_ai_modes():
+def build_ai_modes(features):
     out = []
-    for m in FEATURES["aiModes"]:
+    for m in features["aiModes"]:
         out.append(
             '<div class="ai-card reveal">'
             '<div class="ico">%s</div><h3>%s %s</h3>'
             '<p class="desc">%s</p></div>'
             % (icon(m["icon"]), esc(m["title"]),
-               build_badge(m["status"]), esc(m["desc"]))
+               build_badge(features, m["status"]), esc(m["desc"]))
         )
     return "\n".join(out)
 
 
-def build_privacy_points():
+def build_privacy_points(features):
     out = []
-    for p in FEATURES["privacyPoints"]:
+    for p in features["privacyPoints"]:
         out.append(
             '<div class="privacy-item reveal">'
             '<div class="ico">%s</div>'
@@ -299,15 +473,16 @@ def build_privacy_points():
     return "\n".join(out)
 
 
-def build_feature_groups():
+def build_feature_groups(features):
     out = []
-    for g in FEATURES["featureGroups"]:
+    for g in features["featureGroups"]:
         rows = []
         for item in g["items"]:
             rows.append(
                 '<div class="feature-row"><b>%s</b>'
                 '<span class="fd">%s</span>%s</div>'
-                % (esc(item["name"]), esc(item["desc"]), build_badge(item["status"]))
+                % (esc(item["name"]), esc(item["desc"]),
+                   build_badge(features, item["status"]))
             )
         out.append(
             '<div class="feature-group reveal"><h3>%s</h3>'
@@ -317,21 +492,33 @@ def build_feature_groups():
     return "\n".join(out)
 
 
-def build_roadmap():
+def build_roadmap(features):
+    """路线图：五阶段，按「更轻松的录入 → 家庭节奏 → 更好的规划与补货 →
+    安全的家庭协作 → 生态连接」排序；每张卡片都标注「在计划里」。"""
     out = []
-    for r in FEATURES["roadmap"]:
+    planned_label = next(
+        (m["label"] for m in features["statusLegend"] if m["key"] == "planned"),
+        "在计划里",
+    )
+    for r in features["roadmap"]:
+        items = "".join("<li>%s</li>" % esc(i) for i in r.get("items", []))
         out.append(
             '<div class="roadmap-card reveal">'
-            '<span class="flag">规划中</span>'
-            '<div class="ico">%s</div><h3>%s</h3><p>%s</p></div>'
-            % (icon(r["icon"]), esc(r["title"]), esc(r["desc"]))
+            '<span class="roadmap-step">%s</span>'
+            '<div class="roadmap-body">'
+            '<h3><span class="ico">%s</span>%s'
+            '<span class="flag">%s</span></h3>'
+            '<p>%s</p>'
+            '<ul class="roadmap-items">%s</ul></div></div>'
+            % (esc(r["phase"]), icon(r["icon"]), esc(r["title"]),
+               esc(planned_label), esc(r["desc"]), items)
         )
     return "\n".join(out)
 
 
-def build_faq():
+def build_faq(features):
     out = []
-    for i, item in enumerate(FEATURES["faq"]):
+    for i, item in enumerate(features["faq"]):
         out.append(
             "<details%s>"
             '<summary>%s<span class="plus" aria-hidden="true"></span></summary>'
@@ -341,9 +528,9 @@ def build_faq():
     return "\n".join(out)
 
 
-def build_tab_switch_buttons():
+def build_tab_switch_buttons(features):
     out = []
-    for i, t in enumerate(FEATURES["fiveTabs"]):
+    for i, t in enumerate(features["fiveTabs"]):
         selected = ' aria-selected="true"' if i == 0 else ' aria-selected="false"'
         out.append(
             '<button role="tab" data-target="%s"%s aria-controls="mock-%s">%s</button>'
@@ -352,16 +539,135 @@ def build_tab_switch_buttons():
     return "\n".join(out)
 
 
-def build_tab_points_initial():
-    t = FEATURES["fiveTabs"][0]
+def build_tab_points_initial(features):
+    t = features["fiveTabs"][0]
     return "".join(
         '<li>%s<span>%s</span></li>' % (icon("check"), esc(p)) for p in t["points"]
     )
 
 
-def build_tab_points_json():
-    data = {t["id"]: t["points"] for t in FEATURES["fiveTabs"]}
+def build_tab_points_json(features):
+    data = {t["id"]: t["points"] for t in features["fiveTabs"]}
     return json.dumps(data, ensure_ascii=False)
+
+
+# --------------------------------------------------------------------------
+# 单语言渲染
+# --------------------------------------------------------------------------
+
+def render_lang(lang, cfg, features, content_dir, css_tag, js_tag):
+    """渲染一种语言的全部页面，返回 (docs, pages)。
+    docs: [(显示名, html)] 用于自检；pages: {相对路径, html} 用于写入。"""
+    is_zh = lang == "zh"
+    site = cfg["site"]
+    L = LANG_STRINGS[lang]
+    year = str(site["copyrightYear"])
+    developer = esc(site["developer"])
+
+    nav_html = build_nav(cfg)
+    nav_mobile_html = build_nav_mobile(cfg)
+    footer_product = build_footer_links(cfg, "ProductLinks")
+    footer_legal = build_footer_links(cfg, "LegalLinks")
+
+    docs, pages = [], {}
+
+    def page_head(key, robots="index, follow", og_tags=""):
+        zh_path, en_path = PAGE_PAIRS[key]
+        meta = cfg["pages"][key]
+        canonical = DOMAIN + (zh_path if is_zh else en_path)
+        return build_head(
+            meta["title"], meta["description"], css_tag,
+            html_lang=L["html_lang"], canonical=canonical,
+            hreflang=hreflang_tags(zh_path, en_path),
+            robots=robots, og_tags=og_tags,
+        )
+
+    def add_page(key, path, html):
+        pages[path] = html
+        docs.append((path, html))
+
+    # ---- 首页 ----
+    index_tpl = "index.html" if is_zh else "index_en.html"
+    index_meta = cfg["pages"]["index"]
+    index_subs = {
+        "head": page_head("index", og_tags=INDEX_OG[lang]),
+        "header": build_site_header(
+            nav_html, nav_mobile_html, lang, "index",
+            cta_href="/features/" if is_zh else "/en/features/",
+            cta_label="查看完整功能" if is_zh else "All features"),
+        "footer": build_site_footer(
+            footer_product, footer_legal, year, developer, js_tag, lang),
+        "mock_screens": (content_dir / "mock_screens.html").read_text(encoding="utf-8"),
+        "mock_ipad": (content_dir / "mock_ipad.html").read_text(encoding="utf-8"),
+        "tab_points_json": build_tab_points_json(features),
+        "tab_switch_buttons": build_tab_switch_buttons(features),
+        "tab_points_initial": build_tab_points_initial(features),
+        "why_cards": build_why(features),
+        "daily_cards": build_daily_scenarios(features),
+        "vision_cards": build_vision_cards(features),
+        "workflow_steps": build_workflow(features),
+        "add_methods": build_add_methods(features),
+        "ai_modes": build_ai_modes(features),
+        "privacy_points": build_privacy_points(features),
+        "legend": build_legend(features, with_hints=True),
+        "legend_inline": build_legend(features, with_hints=False),
+        "feature_groups": build_feature_groups(features),
+        "roadmap_phases": build_roadmap(features),
+        "faq": build_faq(features),
+    }
+    add_page("index", index_meta["path"], render_template(index_tpl, index_subs))
+
+    # ---- 完整功能页 ----
+    feat_meta = cfg["pages"]["features"]
+    feat_subs = {
+        "head": page_head("features"),
+        "header": build_site_header(
+            nav_html, nav_mobile_html, lang, "features",
+            cta_href="/features/#status" if is_zh else "/en/features/#status",
+            cta_label="了解上线状态" if is_zh else "See launch status"),
+        "footer": build_site_footer(
+            footer_product, footer_legal, year, developer, js_tag, lang),
+        "features_content": (content_dir / "features_page.html").read_text(encoding="utf-8"),
+    }
+    add_page("features", feat_meta["path"], render_template("features.html", feat_subs))
+
+    # ---- 理念页 ----
+    philo_meta = cfg["pages"]["philosophy"]
+    philo_subs = {
+        "head": page_head("philosophy"),
+        "header": build_site_header(
+            nav_html, nav_mobile_html, lang, "philosophy",
+            cta_href="/features/" if is_zh else "/en/features/",
+            cta_label="查看完整功能" if is_zh else "All features"),
+        "footer": build_site_footer(
+            footer_product, footer_legal, year, developer, js_tag, lang),
+        "content": (content_dir / "philosophy.html").read_text(encoding="utf-8"),
+    }
+    add_page("philosophy", philo_meta["path"], render_template("philosophy.html", philo_subs))
+
+    # ---- 法律 / 支持页 ----
+    for key in ("privacy", "terms", "support", "safety"):
+        meta = cfg["pages"][key]
+        content = (content_dir / meta["content"]).read_text(encoding="utf-8")
+        content = content.replace("{{developer}}", developer)
+        legal_subs = {
+            "head": page_head(key),
+            "skip_text": L["skip_text"],
+            "home_href": "/" if is_zh else "/en/",
+            "nav_aria": L["nav_aria"],
+            "lang_switch": lang_switch(key, lang),
+            "theme_toggle": theme_toggle(aria_label=L["theme_aria"], label=L["theme_label"]),
+            "back_text": L["back_text"],
+            "content": content,
+            "year": year,
+            "developer_line": L["developer_prefix"] + developer,
+            "footer_links": ('<a href="/sitemap.xml">%s</a> · %s'
+                             % (esc(L["sitemap_label"]), lang_switch(key, lang))),
+            "js": js_tag,
+        }
+        add_page(key, meta["path"], render_template("legal.html", legal_subs))
+
+    return docs, pages
 
 
 # --------------------------------------------------------------------------
@@ -372,13 +678,11 @@ def main():
     check_only = "--check-only" in sys.argv
     now = datetime.now(timezone.utc)
     today = now.strftime("%Y-%m-%d")
-    site = CONFIG["site"]
-    domain = site["domain"]
 
     if check_only:
         print("[build] 校验模式：仅检查现有产物")
     else:
-        print("[build] 开始构建 FreshLife 官网…")
+        print("[build] 开始构建 FreshLife 官网（中英双语）…")
 
     # ---- 资产哈希 ----
     css_raw = (STYLES / "main.css").read_text(encoding="utf-8")
@@ -388,90 +692,49 @@ def main():
     css_tag = '<link rel="stylesheet" href="/assets/%s"/>' % css_name
     js_tag = '<script src="/assets/%s" defer></script>' % js_name
 
-    # ---- 共享区块 ----
-    nav_html = build_nav()
-    nav_mobile_html = build_nav_mobile()
-    footer_product = build_footer_links("ProductLinks")
-    footer_legal = build_footer_links("LegalLinks")
-    year = str(site["copyrightYear"])
-    developer = esc(site["developer"])
+    # ---- 渲染两种语言 ----
+    zh_docs, zh_pages = render_lang("zh", CONFIG, FEATURES, CONTENT, css_tag, js_tag)
+    en_docs, en_pages = render_lang("en", CONFIG_EN, FEATURES_EN, CONTENT_EN, css_tag, js_tag)
 
-    # ---- 首页 ----
-    index_meta = CONFIG["pages"]["index"]
-    index_subs = {
-        "head": build_head(index_meta["title"], index_meta["description"], css_tag, og_tags=INDEX_OG),
-        "header": build_site_header(nav_html, nav_mobile_html),
-        "footer": build_site_footer(footer_product, footer_legal, year, developer, js_tag),
-        "mock_screens": (CONTENT / "mock_screens.html").read_text(encoding="utf-8"),
-        "mock_ipad": (CONTENT / "mock_ipad.html").read_text(encoding="utf-8"),
-        "tab_points_json": build_tab_points_json(),
-        "tab_switch_buttons": build_tab_switch_buttons(),
-        "tab_points_initial": build_tab_points_initial(),
-        "why_cards": build_why(),
-        "workflow_steps": build_workflow(),
-        "add_methods": build_add_methods(),
-        "ai_modes": build_ai_modes(),
-        "privacy_points": build_privacy_points(),
-        "legend": build_legend(with_hints=True),
-        "legend_inline": build_legend(with_hints=False),
-        "feature_groups": build_feature_groups(),
-        "roadmap": build_roadmap(),
-        "faq": build_faq(),
-    }
-    index_html = render_template("index.html", index_subs)
-
-    # ---- 完整功能页 ----
-    feat_meta = CONFIG["pages"]["features"]
-    feat_subs = {
-        "head": build_head(feat_meta["title"], feat_meta["description"], css_tag),
-        # 本页 CTA 指向自己的「上线状态」分区，避免自我链接
-        "header": build_site_header(nav_html, nav_mobile_html,
-                                    cta_href="/features/#status", cta_label="了解上线状态"),
-        "footer": build_site_footer(footer_product, footer_legal, year, developer, js_tag),
-        "features_content": (CONTENT / "features_page.html").read_text(encoding="utf-8"),
-    }
-    features_html = render_template("features.html", feat_subs)
-
-    # ---- 法律 / 支持页 ----
-    legal_pages = {}
-    for key in ("privacy", "terms", "support", "safety"):
-        meta = CONFIG["pages"][key]
-        content = (CONTENT / meta["content"]).read_text(encoding="utf-8")
-        content = content.replace("{{developer}}", developer)
-        legal_subs = {
-            "head": build_head(meta["title"], meta["description"], css_tag),
-            "theme_toggle": theme_toggle(),
-            "content": content,
-            "year": year,
-            "developer": developer,
-            "js": js_tag,
-        }
-        legal_pages[key] = (ROOT / meta["path"], render_template("legal.html", legal_subs))
-
-    # ---- 404 ----
+    # ---- 404（单一文件，中文为主，含英文入口） ----
+    L = LANG_STRINGS["zh"]
     nf_meta = CONFIG["pages"]["notfound"]
     nf_subs = {
-        "head": build_head(nf_meta["title"], nf_meta["description"], css_tag, robots="noindex, follow"),
-        "theme_toggle": theme_toggle(),
-        "year": year,
+        "head": build_head(nf_meta["title"], nf_meta["description"], css_tag,
+                           robots="noindex, follow"),
+        "brand_aria": L["brand_aria"],
+        "lang_switch": lang_switch("notfound", "zh"),
+        "theme_toggle": theme_toggle(aria_label=L["theme_aria"], label=L["theme_label"]),
+        "nav_cta_href": "/features/",
+        "nav_cta_label": "查看完整功能",
+        "nf_title": L["nf_title"],
+        "nf_desc": L["nf_desc"],
+        "nf_home": L["nf_home"],
+        "nf_features": L["nf_features"],
+        "nf_philosophy": L["nf_philosophy"],
+        "nf_footer": L["nf_footer"],
+        "year": str(CONFIG["site"]["copyrightYear"]),
         "js": js_tag,
     }
     notfound_html = render_template("404.html", nf_subs)
-
-    # ---- 静态文件 ----
-    def copy_static(name):
-        dst = ROOT / name
-        write_if_changed(dst, (STATIC / name).read_bytes())
 
     # ---- 自检（在任何写入之前先校验渲染结果） ----
     expected = {
         "index.html",
         "features/index.html",
-        "404.html",
+        "philosophy/index.html",
         "privacy/index.html",
         "terms/index.html",
         "support/index.html",
         "safety/index.html",
+        "en/index.html",
+        "en/features/index.html",
+        "en/philosophy/index.html",
+        "en/privacy/index.html",
+        "en/terms/index.html",
+        "en/support/index.html",
+        "en/safety/index.html",
+        "404.html",
         "robots.txt",
         "sitemap.xml",
         "app-icon.png",
@@ -479,9 +742,7 @@ def main():
         "assets/" + css_name,
         "assets/" + js_name,
     }
-    docs = [("index.html", index_html), ("features/index.html", features_html)]
-    docs += [(p.name, h) for p, h in legal_pages.values()]
-    docs.append(("404.html", notfound_html))
+    docs = zh_docs + en_docs + [("404.html", notfound_html)]
     errors = validate(docs, expected)
     if errors:
         print("\n[build] 校验失败：")
@@ -493,12 +754,14 @@ def main():
         print("[build] 校验通过 ✓（未写入任何文件）")
         return
 
+    # ---- 静态文件 ----
+    def copy_static(name):
+        write_if_changed(ROOT / name, (STATIC / name).read_bytes())
+
     # ---- 写入 ----
     changed = 0
-    changed += write_if_changed(ROOT / "index.html", index_html)
-    changed += write_if_changed(ROOT / "features/index.html", features_html)
-    for path, html in legal_pages.values():
-        changed += write_if_changed(path, html)
+    for path, html in list(zh_pages.items()) + list(en_pages.items()):
+        changed += write_if_changed(ROOT / path, html)
     changed += write_if_changed(ROOT / "404.html", notfound_html)
     copy_static("app-icon.png")
     copy_static("favicon.svg")
@@ -536,27 +799,40 @@ def main():
         "User-Agent: *\n"
         "Allow: /\n\n"
         "Sitemap: %s/sitemap.xml\n"
-        "Host: %s\n" % (domain, domain)
+        "Host: %s\n" % (DOMAIN, DOMAIN)
     )
     changed += write_if_changed(ROOT / "robots.txt", robots)
 
-    # sitemap.xml
-    pages = [
-        ("/", "weekly", "1.0"),
-        ("/features/", "weekly", "0.9"),
-        ("/privacy/", "monthly", "0.7"),
-        ("/terms/", "monthly", "0.7"),
-        ("/support/", "monthly", "0.7"),
-        ("/safety/", "monthly", "0.7"),
-    ]
+    # sitemap.xml（含 hreflang 交替链接）
+    order = ["index", "features", "philosophy", "privacy", "terms", "support", "safety"]
+    freqs = {"index": "weekly", "features": "weekly", "philosophy": "monthly",
+             "privacy": "monthly", "terms": "monthly", "support": "monthly",
+             "safety": "monthly"}
+    prios = {"index": "1.0", "features": "0.9", "philosophy": "0.8",
+             "privacy": "0.7", "terms": "0.7", "support": "0.7", "safety": "0.7"}
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
-               '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    for path, freq, prio in pages:
-        sitemap.append(
-            "<url><loc>%s%s</loc><lastmod>%s</lastmod>"
-            "<changefreq>%s</changefreq><priority>%s</priority></url>"
-            % (domain, path, today, freq, prio)
-        )
+               '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+               'xmlns:xhtml="http://www.w3.org/1999/xhtml">']
+    for key in order:
+        zh_path, en_path = PAGE_PAIRS[key]
+        sitemap.append("<url>")
+        sitemap.append("<loc>%s%s</loc>" % (DOMAIN, zh_path))
+        sitemap.append("<lastmod>%s</lastmod>" % today)
+        sitemap.append("<changefreq>%s</changefreq>" % freqs[key])
+        sitemap.append("<priority>%s</priority>" % prios[key])
+        sitemap.append('<xhtml:link rel="alternate" hreflang="zh-CN" href="%s%s"/>' % (DOMAIN, zh_path))
+        sitemap.append('<xhtml:link rel="alternate" hreflang="en" href="%s%s"/>' % (DOMAIN, en_path))
+        sitemap.append('<xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>' % (DOMAIN, zh_path))
+        sitemap.append("</url>")
+        sitemap.append("<url>")
+        sitemap.append("<loc>%s%s</loc>" % (DOMAIN, en_path))
+        sitemap.append("<lastmod>%s</lastmod>" % today)
+        sitemap.append("<changefreq>%s</changefreq>" % freqs[key])
+        sitemap.append("<priority>%s</priority>" % prios[key])
+        sitemap.append('<xhtml:link rel="alternate" hreflang="zh-CN" href="%s%s"/>' % (DOMAIN, zh_path))
+        sitemap.append('<xhtml:link rel="alternate" hreflang="en" href="%s%s"/>' % (DOMAIN, en_path))
+        sitemap.append('<xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>' % (DOMAIN, zh_path))
+        sitemap.append("</url>")
     sitemap.append("</urlset>")
     changed += write_if_changed(ROOT / "sitemap.xml", "\n".join(sitemap) + "\n")
 
@@ -583,14 +859,16 @@ def main():
         "Command: python3 scripts/build.py\n"
         "CSS: assets/%s\n"
         "JS:  assets/%s\n"
+        "Pages: zh (root) + en (/en/) × 7\n"
         "Checksum (index.html, sha256): %s\n"
         % (now.strftime("%Y-%m-%dT%H:%M:%SZ"), css_name, js_name,
-           hashlib.sha256(index_html.encode("utf-8")).hexdigest())
+           hashlib.sha256(zh_pages["index.html"].encode("utf-8")).hexdigest())
     )
     changed += write_if_changed(ROOT / "BUILD_PROVENANCE.txt", provenance)
 
     print("[build] 完成。")
-    print("  页面: index.html / features/ / privacy/ / terms/ / support/ / safety/ / 404.html")
+    print("  页面: index / features / philosophy / privacy / terms / support / safety / 404")
+    print("  English: /en/ /en/features/ /en/philosophy/ /en/privacy/ /en/terms/ /en/support/ /en/safety/")
     print("  资产: assets/%s, assets/%s" % (css_name, js_name))
     if removed:
         print("  已清理旧产物: %s" % ", ".join(removed))
@@ -599,13 +877,20 @@ def main():
 
 
 def validate(docs, expected_files):
-    """校验：内部链接存在、锚点 id 存在、无未替换占位符。"""
+    """校验：内部链接存在、锚点 id 存在、canonical/hreflang 成对、无未替换占位符。"""
     errors = []
     for name, html in docs:
         ids = set(re.findall(r'id="([^"]+)"', html))
         leftover = re.findall(r"\{\{[a-z_]+\}\}", html)
         if leftover:
             errors.append("%s: 未替换占位符 %s" % (name, sorted(set(leftover))))
+
+        # canonical 必须与 hreflang 成对出现（404 除外）
+        if name != "404.html":
+            if "rel=\"canonical\"" not in html:
+                errors.append("%s: 缺少 canonical" % name)
+            if "hreflang=\"zh-CN\"" not in html or "hreflang=\"en\"" not in html:
+                errors.append("%s: 缺少 hreflang 交替链接" % name)
 
         # 相对路径链接与站内链接
         for href in re.findall(r'href="([^"]+)"', html):

@@ -7,16 +7,18 @@
 <meta name="referrer" content="strict-origin-when-cross-origin"/>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; form-action 'self'; upgrade-insecure-requests"/>
 <title>页面不存在 — FreshLife</title>
-<meta name="description" content="你访问的页面不存在或已被移动。返回 FreshLife 首页或前往帮助中心。"/>
+<meta name="description" content="你访问的页面不存在或已被移动。返回 FreshLife 首页、了解我们的理念，或前往帮助中心。"/>
 <meta name="theme-color" content="#f8f6ef"/>
 
 <meta name="robots" content="noindex, follow"/>
+
+
 <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/>
 <link rel="icon" href="/app-icon.png"/>
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-6d54583ae6.css"/>
+<link rel="stylesheet" href="/assets/main-0cab2be9e1.css"/>
 </head>
 <body>
 
@@ -26,6 +28,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <img src="/app-icon.png" alt="" width="30" height="30"/>
       <span>FreshLife</span>
     </a>
+    <a class="lang-switch" href="/en/" hreflang="en" lang="en">English</a>
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换到夜间模式" aria-pressed="false">
   <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.2 5.2l1.8 1.8M17 17l1.8 1.8M18.8 5.2 17 7M7 17l-1.8 1.8"/></svg>
   <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
@@ -40,21 +43,23 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     <div class="container">
       <div class="code">404</div>
       <h1>这个页面不存在或已被移动。</h1>
-      <p>你访问的地址可能拼写有误，或对应内容已经调整。可以返回首页，或前往帮助中心看看常见问题。</p>
+      <p>你访问的地址可能拼写有误，或对应内容已经调整。可以返回首页、了解我们的理念，或看看完整功能。</p>
       <div class="hero-actions">
         <a class="button primary" href="/">返回首页</a>
         <a class="button quiet" href="/features/">查看完整功能</a>
+        <a class="button quiet" href="/philosophy/">了解我们的理念</a>
       </div>
+      <p class="nf-lang"><a href="/en/" hreflang="en" lang="en">FreshLife in English</a></p>
     </div>
   </section>
 </main>
 <footer class="site-footer">
   <div class="container">
     <div class="footer-bottom" style="margin-top:0;border-top:0;justify-content:center">
-      <span>© <span data-year>2026</span> FreshLife · <a href="/">FreshLife 首页</a></span>
+      <span>© <span data-year>2026</span> FreshLife · FreshLife 首页</span>
     </div>
   </div>
 </footer>
-<script src="/assets/main-eac7d6c81f.js" defer></script>
+<script src="/assets/main-4943a380ce.js" defer></script>
 </body>
 </html>

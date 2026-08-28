@@ -3,26 +3,26 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <b><img src="/app-icon.png" alt="" width="26" height="26"/>FreshLife</b>
-        <p>保质期管理与餐食规划。本地优先，少一点浪费，让每天吃什么更从容。</p>
+        <p>{{footer_tagline}}</p>
       </div>
       <div class="footer-col">
-        <h4>产品</h4>
+        <h4>{{col_product}}</h4>
         {{footer_product}}
       </div>
       <div class="footer-col">
-        <h4>支持</h4>
+        <h4>{{col_support}}</h4>
         {{footer_legal}}
       </div>
       <div class="footer-col">
-        <h4>状态说明</h4>
-        <a href="/features/#status">上线状态</a>
-        <a href="/#features">功能清单与状态</a>
-        <a href="/#roadmap">接下来的路</a>
+        <h4>{{col_status}}</h4>
+        <a href="{{status_launch_href}}">{{status_launch}}</a>
+        <a href="{{status_features_href}}">{{status_features}}</a>
+        <a href="{{status_roadmap_href}}">{{status_roadmap}}</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year>{{year}}</span> FreshLife · 开发者与运营者：{{developer}}</span>
-      <span>中文优先 · <a href="/sitemap.xml">站点地图</a></span>
+      <span>© <span data-year>{{year}}</span> FreshLife · {{developer_line}}</span>
+      <span>{{lang_line}} · <a href="/sitemap.xml">{{sitemap_label}}</a></span>
     </div>
   </div>
 </footer>

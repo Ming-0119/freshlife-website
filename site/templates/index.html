@@ -8,10 +8,10 @@
     <div class="container">
       <div class="hero-lockup">
         <img src="/app-icon.png" alt="FreshLife App 图标" width="58" height="58"/>
-        <span class="txt"><b>FreshLife</b><small>保质期管理 · 餐食规划 · iPhone 与 iPad</small></span>
+        <span class="txt"><b>FreshLife</b><small>家庭食品决策助手 · iPhone 与 iPad</small></span>
       </div>
-      <h1>记住家里有什么，<br/><em>吃得更从容。</em></h1>
-      <p class="sub">FreshLife 把冰箱、橱柜和购物清单整理在一个地方：<strong>临期前及时提醒</strong>，根据现有食材给出餐食建议，需要补充的食材也能集中查看。核心功能在设备本地完成，<strong>不需要注册账号</strong>。</p>
+      <h1>每天吃什么，<br/><em>不必每次从头想。</em></h1>
+      <p class="sub">FreshLife 记住<strong>家里有什么、哪些该先吃、还缺什么</strong>，再从现有食材出发，帮你更轻松地安排下一餐。它不只是整理库存，更是在减少每天反复做决定的麻烦。核心功能在设备本地完成，<strong>不需要注册账号</strong>。</p>
       <div class="hero-actions">
         <a class="button primary" href="/features/">查看完整功能<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></a>
         <a class="button quiet" href="#product">先看产品演示</a>
@@ -22,6 +22,22 @@
         <span>AI 只做<b>辅助建议</b></span>
       </div>
       <p class="hero-status">正在准备上架 App Store · 正式上线后，本页将更新下载方式</p>
+    </div>
+  </section>
+
+  <!-- ================= 每天打开的理由 =================
+       三个具体瞬间：出门前、回家路上、站在货架前；
+       说明用户每天为什么打开 FreshLife，而不是多维护一个 App。 -->
+  <section class="section" id="daily">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Everyday</p>
+        <h2>每次打开，都先解决眼前这一件事。</h2>
+        <p class="lead">早上看看今天该先吃什么，下班前想好晚餐，买东西时确认家里还缺什么。FreshLife 不增加一项任务，只替你少想一步。</p>
+      </div>
+      <div class="daily-grid">
+        {{daily_cards}}
+      </div>
     </div>
   </section>
 
@@ -272,6 +288,23 @@
     </div>
   </section>
 
+  <!-- ================= 家庭节奏愿景 =================
+       长期愿景要讲清楚：现在能做什么、下一步是什么、更远的方向是什么；
+       明确不把「长期记忆 / 自动购物 / 家庭食品图谱」说成今天已具备。 -->
+  <section class="section" id="vision">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Vision</p>
+        <h2>慢慢了解你们家的节奏。</h2>
+        <p class="lead">每家吃饭的节奏都不一样：工作日赶时间、周末慢慢做、有人挑食、有人忌口。FreshLife 希望逐步成为每个家庭独有的<strong>食品生活助手</strong>：在你同意后，慢慢理解这个家有什么、喜欢怎么吃、通常怎么买，让建议更贴近真实生活。</p>
+      </div>
+      <div class="vision-grid">
+        {{vision_cards}}
+      </div>
+      <p class="roadmap-caveat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.8v5.4c0 4.4-3 7.6-7 8.8-4-1.2-7-4.4-7-8.8V5.8L12 3z"/></svg><span>这些阶段按顺序推进：先把录入变轻松，再谈理解与规划。<strong>现在的版本没有家庭长期记忆、不会自动购物，也没有完整家庭食品图谱</strong>——那些都是长期方向，不是今天的承诺。每一步上线前，都会先在本页与 App 内讲清楚。<a href="/philosophy/">了解我们的理念 →</a></span></p>
+    </div>
+  </section>
+
   <!-- ================= 产品舞台：iPhone + iPad ================= -->
   <section class="section" id="product">
     <div class="container">
@@ -402,12 +435,12 @@
       <div class="section-head reveal">
         <p class="eyebrow">Roadmap</p>
         <h2>接下来，想慢慢做的事。</h2>
-        <p class="lead">这些想法都写在路线上，等本地与合规基础更扎实后再逐一实现。</p>
+        <p class="lead">方向有明确的顺序：先把「记一笔」变轻松，再学着理解你们家的节奏，然后是更好的规划与补货、安全的家庭协作，最后才是生态连接。标注「在计划里」的均未上线。</p>
       </div>
       <div class="roadmap-grid">
-        {{roadmap}}
+        {{roadmap_phases}}
       </div>
-      <p class="roadmap-caveat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>标注「在计划里」的能力尚未上线，具体时间取决于账号体系、服务审核与合规流程的进展。</span></p>
+      <p class="roadmap-caveat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>这些方向不会一步到位：会先完成本地与合规基础，再分阶段实现。具体时间取决于账号体系、服务审核与合规流程的进展；每阶段上线前都会如实更新状态。<a href="/philosophy/">了解我们的理念 →</a></span></p>
     </div>
   </section>
 
