@@ -218,6 +218,19 @@ check("820px 页头切换为精简导航", ipadHeader.navHidden && ipadHeader.to
 check("820px 首页无横向溢出", !ipadHeader.overflow);
 check("每日场景卡都有明确去向", JSON.stringify(ipadHeader.dailyLinks) === JSON.stringify(["#story-2", "#story-3", "#story-4"]), JSON.stringify(ipadHeader.dailyLinks));
 check("首屏主按钮进入每日使用路径", ipadHeader.heroPrimary === "#daily", ipadHeader.heroPrimary);
+const motionSetup = await cdp.eval(`(() => ({
+  menuHidden: document.getElementById("mobile-nav").getAttribute("aria-hidden") === "true" && getComputedStyle(document.getElementById("mobile-nav")).visibility === "hidden",
+  delays: [...document.querySelectorAll(".daily-card")].map(el => el.style.getPropertyValue("--reveal-delay")),
+}))()`);
+check("移动菜单关闭时不可交互", motionSetup.menuHidden);
+check("同组场景卡按 70ms 轻微错峰", JSON.stringify(motionSetup.delays) === JSON.stringify(["0ms", "70ms", "140ms"]), JSON.stringify(motionSetup.delays));
+await cdp.eval(`document.getElementById("nav-toggle").click()`);
+await sleep(450);
+const menuMotion = await cdp.eval(`(() => {
+  const p = document.getElementById("mobile-nav");
+  return { open: p.classList.contains("open"), aria: p.getAttribute("aria-hidden"), opacity: getComputedStyle(p).opacity, visibility: getComputedStyle(p).visibility };
+})()`);
+check("移动菜单展开完成后清晰可见", menuMotion.open && menuMotion.aria === "false" && menuMotion.opacity === "1" && menuMotion.visibility === "visible", JSON.stringify(menuMotion));
 
 await goto("http://localhost:8099/", 1024, 1180);
 const desktopHeader1024 = await cdp.eval(`(() => {
@@ -242,6 +255,16 @@ const sideBySide = await cdp.eval(`(() => {
   return { view, phoneRight: Math.round(phoneR.right), padLeft: Math.round(padR.left), sideBySide: padR.left >= phoneR.right - 4 };
 })()`);
 check("桌面默认 iPhone+iPad 并排", sideBySide.view === "both" && sideBySide.sideBySide, JSON.stringify(sideBySide));
+await cdp.eval(`document.querySelector('[data-story-chapter="2"]').scrollIntoView({block:"center"})`);
+await sleep(700);
+const motionStory = await cdp.eval(`(() => ({
+  active: document.querySelector('[data-story-chapter="2"]').classList.contains("is-active"),
+  stage: document.querySelector("[data-story-stage]").getAttribute("data-active"),
+  direction: document.querySelector("[data-story-stage]").getAttribute("data-direction"),
+  header: document.querySelector(".site-header").classList.contains("is-scrolled"),
+}))()`);
+check("滚动故事同步聚焦当前章节", motionStory.active && motionStory.stage === "2", JSON.stringify(motionStory));
+check("滚动后页头进入轻量悬浮状态", motionStory.header, JSON.stringify(motionStory));
 
 // ---- 白天/夜间背景与正文对比度 ----
 async function themeColors() {

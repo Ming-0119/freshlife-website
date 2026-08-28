@@ -96,24 +96,35 @@
   var toggle = document.getElementById("nav-toggle");
   var panel = document.getElementById("mobile-nav");
   if (toggle && panel) {
-    toggle.addEventListener("click", function () {
-      var open = panel.classList.toggle("open");
+    function setMenu(open, returnFocus) {
+      panel.classList.toggle("open", open);
+      panel.setAttribute("aria-hidden", open ? "false" : "true");
+      if ("inert" in panel) panel.inert = !open;
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       toggle.setAttribute("aria-label", open ? STR.closeMenu : STR.openMenu);
+      if (!open && returnFocus) toggle.focus();
+    }
+    setMenu(false, false);
+    toggle.addEventListener("click", function () {
+      setMenu(!panel.classList.contains("open"), false);
     });
     panel.addEventListener("click", function (e) {
       if (e.target.closest("a")) {
-        panel.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
+        setMenu(false, false);
       }
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && panel.classList.contains("open")) {
-        panel.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.focus();
+        setMenu(false, true);
       }
     });
+    var wideMenu = window.matchMedia("(min-width: 961px)");
+    var closeMenuOnWide = function () {
+      if (wideMenu.matches && panel.classList.contains("open")) setMenu(false, false);
+    };
+    wideMenu.addEventListener
+      ? wideMenu.addEventListener("change", closeMenuOnWide)
+      : wideMenu.addListener(closeMenuOnWide);
   }
 
   /* ---------- Tab 键盘方向键（自动激活） ---------- */
@@ -219,7 +230,8 @@
   var deviceBtns = document.querySelectorAll("[data-device-view]");
   var deviceGrid = document.querySelector("[data-device-grid]");
   if (deviceBtns.length && deviceGrid) {
-    function setDeviceView(view) {
+    function setDeviceView(view, animate) {
+      var changed = deviceGrid.getAttribute("data-view") !== view;
       deviceGrid.setAttribute("data-view", view);
       deviceBtns.forEach(function (b) {
         var active = b.getAttribute("data-device-view") === view;
@@ -227,17 +239,27 @@
         if (active) b.classList.add("active");
         else b.classList.remove("active");
       });
+      if (changed && animate && !reduceMotion) {
+        deviceGrid.classList.remove("just-swapped");
+        /* 重新触发一次短暂进入动画；属性先更新，辅助技术与自动测试无需等待。 */
+        void deviceGrid.offsetWidth;
+        deviceGrid.classList.add("just-swapped");
+        clearTimeout(setDeviceView._t);
+        setDeviceView._t = setTimeout(function () {
+          deviceGrid.classList.remove("just-swapped");
+        }, 680);
+      }
     }
     deviceBtns.forEach(function (b) {
       b.addEventListener("click", function () {
-        setDeviceView(b.getAttribute("data-device-view"));
+        setDeviceView(b.getAttribute("data-device-view"), true);
       });
     });
     /* 窄屏默认只看 iPhone，避免并排挤压 */
     var mq = window.matchMedia("(max-width: 1080px)");
     function defaultView() {
       if (deviceGrid.getAttribute("data-view")) return; // 用户已选择
-      setDeviceView(mq.matches ? "phone" : "both");
+      setDeviceView(mq.matches ? "phone" : "both", false);
     }
     defaultView();
     if (mq.addEventListener) mq.addEventListener("change", defaultView);
@@ -261,6 +283,17 @@
 
   /* ---------- 滚动显现 ---------- */
   var reveals = document.querySelectorAll(".reveal");
+  /* 同一组卡片轻微错峰，最大延迟控制在 280ms，保持节奏而不拖沓。 */
+  document.querySelectorAll(
+    ".daily-grid, .why-grid, .method-grid, .ai-grid, .vision-grid, " +
+    ".roadmap-grid, .privacy-grid, .misread-grid"
+  ).forEach(function (group) {
+    Array.prototype.slice.call(group.children).forEach(function (child, i) {
+      if (child.classList.contains("reveal")) {
+        child.style.setProperty("--reveal-delay", Math.min(i, 4) * 70 + "ms");
+      }
+    });
+  });
   if ("IntersectionObserver" in window && !reduceMotion) {
     var io = new IntersectionObserver(
       function (entries) {
@@ -290,8 +323,15 @@
 
   function setStoryChapter(n) {
     if (!storyStage) return;
-    if (storyStage.getAttribute("data-active") === String(n)) return;
+    var previous = parseInt(storyStage.getAttribute("data-active") || "1", 10);
+    storyStage.setAttribute("data-direction", Number(n) < previous ? "back" : "forward");
     storyStage.setAttribute("data-active", String(n));
+    storyChapters.forEach(function (chapter) {
+      chapter.classList.toggle(
+        "is-active",
+        chapter.getAttribute("data-story-chapter") === String(n)
+      );
+    });
     storyIndicators.forEach(function (a) {
       if (a.getAttribute("data-story-indicator") === String(n)) {
         a.setAttribute("aria-current", "step");
@@ -302,6 +342,7 @@
   }
 
   if (storyStage && storyChapters.length && !reduceMotion) {
+    setStoryChapter(storyStage.getAttribute("data-active") || "1");
     if ("IntersectionObserver" in window) {
       var storyIO = new IntersectionObserver(
         function (entries) {
@@ -329,21 +370,25 @@
      rAF 节流，只写 --hero-shrink 一个 CSS 变量；页面隐藏时不更新；
      只做 transform/opacity，首屏最多位移 20px、淡化 35%。 */
   var heroEl = document.querySelector(".hero");
-  if (heroEl && !reduceMotion) {
-    var heroTicking = false;
-    function setHeroShrink() {
-      heroTicking = false;
+  var headerEl = document.querySelector(".site-header");
+  if ((heroEl || headerEl) && !reduceMotion) {
+    var scrollTicking = false;
+    function updateScrollEffects() {
+      scrollTicking = false;
       if (document.hidden) return;
       var y = window.scrollY || window.pageYOffset || 0;
-      var p = Math.min(1, y / (window.innerHeight * 0.5));
-      heroEl.style.setProperty("--hero-shrink", p.toFixed(4));
+      if (headerEl) headerEl.classList.toggle("is-scrolled", y > 18);
+      if (heroEl) {
+        var p = Math.min(1, y / (window.innerHeight * 0.5));
+        heroEl.style.setProperty("--hero-shrink", p.toFixed(4));
+      }
     }
     window.addEventListener("scroll", function () {
-      if (heroTicking) return;
-      heroTicking = true;
-      requestAnimationFrame(setHeroShrink);
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(updateScrollEffects);
     }, { passive: true });
-    setHeroShrink();
+    updateScrollEffects();
   }
 
   /* ---------- 当前年份 ---------- */

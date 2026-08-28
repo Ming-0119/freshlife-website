@@ -52,6 +52,8 @@
   --maxw: 1120px;
   --readable: 700px;
   --header-h: 62px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* 字体 */
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
@@ -148,10 +150,13 @@ svg { display: block; }
   border-radius: 8px;
 }
 button:focus:not(:focus-visible) { outline: none; }
+/* 程序为锚点区域补的 tabindex 只用于读屏焦点，不绘制覆盖整屏的大边框。 */
+[tabindex="-1"]:focus { outline: none; }
 
 /* 页内锚点：避开固定导航；到达目标时给一段克制的提示 */
 [id] { scroll-margin-top: calc(var(--header-h) + 18px); }
 section:target > .container > .section-head,
+.story-chapter:target .story-copy,
 .fsec:target > .container > .fsec-head,
 .legal-page :target {
   animation: targetGlow 2s ease;
@@ -201,7 +206,14 @@ main { animation: pageIn 0.45s ease; }
   -webkit-backdrop-filter: saturate(180%) blur(18px);
   backdrop-filter: saturate(180%) blur(18px);
   border-bottom: 1px solid var(--line);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
+.site-header.is-scrolled {
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--line-strong) 72%, transparent);
+  box-shadow: 0 10px 34px rgba(20, 50, 35, 0.06);
+}
+:root[data-theme="dark"] .site-header.is-scrolled { box-shadow: 0 12px 36px rgba(0, 0, 0, 0.24); }
 .site-header .container {
   height: 100%; display: flex; align-items: center; gap: 12px;
 }
@@ -229,8 +241,13 @@ main { animation: pageIn 0.45s ease; }
 .theme-toggle:active { transform: translateY(1px) scale(0.98); }
 .theme-toggle .icon-sun { display: none; }
 .theme-toggle .icon-moon { display: block; }
-:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; animation: themeIconIn 0.38s var(--ease-out); }
 :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+:root:not([data-theme="dark"]) .theme-toggle .icon-moon { animation: themeIconIn 0.38s var(--ease-out); }
+@keyframes themeIconIn {
+  from { opacity: 0; transform: rotate(-24deg) scale(0.72); }
+  to { opacity: 1; transform: none; }
+}
 .theme-toggle-label { line-height: 1; }
 
 .nav-cta {
@@ -246,14 +263,31 @@ main { animation: pageIn 0.45s ease; }
 
 /* 移动导航面板 */
 .mobile-nav {
-  display: none;
-  position: fixed; inset: var(--header-h) 0 auto 0; z-index: 99;
+  display: block;
+  position: fixed; inset: var(--header-h) 0 0 0; z-index: 99;
   background: var(--bg-elev);
   border-bottom: 1px solid var(--line);
   padding: 12px 24px 22px;
   box-shadow: var(--shadow-lg);
+  overflow-y: auto; overscroll-behavior: contain;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transform: translateY(-12px) scale(0.985); transform-origin: 50% 0;
+  transition: opacity 0.24s ease, transform 0.38s var(--ease-out), visibility 0s linear 0.38s;
 }
-.mobile-nav.open { display: block; }
+.mobile-nav.open {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: none;
+  transition-delay: 0s;
+}
+.mobile-nav.open a { animation: mobileNavItemIn 0.42s var(--ease-out) both; }
+.mobile-nav.open a:nth-child(2) { animation-delay: 35ms; }
+.mobile-nav.open a:nth-child(3) { animation-delay: 70ms; }
+.mobile-nav.open a:nth-child(4) { animation-delay: 105ms; }
+.mobile-nav.open a:nth-child(5) { animation-delay: 140ms; }
+.mobile-nav.open a:nth-child(6) { animation-delay: 175ms; }
+@keyframes mobileNavItemIn {
+  from { opacity: 0; transform: translateY(-7px); }
+  to { opacity: 1; transform: none; }
+}
 .mobile-nav a {
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 4px; font-size: 16.5px; font-weight: 600; color: var(--ink);
@@ -273,6 +307,8 @@ main { animation: pageIn 0.45s ease; }
   background:
     radial-gradient(42% 52% at 50% 0%, var(--green-softer) 0%, transparent 70%),
     radial-gradient(30% 40% at 78% 12%, var(--apricot-soft) 0%, transparent 70%);
+  transform: translate3d(0, calc(var(--hero-shrink, 0) * 18px), 0) scale(calc(1 + var(--hero-shrink, 0) * 0.035));
+  transform-origin: 50% 0;
 }
 .hero-lockup { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 26px; }
 .hero-lockup img { width: 58px; height: 58px; border-radius: 15px; box-shadow: var(--shadow); }
@@ -315,6 +351,24 @@ main { animation: pageIn 0.45s ease; }
 }
 .js .hero-aura { opacity: calc(1 - var(--hero-shrink) * 0.6); }
 
+/* 首屏按“品牌 → 定位 → 解释 → 行动 → 信任”依次进入，形成克制的产品发布节奏。 */
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero-lockup, .js .hero h1, .js .hero .sub,
+  .js .hero .hero-actions, .js .hero .hero-assurances, .js .hero .hero-status {
+    opacity: 0; animation: heroElementIn 0.9s var(--ease-spring) forwards;
+  }
+  .js .hero-lockup { animation-delay: 40ms; }
+  .js .hero h1 { animation-delay: 120ms; }
+  .js .hero .sub { animation-delay: 220ms; }
+  .js .hero .hero-actions { animation-delay: 320ms; }
+  .js .hero .hero-assurances { animation-delay: 410ms; }
+  .js .hero .hero-status { animation-delay: 490ms; }
+}
+@keyframes heroElementIn {
+  from { opacity: 0; transform: translateY(22px); filter: blur(5px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+
 /* ---------- 按钮 ---------- */
 .button {
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
@@ -325,6 +379,8 @@ main { animation: pageIn 0.45s ease; }
 .button:active { transform: translateY(1px) scale(0.99); }
 .button.primary { background: var(--green); color: var(--on-green); box-shadow: 0 10px 26px rgba(10, 134, 94, 0.26); }
 .button.primary:hover { background: var(--green-strong); color: var(--on-green); transform: translateY(-1px); box-shadow: 0 14px 30px rgba(10, 134, 94, 0.3); }
+.button svg { transition: transform 0.32s var(--ease-out); }
+.button:hover svg, .nav-cta:hover svg { transform: translateX(3px); }
 .button.quiet {
   background: var(--surface); color: var(--ink);
   border: 1px solid var(--line-strong);
@@ -339,12 +395,20 @@ main { animation: pageIn 0.45s ease; }
   padding: 28px 26px;
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
-.why-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--green) 35%, var(--line)); }
+.why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--green) 35%, var(--line)); }
 .why-card .ico {
   width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center;
   background: var(--green-soft); color: var(--green-strong); margin-bottom: 16px;
 }
 .why-card .ico svg { width: 22px; height: 22px; }
+.why-card .ico, .daily-card .ico, .method-card .ico, .ai-card .ico, .vision-card .ico {
+  transition: transform 0.42s var(--ease-spring), box-shadow 0.3s ease;
+}
+.why-card:hover .ico, .daily-card:hover .ico, .method-card:hover .ico,
+.ai-card:hover .ico, .vision-card:hover .ico {
+  transform: translateY(-2px) rotate(-3deg) scale(1.06);
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--green) 16%, transparent);
+}
 .why-card h3 { font-size: 18px; color: var(--ink); font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
 .why-card p { font-size: 14.5px; color: var(--ink-2); }
 
@@ -374,7 +438,7 @@ main { animation: pageIn 0.45s ease; }
 .story-track > * { min-width: 0; }
 .story-chapter > * { min-width: 0; }
 .story-stage-col { min-width: 0; }
-.story-stage { display: none; }
+.story-stage { display: none; position: relative; isolation: isolate; }
 
 /* 章节进度指示：移动端为横向药丸；桌面 sticky 舞台内为纵向步骤 */
 .story-progress {
@@ -436,7 +500,7 @@ main { animation: pageIn 0.45s ease; }
   position: absolute; inset: 0; padding: 2px 14px 46px;
   display: flex; flex-direction: column;
   opacity: 0; transform: translateY(10px) scale(0.99);
-  transition: opacity 0.55s ease, transform 0.65s ease;
+  transition: opacity 0.48s ease, transform 0.72s var(--ease-spring);
   pointer-events: none;
 }
 .story-screen::after {
@@ -456,6 +520,27 @@ main { animation: pageIn 0.45s ease; }
 .story-stage[data-active="2"] .story-screen--2,
 .story-stage[data-active="3"] .story-screen--3,
 .story-stage[data-active="4"] .story-screen--4 { opacity: 1; transform: none; }
+.story-stage[data-direction="back"] .story-screen { transform: translateY(-10px) scale(0.99); }
+.story-stage[data-direction="back"][data-active="1"] .story-screen--1,
+.story-stage[data-direction="back"][data-active="2"] .story-screen--2,
+.story-stage[data-direction="back"][data-active="3"] .story-screen--3,
+.story-stage[data-direction="back"][data-active="4"] .story-screen--4 { transform: none; }
+
+/* 屏幕内容在章节切换时分层进入，不只是整张画面淡入。 */
+.story-stage[data-active="1"] .story-screen--1 > *,
+.story-stage[data-active="2"] .story-screen--2 > *,
+.story-stage[data-active="3"] .story-screen--3 > *,
+.story-stage[data-active="4"] .story-screen--4 > * {
+  animation: storyDetailIn 0.58s var(--ease-out) both;
+}
+.story-stage .story-screen > *:nth-child(2) { animation-delay: 55ms; }
+.story-stage .story-screen > *:nth-child(3) { animation-delay: 100ms; }
+.story-stage .story-screen > *:nth-child(4) { animation-delay: 145ms; }
+.story-stage .story-screen > *:nth-child(5) { animation-delay: 190ms; }
+@keyframes storyDetailIn {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: none; }
+}
 .story-dock {
   position: absolute; left: 0; right: 0; bottom: 14px;
   display: flex; justify-content: center; gap: 6px;
@@ -469,6 +554,12 @@ main { animation: pageIn 0.45s ease; }
 .story-stage[data-active="3"] .story-dock i:nth-child(3),
 .story-stage[data-active="4"] .story-dock i:nth-child(4) { width: 20px; background: var(--green); }
 .story-phone { width: 284px; }
+.story-stage::before {
+  content: ""; position: absolute; inset: 10% -28% 4%; z-index: -1;
+  border-radius: 50%; background: radial-gradient(circle, var(--green-soft), transparent 68%);
+  opacity: 0.7; transform: scale(0.92);
+  transition: transform 0.8s var(--ease-out), opacity 0.5s ease;
+}
 
 /* 桌面：sticky 舞台 + 纵向进度 + 每章留白（仅 .js，reduced-motion 在后面覆盖） */
 @media (min-width: 860px) {
@@ -491,13 +582,26 @@ main { animation: pageIn 0.45s ease; }
     background: none; border: 0; border-radius: 0; padding: 0;
     min-height: 84vh; display: flex; flex-direction: column; justify-content: center;
   }
+  .js .story-chapter .story-copy {
+    opacity: 0.42; transform: translateY(20px) scale(0.985);
+    transition: opacity 0.55s ease, transform 0.75s var(--ease-spring);
+  }
+  .js .story-chapter.is-active .story-copy { opacity: 1; transform: none; }
   .story-chapters { padding-top: 6vh; }
   .js .story-copy h3 { font-size: clamp(24px, 2.8vw, 34px); }
   .js .story-copy > p { font-size: 16.5px; }
 }
 
 /* ---------- 设备舞台 ---------- */
-.device-stage { }
+.device-stage { position: relative; isolation: isolate; }
+.device-stage::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  inset: 8% 4% 12%; border-radius: 44%;
+  background:
+    radial-gradient(42% 54% at 30% 45%, var(--green-soft), transparent 72%),
+    radial-gradient(38% 46% at 76% 56%, var(--apricot-soft), transparent 72%);
+  opacity: 0.62; filter: blur(16px);
+}
 .device-switch {
   display: inline-flex; gap: 4px; padding: 4px;
   background: var(--surface-2); border: 1px solid var(--line);
@@ -515,6 +619,11 @@ main { animation: pageIn 0.45s ease; }
 .device-grid {
   display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
   gap: 48px; align-items: center; justify-content: center;
+}
+.device-grid.just-swapped { animation: deviceSwap 0.62s var(--ease-spring); }
+@keyframes deviceSwap {
+  from { opacity: 0.38; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
 }
 .device-col { min-width: 0; }
 .device-label {
@@ -536,7 +645,12 @@ main { animation: pageIn 0.45s ease; }
   width: 348px; max-width: 100%; margin: 0 auto;
   background: var(--device-shell); border-radius: 54px; padding: 11px;
   box-shadow: var(--shadow-lg); border: 1px solid var(--device-shell-edge);
-  transition: transform 0.5s ease;
+  transition: transform 0.65s var(--ease-spring), box-shadow 0.45s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .device-col:hover > .phone, .device-col:hover > .ipad { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(20, 50, 35, 0.08), 0 34px 76px rgba(20, 50, 35, 0.16); }
+  :root[data-theme="dark"] .device-col:hover > .phone,
+  :root[data-theme="dark"] .device-col:hover > .ipad { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 36px 80px rgba(0, 0, 0, 0.48); }
 }
 .phone-screen {
   position: relative; border-radius: 44px; overflow: hidden;
@@ -642,15 +756,21 @@ html:not(.js) .ipad-nav-item { pointer-events: none; }
 .mock-screen::-webkit-scrollbar { display: none; }
 html:not(.js) .mock-screen { display: none; }
 html:not(.js) #mock-today { display: block; }
-.js .mock-screen.active { display: block; animation: screenIn 0.28s ease; }
-@keyframes screenIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.js .mock-screen.active { display: block; animation: screenIn 0.48s var(--ease-out); }
+@keyframes screenIn { from { opacity: 0; transform: translateY(10px) scale(0.99); } to { opacity: 1; transform: none; } }
+.js .mock-screen.active .mock-row,
+.js .mock-screen.active .mock-card,
+.js .mock-screen.active .mock-ai { animation: mockItemIn 0.5s var(--ease-out) both; }
+.js .mock-screen.active .mock-row:nth-of-type(2) { animation-delay: 45ms; }
+.js .mock-screen.active .mock-row:nth-of-type(3) { animation-delay: 90ms; }
+@keyframes mockItemIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 /* ---------- iPad 演示（来自 App RootView：NavigationSplitView 侧边栏） ---------- */
 .ipad {
   width: 620px; max-width: 100%; margin: 0 auto;
   background: var(--device-shell); border-radius: 34px; padding: 12px;
   box-shadow: var(--shadow-lg); border: 1px solid var(--device-shell-edge);
-  transition: transform 0.5s ease;
+  transition: transform 0.65s var(--ease-spring), box-shadow 0.45s ease;
 }
 .ipad-screen {
   position: relative; display: flex;
@@ -693,7 +813,7 @@ html:not(.js) #mock-today { display: block; }
 .ipad-page { display: none; flex: 1; padding: 4px 16px 16px; overflow-y: auto; scrollbar-width: none; }
 .ipad-page::-webkit-scrollbar { display: none; }
 html:not(.js) [data-ipad-page="today"] { display: block; }
-.ipad-page.active { display: block; animation: screenIn 0.28s ease; }
+.ipad-page.active { display: block; animation: screenIn 0.48s var(--ease-out); }
 .ipad-titlebar { display: flex; align-items: center; gap: 10px; padding: 6px 2px 12px; }
 .ipad-titlebar .t { flex: 1; }
 .ipad-titlebar .t b { display: block; font-size: 21px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
@@ -919,6 +1039,11 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   content: ""; position: absolute; inset: -40% -10% auto; height: 120%;
   background: radial-gradient(50% 60% at 50% 0%, rgba(255, 255, 255, 0.14), transparent 70%);
   pointer-events: none;
+  animation: finalAura 8s ease-in-out infinite alternate;
+}
+@keyframes finalAura {
+  from { transform: translate3d(-3%, -2%, 0) scale(0.96); opacity: 0.7; }
+  to { transform: translate3d(3%, 3%, 0) scale(1.05); opacity: 1; }
 }
 .final-card h2 { font-size: clamp(28px, 4.4vw, 42px); letter-spacing: -0.02em; font-weight: 750; margin-bottom: 14px; position: relative; }
 .final-card p { color: rgba(255, 255, 255, 0.88); max-width: 52ch; margin: 0 auto 30px; font-size: 16.5px; position: relative; }
@@ -1136,7 +1261,7 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   border-radius: var(--radius-lg); padding: 26px 24px;
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
-.daily-card:hover { color: inherit; transform: translateY(-3px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--apricot) 35%, var(--line)); }
+.daily-card:hover { color: inherit; transform: translateY(-4px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--apricot) 35%, var(--line)); }
 .daily-card:focus-visible { outline: 3px solid color-mix(in srgb, var(--green) 45%, transparent); outline-offset: 3px; }
 .daily-card .top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; }
 .daily-card .ico {
@@ -1242,9 +1367,14 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 .philo-more { margin-top: 26px; font-size: 15px; color: var(--ink-2); }
 .philo-more a { color: var(--green-strong); font-weight: 600; }
 
-/* ---------- 滚动显现（仅在 JS 启用时隐藏初始状态） ---------- */
-.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.js .reveal.in-view { opacity: 1; transform: none; }
+/* ---------- 滚动显现（分组轻微错峰；仅动 transform / opacity / filter） ---------- */
+.js .reveal {
+  opacity: 0; transform: translateY(24px); filter: blur(3px);
+  transition: opacity 0.68s ease, transform 0.88s var(--ease-spring), filter 0.62s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: transform, opacity;
+}
+.js .reveal.in-view { opacity: 1; transform: none; filter: blur(0); will-change: auto; }
 
 /* ---------- 响应式 ---------- */
 @media (max-width: 1080px) {
