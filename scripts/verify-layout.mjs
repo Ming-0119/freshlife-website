@@ -160,6 +160,27 @@ const ipad320 = await cdp.eval(`(() => {
 })()`);
 check("320px 下 iPad 演示不超宽", ipad320.within, `width=${ipad320.w}px`);
 
+// ---- 首屏与下一段的节奏：防止上下 padding 叠成大片无意义留白 ----
+for (const [label, width, height] of [
+  ["手机", 390, 844],
+  ["iPad 竖屏", 768, 1024],
+  ["iPad 横屏", 1024, 768],
+  ["桌面", 1512, 949],
+]) {
+  await goto("http://localhost:8099/", width, height);
+  const spacing = await cdp.eval(`(() => {
+    const status = document.querySelector(".hero-status").getBoundingClientRect();
+    const eyebrow = document.querySelector("#daily .eyebrow").getBoundingClientRect();
+    const hero = document.querySelector(".hero").getBoundingClientRect();
+    return {
+      gap: Math.round(eyebrow.top - status.bottom),
+      heroHeight: Math.round(hero.height),
+      viewportHeight: innerHeight,
+    };
+  })()`);
+  check(`${label}首屏衔接不过度留白`, spacing.gap >= 80 && spacing.gap <= 140, JSON.stringify(spacing));
+}
+
 // ---- 完整功能页 /features/ ----
 await goto("http://localhost:8099/features/", 1440, 3400);
 const feat = await cdp.eval(`(() => {
@@ -244,6 +265,22 @@ const desktopHeader1024 = await cdp.eval(`(() => {
 })()`);
 check("1024px 页头元素不重叠", !desktopHeader1024.overlaps && desktopHeader1024.within, JSON.stringify(desktopHeader1024.visible));
 check("1024px 首页无横向溢出", !desktopHeader1024.overflow);
+
+// ---- 隐私要点在各设备上保持 4 / 2 / 1 列，不出现 3 + 1 孤立布局 ----
+for (const [label, width, height, expectedCols] of [
+  ["桌面", 1280, 900, 4],
+  ["iPad", 820, 1180, 2],
+  ["手机", 390, 844, 1],
+]) {
+  await goto("http://localhost:8099/#privacy", width, height);
+  const privacyLayout = await cdp.eval(`(() => {
+    const items = [...document.querySelectorAll(".privacy-item")];
+    const lefts = [...new Set(items.map(el => Math.round(el.getBoundingClientRect().left)))];
+    const widths = items.map(el => Math.round(el.getBoundingClientRect().width));
+    return { count: items.length, cols: lefts.length, widths };
+  })()`);
+  check(`${label}隐私要点排列均衡`, privacyLayout.count === 4 && privacyLayout.cols === expectedCols, JSON.stringify(privacyLayout));
+}
 
 // ---- 桌面并排布局：手机与 iPad 同屏可见 ----
 await goto("http://localhost:8099/", 1440, 3400);
