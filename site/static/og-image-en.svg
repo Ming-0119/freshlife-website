@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbf7"/>
+      <stop offset="1" stop-color="#e3f2e8"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#42be83"/>
+      <stop offset="1" stop-color="#239a69"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#123c2d" flood-opacity=".16"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1060" cy="94" r="250" fill="#64d89b" opacity=".13"/>
+  <circle cx="1124" cy="554" r="170" fill="#f4b969" opacity=".12"/>
+  <g transform="translate(90 86)">
+    <g filter="url(#shadow)">
+      <rect width="92" height="92" rx="25" fill="url(#brand)"/>
+      <path d="M28 50c7-18 23-27 38-25 1 16-8 33-27 38-6 2-13-2-11-13Z" fill="#fff"/>
+      <path d="M33 59c8-12 17-20 28-27" fill="none" stroke="#d9f7e7" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <text x="120" y="61" font-family="-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif" font-size="48" font-weight="720" fill="#153b2d">FreshLife</text>
+    <text x="0" y="226" font-family="-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif" font-size="57" font-weight="760" letter-spacing="-1.7" fill="#102f24">What should we eat today?</text>
+    <text x="0" y="306" font-family="-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif" font-size="57" font-weight="760" letter-spacing="-1.7" fill="#2a9f70">Don’t start from scratch.</text>
+    <text x="0" y="390" font-family="-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif" font-size="24" font-weight="480" fill="#4e6d61">A local-first food decision helper for iPhone and iPad</text>
+  </g>
+  <g transform="translate(875 224)" opacity=".98">
+    <rect width="214" height="314" rx="46" fill="#f5faf7" stroke="#cfe4d7" stroke-width="8"/>
+    <rect x="14" y="14" width="186" height="286" rx="34" fill="#10271f"/>
+    <rect x="69" y="29" width="76" height="18" rx="9" fill="#eff8f2"/>
+    <rect x="34" y="78" width="146" height="54" rx="16" fill="#1d3f32" stroke="#3c765e"/>
+    <circle cx="55" cy="105" r="10" fill="#68d99e"/>
+    <rect x="76" y="94" width="72" height="7" rx="3.5" fill="#e9f5ed"/>
+    <rect x="76" y="109" width="48" height="6" rx="3" fill="#85a597"/>
+    <rect x="34" y="148" width="68" height="88" rx="16" fill="#18352a"/>
+    <rect x="112" y="148" width="68" height="88" rx="16" fill="#224c3b"/>
+    <rect x="34" y="250" width="146" height="7" rx="3.5" fill="#294a3d"/>
+    <rect x="34" y="266" width="102" height="7" rx="3.5" fill="#294a3d"/>
+  </g>
+</svg>

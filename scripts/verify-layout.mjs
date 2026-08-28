@@ -153,6 +153,7 @@ const overflow320 = await cdp.eval(`(() => {
 })()`);
 check("首页 320px 无横向溢出", !overflow320.overflow, `scrollW=${overflow320.scrollW} clientW=${overflow320.clientW} big=${JSON.stringify(overflow320.big)}`);
 const ipad320 = await cdp.eval(`(() => {
+  document.querySelector('[data-device-view="ipad"]').click();
   const pad = document.getElementById("ipad-device");
   const r = pad.getBoundingClientRect();
   return { w: Math.round(r.width), within: r.width <= 320 };
@@ -189,12 +190,47 @@ check("features 页 320px 无横向溢出", !featOverflow.overflow, `scrollW=${f
 await goto("http://localhost:8099/", 390, 844);
 const iphone = await cdp.eval(`(() => {
   const phone = document.querySelector('[data-device-col="phone"] .phone');
-  const r = phone.getBoundingClientRect();
+  const pr = phone.getBoundingClientRect();
+  document.querySelector('[data-device-view="ipad"]').click();
   const pad = document.getElementById("ipad-device").getBoundingClientRect();
-  return { phoneW: Math.round(r.width), padW: Math.round(pad.width), padWOver: pad.width > 390 };
+  return { phoneW: Math.round(pr.width), padW: Math.round(pad.width), padWOver: pad.width > 390 };
 })()`);
 check("390px 下手机演示适配", iphone.phoneW <= 390, `phoneW=${iphone.phoneW}`);
 check("390px 下 iPad 演示适配", !iphone.padWOver, `padW=${iphone.padW}`);
+
+// ---- iPad / 横屏手机的中间宽度页头 ----
+await goto("http://localhost:8099/", 820, 1180);
+const ipadHeader = await cdp.eval(`(() => {
+  const root = document.documentElement;
+  const nav = document.querySelector(".nav-links");
+  const toggle = document.getElementById("nav-toggle");
+  const dailyLinks = [...document.querySelectorAll(".daily-card[href]")].map(a => a.getAttribute("href"));
+  const heroPrimary = document.querySelector(".hero-actions .button.primary")?.getAttribute("href");
+  return {
+    overflow: root.scrollWidth > root.clientWidth + 1,
+    navHidden: getComputedStyle(nav).display === "none",
+    toggleVisible: getComputedStyle(toggle).display !== "none",
+    dailyLinks,
+    heroPrimary,
+  };
+})()`);
+check("820px 页头切换为精简导航", ipadHeader.navHidden && ipadHeader.toggleVisible, JSON.stringify(ipadHeader));
+check("820px 首页无横向溢出", !ipadHeader.overflow);
+check("每日场景卡都有明确去向", JSON.stringify(ipadHeader.dailyLinks) === JSON.stringify(["#story-2", "#story-3", "#story-4"]), JSON.stringify(ipadHeader.dailyLinks));
+check("首屏主按钮进入每日使用路径", ipadHeader.heroPrimary === "#daily", ipadHeader.heroPrimary);
+
+await goto("http://localhost:8099/", 1024, 1180);
+const desktopHeader1024 = await cdp.eval(`(() => {
+  const root = document.documentElement;
+  const c = document.querySelector(".site-header .container").getBoundingClientRect();
+  const visible = [...document.querySelectorAll(".site-header .container > *")]
+    .filter(el => getComputedStyle(el).display !== "none")
+    .map(el => ({ cls: el.className, left: Math.round(el.getBoundingClientRect().left), right: Math.round(el.getBoundingClientRect().right) }));
+  const overlaps = visible.some((item, i) => i > 0 && item.left < visible[i - 1].right - 1);
+  return { overflow: root.scrollWidth > root.clientWidth + 1, within: visible.every(x => x.left >= c.left - 1 && x.right <= c.right + 1), overlaps, visible };
+})()`);
+check("1024px 页头元素不重叠", !desktopHeader1024.overlaps && desktopHeader1024.within, JSON.stringify(desktopHeader1024.visible));
+check("1024px 首页无横向溢出", !desktopHeader1024.overflow);
 
 // ---- 桌面并排布局：手机与 iPad 同屏可见 ----
 await goto("http://localhost:8099/", 1440, 3400);

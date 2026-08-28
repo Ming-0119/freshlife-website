@@ -160,16 +160,32 @@ INDEX_OG = {
     "zh": (
         '<meta property="og:type" content="website"/>\n'
         '<meta property="og:locale" content="zh_CN"/>\n'
+        '<meta property="og:url" content="https://www.freshlifeapp.cn/"/>\n'
         '<meta property="og:title" content="FreshLife — 每天吃什么，不必每次从头想"/>\n'
         '<meta property="og:description" content="本地优先的家庭食品决策助手：库存、临期提醒、餐食规划与购物清单。iPhone 与 iPad 通用，无需注册账号。"/>\n'
-        '<meta property="og:image" content="/app-icon.png"/>'
+        '<meta property="og:image" content="https://www.freshlifeapp.cn/og-image.png"/>\n'
+        '<meta property="og:image:width" content="1200"/>\n'
+        '<meta property="og:image:height" content="630"/>\n'
+        '<meta property="og:image:alt" content="FreshLife — 每天吃什么，不必每次从头想"/>\n'
+        '<meta name="twitter:card" content="summary_large_image"/>\n'
+        '<meta name="twitter:title" content="FreshLife — 每天吃什么，不必每次从头想"/>\n'
+        '<meta name="twitter:description" content="本地优先的家庭食品决策助手，适用于 iPhone 与 iPad。"/>\n'
+        '<meta name="twitter:image" content="https://www.freshlifeapp.cn/og-image.png"/>'
     ),
     "en": (
         '<meta property="og:type" content="website"/>\n'
         '<meta property="og:locale" content="en_US"/>\n'
+        '<meta property="og:url" content="https://www.freshlifeapp.cn/en/"/>\n'
         '<meta property="og:title" content="FreshLife — What should we eat today?"/>\n'
         '<meta property="og:description" content="A local-first helper for daily food decisions: what’s in your kitchen, what’s expiring, what to cook, and what to buy. iPhone and iPad, no account needed."/>\n'
-        '<meta property="og:image" content="/app-icon.png"/>'
+        '<meta property="og:image" content="https://www.freshlifeapp.cn/og-image-en.png"/>\n'
+        '<meta property="og:image:width" content="1200"/>\n'
+        '<meta property="og:image:height" content="630"/>\n'
+        '<meta property="og:image:alt" content="FreshLife — What should we eat today? Don’t start from scratch."/>\n'
+        '<meta name="twitter:card" content="summary_large_image"/>\n'
+        '<meta name="twitter:title" content="FreshLife — What should we eat today?"/>\n'
+        '<meta name="twitter:description" content="A local-first food decision helper for iPhone and iPad."/>\n'
+        '<meta name="twitter:image" content="https://www.freshlifeapp.cn/og-image-en.png"/>'
     ),
 }
 
@@ -398,11 +414,13 @@ def build_daily_scenarios(features):
     out = []
     for d in features["dailyScenarios"]:
         out.append(
-            '<div class="daily-card reveal">'
+            '<a class="daily-card reveal" href="%s">'
             '<div class="top"><div class="ico">%s</div>'
             '<span class="when">%s</span></div>'
-            "<h3>%s</h3><p>%s</p></div>"
-            % (icon(d["icon"]), esc(d["when"]), esc(d["title"]), esc(d["desc"]))
+            '<h3>%s</h3><p>%s</p>'
+            '<span class="daily-card-cta">%s <span aria-hidden="true">→</span></span></a>'
+            % (esc(d["href"]), icon(d["icon"]), esc(d["when"]),
+               esc(d["title"]), esc(d["desc"]), esc(d["cta"]))
         )
     return "\n".join(out)
 
@@ -739,6 +757,8 @@ def main():
         "sitemap.xml",
         "app-icon.png",
         "favicon.svg",
+        "og-image.png",
+        "og-image-en.png",
         "assets/" + css_name,
         "assets/" + js_name,
     }
@@ -765,6 +785,8 @@ def main():
     changed += write_if_changed(ROOT / "404.html", notfound_html)
     copy_static("app-icon.png")
     copy_static("favicon.svg")
+    copy_static("og-image.png")
+    copy_static("og-image-en.png")
 
     # 资产
     assets_written = set()

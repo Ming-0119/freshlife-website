@@ -1131,11 +1131,13 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 /* ---------- 每天打开的理由 ---------- */
 .daily-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .daily-card {
+  display: flex; flex-direction: column; color: inherit;
   background: var(--surface); border: 1px solid var(--line);
   border-radius: var(--radius-lg); padding: 26px 24px;
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
-.daily-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--apricot) 35%, var(--line)); }
+.daily-card:hover { color: inherit; transform: translateY(-3px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--apricot) 35%, var(--line)); }
+.daily-card:focus-visible { outline: 3px solid color-mix(in srgb, var(--green) 45%, transparent); outline-offset: 3px; }
 .daily-card .top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; }
 .daily-card .ico {
   width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center;
@@ -1145,6 +1147,12 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 .daily-card .when { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: var(--apricot); text-transform: uppercase; }
 .daily-card h3 { font-size: 17.5px; color: var(--ink); font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
 .daily-card p { font-size: 14.5px; color: var(--ink-2); line-height: 1.7; }
+.daily-card-cta {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 18px;
+  color: var(--green-strong); font-size: 13.5px; font-weight: 700;
+}
+.daily-card-cta span { transition: transform 0.18s ease; }
+.daily-card:hover .daily-card-cta span { transform: translateX(3px); }
 
 /* ---------- 家庭节奏愿景 ---------- */
 .vision-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
@@ -1246,6 +1254,9 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 
 @media (max-width: 960px) {
   .section { padding: 72px 0; }
+  .nav-links { display: none; }
+  .nav-toggle { display: inline-flex; }
+  .nav-cta { display: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .tab-points { max-width: 520px; margin: 0 auto; }
 }

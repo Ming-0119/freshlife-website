@@ -37,7 +37,7 @@ site/
                       mock 屏、privacy/terms/support/safety）
   styles/main.css     设计系统（令牌、组件、响应式、深浅色、无障碍、动效）
   scripts/main.js     交互（主题、移动导航、演示切换、滚动叙事、Tab 键盘、锚点焦点）
-  static/             app-icon.png、favicon.svg（App 真实图标）
+  static/             App 图标、favicon 与中英文社交分享图
 assets/               构建产物：内容哈希命名的 CSS/JS（不可变缓存）
 index.html …          构建生成的中文站点页面（勿直接手改）
 en/ …                 构建生成的英文站点页面（勿直接手改）

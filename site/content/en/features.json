@@ -92,19 +92,25 @@
       "icon": "sunrise",
       "when": "Morning · Before you leave",
       "title": "Know your day in 30 seconds",
-      "desc": "Expiry reminders sit on your Home screen: take the milk that’s almost out for breakfast, or line it up for tonight. No fridge archaeology on the way out."
+      "desc": "Expiry reminders sit on your Home screen: take the milk that’s almost out for breakfast, or line it up for tonight. No fridge archaeology on the way out.",
+      "href": "#story-2",
+      "cta": "See how reminders work"
     },
     {
       "icon": "moon",
       "when": "Evening · On the way home",
       "title": "Decide dinner before you get there",
-      "desc": "Open Meals to see what you can cook with what’s on hand — expiring items go first. Add the missing bits to your shopping list and pick them up on the way."
+      "desc": "Open Meals to see what you can cook with what’s on hand — expiring items go first. Add the missing bits to your shopping list and pick them up on the way.",
+      "href": "#story-3",
+      "cta": "See how a meal comes together"
     },
     {
       "icon": "basket",
       "when": "Shopping · In the aisle",
       "title": "Check the list, buy once",
-      "desc": "See what’s missing at a glance instead of guessing in the aisle. Back home, snap the new items into your pantry and the loop closes."
+      "desc": "See what’s missing at a glance instead of guessing in the aisle. Back home, snap the new items into your pantry and the loop closes.",
+      "href": "#story-4",
+      "cta": "See how the loop closes"
     }
   ],
   "visionCards": [
