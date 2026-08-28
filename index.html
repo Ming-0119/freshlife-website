@@ -19,7 +19,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-f2b254c50d.css"/>
+<link rel="stylesheet" href="/assets/main-6d54583ae6.css"/>
 </head>
 <body>
 
@@ -119,7 +119,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
                   <span class="icons"><i></i><i></i><i></i></span>
                 </div>
                 <div class="story-screens">
-                  <div class="story-screen story-screen--1" data-story-screen="1">
+                  <div class="story-screen story-screen--1" data-story-screen="1" data-story-note="保存到本机库存">
                     <div class="mock-titlebar">
                       <div class="t"><b>库存</b><small>记一件，几步就好</small></div>
                       <div class="mock-avatar"></div>
@@ -146,7 +146,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
                     </div>
                   </div>
 
-                  <div class="story-screen story-screen--2" data-story-screen="2">
+                  <div class="story-screen story-screen--2" data-story-screen="2" data-story-note="提醒时间可以自己调整">
                     <div class="mock-titlebar">
                       <div class="t"><b>首页</b><small>今天先吃什么</small></div>
                       <div class="mock-avatar"></div>
@@ -176,7 +176,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
                     </div>
                   </div>
 
-                  <div class="story-screen story-screen--3" data-story-screen="3">
+                  <div class="story-screen story-screen--3" data-story-screen="3" data-story-note="建议生成后，再由你选择">
                     <div class="mock-titlebar">
                       <div class="t"><b>膳食</b><small>从现有食材出发</small></div>
                       <div class="mock-avatar"></div>
@@ -198,7 +198,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
                     </div>
                   </div>
 
-                  <div class="story-screen story-screen--4" data-story-screen="4">
+                  <div class="story-screen story-screen--4" data-story-screen="4" data-story-note="买到后，再确认加入库存">
                     <div class="mock-titlebar">
                       <div class="t"><b>购物清单</b><small>缺的都在这里</small></div>
                       <div class="mock-avatar"></div>
@@ -630,6 +630,11 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
               <div class="mock-focus-cap">买菜回来直接拍照入库</div>
             </div>
           </div>
+        </div>
+        <div class="ipad-overview-strip" aria-label="今日概览">
+          <span><small>临期食材</small><b>2 件先用</b></span>
+          <span><small>今晚餐食</small><b>18 分钟</b></span>
+          <span><small>购物清单</small><b>3 件待确认</b></span>
         </div>
       </div>
 

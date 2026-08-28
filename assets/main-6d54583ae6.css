@@ -40,6 +40,9 @@
   --ink-3: #5c685f;
   --line: rgba(31, 43, 33, 0.1);
   --line-strong: rgba(31, 43, 33, 0.18);
+  /* 设备外壳独立于正文颜色：切换夜间模式时不反转成白色 */
+  --device-shell: #17231d;
+  --device-shell-edge: rgba(255, 255, 255, 0.16);
 
   /* 度量 */
   --radius-sm: 10px;
@@ -429,9 +432,23 @@ main { animation: pageIn 0.45s ease; }
 .story-screens { position: absolute; left: 0; right: 0; top: 44px; bottom: 46px; }
 .story-screen {
   position: absolute; inset: 0; padding: 2px 14px 46px;
+  display: flex; flex-direction: column;
   opacity: 0; transform: translateY(10px) scale(0.99);
   transition: opacity 0.55s ease, transform 0.65s ease;
   pointer-events: none;
+}
+.story-screen::after {
+  content: attr(data-story-note);
+  display: inline-flex; align-items: center; align-self: flex-start; gap: 7px;
+  margin-top: auto; padding: 6px 10px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface);
+  color: var(--ink-3); font-size: 10px; font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+.story-screen::before {
+  content: ""; position: absolute; left: 19px; bottom: 60px;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--green);
+  z-index: 1;
 }
 .story-stage[data-active="1"] .story-screen--1,
 .story-stage[data-active="2"] .story-screen--2,
@@ -449,7 +466,7 @@ main { animation: pageIn 0.45s ease; }
 .story-stage[data-active="2"] .story-dock i:nth-child(2),
 .story-stage[data-active="3"] .story-dock i:nth-child(3),
 .story-stage[data-active="4"] .story-dock i:nth-child(4) { width: 20px; background: var(--green); }
-.story-phone { width: 300px; }
+.story-phone { width: 284px; }
 
 /* 桌面：sticky 舞台 + 纵向进度 + 每章留白（仅 .js，reduced-motion 在后面覆盖） */
 @media (min-width: 860px) {
@@ -467,7 +484,7 @@ main { animation: pageIn 0.45s ease; }
   .js .story-stage { display: block; }
   .js .story-mini { display: none; }
   /* 舞台高度自适应视口：矮屏收窄手机宽度，保证完整可见、不产生嵌套滚动 */
-  .js .story-phone { width: min(300px, calc((100vh - 110px) / 2.14)); }
+  .js .story-phone { width: min(284px, calc((100vh - 118px) / 2.14)); }
   .js .story-chapter {
     background: none; border: 0; border-radius: 0; padding: 0;
     min-height: 84vh; display: flex; flex-direction: column; justify-content: center;
@@ -504,12 +521,19 @@ main { animation: pageIn 0.45s ease; }
 }
 .device-grid[data-view="phone"] .device-col--ipad { display: none; }
 .device-grid[data-view="ipad"] .device-col--phone { display: none; }
+.device-grid[data-view="phone"],
+.device-grid[data-view="ipad"] {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 860px; margin-inline: auto;
+}
+.device-grid[data-view="phone"] { max-width: 460px; }
+.device-grid[data-view="ipad"] .ipad { width: min(760px, 100%); }
 
 /* ---------- 手机演示 ---------- */
 .phone {
   width: 348px; max-width: 100%; margin: 0 auto;
-  background: var(--ink); border-radius: 54px; padding: 11px;
-  box-shadow: var(--shadow-lg); border: 1px solid var(--line-strong);
+  background: var(--device-shell); border-radius: 54px; padding: 11px;
+  box-shadow: var(--shadow-lg); border: 1px solid var(--device-shell-edge);
   transition: transform 0.5s ease;
 }
 .phone-screen {
@@ -518,7 +542,7 @@ main { animation: pageIn 0.45s ease; }
 }
 .phone-notch {
   position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
-  width: 108px; height: 26px; border-radius: 999px; background: var(--ink);
+  width: 108px; height: 26px; border-radius: 999px; background: var(--device-shell);
   z-index: 5;
 }
 .mock-status {
@@ -622,15 +646,15 @@ html:not(.js) #mock-today { display: block; }
 /* ---------- iPad 演示（来自 App RootView：NavigationSplitView 侧边栏） ---------- */
 .ipad {
   width: 620px; max-width: 100%; margin: 0 auto;
-  background: var(--ink); border-radius: 34px; padding: 12px;
-  box-shadow: var(--shadow-lg); border: 1px solid var(--line-strong);
+  background: var(--device-shell); border-radius: 34px; padding: 12px;
+  box-shadow: var(--shadow-lg); border: 1px solid var(--device-shell-edge);
   transition: transform 0.5s ease;
 }
 .ipad-screen {
   position: relative; display: flex;
   border-radius: 24px; overflow: hidden;
   background: var(--bg);
-  aspect-ratio: 620 / 452;
+  aspect-ratio: 4 / 3;
 }
 .ipad-sidebar {
   width: 33%; max-width: 200px; flex: none;
@@ -690,6 +714,16 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 .ipad-dash .mock-card, .ipad-grid2 .mock-card { margin-bottom: 8px; }
 .ipad-dash .mock-row, .ipad-grid2 .mock-row { margin-bottom: 7px; }
 .ipad-dash .mock-group-label:first-child, .ipad-grid2 .mock-group-label:first-child { margin-top: 4px; }
+.ipad-overview-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line);
+}
+.ipad-overview-strip span {
+  min-width: 0; padding: 10px 12px; border-radius: 12px;
+  background: var(--surface); border: 1px solid var(--line);
+}
+.ipad-overview-strip small { display: block; font-size: 9px; color: var(--ink-3); margin-bottom: 2px; }
+.ipad-overview-strip b { display: block; font-size: 12px; color: var(--ink); font-weight: 700; }
 
 /* ---------- 产品说明侧栏 ---------- */
 .showcase-side { max-width: var(--readable); margin: 44px auto 0; }
@@ -698,7 +732,7 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 .tab-switch { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
 .tab-switch button {
   border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink-2);
-  border-radius: 999px; padding: 9px 16px; font-size: 14px; font-weight: 600;
+  min-height: 44px; border-radius: 999px; padding: 9px 16px; font-size: 14px; font-weight: 600;
   transition: all 0.16s;
 }
 .tab-switch button:hover { border-color: var(--green); color: var(--green-strong); }
@@ -1074,18 +1108,26 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .feature-row { grid-template-columns: 1fr; gap: 6px; padding: 16px 18px; }
   .feature-row .badge { justify-self: start; }
-  .phone { width: 320px; }
-  .ipad { width: min(560px, 94vw); border-radius: 26px; padding: 9px; }
-  .ipad-screen { border-radius: 18px; aspect-ratio: 560 / 470; }
-  .ipad-sidebar { max-width: 168px; padding: 10px 8px; }
+  .device-switch { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; max-width: 390px; }
+  .device-switch-btn { min-width: 0; min-height: 44px; padding: 8px 8px; font-size: 12.5px; white-space: nowrap; }
+  .device-grid { gap: 30px; }
+  .phone { width: min(320px, 92vw); }
+  .ipad { width: min(410px, 94vw); border-radius: 28px; padding: 9px; }
+  .ipad-screen { border-radius: 20px; aspect-ratio: 3 / 4; }
+  .ipad-sidebar { width: 34%; max-width: 136px; padding: 10px 7px; }
   .ipad-nav-item { font-size: 12px; padding: 7px 8px; }
+  .ipad-nav--actions { display: none; }
+  .ipad-side-foot { font-size: 9px; }
+  .ipad-page { padding-inline: 12px; }
   .ipad-dash, .ipad-grid2 { grid-template-columns: 1fr; }
+  .ipad-dash .ipad-col-side { display: none; }
+  .ipad-overview-strip { display: none; }
+  .showcase-side { margin-top: 34px; }
   .final-card { padding: 56px 24px; }
   .legal-page { padding: 44px 18px 80px; }
   .legal-nav { padding: 0 18px; }
   .hero-assurances { gap: 10px; }
   .hero-assurances i { display: none; }
-  .device-switch-btn { padding: 8px 12px; font-size: 13px; }
   .fpage-hero { padding: 56px 0 40px; }
   .fpage-index { position: static; padding: 10px 0; }
   .fsec { padding: 64px 0; }
@@ -1094,10 +1136,11 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 }
 
 @media (max-width: 400px) {
-  .phone { width: 288px; }
+  .phone { width: min(288px, 90vw); }
   .ipad { width: 92vw; }
-  .ipad-sidebar { max-width: 140px; }
+  .ipad-sidebar { max-width: 118px; }
   .ipad-brand span { display: none; }
+  .ipad-nav-item { gap: 7px; padding-inline: 7px; font-size: 11px; }
   .fsec-head { flex-direction: column; gap: 12px; }
 }
 
@@ -1131,7 +1174,7 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   .js .story-progress-link[aria-current="step"] .n { background: rgba(255, 255, 255, 0.18); color: var(--on-green); }
   .js .story-stage { display: none !important; }
   .js .story-mini { display: grid !important; }
-  .js .story-phone { width: 300px; }
+  .js .story-phone { width: 284px; }
   .js .story-chapter {
     background: var(--surface); border: 1px solid var(--line);
     border-radius: var(--radius-lg); padding: 22px 20px;

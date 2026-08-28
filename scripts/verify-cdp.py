@@ -254,8 +254,9 @@ def main():
         check("桌面默认并排", dev["view"] == "both", "view=%s" % dev["view"])
         cdp.evaluate("document.querySelector('[data-device-view=\"ipad\"]').click()")
         time.sleep(0.3)
-        ipad_only = cdp.evaluate("(() => { const g=document.querySelector('[data-device-grid]'); return { view: g.getAttribute('data-view'), phoneHidden: getComputedStyle(document.querySelector('[data-device-col=\"phone\"]')).display === 'none' }; })()")
+        ipad_only = cdp.evaluate("(() => { const g=document.querySelector('[data-device-grid]'); const p=document.getElementById('ipad-device'); const s=p.querySelector('.ipad-screen'); return { view: g.getAttribute('data-view'), phoneHidden: getComputedStyle(document.querySelector('[data-device-col=\"phone\"]')).display === 'none', width: p.getBoundingClientRect().width, ratio: s.getBoundingClientRect().width / s.getBoundingClientRect().height, clipped: s.scrollWidth > s.clientWidth + 1 }; })()")
         check("切到只看 iPad", ipad_only["view"] == "ipad" and ipad_only["phoneHidden"])
+        check("桌面单看 iPad 足够大且不裁切", ipad_only["width"] >= 700 and not ipad_only["clipped"] and 1.3 < ipad_only["ratio"] < 1.36, json.dumps(ipad_only))
 
         # ---- 3. iPad 侧边栏 ----
         cdp.evaluate("document.querySelector('[data-ipad-target=\"pantry\"]').click()")
@@ -308,6 +309,11 @@ def main():
         check("Escape 关闭菜单并还焦", esc)
         mobile_story = cdp.evaluate("(() => ({ stageHidden: getComputedStyle(document.querySelector('[data-story-stage]')).display === 'none', miniVisible: [...document.querySelectorAll('.story-mini')].every(el => getComputedStyle(el).display !== 'none'), sticky: getComputedStyle(document.querySelector('.story-stage-col')).position }))()")
         check("手机端故事改为普通内容流", mobile_story["stageHidden"] and mobile_story["miniVisible"] and mobile_story["sticky"] != "sticky", json.dumps(mobile_story))
+        cdp.evaluate("document.querySelector('[data-device-view=\"ipad\"]').click()")
+        time.sleep(0.3)
+        mobile_ipad = cdp.evaluate("(() => { const p=document.getElementById('ipad-device'); const s=p.querySelector('.ipad-screen'); const sw=document.querySelector('.device-switch'); const targets=[...document.querySelectorAll('.device-switch-btn,.tab-switch button')]; return { width:p.getBoundingClientRect().width, ratio:s.getBoundingClientRect().width/s.getBoundingClientRect().height, switchRight:sw.getBoundingClientRect().right, viewport:document.documentElement.clientWidth, overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth+1, minTouch:Math.min(...targets.map(el=>el.getBoundingClientRect().height)) }; })()")
+        check("手机端 iPad 改为可读的纵向演示", mobile_ipad["width"] <= mobile_ipad["viewport"] and 0.73 < mobile_ipad["ratio"] < 0.77 and mobile_ipad["switchRight"] <= mobile_ipad["viewport"] and not mobile_ipad["overflow"], json.dumps(mobile_ipad))
+        check("手机端主要演示控件触控高度至少 44px", mobile_ipad["minTouch"] >= 44, json.dumps(mobile_ipad))
 
         # ---- 7. 键盘焦点环 ----
         goto("/", 1440, 3400)
@@ -332,8 +338,8 @@ def main():
             audit = cdp.evaluate("(() => { const hrefs=[...document.querySelectorAll('a[href]')].map(a=>a.getAttribute('href')); const badAnchor=hrefs.filter(h=>h.startsWith('#') && h.length>1 && !document.getElementById(h.slice(1))); return { badAnchor }; })()")
             check("%s 锚点全部有效" % path, len(audit["badAnchor"]) == 0, json.dumps(audit["badAnchor"]))
 
-        # ---- 10. 320px 无横向溢出（首页 + features） ----
-        for path in ["/", "/features/"]:
+        # ---- 10. 320px 无横向溢出（全部正式页面） ----
+        for path in PAGES:
             goto(path, 320, 700)
             ov = cdp.evaluate("(() => { const s=document.documentElement.scrollWidth, c=document.documentElement.clientWidth; return { overflow: s > c + 1, s, c }; })()")
             check("%s 320px 无横向溢出" % path, not ov["overflow"], "scrollW=%d clientW=%d" % (ov["s"], ov["c"]))
