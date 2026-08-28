@@ -756,7 +756,9 @@ def main():
         "robots.txt",
         "sitemap.xml",
         "app-icon.png",
-        "favicon.svg",
+        "favicon-64.png",
+        "favicon.ico",
+        "apple-touch-icon.png",
         "og-image.png",
         "og-image-en.png",
         "assets/" + css_name,
@@ -784,7 +786,9 @@ def main():
         changed += write_if_changed(ROOT / path, html)
     changed += write_if_changed(ROOT / "404.html", notfound_html)
     copy_static("app-icon.png")
-    copy_static("favicon.svg")
+    copy_static("favicon-64.png")
+    copy_static("favicon.ico")
+    copy_static("apple-touch-icon.png")
     copy_static("og-image.png")
     copy_static("og-image-en.png")
 
@@ -810,7 +814,7 @@ def main():
             else:
                 d.unlink()
             removed.append(str(d))
-    for stray in ("file.svg", "globe.svg", "window.svg"):
+    for stray in ("file.svg", "globe.svg", "window.svg", "favicon.svg"):
         p = ROOT / stray
         if p.exists():
             p.unlink()
