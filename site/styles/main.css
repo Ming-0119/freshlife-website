@@ -207,12 +207,12 @@ main { animation: pageIn 0.45s ease; }
 .site-header .container {
   height: 100%; display: flex; align-items: center; gap: 12px;
 }
-.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 700; font-size: 17px; letter-spacing: -0.01em; flex: none; }
+.brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--ink); font-weight: 700; font-size: 17px; letter-spacing: -0.01em; flex: none; }
 .brand img { width: 30px; height: 30px; border-radius: 8px; }
 .brand:hover { color: var(--ink); }
 .nav-links { display: flex; align-items: center; gap: 2px; margin-left: 6px; }
 .nav-links a {
-  position: relative;
+  position: relative; display: inline-flex; align-items: center; min-height: 44px;
   padding: 8px 12px; border-radius: 10px;
   font-size: 14.5px; font-weight: 500; color: var(--ink-2);
   transition: color 0.22s ease, background 0.22s ease;
@@ -234,7 +234,7 @@ main { animation: pageIn 0.45s ease; }
 /* 日夜切换按钮：清晰、精致、可访问 */
 .theme-toggle {
   display: inline-flex; align-items: center; gap: 7px;
-  height: 38px; padding: 0 13px; border-radius: 999px;
+  height: 44px; padding: 0 13px; border-radius: 999px;
   border: 1px solid var(--line-strong);
   background: var(--surface); color: var(--ink-2);
   font-size: 13px; font-weight: 600;
@@ -256,14 +256,14 @@ main { animation: pageIn 0.45s ease; }
 .nav-cta {
   margin-left: auto;
   display: inline-flex; align-items: center; gap: 8px;
-  min-height: 38px; padding: 0 16px; border-radius: 999px;
+  min-height: 44px; padding: 0 16px; border-radius: 999px;
   background: var(--green); color: var(--on-green);
   font-size: 14px; font-weight: 600;
   transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
 }
 .nav-cta:hover { background: var(--green-strong); color: var(--on-green); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(10, 134, 94, 0.28); }
 .nav-cta:active { transform: translateY(1px) scale(0.985); box-shadow: none; }
-.nav-toggle { display: none; margin-left: auto; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid var(--line-strong); background: var(--surface); border-radius: 12px; color: var(--ink); }
+.nav-toggle { display: none; margin-left: auto; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line-strong); background: var(--surface); border-radius: 12px; color: var(--ink); }
 
 /* 移动导航面板 */
 .mobile-nav {
@@ -447,7 +447,7 @@ main { animation: pageIn 0.45s ease; }
 }
 .story-progress-link {
   display: inline-flex; align-items: center; gap: 7px;
-  padding: 8px 14px; border-radius: 999px;
+  min-height: 44px; padding: 8px 14px; border-radius: 999px;
   border: 1px solid var(--line-strong); background: var(--surface);
   font-size: 13px; font-weight: 600; color: var(--ink-2);
   transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s var(--ease-out);
@@ -610,7 +610,7 @@ main { animation: pageIn 0.45s ease; }
 }
 .device-switch-btn {
   border: 0; background: transparent; color: var(--ink-2);
-  padding: 9px 18px; border-radius: 999px;
+  min-height: 44px; padding: 9px 18px; border-radius: 999px;
   font-size: 14px; font-weight: 600;
   transition: background 0.22s ease, color 0.22s ease, transform 0.2s var(--ease-out), box-shadow 0.22s ease;
 }
@@ -1310,7 +1310,7 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 /* ---------- 语言切换 ---------- */
 .lang-switch {
   display: inline-flex; align-items: center;
-  height: 38px; padding: 0 13px; border-radius: 999px;
+  height: 44px; padding: 0 13px; border-radius: 999px;
   border: 1px solid var(--line-strong);
   background: var(--surface); color: var(--ink-2);
   font-size: 13px; font-weight: 600; white-space: nowrap;
@@ -1524,12 +1524,13 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   .footer-brand { grid-column: 1 / -1; padding-bottom: 4px; }
   .footer-brand p { max-width: 38ch; }
   .footer-col:last-child { grid-column: 1 / -1; }
+  .footer-col a { display: flex; align-items: center; min-height: 44px; }
   .footer-col:last-child a { display: inline-flex; margin: 0 12px 4px 0; }
   .footer-bottom { display: grid; gap: 14px; margin-top: 34px; padding-top: 18px; line-height: 1.7; }
   .footer-owner { max-width: 36ch; }
   .footer-utility { justify-content: flex-start; gap: 8px; }
   .footer-utility a {
-    display: inline-flex; align-items: center; min-height: 34px; padding: 5px 11px;
+    display: inline-flex; align-items: center; min-height: 44px; padding: 5px 11px;
     border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
     font-size: 12.5px;
   }

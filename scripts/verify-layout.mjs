@@ -253,6 +253,18 @@ const menuMotion = await cdp.eval(`(() => {
 })()`);
 check("移动菜单展开完成后清晰可见", menuMotion.open && menuMotion.aria === "false" && menuMotion.opacity === "1" && menuMotion.visibility === "visible", JSON.stringify(menuMotion));
 
+const ipadTargets = await cdp.eval(`(() => {
+  const selectors = [
+    ".site-header .brand", ".site-header .lang-switch", ".site-header .theme-toggle",
+    ".site-header .nav-toggle", ".device-switch-btn", ".story-progress-link"
+  ];
+  const targets = [...document.querySelectorAll(selectors.join(","))]
+    .filter(el => getComputedStyle(el).display !== "none" && el.getBoundingClientRect().width > 0)
+    .map(el => ({ label: el.textContent.trim() || el.getAttribute("aria-label"), h: Math.round(el.getBoundingClientRect().height) }));
+  return { targets, min: Math.min(...targets.map(x => x.h)) };
+})()`);
+check("iPad 主要触控目标至少 44px", ipadTargets.min >= 44, JSON.stringify(ipadTargets.targets));
+
 await goto("http://localhost:8099/", 1024, 1180);
 const desktopHeader1024 = await cdp.eval(`(() => {
   const root = document.documentElement;
@@ -265,6 +277,13 @@ const desktopHeader1024 = await cdp.eval(`(() => {
 })()`);
 check("1024px 页头元素不重叠", !desktopHeader1024.overlaps && desktopHeader1024.within, JSON.stringify(desktopHeader1024.visible));
 check("1024px 首页无横向溢出", !desktopHeader1024.overflow);
+const desktopHeaderTargets = await cdp.eval(`(() => {
+  const targets = [...document.querySelectorAll(".site-header a, .site-header button")]
+    .filter(el => getComputedStyle(el).display !== "none" && el.getBoundingClientRect().width > 0)
+    .map(el => ({ label: el.textContent.trim() || el.getAttribute("aria-label"), h: Math.round(el.getBoundingClientRect().height) }));
+  return { targets, min: Math.min(...targets.map(x => x.h)) };
+})()`);
+check("桌面页头主要触控目标至少 44px", desktopHeaderTargets.min >= 44, JSON.stringify(desktopHeaderTargets.targets));
 
 // ---- 隐私要点在各设备上保持 4 / 2 / 1 列，不出现 3 + 1 孤立布局 ----
 for (const [label, width, height, expectedCols] of [
@@ -375,8 +394,9 @@ const secrets = await cdp.eval(`(async () => {
 })()`);
 check("全站无敏感信息（密钥/口令）", secrets.length === 0, JSON.stringify(secrets));
 
-// 全站链接（所有页面锚点/路径）
-for (const p of ["privacy/", "terms/", "support/", "safety/", "features/", "philosophy/",
+// 全站链接与基础语义（所有页面锚点/路径、唯一 ID、控件名称、图片替代文本）
+const semanticIssues = [];
+for (const p of ["", "404.html", "privacy/", "terms/", "support/", "safety/", "features/", "philosophy/",
                  "en/", "en/features/", "en/philosophy/", "en/privacy/", "en/terms/",
                  "en/support/", "en/safety/"]) {
   await goto("http://localhost:8099/" + p, 1440, 1200);
@@ -384,11 +404,27 @@ for (const p of ["privacy/", "terms/", "support/", "safety/", "features/", "phil
     const hrefs = [...document.querySelectorAll("a[href]")].map(a => a.getAttribute("href"));
     const badAnchor = hrefs.filter(h => h.startsWith("#") && h.length > 1 && !document.getElementById(h.slice(1)));
     const badRel = hrefs.filter(h => /^\\/(?!privacy|terms|support|safety|features|philosophy|en|index|sitemap|assets|favicon|app-icon|robots)/.test(h));
-    return { badAnchor, badRel: badRel.filter(h => h !== "/" && !h.startsWith("/#")) };
+    const ids = [...document.querySelectorAll("[id]")].map(el => el.id);
+    const duplicateIds = [...new Set(ids.filter((id, i) => ids.indexOf(id) !== i))];
+    const unnamedControls = [...document.querySelectorAll("a[href], button")]
+      .filter(el => !((el.getAttribute("aria-label") || el.textContent || "").trim()) && !el.querySelector('img[alt]:not([alt=""])'))
+      .map(el => el.tagName + "." + el.className);
+    const missingAlt = [...document.images].filter(img => !img.hasAttribute("alt")).map(img => img.getAttribute("src"));
+    return {
+      badAnchor,
+      badRel: badRel.filter(h => h !== "/" && !h.startsWith("/#")),
+      duplicateIds, unnamedControls, missingAlt,
+      h1Count: document.querySelectorAll("main h1").length,
+    };
   })()`);
-  check(`${p} 页锚点有效`, audit.badAnchor.length === 0, JSON.stringify(audit.badAnchor));
-  check(`${p} 页链接目标有效`, audit.badRel.length === 0, JSON.stringify(audit.badRel));
+  const label = p || "/";
+  check(`${label} 页锚点有效`, audit.badAnchor.length === 0, JSON.stringify(audit.badAnchor));
+  check(`${label} 页链接目标有效`, audit.badRel.length === 0, JSON.stringify(audit.badRel));
+  if (audit.duplicateIds.length || audit.unnamedControls.length || audit.missingAlt.length || audit.h1Count !== 1) {
+    semanticIssues.push({ page: label, ...audit });
+  }
 }
+check("全站基础语义结构完整", semanticIssues.length === 0, JSON.stringify(semanticIssues));
 
 console.log("\n===== 汇总 =====");
 const failed = results.filter(r => !r.ok);
