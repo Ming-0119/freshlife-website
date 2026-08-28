@@ -112,9 +112,9 @@ html.theme-switching *::after {
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-/* 仅在用户未要求减少动效时启用平滑滚动（避免页面加载时平滑滚动锚点） */
+/* 首次打开带锚点的网址先准确落位；页面稳定后再为站内跳转启用平滑滚动。 */
 @media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
+  html.smooth-scroll-ready { scroll-behavior: smooth; }
 }
 body {
   margin: 0;
@@ -153,19 +153,8 @@ button:focus:not(:focus-visible) { outline: none; }
 /* 程序为锚点区域补的 tabindex 只用于读屏焦点，不绘制覆盖整屏的大边框。 */
 [tabindex="-1"]:focus { outline: none; }
 
-/* 页内锚点：避开固定导航；到达目标时给一段克制的提示 */
+/* 页内锚点：避开固定导航；当前位置由导航和章节指示器反馈。 */
 [id] { scroll-margin-top: calc(var(--header-h) + 18px); }
-section:target > .container > .section-head,
-.story-chapter:target .story-copy,
-.fsec:target > .container > .fsec-head,
-.legal-page :target {
-  animation: targetGlow 2s ease;
-  border-radius: 14px;
-}
-@keyframes targetGlow {
-  0% { box-shadow: inset 0 0 0 2px var(--green); }
-  100% { box-shadow: inset 0 0 0 2px transparent; }
-}
 
 /* 页面进入：克制的整体淡入（脚本失效也不影响内容可见） */
 main { animation: pageIn 0.45s ease; }
@@ -223,11 +212,24 @@ main { animation: pageIn 0.45s ease; }
 .brand:hover { color: var(--ink); }
 .nav-links { display: flex; align-items: center; gap: 2px; margin-left: 6px; }
 .nav-links a {
+  position: relative;
   padding: 8px 12px; border-radius: 10px;
   font-size: 14.5px; font-weight: 500; color: var(--ink-2);
-  transition: color 0.18s, background 0.18s;
+  transition: color 0.22s ease, background 0.22s ease;
 }
 .nav-links a:hover { color: var(--ink); background: var(--green-softer); }
+.nav-links a[aria-current="location"],
+.nav-links a[aria-current="page"] { color: var(--ink); background: var(--green-softer); }
+.nav-links a[aria-current="location"]::after,
+.nav-links a[aria-current="page"]::after {
+  content: ""; position: absolute; left: 50%; bottom: 3px;
+  width: 4px; height: 4px; border-radius: 50%; background: var(--green);
+  transform: translateX(-50%); animation: navCurrentIn 0.38s var(--ease-out);
+}
+@keyframes navCurrentIn {
+  from { opacity: 0; transform: translate(-50%, 4px) scale(0.5); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
 
 /* 日夜切换按钮：清晰、精致、可访问 */
 .theme-toggle {
@@ -260,6 +262,7 @@ main { animation: pageIn 0.45s ease; }
   transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
 }
 .nav-cta:hover { background: var(--green-strong); color: var(--on-green); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(10, 134, 94, 0.28); }
+.nav-cta:active { transform: translateY(1px) scale(0.985); box-shadow: none; }
 .nav-toggle { display: none; margin-left: auto; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid var(--line-strong); background: var(--surface); border-radius: 12px; color: var(--ink); }
 
 /* 移动导航面板 */
@@ -295,6 +298,8 @@ main { animation: pageIn 0.45s ease; }
   border-bottom: 1px solid var(--line);
 }
 .mobile-nav a:last-of-type { border-bottom: 0; }
+.mobile-nav a[aria-current="location"],
+.mobile-nav a[aria-current="page"] { color: var(--green-strong); }
 .mobile-nav a small { color: var(--ink-3); font-weight: 500; font-size: 13px; }
 .theme-toggle--mobile {
   display: flex; width: 100%; justify-content: flex-start;
@@ -356,7 +361,7 @@ main { animation: pageIn 0.45s ease; }
 @media (prefers-reduced-motion: no-preference) {
   .js .hero-lockup, .js .hero h1, .js .hero .sub,
   .js .hero .hero-actions, .js .hero .hero-assurances, .js .hero .hero-status {
-    opacity: 0; animation: heroElementIn 0.9s var(--ease-spring) forwards;
+    opacity: 0; animation: heroElementIn 0.76s var(--ease-spring) forwards;
   }
   .js .hero-lockup { animation-delay: 40ms; }
   .js .hero h1 { animation-delay: 120ms; }
@@ -366,8 +371,8 @@ main { animation: pageIn 0.45s ease; }
   .js .hero .hero-status { animation-delay: 490ms; }
 }
 @keyframes heroElementIn {
-  from { opacity: 0; transform: translateY(22px); filter: blur(5px); }
-  to { opacity: 1; transform: none; filter: blur(0); }
+  from { opacity: 0; transform: translateY(17px) scale(0.992); }
+  to { opacity: 1; transform: none; }
 }
 
 /* ---------- 按钮 ---------- */
@@ -442,8 +447,9 @@ main { animation: pageIn 0.45s ease; }
   padding: 8px 14px; border-radius: 999px;
   border: 1px solid var(--line-strong); background: var(--surface);
   font-size: 13px; font-weight: 600; color: var(--ink-2);
-  transition: border-color 0.18s, color 0.18s, background 0.18s;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s var(--ease-out);
 }
+.story-progress-link:active { transform: scale(0.97); }
 .story-progress-link .n {
   display: inline-grid; place-items: center;
   min-width: 20px; height: 20px; padding: 0 5px;
@@ -603,9 +609,10 @@ main { animation: pageIn 0.45s ease; }
   border: 0; background: transparent; color: var(--ink-2);
   padding: 9px 18px; border-radius: 999px;
   font-size: 14px; font-weight: 600;
-  transition: background 0.18s, color 0.18s;
+  transition: background 0.22s ease, color 0.22s ease, transform 0.2s var(--ease-out), box-shadow 0.22s ease;
 }
 .device-switch-btn:hover { color: var(--ink); }
+.device-switch-btn:active { transform: scale(0.97); }
 .device-switch-btn[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
 
 .device-grid {
@@ -614,7 +621,7 @@ main { animation: pageIn 0.45s ease; }
 }
 .device-grid.just-swapped { animation: deviceSwap 0.62s var(--ease-spring); }
 @keyframes deviceSwap {
-  from { opacity: 0.38; transform: translateY(10px); }
+  from { opacity: 0.62; transform: translateY(8px) scale(0.994); }
   to { opacity: 1; transform: none; }
 }
 .device-col { min-width: 0; }
@@ -981,6 +988,7 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.5s var(--ease-out);
 }
 .feature-glance-card:hover { color: inherit; transform: translateY(-5px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--green) 35%, var(--line)); }
+.feature-glance-card:active { transform: translateY(-1px) scale(0.992); }
 .feature-glance-card:hover::before { transform: scaleX(1); }
 .feature-glance-number { position: absolute; top: 18px; right: 20px; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: var(--ink-3); }
 .feature-glance-card > .ico { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: var(--green-soft); color: var(--green-strong); margin-bottom: 16px; }
@@ -1071,7 +1079,7 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary .plus {
   position: relative; width: 20px; height: 20px; flex: none;
-  transition: transform 0.22s ease;
+  transition: transform 0.38s var(--ease-spring);
 }
 .faq summary .plus::before, .faq summary .plus::after {
   content: ""; position: absolute; inset: 0; margin: auto;
@@ -1328,6 +1336,7 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
 .daily-card:hover { color: inherit; transform: translateY(-4px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--apricot) 35%, var(--line)); }
+.daily-card:active { transform: translateY(-1px) scale(0.992); }
 .daily-card:focus-visible { outline: 3px solid color-mix(in srgb, var(--green) 45%, transparent); outline-offset: 3px; }
 .daily-card .top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; }
 .daily-card .ico {
@@ -1433,14 +1442,14 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 .philo-more { margin-top: 26px; font-size: 15px; color: var(--ink-2); }
 .philo-more a { color: var(--green-strong); font-weight: 600; }
 
-/* ---------- 滚动显现（分组轻微错峰；仅动 transform / opacity / filter） ---------- */
+/* ---------- 滚动显现（分组轻微错峰；只动 transform / opacity，保持清晰与流畅） ---------- */
 .js .reveal {
-  opacity: 0; transform: translateY(24px); filter: blur(3px);
-  transition: opacity 0.68s ease, transform 0.88s var(--ease-spring), filter 0.62s ease;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.58s ease, transform 0.76s var(--ease-spring);
   transition-delay: var(--reveal-delay, 0ms);
   will-change: transform, opacity;
 }
-.js .reveal.in-view { opacity: 1; transform: none; filter: blur(0); will-change: auto; }
+.js .reveal.in-view { opacity: 1; transform: none; will-change: auto; }
 
 /* ---------- 响应式 ---------- */
 @media (max-width: 1080px) {
@@ -1520,7 +1529,7 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   .feature-row { grid-template-columns: 1fr; gap: 6px; padding: 16px 18px; }
   .feature-row .badge { justify-self: start; }
   .device-switch { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; max-width: 390px; }
-  .device-switch-btn { min-width: 0; min-height: 44px; padding: 8px 8px; font-size: 12.5px; white-space: nowrap; }
+  .device-switch-btn { min-width: 0; min-height: 46px; padding: 8px 8px; font-size: 12.5px; white-space: nowrap; }
   .device-grid { gap: 30px; }
   .phone { width: min(320px, 92vw); }
   .ipad { width: min(410px, 94vw); border-radius: 28px; padding: 9px; }

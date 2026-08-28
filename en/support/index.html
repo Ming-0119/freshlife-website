@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-e16c2f1238.css"/>
+<link rel="stylesheet" href="/assets/main-1214acd662.css"/>
 </head>
 <body>
 
@@ -71,15 +71,15 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
 
 <h2 id="ai">AI assistant</h2>
 <h3>What’s the difference between on-device suggestions and remote AI?</h3>
-<p>Meal suggestions are computed locally from your real pantry data and work offline — they’re part of the current version. The remote AI assistant needs a network and a gateway; it’s off in the current version, needs your explicit consent to third-party processing before it can be enabled, and never asks you for an API key.</p>
+<p>Meal suggestions are computed locally from what is already in your pantry and work offline — they’re part of the current version. Remote AI is not enabled in the current version. If it ships later, it will be off by default, explain how data is processed, and ask for your clear consent before you turn it on. FreshLife will not ask you for an API key.</p>
 <h3>Will AI change my pantry on its own?</h3>
-<p>No. AI output is validated for structure and scope; important changes go through FreshLife’s regular data flow and are confirmed by you, so you always see the result and feedback.</p>
-<h3>Remote AI isn’t working — what should I do?</h3>
-<p>Check your network connection and the AI authorization state in the app, then try again. While remote services are unavailable, your local pantry, expiry reminders, shopping and basic meal suggestions keep working normally.</p>
+<p>No. AI output is validated for structure and scope, and important pantry changes take effect only after you confirm them.</p>
+<h3>Why can’t I find remote AI?</h3>
+<p>Because remote AI is not enabled in the current version. Your local pantry, expiry reminders, shopping list and basic meal suggestions still work as normal. If remote AI ships later, the website and app will explain how it works and what data it processes first.</p>
 
 <h2 id="data">Privacy &amp; data</h2>
 <h3>Where is my data stored?</h3>
-<p>Core pantry and preference data live on your device, local-first. Only when you actively use an optional AI feature you’ve allowed would the data needed for that request be processed. There are no ad SDKs and no cross-app tracking.</p>
+<p>Core pantry and preference data live on your device, local-first. If optional remote AI ships later, only the data needed for a request would be processed, and only when you have turned it on and use it. There are no ad SDKs and no cross-app tracking.</p>
 <h3>How do I export my data?</h3>
 <p>Go to Profile → Privacy Center → Export Data. You can export pantry, history, completed meals, shopping list and language preferences (currently as text).</p>
 <h3>How do I delete my data?</h3>
@@ -97,6 +97,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </footer>
 </div>
-<script src="/assets/main-76d77f90f0.js" defer></script>
+<script src="/assets/main-785a9842f7.js" defer></script>
 </body>
 </html>

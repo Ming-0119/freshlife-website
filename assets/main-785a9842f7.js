@@ -31,6 +31,14 @@
   /* ---------- 日夜主题 ---------- */
   var root = document.documentElement;
 
+  /* 初始深链接先直接落位，避免从页面顶部慢慢穿过多个章节；
+     页面稳定后，用户主动点击的页内跳转仍保持平滑。 */
+  if (!reduceMotion) {
+    window.setTimeout(function () {
+      root.classList.add("smooth-scroll-ready");
+    }, 140);
+  }
+
   function applyTheme(theme, animate) {
     if (theme !== "light" && theme !== "dark") return;
     root.setAttribute("data-theme", theme);
@@ -283,14 +291,14 @@
 
   /* ---------- 滚动显现 ---------- */
   var reveals = document.querySelectorAll(".reveal");
-  /* 同一组卡片轻微错峰，最大延迟控制在 280ms，保持节奏而不拖沓。 */
+  /* 同一组卡片轻微错峰，最大延迟控制在 220ms，保持节奏而不拖沓。 */
   document.querySelectorAll(
     ".daily-grid, .why-grid, .method-grid, .ai-grid, .vision-grid, " +
     ".roadmap-grid, .roadmap-rail, .feature-glance-grid, .privacy-grid, .misread-grid"
   ).forEach(function (group) {
     Array.prototype.slice.call(group.children).forEach(function (child, i) {
       if (child.classList.contains("reveal")) {
-        child.style.setProperty("--reveal-delay", Math.min(i, 4) * 70 + "ms");
+        child.style.setProperty("--reveal-delay", Math.min(i, 4) * 55 + "ms");
       }
     });
   });
@@ -364,6 +372,60 @@
       );
       storyChapters.forEach(function (ch) { storyIO.observe(ch); });
     }
+  }
+
+  /* ---------- 导航当前位置 ----------
+     只标记当前页面已有的页内章节；理念等独立页面链接保持普通状态。
+     使用观察器而不是持续读取布局，滚动时没有额外的每帧计算。 */
+  var navSectionLinks = Array.prototype.slice.call(
+    document.querySelectorAll('.nav-links a[href*="#"], .mobile-nav a[href*="#"]')
+  ).filter(function (link) {
+    var url;
+    try { url = new URL(link.href, location.href); } catch (e) { return false; }
+    return url.pathname === location.pathname && url.hash && document.querySelector(url.hash);
+  });
+  var navTargets = [];
+  navSectionLinks.forEach(function (link) {
+    var id = new URL(link.href, location.href).hash.slice(1);
+    var target = document.getElementById(id);
+    if (target && navTargets.indexOf(target) === -1) navTargets.push(target);
+  });
+
+  function setCurrentNav(id) {
+    navSectionLinks.forEach(function (link) {
+      var active = new URL(link.href, location.href).hash === "#" + id;
+      if (active) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  }
+
+  /* 独立页面（例如理念页）标记当前页；首页的页内链接由下方观察器接管。 */
+  document.querySelectorAll(".nav-links a, .mobile-nav a").forEach(function (link) {
+    var url;
+    try { url = new URL(link.href, location.href); } catch (e) { return; }
+    if (!url.hash && url.pathname === location.pathname) {
+      link.setAttribute("aria-current", "page");
+    }
+  });
+
+  if (navTargets.length && "IntersectionObserver" in window) {
+    var visibleNavTargets = new Map();
+    var navIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) visibleNavTargets.set(entry.target, entry);
+        else visibleNavTargets.delete(entry.target);
+      });
+      var visible = Array.from(visibleNavTargets.values());
+      if (!visible.length) {
+        setCurrentNav("");
+        return;
+      }
+      visible.sort(function (a, b) {
+        return Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top);
+      });
+      setCurrentNav(visible[0].target.id);
+    }, { rootMargin: "-24% 0px -64% 0px", threshold: 0 });
+    navTargets.forEach(function (target) { navIO.observe(target); });
   }
 
   /* ---------- Hero 滚动收束（很轻） ----------

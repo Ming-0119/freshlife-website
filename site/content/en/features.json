@@ -1,8 +1,8 @@
 {
   "statusLegend": [
-    { "key": "shipped", "label": "Available today", "hint": "Included in the current version" },
-    { "key": "local", "label": "On-device, offline", "hint": "Done locally on your device, no network needed" },
-    { "key": "online", "label": "Needs network", "hint": "Only connects when you actively use it" },
+    { "key": "shipped", "label": "Built into version 1.0", "hint": "Included in the build being prepared for release" },
+    { "key": "local", "label": "Works on-device", "hint": "Done locally on your device, no network needed" },
+    { "key": "online", "label": "Remote feature not enabled", "hint": "If shipped, it connects only when you use it" },
     { "key": "planned", "label": "Planned", "hint": "Not shipped yet — on the roadmap" }
   ],
   "fiveTabs": [
@@ -93,7 +93,7 @@
       "icon": "sunrise",
       "when": "Morning · Before you leave",
       "title": "Know your day in 30 seconds",
-      "desc": "Expiry reminders sit on your Home screen: take the milk that’s almost out for breakfast, or line it up for tonight. No fridge archaeology on the way out.",
+      "desc": "Expiry reminders sit on your Home screen: use the milk that needs attention for breakfast, or plan it into tonight’s meal. No last-minute fridge search before you leave.",
       "href": "#story-2",
       "cta": "See how reminders work"
     },
@@ -109,9 +109,9 @@
       "icon": "basket",
       "when": "Shopping · In the aisle",
       "title": "Check the list, buy once",
-      "desc": "See what’s missing at a glance instead of guessing in the aisle. Back home, snap the new items into your pantry and the loop closes.",
+      "desc": "See what’s missing at a glance instead of guessing in the aisle. Back home, snap the new items into your pantry and keep the list connected.",
       "href": "#story-4",
-      "cta": "See how the loop closes"
+      "cta": "See how the list returns to your pantry"
     }
   ],
   "visionCards": [
@@ -119,22 +119,22 @@
       "icon": "check",
       "tag": "current",
       "tagLabel": "Now · In the app today",
-      "title": "Keep each day straight",
-      "desc": "A local pantry, expiry reminders, meal ideas and a shopping list — first, make today clear. This is everything FreshLife does today, and the foundation it builds on."
+      "title": "Make today easier to read",
+      "desc": "Start with a local pantry, expiry reminders, meal ideas and a shopping list, so what to use and what to buy are both clear. These are the capabilities already in the current version."
     },
     {
       "icon": "sparkle",
       "tag": "next",
       "tagLabel": "Next · Not shipped yet",
       "title": "Learn your family’s rhythm",
-      "desc": "Gradually learn your household’s tastes, dietary restrictions and usual buys, so suggestions fit better. Memory stays on your device—explained first and enabled by you."
+      "desc": "Gradually learn your household’s tastes, dietary restrictions and usual buys, so suggestions fit better. Memory would be explained first, enabled by you, and kept on your device."
     },
     {
       "icon": "globe",
       "tag": "long",
       "tagLabel": "Long term · Direction",
       "title": "A food intelligence layer for your home",
-      "desc": "Understand a whole year’s rhythm — seasons, habits, budget — and suggest the right thing at the right time. A direction, not today’s feature."
+      "desc": "Understand how seasons, habits and budget change your routine, then offer a useful suggestion at the right moment. A direction, not today’s feature."
     }
   ],
   "aiModes": [
@@ -142,7 +142,7 @@
       "icon": "chip",
       "title": "On-device recognition & suggestions",
       "status": "local",
-      "desc": "Photo and album recognition use Apple Vision on your device; meal suggestions are computed locally from your real pantry and work offline."
+      "desc": "Camera and photo-library recognition use Apple Vision on your device; meal suggestions are computed locally from what is already in your pantry and work offline."
     },
     {
       "icon": "chat",

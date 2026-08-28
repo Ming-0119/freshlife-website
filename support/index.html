@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-e16c2f1238.css"/>
+<link rel="stylesheet" href="/assets/main-1214acd662.css"/>
 </head>
 <body>
 
@@ -71,15 +71,15 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
 
 <h2 id="ai">AI 助手</h2>
 <h3>本机推荐和远程 AI 有什么不一样？</h3>
-<p>餐食推荐根据你真实的库存数据在本地计算，离线也能用，属于当前版本已包含的能力。远程 AI 助手需要联网和网关，当前版本默认关闭，启用前需要你明确同意第三方处理许可；它也不需要你提供任何 API Key。</p>
+<p>餐食推荐根据你家现有的库存数据在本地计算，离线也能用，属于当前版本已包含的能力。远程 AI 助手当前版本尚未启用；未来如果上线，会默认关闭，并在启用前说明数据处理方式、征得你的明确同意。FreshLife 不会要求你提供 API Key。</p>
 <h3>AI 会自己改库存吗？</h3>
-<p>不会。AI 的输出会经过结构与范围校验，重要修改走 FreshLife 的正式数据流程、由你确认，你始终看得到结果与反馈。</p>
-<h3>远程 AI 用不了怎么办？</h3>
-<p>先检查网络连接与 App 内的 AI 授权状态，再试一次。远程服务不可用时，本地库存、临期提醒、购物与基础餐食建议照常可用。</p>
+<p>不会。AI 的输出会经过结构与范围校验，库存等重要改动只有在你确认后才会生效。</p>
+<h3>为什么找不到远程 AI？</h3>
+<p>因为当前版本尚未启用远程 AI。这不会影响本地库存、临期提醒、购物清单和基础餐食建议；如果未来上线，官网与 App 会先写清楚使用方式和数据边界。</p>
 
 <h2 id="data">隐私与数据</h2>
 <h3>数据存在哪里？</h3>
-<p>核心库存与偏好数据以本地优先的方式存在你的设备上。只有在你主动使用并允许可选 AI 功能时，完成请求所需的数据才会被处理。没有广告 SDK，也没有跨 App 追踪。</p>
+<p>核心库存与偏好数据以本地优先的方式存在你的设备上。未来如果上线可选的远程 AI，只有在你主动开启并使用时，完成当次请求所需的数据才会被处理。没有广告 SDK，也没有跨 App 追踪。</p>
 <h3>怎么导出数据？</h3>
 <p>进入「我的 → 隐私中心 → 导出数据」，可以导出库存、历史、已完成的餐食、购物清单与语言偏好（当前为文本导出）。</p>
 <h3>怎么删除数据？</h3>
@@ -97,6 +97,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </footer>
 </div>
-<script src="/assets/main-76d77f90f0.js" defer></script>
+<script src="/assets/main-785a9842f7.js" defer></script>
 </body>
 </html>

@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-e16c2f1238.css"/>
+<link rel="stylesheet" href="/assets/main-1214acd662.css"/>
 </head>
 <body>
 
@@ -77,10 +77,10 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   <div class="container">
     <p class="kicker">完整功能 · Feature Overview</p>
     <h1>FreshLife 能做什么，<br/><em>这里一次讲清楚。</em></h1>
-    <p class="lead">每一页都按「能帮什么 — 怎么用 — 注意什么 — 当前状态」来说。功能状态与 App 实际版本一致：标注「现在就能用」的已包含在当前版本，「在计划里」的尚未上线。</p>
+    <p class="lead">每一页都按「能帮什么 — 怎么用 — 注意什么 — 当前状态」来说。功能状态与 App 实际版本一致：标注「当前版本已具备」的已包含在待上架版本中，「在计划里」的尚未上线。</p>
     <div class="fpage-status">
       <span class="status-dot" aria-hidden="true"></span>
-      FreshLife 正在准备登陆 App Store
+      App Store 上架准备中
     </div>
   </div>
 </section>
@@ -106,13 +106,13 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <div>
         <p class="eyebrow">库存与临期提醒</p>
         <h2>家里有什么、什么时候到期，一眼看清。</h2>
-        <span class="badge shipped">现在就能用</span>
+        <span class="badge shipped">当前版本已具备</span>
       </div>
     </div>
     <div class="fsec-grid">
       <div class="fcard">
         <h3>能帮什么</h3>
-        <p>把家里有什么、放在哪、什么时候到期放在同一个地方。到期前轻轻提醒一声，减少买重、放过期。</p>
+        <p>把家里有什么、放在哪、什么时候到期收在同一个地方。到期前轻轻提醒一声，少买重复，也少让食材被忘在角落。</p>
       </div>
       <div class="fcard">
         <h3>怎么用</h3>
@@ -144,7 +144,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <div>
         <p class="eyebrow">四种录入方式</p>
         <h2>拍照、相册、扫码、手动，选顺手的。</h2>
-        <span class="badge shipped">现在就能用</span>
+        <span class="badge shipped">当前版本已具备</span>
       </div>
     </div>
     <div class="fsec-grid">
@@ -167,7 +167,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       </div>
       <div class="fcard fcard--state">
         <h3>当前状态</h3>
-        <p>四种方式都属于当前版本。拍照与相册识别在设备本地完成，不需要 API Key，也不需要联网。</p>
+        <p>四种方式都属于当前版本。拍照与相册识别在设备本地完成，不需要 API Key，也不用联网。</p>
       </div>
     </div>
     <p class="fsec-more"><a href="#top">返回本页目录</a><span class="dot" aria-hidden="true"></span><a href="#meals">下一步：餐食与烹饪 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></a></p>
@@ -182,7 +182,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <div>
         <p class="eyebrow">餐食与烹饪</p>
         <h2>看看手头的食材，能做出什么。</h2>
-        <span class="badge shipped">现在就能用</span>
+        <span class="badge shipped">当前版本已具备</span>
       </div>
     </div>
     <div class="fsec-grid">
@@ -196,7 +196,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
           <li>在「膳食」页生成本地餐食方案，离线也能用；</li>
           <li>缺少的食材会标出来，直接并入购物清单；</li>
           <li>选一个方案进入烹饪模式，分步计时；</li>
-          <li>完成后自动消耗对应库存，账目保持一致。</li>
+          <li>完成后自动扣除对应食材，库存记录同步更新。</li>
         </ul>
       </div>
       <div class="fcard fcard--warn">
@@ -219,21 +219,21 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <div class="fsec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M2.5 4h2l2.2 11.5a1.5 1.5 0 0 0 1.5 1.2h8.9a1.5 1.5 0 0 0 1.5-1.2L20.5 8H6"/></svg></div>
       <div>
         <p class="eyebrow">购物清单</p>
-        <h2>需要补充的食材，集中放进购物清单。</h2>
-        <span class="badge shipped">现在就能用</span>
+        <h2>需要补充的食材，都放进一张清单。</h2>
+        <span class="badge shipped">当前版本已具备</span>
       </div>
     </div>
     <div class="fsec-grid">
       <div class="fcard">
         <h3>能帮什么</h3>
-        <p>库存消耗或餐食缺少食材时，会给出补货建议，方便购物时核对，也更容易避免遗漏和重复购买。</p>
+        <p>库存不足或餐食缺少食材时，FreshLife 会给出补货建议。购物时照着核对，更不容易漏买或重复购买。</p>
       </div>
       <div class="fcard">
         <h3>怎么用</h3>
         <ul>
           <li>「发现」页进入购物清单，查看补货建议；</li>
           <li>买了的勾选已购，清单自动整理；</li>
-          <li>到货后用拍照或手动方式直接入库，闭环完成。</li>
+          <li>到家后用拍照或手动方式直接入库，清单和库存自然接上。</li>
         </ul>
       </div>
       <div class="fcard fcard--warn">
@@ -257,13 +257,13 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <div>
         <p class="eyebrow">iPhone 与 iPad</p>
         <h2>手机随手记，iPad 从容看。</h2>
-        <span class="badge shipped">现在就能用</span>
+        <span class="badge shipped">当前版本已具备</span>
       </div>
     </div>
     <div class="fsec-grid">
       <div class="fcard">
         <h3>能帮什么</h3>
-        <p>FreshLife 同时适配 iPhone 与 iPad：在手机上随手记录，也可以在 iPad 的宽屏布局中查看和规划，不需要注册账号。</p>
+        <p>FreshLife 同时适配 iPhone 与 iPad：在手机上随手记录，也可以用 iPad 更宽的画面从容查看和规划，不需要注册账号。</p>
       </div>
       <div class="fcard">
         <h3>怎么用</h3>
@@ -294,7 +294,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <div>
         <p class="eyebrow">隐私与数据控制</p>
         <h2>数据留在自己设备上，随时导出或删除。</h2>
-        <span class="badge shipped">现在就能用</span>
+        <span class="badge shipped">当前版本已具备</span>
       </div>
     </div>
     <div class="fsec-grid">
@@ -330,14 +330,14 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <div class="fsec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></div>
       <div>
         <p class="eyebrow">FreshLife AI</p>
-        <h2>本机能力现在就能用，远程 AI 尚未启用。</h2>
-        <span class="badge local">本机离线可用</span>
+        <h2>本机能力已具备，远程 AI 尚未启用。</h2>
+        <span class="badge local">本机即可完成</span>
       </div>
     </div>
     <div class="fsec-grid">
       <div class="fcard">
         <h3>能帮什么</h3>
-        <p>识别食材、根据真实库存给出餐食建议。AI 只负责识别与建议，不会自动改动库存。</p>
+        <p>识别食材、根据你家现有库存给出餐食建议。AI 只负责识别与建议，不会自动改动库存。</p>
       </div>
       <div class="fcard">
         <h3>怎么用</h3>
@@ -365,12 +365,12 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   <div class="container">
     <div class="fstatus-card reveal">
       <h2>上线状态</h2>
-      <p>FreshLife 正在准备登陆 App Store。开放下载时，首页和这里都会出现下载入口。</p>
+      <p>FreshLife 正在为 App Store 上架做准备。开放下载时，首页和这里都会出现下载入口。</p>
       <div class="hero-actions">
         <a class="button primary" href="/">返回首页</a>
         <a class="button quiet" href="/support/">帮助中心</a>
       </div>
-      <p class="statusline"><b>正在准备登陆 App Store</b> · 开放下载后，就可以从这里找到它</p>
+      <p class="statusline"><b>App Store 上架准备中</b> · 开放下载后，就可以从这里找到它</p>
       <p class="boundary">FreshLife 是管理工具，提供的是参考信息与建议；食品是否可食用，请以包装说明、实际储存状况和气味外观为准。</p>
     </div>
   </div>
@@ -383,7 +383,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     <div class="footer-grid">
       <div class="footer-brand">
         <b><img src="/app-icon.png" alt="" width="26" height="26"/>FreshLife</b>
-        <p>保质期管理与餐食规划。本地优先，少一点浪费，让每天吃什么更从容。</p>
+        <p>从家里已有的食材出发，让每天吃什么更轻松，也少一点浪费。</p>
       </div>
       <div class="footer-col">
         <h4>产品</h4>
@@ -419,6 +419,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   </div>
 </footer>
 
-<script src="/assets/main-76d77f90f0.js" defer></script>
+<script src="/assets/main-785a9842f7.js" defer></script>
 </body>
 </html>

@@ -223,7 +223,7 @@ const motionSetup = await cdp.eval(`(() => ({
   delays: [...document.querySelectorAll(".daily-card")].map(el => el.style.getPropertyValue("--reveal-delay")),
 }))()`);
 check("移动菜单关闭时不可交互", motionSetup.menuHidden);
-check("同组场景卡按 70ms 轻微错峰", JSON.stringify(motionSetup.delays) === JSON.stringify(["0ms", "70ms", "140ms"]), JSON.stringify(motionSetup.delays));
+check("同组场景卡按 55ms 轻微错峰", JSON.stringify(motionSetup.delays) === JSON.stringify(["0ms", "55ms", "110ms"]), JSON.stringify(motionSetup.delays));
 await cdp.eval(`document.getElementById("nav-toggle").click()`);
 await sleep(450);
 const menuMotion = await cdp.eval(`(() => {
