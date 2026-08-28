@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="color-scheme" content="light dark"/>
+<title>{{title}}</title>
+<meta name="description" content="{{description}}"/>
+<meta name="theme-color" content="#f8f6ef"/>
+{{og_tags}}
+<meta name="robots" content="{{robots}}"/>
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="/app-icon.png"/>
+<link rel="apple-touch-icon" href="/app-icon.png"/>
+<script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
+try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
+{{css}}
+</head>
+<body>

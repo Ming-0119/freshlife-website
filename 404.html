@@ -1,51 +1,58 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="color-scheme" content="light"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="color-scheme" content="light dark"/>
 <title>页面不存在 — FreshLife</title>
 <meta name="description" content="你访问的页面不存在或已被移动。返回 FreshLife 首页或前往帮助中心。"/>
+<meta name="theme-color" content="#f8f6ef"/>
+
 <meta name="robots" content="noindex, follow"/>
-<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="/app-icon.png"/>
 <link rel="apple-touch-icon" href="/app-icon.png"/>
-<style>
-  :root{--green:#1ab86b;--green-deep:#0e9657;--green-soft:#e1f7eb;--ink:#181b1d;--text:#5d6267;--muted:#8b9095;--line:#e7e9e7}
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{color:var(--ink);background:radial-gradient(circle at 80% 15%,#1ab86b14,#0000 30%),#f6f8f5;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
-  main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px}
-  .wrap{max-width:520px;text-align:center}
-  .mark{display:inline-flex;align-items:center;gap:10px;margin-bottom:34px}
-  .leaf{width:40px;height:40px;border-radius:11px;background:linear-gradient(145deg,#1ab86b,#0e9657);display:grid;place-items:center;box-shadow:0 8px 20px #1ab86b33}
-  .leaf i{width:15px;height:21px;border-radius:100% 0;background:#fff;transform:rotate(-35deg)}
-  .mark b{font-size:18px;letter-spacing:-.02em}
-  .code{color:var(--green);font-size:88px;font-weight:800;letter-spacing:-.05em;line-height:1}
-  h1{font-size:26px;letter-spacing:-.03em;margin:16px 0 12px}
-  p{color:var(--text);font-size:15px;line-height:1.8}
-  .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
-  a{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 22px;border-radius:14px;font-size:13px;font-weight:700;text-decoration:none;transition:transform .2s,background .2s,box-shadow .2s}
-  a.primary{color:#fff;background:var(--green);box-shadow:0 12px 28px #1ab86b33}
-  a.primary:hover{background:var(--green-deep);transform:translateY(-2px)}
-  a.quiet{color:#555a64;background:#fff;border:1px solid #dfe1e5}
-  a.quiet:hover{transform:translateY(-2px)}
-  footer{padding:28px 24px;text-align:center;color:var(--muted);font-size:12px}
-  :focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:6px}
-  @media (prefers-reduced-motion:reduce){a{transition:none}}
-</style>
+<script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
+try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
+<link rel="stylesheet" href="/assets/main-f2b254c50d.css"/>
 </head>
 <body>
-<main>
-  <div class="wrap">
-    <div class="mark"><span class="leaf"><i></i></span><b>FreshLife</b></div>
-    <div class="code">404</div>
-    <h1>这个页面不存在或已被移动。</h1>
-    <p>你访问的地址可能拼写有误，或对应内容已经调整。可以返回首页，或前往帮助中心查看常见问题与联系方式。</p>
-    <div class="actions">
-      <a class="primary" href="/">返回首页</a>
-      <a class="quiet" href="/support/">帮助中心</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/#top" aria-label="FreshLife 首页">
+      <img src="/app-icon.png" alt="" width="30" height="30"/>
+      <span>FreshLife</span>
+    </a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换到夜间模式" aria-pressed="false">
+  <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.2 5.2l1.8 1.8M17 17l1.8 1.8M18.8 5.2 17 7M7 17l-1.8 1.8"/></svg>
+  <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+  <span class="theme-toggle-label">夜间</span>
+</button>
+
+    <a class="nav-cta" href="/features/">查看完整功能<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></a>
+  </div>
+</header>
+<main id="main">
+  <section class="notfound">
+    <div class="container">
+      <div class="code">404</div>
+      <h1>这个页面不存在或已被移动。</h1>
+      <p>你访问的地址可能拼写有误，或对应内容已经调整。可以返回首页，或前往帮助中心看看常见问题。</p>
+      <div class="hero-actions">
+        <a class="button primary" href="/">返回首页</a>
+        <a class="button quiet" href="/features/">查看完整功能</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="margin-top:0;border-top:0;justify-content:center">
+      <span>© <span data-year>2026</span> FreshLife · <a href="/">FreshLife 首页</a></span>
     </div>
   </div>
-</main>
-<footer>© 2026 FreshLife</footer>
+</footer>
+<script src="/assets/main-eac7d6c81f.js" defer></script>
 </body>
 </html>

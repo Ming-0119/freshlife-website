@@ -1,0 +1,268 @@
+/* FreshLife 全站视觉与布局验证（第三轮）
+   覆盖：features 页、legal 页主题切换、404、320px 溢出、双主题对比度、
+   iPad 并排布局、reduced-motion、敏感信息检查。
+   用法: 先 make serve 或 python3 -m http.server 8099，再 node scripts/verify-layout.mjs */
+const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const PROFILE = "/tmp/freshlife-cdp-profile2";
+const PORT = 9334;
+
+import { spawn } from "node:child_process";
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const chrome = spawn(CHROME, [
+  "--headless=new", "--disable-gpu", "--no-sandbox", "--no-first-run",
+  "--disable-background-networking", "--disable-crashpad",
+  `--user-data-dir=${PROFILE}`, `--remote-debugging-port=${PORT}`,
+  "--window-size=1440,3400", "about:blank",
+], { stdio: "ignore" });
+
+async function getWsUrl() {
+  for (let i = 0; i < 40; i++) {
+    try {
+      const list = await (await fetch(`http://127.0.0.1:${PORT}/json/list`)).json();
+      const page = list.find((t) => t.type === "page");
+      if (page) return page.webSocketDebuggerUrl;
+    } catch (e) {}
+    await sleep(250);
+  }
+  throw new Error("CDP not ready");
+}
+
+class CDP {
+  constructor(ws) { this.ws = ws; this.id = 0; this.pending = new Map(); }
+  static async connect(url) {
+    const ws = new WebSocket(url);
+    await new Promise((res, rej) => { ws.onopen = res; ws.onerror = rej; });
+    const c = new CDP(ws);
+    ws.onmessage = (ev) => {
+      const msg = JSON.parse(ev.data);
+      if (msg.id && c.pending.has(msg.id)) {
+        const p = c.pending.get(msg.id);
+        c.pending.delete(msg.id);
+        msg.error ? p.reject(new Error(msg.error.message)) : p.resolve(msg.result);
+      }
+    };
+    return c;
+  }
+  send(method, params = {}) {
+    const id = ++this.id;
+    return new Promise((resolve, reject) => {
+      this.pending.set(id, { resolve, reject });
+      this.ws.send(JSON.stringify({ id, method, params }));
+    });
+  }
+  async eval(expression) {
+    const res = await this.send("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true });
+    if (res.exceptionDetails) throw new Error("eval error: " + JSON.stringify(res.exceptionDetails.exception));
+    return res.result.value;
+  }
+  close() { this.ws.close(); }
+}
+
+const results = [];
+const check = (name, ok, detail = "") => {
+  results.push({ name, ok });
+  console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? "  — " + detail : ""}`);
+};
+
+const wsUrl = await getWsUrl();
+const cdp = await CDP.connect(wsUrl);
+await cdp.send("Page.enable");
+await cdp.send("Runtime.enable");
+
+async function goto(url, w, h) {
+  await cdp.send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w <= 720 });
+  await cdp.send("Page.navigate", { url });
+  await sleep(2200);
+}
+
+// ---- 隐私页主题 ----
+await goto("http://localhost:8099/privacy/", 1440, 1200);
+const legalTheme = await cdp.eval(`(() => {
+  const t = document.getElementById("theme-toggle");
+  return { has: !!t, count: document.querySelectorAll(".theme-toggle").length };
+})()`);
+check("隐私页有主题按钮", legalTheme.has && legalTheme.count === 1);
+
+await cdp.eval(`document.getElementById("theme-toggle").click()`);
+await sleep(500);
+const legalLight = await cdp.eval(`document.documentElement.getAttribute("data-theme")`);
+check("隐私页切换白天生效", legalLight === "light");
+const legalSaved = await cdp.eval(`localStorage.getItem("freshlife-theme")`);
+check("隐私页偏好全局记忆", legalSaved === "light");
+
+// 回首页应保持 light
+await goto("http://localhost:8099/", 1440, 3400);
+const homeTheme = await cdp.eval(`document.documentElement.getAttribute("data-theme")`);
+check("首页继承隐私页选择（light）", homeTheme === "light");
+
+// ---- 404 页（404.html 由托管平台对未匹配路径生效；本地直接加载验证内容） ----
+await goto("http://localhost:8099/404.html", 1440, 1000);
+const nf = await cdp.eval(`(() => ({
+  hasHeader: !!document.querySelector(".site-header"),
+  hasToggle: !!document.getElementById("theme-toggle"),
+  code: document.querySelector(".notfound .code")?.textContent,
+}))()`);
+check("404 有页头与主题按钮", nf.hasHeader && nf.hasToggle);
+check("404 文案渲染", nf.code === "404");
+
+// ---- 320px 溢出检查（首页） ----
+await goto("http://localhost:8099/", 320, 700);
+const overflow320 = await cdp.eval(`(() => {
+  const scrollW = document.documentElement.scrollWidth;
+  const clientW = document.documentElement.clientWidth;
+  const big = [...document.querySelectorAll("body *")].filter(el => {
+    const r = el.getBoundingClientRect();
+    return r.right > clientW + 1 && r.left < clientW && el.offsetParent !== null;
+  }).slice(0, 5).map(el => el.className || el.tagName);
+  return { scrollW, clientW, overflow: scrollW > clientW + 1, big };
+})()`);
+check("首页 320px 无横向溢出", !overflow320.overflow, `scrollW=${overflow320.scrollW} clientW=${overflow320.clientW} big=${JSON.stringify(overflow320.big)}`);
+const ipad320 = await cdp.eval(`(() => {
+  const pad = document.querySelector(".ipad");
+  const r = pad.getBoundingClientRect();
+  return { w: Math.round(r.width), within: r.width <= 320 };
+})()`);
+check("320px 下 iPad 演示不超宽", ipad320.within, `width=${ipad320.w}px`);
+
+// ---- 完整功能页 /features/ ----
+await goto("http://localhost:8099/features/", 1440, 3400);
+const feat = await cdp.eval(`(() => {
+  const sections = [...document.querySelectorAll(".fsec")].map(s => s.id);
+  const indexLinks = [...document.querySelectorAll(".fpage-index a")].map(a => a.getAttribute("href"));
+  const hasToggle = !!document.getElementById("theme-toggle");
+  const badAnchor = indexLinks.filter(h => h.startsWith("#") && !document.getElementById(h.slice(1)));
+  return { sections, indexLinks, hasToggle, badAnchor, nSections: sections.length };
+})()`);
+check("features 页七个功能分区", feat.nSections === 7, feat.sections.join(","));
+check("features 页目录锚点全部有效", feat.badAnchor.length === 0 && feat.indexLinks.length >= 7, JSON.stringify(feat.indexLinks));
+check("features 页有主题按钮", feat.hasToggle);
+
+await cdp.eval(`document.getElementById("theme-toggle").click()`);
+await sleep(500);
+const featDark = await cdp.eval(`document.documentElement.getAttribute("data-theme")`);
+check("features 页切夜间生效", featDark === "dark");
+
+// features 页 320px 溢出
+await goto("http://localhost:8099/features/", 320, 700);
+const featOverflow = await cdp.eval(`(() => {
+  const scrollW = document.documentElement.scrollWidth;
+  const clientW = document.documentElement.clientWidth;
+  return { scrollW, clientW, overflow: scrollW > clientW + 1 };
+})()`);
+check("features 页 320px 无横向溢出", !featOverflow.overflow, `scrollW=${featOverflow.scrollW} clientW=${featOverflow.clientW}`);
+
+// ---- 390px iPhone 尺寸 ----
+await goto("http://localhost:8099/", 390, 844);
+const iphone = await cdp.eval(`(() => {
+  const phone = document.querySelector(".phone");
+  const r = phone.getBoundingClientRect();
+  const pad = document.querySelector(".ipad").getBoundingClientRect();
+  return { phoneW: Math.round(r.width), padW: Math.round(pad.width), padWOver: pad.width > 390 };
+})()`);
+check("390px 下手机演示适配", iphone.phoneW <= 390, `phoneW=${iphone.phoneW}`);
+check("390px 下 iPad 演示适配", !iphone.padWOver, `padW=${iphone.padW}`);
+
+// ---- 桌面并排布局：手机与 iPad 同屏可见 ----
+await goto("http://localhost:8099/", 1440, 3400);
+const sideBySide = await cdp.eval(`(() => {
+  const grid = document.querySelector("[data-device-grid]");
+  const view = grid.getAttribute("data-view");
+  const phoneR = document.querySelector('[data-device-col="phone"]').getBoundingClientRect();
+  const padR = document.querySelector('[data-device-col="ipad"]').getBoundingClientRect();
+  return { view, phoneRight: Math.round(phoneR.right), padLeft: Math.round(padR.left), sideBySide: padR.left >= phoneR.right - 4 };
+})()`);
+check("桌面默认 iPhone+iPad 并排", sideBySide.view === "both" && sideBySide.sideBySide, JSON.stringify(sideBySide));
+
+// ---- 白天/夜间背景与正文对比度 ----
+async function themeColors() {
+  return cdp.eval(`(() => {
+    const bg = getComputedStyle(document.body).backgroundColor;
+    const ink = getComputedStyle(document.querySelector("h1")).color;
+    const ink3 = getComputedStyle(document.querySelector(".hero-assurances")).color;
+    return { bg, ink, ink3, theme: document.documentElement.getAttribute("data-theme") };
+  })()`);
+}
+const lightCols = await themeColors();
+check("白天模式背景为温暖米白", lightCols.bg === "rgb(248, 246, 239)" && lightCols.theme === "light", JSON.stringify(lightCols));
+
+await cdp.eval(`document.getElementById("theme-toggle").click()`);
+await sleep(600);
+const darkCols = await themeColors();
+check("夜间模式背景为深绿黑（非纯黑）", darkCols.bg === "rgb(16, 23, 21)" && darkCols.theme === "dark", JSON.stringify(darkCols));
+
+// 对比度计算
+function lum(rgbStr) {
+  const m = rgbStr.match(/rgba?\((\d+), (\d+), (\d+)/);
+  if (!m) return 0;
+  const [r, g, b] = m.slice(1).map(v => v / 255).map(v => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+function contrast(a, b) {
+  const l1 = lum(a), l2 = lum(b);
+  const [hi, lo] = l1 > l2 ? [l1, l2] : [l2, l1];
+  return (hi + 0.05) / (lo + 0.05);
+}
+const lightCR = contrast(lightCols.ink, lightCols.bg);
+const lightCR3 = contrast(lightCols.ink3, lightCols.bg);
+console.log(`INFO  白天 h1 对比度 ${lightCR.toFixed(2)}:1，辅助文字 ${lightCR3.toFixed(2)}:1`);
+check("白天 h1 对比度 ≥ 7:1", lightCR >= 7);
+check("白天辅助文字对比度 ≥ 4.5:1", lightCR3 >= 4.5);
+const darkCR = contrast(darkCols.ink, darkCols.bg);
+const darkCR3 = contrast(darkCols.ink3, darkCols.bg);
+console.log(`INFO  夜间 h1 对比度 ${darkCR.toFixed(2)}:1，辅助文字 ${darkCR3.toFixed(2)}:1`);
+check("夜间 h1 对比度 ≥ 7:1", darkCR >= 7);
+check("夜间辅助文字对比度 ≥ 4.5:1", darkCR3 >= 4.5);
+
+// ---- reduced-motion：reveal 内容立即可见 ----
+await cdp.send("Emulation.setEmulatedMedia", {
+  media: "screen",
+  features: [{ name: "prefers-reduced-motion", value: "reduce" }],
+});
+await cdp.send("Page.navigate", { url: "http://localhost:8099/" });
+await sleep(1800);
+const reduced = await cdp.eval(`(() => {
+  const hidden = [...document.querySelectorAll(".js .reveal")].filter(el => getComputedStyle(el).opacity !== "1").length;
+  const smooth = getComputedStyle(document.documentElement).scrollBehavior;
+  return { hiddenReveals: hidden, scrollBehavior: smooth };
+})()`);
+check("reduced-motion 下 reveal 全部可见", reduced.hiddenReveals === 0, `hidden=${reduced.hiddenReveals}`);
+check("reduced-motion 下禁用平滑滚动", reduced.scrollBehavior === "auto", `behavior=${reduced.scrollBehavior}`);
+await cdp.send("Emulation.setEmulatedMedia", { media: "screen", features: [] });
+
+// ---- 敏感信息检查（所有页面源码） ----
+const secrets = await cdp.eval(`(async () => {
+  const pats = ["api[_-]?key", "bearer ", "client[_-]?secret", "password", "BEGIN.*PRIVATE KEY", "sk-"];
+  const out = [];
+  for (const p of ["/", "/features/", "/privacy/", "/terms/", "/support/", "/safety/"]) {
+    const res = await fetch(p);
+    const html = await res.text();
+    for (const re of pats) {
+      const m = html.toLowerCase().match(new RegExp(re));
+      if (m) out.push(p + ":" + re);
+    }
+  }
+  return out;
+})()`);
+check("全站无敏感信息（密钥/口令）", secrets.length === 0, JSON.stringify(secrets));
+
+// 全站链接（所有页面锚点/路径）
+for (const p of ["privacy/", "terms/", "support/", "safety/", "features/"]) {
+  await goto("http://localhost:8099/" + p, 1440, 1200);
+  const audit = await cdp.eval(`(() => {
+    const hrefs = [...document.querySelectorAll("a[href]")].map(a => a.getAttribute("href"));
+    const badAnchor = hrefs.filter(h => h.startsWith("#") && h.length > 1 && !document.getElementById(h.slice(1)));
+    const badRel = hrefs.filter(h => /^\\/(?!privacy|terms|support|safety|features|index|sitemap|assets|favicon|app-icon|robots)/.test(h));
+    return { badAnchor, badRel: badRel.filter(h => !h.startsWith("/#")) };
+  })()`);
+  check(`${p} 页锚点有效`, audit.badAnchor.length === 0, JSON.stringify(audit.badAnchor));
+  check(`${p} 页链接目标有效`, audit.badRel.length === 0, JSON.stringify(audit.badRel));
+}
+
+console.log("\n===== 汇总 =====");
+const failed = results.filter(r => !r.ok);
+console.log(`共 ${results.length} 项，通过 ${results.length - failed.length}，失败 ${failed.length}`);
+failed.forEach(f => console.log("  ✗", f.name));
+cdp.close();
+chrome.kill();
+process.exit(failed.length ? 1 : 0);

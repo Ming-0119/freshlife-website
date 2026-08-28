@@ -1,0 +1,71 @@
+{
+  "site": {
+    "name": "FreshLife",
+    "domain": "https://www.freshlifeapp.cn",
+    "language": "zh-CN",
+    "copyrightYear": 2026,
+    "developer": "Ming（个人开发者）",
+    "appStoreStatus": "preparing",
+    "appVersion": "1.0.0"
+  },
+  "nav": [
+    { "label": "产品演示", "href": "/#product" },
+    { "label": "为什么", "href": "/#why" },
+    { "label": "FreshLife AI", "href": "/#ai" },
+    { "label": "隐私与安全", "href": "/#privacy" }
+  ],
+  "footerProductLinks": [
+    { "label": "完整功能", "href": "/features/" },
+    { "label": "产品演示（iPhone · iPad）", "href": "/#product" },
+    { "label": "记录方式", "href": "/#add" },
+    { "label": "FreshLife AI", "href": "/#ai" },
+    { "label": "上线状态", "href": "/#download" }
+  ],
+  "footerLegalLinks": [
+    { "label": "隐私政策", "href": "/privacy/" },
+    { "label": "使用条款", "href": "/terms/" },
+    { "label": "帮助中心", "href": "/support/" },
+    { "label": "安全与透明度", "href": "/safety/" }
+  ],
+  "pages": {
+    "index": {
+      "title": "FreshLife — 记住家里有什么，吃得更从容",
+      "description": "FreshLife 是本地优先的家庭食物管理应用：库存、临期提醒、根据现有食材规划餐食、购物清单，iPhone 与 iPad 通用，无需注册账号。",
+      "path": "index.html"
+    },
+    "features": {
+      "title": "完整功能 — FreshLife",
+      "description": "FreshLife 功能一览：库存与临期提醒、四种录入方式、餐食与烹饪、购物清单、iPhone 与 iPad、隐私与数据控制、FreshLife AI。每项功能都写明能帮什么、怎么用、注意什么、当前状态。",
+      "path": "features/index.html"
+    },
+    "privacy": {
+      "title": "隐私政策 — FreshLife",
+      "description": "FreshLife 隐私政策：本地优先、无广告 SDK、无跨 App 追踪，说明可选 AI 与数据控制方式。",
+      "path": "privacy/index.html",
+      "content": "privacy.html"
+    },
+    "terms": {
+      "title": "使用条款 — FreshLife",
+      "description": "FreshLife 使用条款：产品用途、非医疗建议、AI 内容边界、数据与设备责任。",
+      "path": "terms/index.html",
+      "content": "terms.html"
+    },
+    "support": {
+      "title": "帮助中心 — FreshLife",
+      "description": "FreshLife 帮助中心：添加食材、拍照与扫描、AI 助手、隐私与数据的常见问题。",
+      "path": "support/index.html",
+      "content": "support.html"
+    },
+    "safety": {
+      "title": "安全与透明度 — FreshLife",
+      "description": "FreshLife 安全与透明度：什么可以信任、什么必须复核，识别、餐食、营养与提醒的边界说明。",
+      "path": "safety/index.html",
+      "content": "safety.html"
+    },
+    "notfound": {
+      "title": "页面不存在 — FreshLife",
+      "description": "你访问的页面不存在或已被移动。返回 FreshLife 首页或前往帮助中心。",
+      "path": "404.html"
+    }
+  }
+}
