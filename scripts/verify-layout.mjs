@@ -173,18 +173,20 @@ for (const [label, width, height] of [
     const eyebrow = document.querySelector("#daily .eyebrow").getBoundingClientRect();
     const hero = document.querySelector(".hero").getBoundingClientRect();
     const daily = document.querySelector("#daily");
+    const dailyRect = daily.getBoundingClientRect();
     const dailyStyle = getComputedStyle(daily);
     const bodyStyle = getComputedStyle(document.body);
     return {
       gap: Math.round(eyebrow.top - status.bottom),
       heroHeight: Math.round(hero.height),
+      dailyTop: Math.round(dailyRect.top),
       viewportHeight: innerHeight,
       hasCue: !!document.querySelector(".hero-scroll-cue"),
       distinctSurface: dailyStyle.backgroundColor !== bodyStyle.backgroundColor,
       borderTop: parseFloat(dailyStyle.borderTopWidth),
     };
   })()`);
-  check(`${label}首屏与 Everyday 分区清晰`, !spacing.hasCue && spacing.distinctSurface && spacing.borderTop >= 1 && spacing.gap >= 80 && spacing.gap <= 145, JSON.stringify(spacing));
+  check(`${label}首屏独占初始视口且与 Everyday 分区清晰`, !spacing.hasCue && spacing.distinctSurface && spacing.borderTop >= 1 && spacing.gap >= 80 && spacing.dailyTop >= spacing.viewportHeight - 1, JSON.stringify(spacing));
 }
 
 // ---- 完整功能页 /features/ ----

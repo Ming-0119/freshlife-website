@@ -307,7 +307,14 @@ main { animation: pageIn 0.45s ease; }
 }
 
 /* ---------- Hero ---------- */
-.hero { padding: 64px 0 24px; text-align: center; position: relative; overflow: clip; }
+.hero {
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100svh - var(--header-h));
+  padding: 64px 0 24px;
+  display: grid; align-items: center;
+  text-align: center; position: relative; overflow: clip;
+}
+.hero > .container { width: 100%; }
 .hero-aura {
   position: absolute; inset: -200px -20% auto; height: 560px; z-index: -1;
   background:
