@@ -428,9 +428,9 @@
     navTargets.forEach(function (target) { navIO.observe(target); });
   }
 
-  /* ---------- Hero 滚动收束（很轻） ----------
-     rAF 节流，只写 --hero-shrink 一个 CSS 变量；页面隐藏时不更新；
-     只做 transform/opacity，首屏最多位移 20px、淡化 35%。 */
+  /* ---------- Hero 与第二屏连续交接 ----------
+     rAF 节流，只写两个 CSS 变量；页面隐藏时不更新；
+     首屏向上收束时，第二屏同步轻微上移，避免两段像静态海报一样断开。 */
   var heroEl = document.querySelector(".hero");
   var headerEl = document.querySelector(".site-header");
   if ((heroEl || headerEl) && !reduceMotion) {
@@ -443,6 +443,7 @@
       if (heroEl) {
         var p = Math.min(1, y / (window.innerHeight * 0.5));
         heroEl.style.setProperty("--hero-shrink", p.toFixed(4));
+        root.style.setProperty("--hero-progress", p.toFixed(4));
       }
     }
     window.addEventListener("scroll", function () {

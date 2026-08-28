@@ -172,13 +172,15 @@ for (const [label, width, height] of [
     const status = document.querySelector(".hero-status").getBoundingClientRect();
     const eyebrow = document.querySelector("#daily .eyebrow").getBoundingClientRect();
     const hero = document.querySelector(".hero").getBoundingClientRect();
+    const cue = document.querySelector(".hero-scroll-cue");
     return {
       gap: Math.round(eyebrow.top - status.bottom),
       heroHeight: Math.round(hero.height),
       viewportHeight: innerHeight,
+      cue: !!cue && cue.getAttribute("href") === "#daily" && Math.round(cue.getBoundingClientRect().height) >= 44,
     };
   })()`);
-  check(`${label}首屏衔接不过度留白`, spacing.gap >= 80 && spacing.gap <= 140, JSON.stringify(spacing));
+  check(`${label}首屏衔接有连续引导`, spacing.cue && spacing.gap >= 60 && spacing.gap <= 115, JSON.stringify(spacing));
 }
 
 // ---- 完整功能页 /features/ ----
@@ -245,6 +247,18 @@ const motionSetup = await cdp.eval(`(() => ({
 }))()`);
 check("移动菜单关闭时不可交互", motionSetup.menuHidden);
 check("同组场景卡按 55ms 轻微错峰", JSON.stringify(motionSetup.delays) === JSON.stringify(["0ms", "55ms", "110ms"]), JSON.stringify(motionSetup.delays));
+await cdp.eval(`scrollTo(0, Math.round(innerHeight * 0.24))`);
+await sleep(420);
+const heroHandoff = await cdp.eval(`(() => ({
+  progress: Number(getComputedStyle(document.documentElement).getPropertyValue("--hero-progress") || 0),
+  heroOpacity: Number(getComputedStyle(document.querySelector(".hero .container")).opacity),
+  dailyTransform: getComputedStyle(document.querySelector("#daily")).transform,
+}))()`);
+check("首屏与第二屏随滚动连续交接",
+  heroHandoff.progress > 0.25 && heroHandoff.heroOpacity < 0.9 && heroHandoff.dailyTransform !== "none",
+  JSON.stringify(heroHandoff));
+await cdp.eval(`scrollTo(0, 0)`);
+await sleep(220);
 await cdp.eval(`document.getElementById("nav-toggle").click()`);
 await sleep(450);
 const menuMotion = await cdp.eval(`(() => {
@@ -372,10 +386,13 @@ await sleep(1800);
 const reduced = await cdp.eval(`(() => {
   const hidden = [...document.querySelectorAll(".js .reveal")].filter(el => getComputedStyle(el).opacity !== "1").length;
   const smooth = getComputedStyle(document.documentElement).scrollBehavior;
-  return { hiddenReveals: hidden, scrollBehavior: smooth };
+  const cueAnimation = getComputedStyle(document.querySelector(".hero-scroll-cue i"), "::after").animationName;
+  const dailyTransform = getComputedStyle(document.querySelector("#daily")).transform;
+  return { hiddenReveals: hidden, scrollBehavior: smooth, cueAnimation, dailyTransform };
 })()`);
 check("reduced-motion 下 reveal 全部可见", reduced.hiddenReveals === 0, `hidden=${reduced.hiddenReveals}`);
 check("reduced-motion 下禁用平滑滚动", reduced.scrollBehavior === "auto", `behavior=${reduced.scrollBehavior}`);
+check("reduced-motion 下首屏引导保持静态", reduced.cueAnimation === "none" && reduced.dailyTransform === "none", JSON.stringify(reduced));
 await cdp.send("Emulation.setEmulatedMedia", { media: "screen", features: [] });
 
 // ---- 敏感信息检查（所有页面源码） ----
