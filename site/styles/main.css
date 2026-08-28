@@ -307,7 +307,7 @@ main { animation: pageIn 0.45s ease; }
 }
 
 /* ---------- Hero ---------- */
-.hero { padding: 64px 0 8px; text-align: center; position: relative; overflow: clip; }
+.hero { padding: 64px 0 24px; text-align: center; position: relative; overflow: clip; }
 .hero-aura {
   position: absolute; inset: -200px -20% auto; height: 560px; z-index: -1;
   background:
@@ -349,25 +349,13 @@ html[lang="en"] .hero h1 { max-width: 20ch; }
 }
 .hero-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
 
-/* 首屏向下的连续线索：既填补视觉断层，也明确下一步；动效只使用 transform。 */
-.hero-scroll-cue {
-  width: max-content; min-width: 44px; min-height: 44px;
-  margin: 10px auto 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 6px;
-  color: var(--ink-3); font-size: 10.5px; font-weight: 700; line-height: 1;
-  letter-spacing: 0.1em; text-transform: uppercase;
+/* 首屏干净收尾；Everyday 以完整表面层进入，不再用细线把两个区块硬连起来。 */
+#daily {
+  position: relative;
+  padding-top: 64px;
+  background: var(--surface);
+  border-block: 1px solid var(--line-strong);
 }
-.hero-scroll-cue:hover { color: var(--green-strong); }
-.hero-scroll-cue i {
-  position: relative; display: block; width: 1px; height: 22px; overflow: hidden;
-  background: var(--line-strong);
-}
-.hero-scroll-cue i::after {
-  content: ""; position: absolute; left: 0; top: -70%; width: 1px; height: 70%;
-  background: linear-gradient(180deg, transparent, var(--green));
-}
-
-/* 首屏与“每天怎么用”属于同一段叙事，避免两个区块的上下留白重复相加。 */
-#daily { padding-top: 18px; position: relative; }
 
 /* Hero 滚动收束（很轻：JS 只更新 --hero-shrink，只动 transform/opacity）
    首屏始终可读：最大位移 20px、最大淡化 35%；reduced-motion 下无效果 */
@@ -381,8 +369,7 @@ html[lang="en"] .hero h1 { max-width: 20ch; }
 /* 首屏按“品牌 → 定位 → 解释 → 行动 → 信任”依次进入，形成克制的产品发布节奏。 */
 @media (prefers-reduced-motion: no-preference) {
   .js .hero-lockup, .js .hero h1, .js .hero .sub,
-  .js .hero .hero-actions, .js .hero .hero-assurances, .js .hero .hero-status,
-  .js .hero .hero-scroll-cue {
+  .js .hero .hero-actions, .js .hero .hero-assurances, .js .hero .hero-status {
     opacity: 0; animation: heroElementIn 0.76s var(--ease-spring) forwards;
   }
   .js .hero-lockup { animation-delay: 40ms; }
@@ -391,9 +378,7 @@ html[lang="en"] .hero h1 { max-width: 20ch; }
   .js .hero .hero-actions { animation-delay: 320ms; }
   .js .hero .hero-assurances { animation-delay: 410ms; }
   .js .hero .hero-status { animation-delay: 490ms; }
-  .js .hero .hero-scroll-cue { animation-delay: 570ms; }
   .hero-lockup img { animation: heroIconFloat 5.8s ease-in-out 1.1s infinite; }
-  .hero-scroll-cue i::after { animation: heroCueTravel 1.75s var(--ease-out) 0.9s infinite; }
   .js #daily { transform: translateY(calc(var(--hero-progress, 0) * -20px)); }
 }
 @keyframes heroElementIn {
@@ -404,13 +389,6 @@ html[lang="en"] .hero h1 { max-width: 20ch; }
   0%, 100% { transform: translateY(0) rotate(0); }
   50% { transform: translateY(-3px) rotate(-1deg); }
 }
-@keyframes heroCueTravel {
-  0% { transform: translateY(0); opacity: 0; }
-  24% { opacity: 1; }
-  78% { opacity: 1; }
-  100% { transform: translateY(36px); opacity: 0; }
-}
-
 /* ---------- 按钮 ---------- */
 .button {
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
@@ -1494,7 +1472,7 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 
 @media (max-width: 960px) {
   .section { padding: 72px 0; }
-  #daily { padding-top: 18px; }
+  #daily { padding-top: 60px; }
   .privacy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap-inline: 24px; }
   .why-grid--outcomes, .feature-glance-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nav-links { display: none; }
@@ -1544,8 +1522,8 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   .roadmap-rail-step { padding-left: 64px; padding-right: 0; }
   .roadmap-rail-number { position: absolute; left: 0; top: 0; margin: 0; }
   .feature-glance-card { padding: 22px 20px; }
-  .hero { padding: 48px 0 8px; }
-  #daily { padding-top: 16px; }
+  .hero { padding: 48px 0 20px; }
+  #daily { padding-top: 52px; }
   .section-head { margin-bottom: 40px; }
   .nav-links { display: none; }
   .nav-toggle { display: inline-flex; }

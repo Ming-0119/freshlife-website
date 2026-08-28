@@ -160,7 +160,7 @@ const ipad320 = await cdp.eval(`(() => {
 })()`);
 check("320px 下 iPad 演示不超宽", ipad320.within, `width=${ipad320.w}px`);
 
-// ---- 首屏与下一段的节奏：防止上下 padding 叠成大片无意义留白 ----
+// ---- 首屏与下一段的节奏：两个完整区块，禁止细竖线式伪分隔 ----
 for (const [label, width, height] of [
   ["手机", 390, 844],
   ["iPad 竖屏", 768, 1024],
@@ -172,15 +172,19 @@ for (const [label, width, height] of [
     const status = document.querySelector(".hero-status").getBoundingClientRect();
     const eyebrow = document.querySelector("#daily .eyebrow").getBoundingClientRect();
     const hero = document.querySelector(".hero").getBoundingClientRect();
-    const cue = document.querySelector(".hero-scroll-cue");
+    const daily = document.querySelector("#daily");
+    const dailyStyle = getComputedStyle(daily);
+    const bodyStyle = getComputedStyle(document.body);
     return {
       gap: Math.round(eyebrow.top - status.bottom),
       heroHeight: Math.round(hero.height),
       viewportHeight: innerHeight,
-      cue: !!cue && cue.getAttribute("href") === "#daily" && Math.round(cue.getBoundingClientRect().height) >= 44,
+      hasCue: !!document.querySelector(".hero-scroll-cue"),
+      distinctSurface: dailyStyle.backgroundColor !== bodyStyle.backgroundColor,
+      borderTop: parseFloat(dailyStyle.borderTopWidth),
     };
   })()`);
-  check(`${label}首屏衔接有连续引导`, spacing.cue && spacing.gap >= 60 && spacing.gap <= 115, JSON.stringify(spacing));
+  check(`${label}首屏与 Everyday 分区清晰`, !spacing.hasCue && spacing.distinctSurface && spacing.borderTop >= 1 && spacing.gap >= 80 && spacing.gap <= 145, JSON.stringify(spacing));
 }
 
 // ---- 完整功能页 /features/ ----
@@ -386,13 +390,12 @@ await sleep(1800);
 const reduced = await cdp.eval(`(() => {
   const hidden = [...document.querySelectorAll(".js .reveal")].filter(el => getComputedStyle(el).opacity !== "1").length;
   const smooth = getComputedStyle(document.documentElement).scrollBehavior;
-  const cueAnimation = getComputedStyle(document.querySelector(".hero-scroll-cue i"), "::after").animationName;
   const dailyTransform = getComputedStyle(document.querySelector("#daily")).transform;
-  return { hiddenReveals: hidden, scrollBehavior: smooth, cueAnimation, dailyTransform };
+  return { hiddenReveals: hidden, scrollBehavior: smooth, dailyTransform };
 })()`);
 check("reduced-motion 下 reveal 全部可见", reduced.hiddenReveals === 0, `hidden=${reduced.hiddenReveals}`);
 check("reduced-motion 下禁用平滑滚动", reduced.scrollBehavior === "auto", `behavior=${reduced.scrollBehavior}`);
-check("reduced-motion 下首屏引导保持静态", reduced.cueAnimation === "none" && reduced.dailyTransform === "none", JSON.stringify(reduced));
+check("reduced-motion 下区块交接保持静态", reduced.dailyTransform === "none", JSON.stringify(reduced));
 await cdp.send("Emulation.setEmulatedMedia", { media: "screen", features: [] });
 
 // ---- 敏感信息检查（所有页面源码） ----
