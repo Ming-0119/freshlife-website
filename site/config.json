@@ -4,16 +4,31 @@
     "domain": "https://www.freshlifeapp.cn",
     "language": "zh-CN",
     "copyrightYear": 2026,
-    "developer": "Ming（个人开发者）",
+    "developer": "闵启航（个人开发者）",
     "appStoreStatus": "preparing",
     "appVersion": "1.0.0"
   },
   "nav": [
-    { "label": "产品演示", "href": "/#product" },
-    { "label": "为什么", "href": "/#why" },
-    { "label": "FreshLife AI", "href": "/#ai" },
-    { "label": "隐私与安全", "href": "/#privacy" },
-    { "label": "理念", "href": "/philosophy/" }
+    {
+      "label": "产品演示",
+      "href": "/#product"
+    },
+    {
+      "label": "为什么",
+      "href": "/#why"
+    },
+    {
+      "label": "FreshLife AI",
+      "href": "/#ai"
+    },
+    {
+      "label": "隐私与安全",
+      "href": "/#privacy"
+    },
+    {
+      "label": "理念",
+      "href": "/philosophy/"
+    }
   ],
   "mobileCta": {
     "href": "/features/",
@@ -21,18 +36,48 @@
     "hint": "完整功能与上线状态"
   },
   "footerProductLinks": [
-    { "label": "完整功能", "href": "/features/" },
-    { "label": "产品演示（iPhone · iPad）", "href": "/#product" },
-    { "label": "记录方式", "href": "/#add" },
-    { "label": "FreshLife AI", "href": "/#ai" },
-    { "label": "我们的理念", "href": "/philosophy/" },
-    { "label": "上线状态", "href": "/#download" }
+    {
+      "label": "完整功能",
+      "href": "/features/"
+    },
+    {
+      "label": "产品演示（iPhone · iPad）",
+      "href": "/#product"
+    },
+    {
+      "label": "记录方式",
+      "href": "/#add"
+    },
+    {
+      "label": "FreshLife AI",
+      "href": "/#ai"
+    },
+    {
+      "label": "我们的理念",
+      "href": "/philosophy/"
+    },
+    {
+      "label": "上线状态",
+      "href": "/#download"
+    }
   ],
   "footerLegalLinks": [
-    { "label": "隐私政策", "href": "/privacy/" },
-    { "label": "使用条款", "href": "/terms/" },
-    { "label": "帮助中心", "href": "/support/" },
-    { "label": "安全与透明度", "href": "/safety/" }
+    {
+      "label": "隐私政策",
+      "href": "/privacy/"
+    },
+    {
+      "label": "使用条款",
+      "href": "/terms/"
+    },
+    {
+      "label": "帮助中心",
+      "href": "/support/"
+    },
+    {
+      "label": "安全与透明度",
+      "href": "/safety/"
+    }
   ],
   "pages": {
     "index": {
