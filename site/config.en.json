@@ -11,23 +11,28 @@
   "nav": [
     {
       "label": "Demo",
-      "href": "/en/#product"
+      "href": "/en/#product",
+      "hint": "Apple, Android and HarmonyOS"
     },
     {
       "label": "Why",
-      "href": "/en/#why"
+      "href": "/en/#why",
+      "hint": "Everyday use cases"
     },
     {
       "label": "FreshLife AI",
-      "href": "/en/#ai"
+      "href": "/en/#ai",
+      "hint": "Recognition and suggestion limits"
     },
     {
       "label": "Privacy",
-      "href": "/en/#privacy"
+      "href": "/en/#privacy",
+      "hint": "How local data is protected"
     },
     {
       "label": "Philosophy",
-      "href": "/en/philosophy/"
+      "href": "/en/philosophy/",
+      "hint": "Product direction and plans"
     }
   ],
   "mobileCta": {

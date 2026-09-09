@@ -25,6 +25,7 @@ import os
 import re
 import shutil
 import sys
+from urllib.parse import urlsplit, urljoin, unquote
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -363,8 +364,8 @@ def build_nav_mobile(cfg):
     links = []
     for item in cfg["nav"]:
         links.append(
-            '<a href="%s">%s<small>FreshLife</small></a>'
-            % (esc(item["href"]), esc(item["label"]))
+            '<a href="%s">%s<small>%s</small></a>'
+            % (esc(item["href"]), esc(item["label"]), esc(item.get("hint", "")))
         )
     cta = cfg.get("mobileCta", {"href": "/features/", "label": "查看完整功能", "hint": "完整功能与上线状态"})
     links.append('<a href="%s">%s<small>%s</small></a>'
@@ -949,6 +950,22 @@ def main():
 def validate(docs, expected_files):
     """校验：内部链接存在、锚点 id 存在、canonical/hreflang 成对、无未替换占位符。"""
     errors = []
+    page_ids = {name: set(re.findall(r'id="([^\"]+)"', html)) for name, html in docs}
+    for name, html in docs:
+        raw_ids = re.findall(r'id="([^\"]+)"', html)
+        if len(raw_ids) != len(set(raw_ids)):
+            errors.append("%s: 存在重复 id" % name)
+        for attribute, value in re.findall(r'(href|src)="([^\"]+)"', html):
+            url = urlsplit(urljoin("https://www.freshlifeapp.cn/" + name, value))
+            if url.netloc != "www.freshlifeapp.cn" or url.scheme not in ("https", "http"):
+                continue
+            target = unquote(url.path).lstrip("/") or "index.html"
+            if target.endswith("/"):
+                target += "index.html"
+            if target not in expected_files:
+                errors.append("%s: %s 目标不存在 %s" % (name, attribute, value))
+            elif attribute == "href" and url.fragment and target in page_ids and unquote(url.fragment) not in page_ids[target]:
+                errors.append("%s: 跨页锚点不存在 %s" % (name, value))
     for name, html in docs:
         ids = set(re.findall(r'id="([^"]+)"', html))
         leftover = re.findall(r"\{\{[a-z_]+\}\}", html)

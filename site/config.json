@@ -11,23 +11,28 @@
   "nav": [
     {
       "label": "产品演示",
-      "href": "/#product"
+      "href": "/#product",
+      "hint": "苹果、安卓与鸿蒙"
     },
     {
       "label": "为什么",
-      "href": "/#why"
+      "href": "/#why",
+      "hint": "日常使用场景"
     },
     {
       "label": "FreshLife AI",
-      "href": "/#ai"
+      "href": "/#ai",
+      "hint": "识别与建议的边界"
     },
     {
       "label": "隐私与安全",
-      "href": "/#privacy"
+      "href": "/#privacy",
+      "hint": "本地数据如何保护"
     },
     {
       "label": "理念",
-      "href": "/philosophy/"
+      "href": "/philosophy/",
+      "hint": "产品方向与计划"
     }
   ],
   "mobileCta": {
