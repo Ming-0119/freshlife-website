@@ -32,8 +32,13 @@ export function consume(s,id,amount,kind,recordId,at) {
 }
 export function purchase(s,id,item) {
  if(s.items.length>=MAX_ITEMS) throw new Error('库存已满，请先整理库存。');
- if(!s.shopping.some(x=>x.id===id)) throw new Error('这条清单已被其他页面处理。');
- s.items.push(item); s.shopping=s.shopping.filter(x=>x.id!==id); return validateState(s);
+ const planned=s.shopping.find(x=>x.id===id);
+ if(!planned) throw new Error('这条清单已被其他页面处理。');
+ if(item.unit!==planned.unit) throw new Error('请保持与购物清单相同的单位；如需换算，先编辑购物清单。');
+ if(!qty(item.quantity)) throw new Error('请填写有效的实际购买数量。');
+ const remaining=round(planned.quantity-item.quantity);
+ const shopping=remaining>0?s.shopping.map(x=>x.id===id?{...x,quantity:remaining}:x):s.shopping.filter(x=>x.id!==id);
+ return validateState({...s,items:[...s.items,item],shopping});
 }
 
 export function matchingHistory(history, query='', kind='all') {
