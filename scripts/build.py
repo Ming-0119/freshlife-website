@@ -832,9 +832,14 @@ def main():
     # Local-only web app, delivered by the existing static hosting pipeline.
     app_sources = sorted((STATIC / "app").iterdir())
     app_hash = hashlib.sha256(b"".join(p.read_bytes() for p in app_sources if p.is_file())).hexdigest()[:12]
+    app_asset_hashes = {"/app/" + p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+                        for p in app_sources if p.is_file() and p.name != "sw.js"}
+    app_asset_hashes["/app/"] = app_asset_hashes["/app/index.html"]
+    app_asset_hashes["/app-icon.png"] = hashlib.sha256((STATIC / "app-icon.png").read_bytes()).hexdigest()
     for p in app_sources:
         if p.is_file():
             content = p.read_bytes().replace(b"__BUILD__", app_hash.encode())
+            content = content.replace(b"__ASSET_HASHES__", json.dumps(app_asset_hashes).encode())
             changed += write_if_changed(ROOT / "app" / p.name, content)
 
     # 资产

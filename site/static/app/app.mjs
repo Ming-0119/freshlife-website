@@ -60,7 +60,15 @@ $('#date-label').textContent=new Date().toLocaleDateString('zh-CN',{month:'long'
 try{db=await openDB();state=await read();db.onversionchange=()=>{db.close();db=null;fatal('本地存储已更新，请刷新页面后继续。');};if('BroadcastChannel' in window){channel=new BroadcastChannel('freshlife-web');channel.onmessage=async()=>{try{state=await read();render();}catch(e){fatal(message(e));}};}}catch(err){fatal('本地数据未能读取。'+message(err)+' 未覆盖已有数据。');db?.close();db=null;}
 setView(location.hash.slice(1));window.addEventListener('hashchange',()=>setView(location.hash.slice(1)));
 document.addEventListener('visibilitychange',async()=>{if(!document.hidden&&db){try{state=await read();render();}catch(e){fatal(message(e));}}});setInterval(render,60000);
-if('serviceWorker' in navigator){navigator.serviceWorker.register('/app/sw.js',{scope:'/app/'}).then(()=>navigator.serviceWorker.ready).then(()=>$('#offline-status').textContent='离线缓存已就绪。这个浏览器再次打开时可离线使用。').catch(()=>$('#offline-status').textContent=navigator.serviceWorker.controller?'已通过离线缓存打开；连接网络后检查更新。':'离线缓存未就绪，重新打开页面时仍需要网络。');}else $('#offline-status').textContent='此浏览器不支持离线缓存，重新打开页面时需要网络。';
+if('serviceWorker' in navigator){
+ navigator.serviceWorker.register('/app/sw.js',{scope:'/app/'}).then(async registration=>{
+  const showUpdate=()=>{if(registration.waiting)$('#offline-status').textContent='新版本已准备好。请先保存填写内容，关闭所有 FreshLife 网页版标签后重新打开，即可使用更新。';};
+  registration.addEventListener('updatefound',()=>{registration.installing?.addEventListener('statechange',showUpdate);});
+  await navigator.serviceWorker.ready;
+  $('#offline-status').textContent='离线缓存已就绪。再次打开无需等待网络；更新不会自动打断填写。';
+  showUpdate();
+ }).catch(()=>$('#offline-status').textContent=navigator.serviceWorker.controller?'正在使用已缓存版本；连接网络后检查更新。':'离线缓存未就绪，重新打开页面时仍需要网络。');
+}else $('#offline-status').textContent='此浏览器不支持离线缓存，重新打开页面时需要网络。';
 
 document.addEventListener('keydown',e=>{if(e.key==='/'&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!e.target.closest('input,textarea,select,[contenteditable=true]')&&!document.querySelector('dialog[open]')){e.preventDefault();setView('pantry');$('#search').focus();}});
 
