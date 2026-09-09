@@ -289,12 +289,61 @@
     });
   }
 
+  /* 功能目录：动态避让两层导航，并以当前位置反馈滚动进度。 */
+  var featureIndex = document.querySelector(".fpage-index");
+  if (featureIndex) {
+    var featureLinks = Array.prototype.slice.call(featureIndex.querySelectorAll('a[href^="#"]'));
+    var featureSections = featureLinks.map(function (a) { return document.getElementById(a.hash.slice(1)); });
+    var featureOffset = 0;
+    function measureFeatureIndex() {
+      var header = document.querySelector(".site-header");
+      featureOffset = (header ? header.getBoundingClientRect().height : 62) + featureIndex.getBoundingClientRect().height + 20;
+      root.style.setProperty("--feature-scroll-offset", featureOffset + "px");
+    }
+    var lastFeature = -2;
+    function updateFeatureIndex() {
+      var active = -1;
+      featureSections.forEach(function (section, i) {
+        if (section && section.getBoundingClientRect().top <= featureOffset + 10) active = i;
+      });
+      if (active !== lastFeature && active >= 0) {
+        var rail = featureIndex.querySelector(".container");
+        var item = featureLinks[active];
+        if (rail && rail.scrollWidth > rail.clientWidth) {
+          var left = item.getBoundingClientRect().left - rail.getBoundingClientRect().left + rail.scrollLeft;
+          rail.scrollTo({ left: Math.max(0, left - (rail.clientWidth - item.offsetWidth) / 2), behavior: "instant" });
+        }
+      }
+      lastFeature = active;
+      featureLinks.forEach(function (a, i) {
+        if (i === active) a.setAttribute("aria-current", "location");
+        else a.removeAttribute("aria-current");
+      });
+    }
+    var featureTick = false;
+    window.addEventListener("scroll", function () {
+      if (featureTick) return;
+      featureTick = true;
+      requestAnimationFrame(function () { updateFeatureIndex(); featureTick = false; });
+    }, { passive: true });
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(function () { measureFeatureIndex(); updateFeatureIndex(); }).observe(featureIndex);
+    } else window.addEventListener("resize", function () { measureFeatureIndex(); updateFeatureIndex(); });
+    measureFeatureIndex();
+    requestAnimationFrame(function () {
+      var target = featureSections.find(function (section) { return section && "#" + section.id === location.hash; });
+      if (target) target.scrollIntoView({ behavior: "instant", block: "start" });
+      updateFeatureIndex();
+    });
+  }
+
   /* ---------- 滚动显现 ---------- */
+  document.querySelectorAll(".fsec-head, .fcard, .member-preview").forEach(function (el) { el.classList.add("reveal"); });
   var reveals = document.querySelectorAll(".reveal");
-  /* 同一组卡片轻微错峰，最大延迟控制在 220ms，保持节奏而不拖沓。 */
+  /* 同一组卡片轻微错峰，最大延迟控制在 120ms，保持节奏而不拖沓。 */
   document.querySelectorAll(
     ".daily-grid, .why-grid, .method-grid, .ai-grid, .vision-grid, " +
-    ".roadmap-grid, .roadmap-rail, .feature-glance-grid, .privacy-grid, .misread-grid"
+    ".roadmap-grid, .roadmap-rail, .feature-glance-grid, .privacy-grid, .misread-grid, .fsec-grid"
   ).forEach(function (group) {
     Array.prototype.slice.call(group.children).forEach(function (child, i) {
       if (child.classList.contains("reveal")) {

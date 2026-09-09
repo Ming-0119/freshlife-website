@@ -1670,3 +1670,16 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 @media(hover:none){.daily-card:hover,.feature-glance-card:hover,.method-card:hover,.why-card:hover,.button:hover{transform:none;box-shadow:var(--shadow-sm)}}
 @media(prefers-reduced-motion:reduce){html.theme-switching body,html.theme-switching .site-header,html.theme-switching .section--alt,html.theme-switching .theme-toggle{transition:none!important}.daily-card:hover,.feature-glance-card:hover,.method-card:hover,.why-card:hover,.button:hover{transform:none}.js .reveal{transition-delay:0ms!important}}
 @media(max-width:600px){.member-layout h2{font-size:28px;line-height:1.35}.member-pass h3{font-size:24px}.member-pass-top{flex-wrap:wrap}.member-pass-fields{flex-wrap:wrap}.member-layout{gap:32px}}
+
+/* Functional motion: hover, keyboard focus and press share the same cues. */
+.fsec{scroll-margin-top:var(--feature-scroll-offset,150px)}
+.fpage-index a{display:inline-flex;align-items:center;min-height:44px;transition:color var(--duration-fast) ease,background-color var(--duration-fast) ease,border-color var(--duration-fast) ease,transform var(--duration-fast) ease}
+.fpage-index a[aria-current="location"]{color:var(--green-strong);background:var(--green-soft);border-color:color-mix(in srgb,var(--green) 35%,var(--line));}
+.button,.nav-cta,.theme-toggle,.lang-switch,.fcard,.support-grid a{transition:transform var(--duration-fast) var(--ease-out),box-shadow var(--duration-medium) ease,border-color var(--duration-fast) ease,background-color var(--duration-fast) ease,color var(--duration-fast) ease}
+.button:active,.nav-cta:active,.theme-toggle:active,.lang-switch:active,.fpage-index a:active{transform:translateY(1px) scale(.985)}
+.fcard:focus-within{border-color:var(--green);box-shadow:var(--shadow-sm)}
+.fsec-more a,.footer-col a{transition:color var(--duration-fast) ease,text-decoration-color var(--duration-fast) ease;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:4px}
+.fsec-more a:hover,.footer-col a:hover,.fsec-more a:focus-visible,.footer-col a:focus-visible{text-decoration-color:currentColor}
+@media(hover:hover) and (pointer:fine){.fcard:hover{border-color:color-mix(in srgb,var(--green) 32%,var(--line));box-shadow:var(--shadow-sm)}.fcard--warn:hover{border-color:var(--amber)}.fpage-index a:hover{transform:translateY(-1px)}}
+@media(max-width:760px){.fpage-index .container{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;scroll-padding-inline:18px}.fpage-index a{white-space:nowrap;flex-shrink:0}.fpage-index b{display:none}.fpage-index{position:sticky;top:var(--header-h);padding-block:6px}}
+@media(prefers-reduced-motion:reduce){.button:active,.nav-cta:active,.theme-toggle:active,.lang-switch:active,.fpage-index a:active,.fpage-index a:hover{transform:none}.fcard,.fpage-index a{transition:none}}
