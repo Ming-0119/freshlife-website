@@ -31,9 +31,9 @@
     }
   ],
   "mobileCta": {
-    "href": "/en/features/",
-    "label": "All features",
-    "hint": "What’s here, and what’s coming"
+    "href": "/app/",
+    "label": "Open web app",
+    "hint": "Chinese · saved in this browser"
   },
   "footerProductLinks": [
     {

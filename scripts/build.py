@@ -315,8 +315,8 @@ def build_site_header(nav_html, nav_mobile_html, lang, page_key,
             aria_label=L["theme_mobile_aria"],
             label=L["theme_mobile_label"],
         ),
-        "nav_cta_href": esc(cta_href),
-        "nav_cta_label": esc(cta_label),
+        "nav_cta_href": "/app/",
+        "nav_cta_label": "打开网页版" if lang == "zh" else "Open web app",
     })
 
 

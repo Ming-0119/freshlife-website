@@ -1738,3 +1738,5 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
   .platform-steps { grid-template-columns:1fr; }
   .platform-steps li { padding:18px; }
 }
+
+.web-entry-note{font-size:13px;color:var(--ink-3);max-width:52ch;margin:0 auto 18px;line-height:1.8}

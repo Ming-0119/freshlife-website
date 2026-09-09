@@ -31,9 +31,9 @@
     }
   ],
   "mobileCta": {
-    "href": "/features/",
-    "label": "查看完整功能",
-    "hint": "完整功能与上线状态"
+    "href": "/app/",
+    "label": "打开网页版",
+    "hint": "无需注册 · 数据保存在当前浏览器"
   },
   "footerProductLinks": [
     {
