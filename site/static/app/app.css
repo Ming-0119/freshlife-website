@@ -17,3 +17,5 @@
 .item-actions button[data-action=delete],.item-actions button[data-action=delete-shop]{color:var(--sub);}
 @media(min-width:701px){.tools .search:focus-within{flex-grow:1.15;}.tools .search{transition:flex-grow .18s ease;}}
 @media(prefers-reduced-motion:reduce){.tools .search{transition:none;}}
+
+.list-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}#history-more{display:block;margin:20px auto 0}

@@ -34,3 +34,11 @@ export function purchase(s,id,item) {
  if(!s.shopping.some(x=>x.id===id)) throw new Error('这条清单已被其他页面处理。');
  s.items.push(item); s.shopping=s.shopping.filter(x=>x.id!==id); return validateState(s);
 }
+
+export function matchingHistory(history, query='', kind='all') {
+ const term=query.trim().toLocaleLowerCase();
+ return history.filter(x=>(kind==='all'||x.kind===kind)&&(!term||x.name.toLocaleLowerCase().includes(term))).sort((a,b)=>Date.parse(b.at)-Date.parse(a.at));
+}
+export function shoppingText(items) {
+ return 'FreshLife 购物清单\n'+items.map(x=>`□ ${x.name} · ${x.quantity} ${x.unit}`).join('\n');
+}

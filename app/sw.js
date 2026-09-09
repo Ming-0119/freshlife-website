@@ -1,4 +1,4 @@
-const CACHE='freshlife-web-shell-89678006df33';
+const CACHE='freshlife-web-shell-20e9db6d5ff6';
 const SHELL=['/app/','/app/index.html','/app/app.css','/app/app.mjs','/app/core.mjs','/app/manifest.webmanifest','/app-icon.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL))));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('freshlife-web-shell-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
