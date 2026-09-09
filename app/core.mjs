@@ -42,3 +42,12 @@ export function matchingHistory(history, query='', kind='all') {
 export function shoppingText(items) {
  return 'FreshLife 购物清单\n'+items.map(x=>`□ ${x.name} · ${x.quantity} ${x.unit}`).join('\n');
 }
+
+export function sortedInventory(items, order='expiry') {
+ const byDate=(a,b)=>a.expiry.localeCompare(b.expiry)||a.name.localeCompare(b.name,'zh-CN');
+ return [...items].sort(order==='name'?(a,b)=>a.name.localeCompare(b.name,'zh-CN')||byDate(a,b):order==='location'?(a,b)=>locations.indexOf(a.location)-locations.indexOf(b.location)||byDate(a,b):byDate);
+}
+export function matchingShopping(items, query='') {
+ const term=query.trim().toLocaleLowerCase();
+ return items.filter(x=>!term||x.name.toLocaleLowerCase().includes(term));
+}
