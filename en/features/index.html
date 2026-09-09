@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-fe4aa66c7d.css"/>
+<link rel="stylesheet" href="/assets/main-34cc88fc3e.css"/>
 </head>
 <body>
 
@@ -78,6 +78,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     <p class="kicker">All Features · Feature Overview</p>
     <h1>What FreshLife can do,<br/><em>explained in full.</em></h1>
     <p class="lead">Every section follows the same honest structure: what it helps with, how you use it, what to watch for, and where it stands today. “Built into version 1.0” is included in the build being prepared for release; “Planned” is not.</p>
+    <p class="platform-note">The detailed features below describe the iOS pre-release version. Use the platform links for current Android and native HarmonyOS capabilities.</p>
     <div class="fpage-status">
       <span class="status-dot" aria-hidden="true"></span>
       FreshLife is getting ready for the App Store
@@ -85,6 +86,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   </div>
 </section>
 
+<div class="container platform-entry"><span>Platform demos:</span><a href="/en/#demo-apple">Apple</a><a href="/en/#demo-android">Android</a><a href="/en/#demo-harmony">HarmonyOS</a></div>
 <nav class="fpage-index" aria-label="Feature directory">
   <div class="container">
     <b>On this page</b>
@@ -420,6 +422,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   </div>
 </footer>
 
-<script src="/assets/main-86c291a9db.js" defer></script>
+<script src="/assets/main-8c3d4cd2c0.js" defer></script>
 </body>
 </html>

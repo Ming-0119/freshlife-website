@@ -164,6 +164,46 @@
 
   document.querySelectorAll('[role="tablist"]').forEach(initTablist);
 
+  /* Platform tabs preserve the existing Apple device demo. */
+  var platformButtons = Array.prototype.slice.call(document.querySelectorAll("[data-platform]"));
+  function choosePlatform(key, updateUrl) {
+    if (!["apple", "android", "harmony"].includes(key)) return;
+    platformButtons.forEach(function (button) {
+      var selected = button.dataset.platform === key;
+      button.setAttribute("aria-selected", String(selected));
+      button.tabIndex = selected ? 0 : -1;
+      var panel = document.getElementById(button.getAttribute("aria-controls"));
+      if (panel) panel.hidden = !selected;
+    });
+    if (updateUrl) {
+      history.replaceState(null, "", "#demo-" + key);
+    }
+  }
+  platformButtons.forEach(function (button) {
+    button.addEventListener("click", function () { choosePlatform(button.dataset.platform, true); });
+  });
+  function platformFromHash() {
+    if (!platformButtons.length) return;
+    var key = location.hash.replace("#demo-", "");
+    if (["apple", "android", "harmony"].includes(key)) {
+      choosePlatform(key, false);
+      requestAnimationFrame(function () { document.getElementById("product").scrollIntoView({ behavior: "instant" }); });
+    }
+  }
+  if (platformButtons.length) { choosePlatform("apple", false); platformFromHash(); }
+  window.addEventListener("hashchange", platformFromHash);
+  var androidButtons = Array.prototype.slice.call(document.querySelectorAll("[data-android-shot]"));
+  function chooseAndroid(key) {
+    androidButtons.forEach(function (button) {
+      var selected = button.dataset.androidShot === key;
+      button.setAttribute("aria-selected", String(selected));
+      button.tabIndex = selected ? 0 : -1;
+      document.getElementById(button.getAttribute("aria-controls")).hidden = !selected;
+    });
+  }
+  androidButtons.forEach(function (button) { button.addEventListener("click", function () { chooseAndroid(button.dataset.androidShot); }); });
+  if (androidButtons.length) chooseAndroid("family");
+
   /* ---------- 手机演示：五个核心页面切换 ---------- */
   var switcher = document.querySelector("[data-tab-switch]");
   if (switcher) {

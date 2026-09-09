@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-fe4aa66c7d.css"/>
+<link rel="stylesheet" href="/assets/main-34cc88fc3e.css"/>
 </head>
 <body>
 
@@ -409,10 +409,10 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     <div class="container">
       <div class="section-head reveal">
         <p class="eyebrow">Product</p>
-        <h2>Quick to log on iPhone,<br/>easy to plan on iPad.</h2>
-        <p class="lead">FreshLife fits both iPhone and iPad. Your phone is for quick logging; the iPad’s wide layout is for reviewing and planning. Below are original interface demos on both devices, with sample data.</p>
+<h2>Your device.<br/>Your FreshLife.</h2><p class="lead">Choose a platform to see its interface, supported features and release status. Capabilities differ by version.</p>
       </div>
 
+<div class="platform-tabs" role="tablist" aria-label="Choose platform"><button type="button" role="tab" id="platform-apple" data-platform="apple" aria-controls="demo-apple" aria-selected="true" tabindex="0">Apple</button><button type="button" role="tab" id="platform-android" data-platform="android" aria-controls="demo-android" aria-selected="false" tabindex="-1">Android</button><button type="button" role="tab" id="platform-harmony" data-platform="harmony" aria-controls="demo-harmony" aria-selected="false" tabindex="-1">HarmonyOS</button></div><div class="platform-panel" id="demo-apple" role="tabpanel" aria-labelledby="platform-apple" tabindex="0"><p class="platform-status">iOS · Preparing for App Store release</p><p class="platform-note">Interactive interface demonstration with sample data. Switch between iPhone and iPad below.</p>
       <div class="device-stage reveal">
         <div class="device-switch" role="group" aria-label="Switch demo device">
           <button type="button" class="device-switch-btn active" data-device-view="both" aria-pressed="true">iPhone + iPad</button>
@@ -875,6 +875,8 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
           </ul>
         </div>
       </div>
+</div>
+<div class="platform-panel" id="demo-android" role="tabpanel" aria-labelledby="platform-android" tabindex="0"><div class="platform-layout"><div class="platform-copy"><p class="platform-status">Android 1.0.1 · Submitted for Huawei review</p><h3>Your pantry, kept on your device.</h3><p>Track food, record consumption and waste, and move purchased items into your pantry. No account is needed for this offline release.</p><ul><li>Pantry, shopping lists and local expiry reminders.</li><li>Local household settings and usage estimates based on confirmed records.</li><li>Backup export, restore and privacy controls.</li></ul><p class="platform-note">No cloud sync, online store or membership transactions in this release. Screenshots show the real Chinese-language Android 1.0.1 build running in an emulator.</p><a class="button quiet" href="/support/#android">Android guide (Chinese)</a></div><div class="android-gallery"><div class="android-tabs" role="tablist" aria-label="Choose Android screenshot"><button role="tab" id="shot-family" data-android-shot="family" aria-controls="android-shot-family" aria-selected="true">Household</button><button role="tab" id="shot-privacy" data-android-shot="privacy" aria-controls="android-shot-privacy" aria-selected="false" tabindex="-1">Privacy</button></div><figure id="android-shot-family" role="tabpanel" aria-labelledby="shot-family"><img src="/android-family-101.png" alt="Actual Android 1.0.1 household settings and usage estimates screen, in Chinese" width="450" height="800" loading="lazy"/><figcaption>Local household settings · Sample empty state</figcaption></figure><figure id="android-shot-privacy" role="tabpanel" aria-labelledby="shot-privacy"><img src="/android-privacy-101.png" alt="Actual Android first-launch privacy consent prompt, in Chinese" width="1080" height="2400" loading="lazy"/><figcaption>Read, accept or decline the privacy policy</figcaption></figure></div></div></div><div class="platform-panel" id="demo-harmony" role="tabpanel" aria-labelledby="platform-harmony" tabindex="0"><div class="platform-layout"><div class="platform-copy"><p class="platform-status">Native HarmonyOS · Planned</p><h3>A dedicated version, with a clear starting point.</h3><p>A native HarmonyOS version is planned. There is no completed native app demonstration or download available yet.</p><ul><li>Preserve FreshLife’s familiar food-management workflow.</li><li>Adapt navigation, permissions and local storage to HarmonyOS.</li><li>Publish real screenshots and device support after validation.</li></ul><p class="platform-note">The current Huawei submission is an Android APK. It is not a native HarmonyOS release; compatibility with HarmonyOS devices must be checked separately.</p></div><div class="harmony-state"><img src="/app-icon.png" width="88" height="88" alt="FreshLife"/><h3>FreshLife for HarmonyOS</h3><p>Native version planned</p><span>No native app preview yet</span></div></div></div>
     </div>
   </section>
 
@@ -1036,6 +1038,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   </div>
 </footer>
 
-<script src="/assets/main-86c291a9db.js" defer></script>
+<script src="/assets/main-8c3d4cd2c0.js" defer></script>
 </body>
 </html>

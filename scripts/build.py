@@ -787,6 +787,8 @@ def main():
         "robots.txt",
         "sitemap.xml",
         "app-icon.png",
+        "android-family-101.png",
+        "android-privacy-101.png",
         "favicon-64.png",
         "favicon.ico",
         "apple-touch-icon.png",
@@ -817,6 +819,8 @@ def main():
         changed += write_if_changed(ROOT / path, html)
     changed += write_if_changed(ROOT / "404.html", notfound_html)
     copy_static("app-icon.png")
+    copy_static("android-family-101.png")
+    copy_static("android-privacy-101.png")
     copy_static("favicon-64.png")
     copy_static("favicon.ico")
     copy_static("apple-touch-icon.png")
