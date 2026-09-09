@@ -1,4 +1,5 @@
 export const MAX_ITEMS = 2500;
+export const MAX_BACKUP_BYTES = 20 * 1024 * 1024;
 export const locations = ['冷藏', '冷冻', '常温'];
 export const units = ['份', '个', '盒', '袋', '瓶', '克', '千克', '毫升', '升'];
 export const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; };
@@ -50,4 +51,11 @@ export function sortedInventory(items, order='expiry') {
 export function matchingShopping(items, query='') {
  const term=query.trim().toLocaleLowerCase();
  return items.filter(x=>!term||x.name.toLocaleLowerCase().includes(term));
+}
+
+export function restoreBackup(current, backup, expectedRevision) {
+ if(current.revision!==expectedRevision) throw new Error('预览后本地数据发生变化，请重新选择备份确认。');
+ const restored=validateState(backup);
+ // An imported revision belongs to its source browser, not this database.
+ return {...restored,revision:current.revision};
 }
