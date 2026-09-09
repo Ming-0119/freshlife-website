@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-c586095d3d.css"/>
+<link rel="stylesheet" href="/assets/main-28374abed1.css"/>
 </head>
 <body>
 
@@ -148,7 +148,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <li><b>Never present suggestions as professional advice.</b> AI suggestions are for general reference only—not medical, nutritional or food-safety advice. For important decisions, follow product labels and qualified professionals.</li>
       <li><b>No unverifiable promises.</b> We won’t claim specific savings, waste-reduction percentages or rankings; we describe what the features do.</li>
       <li><b>No data collection beyond what a feature needs.</b> Optional remote AI (if it ever ships) stays off by default, needs clear consent, and sends only the minimum for each request.</li>
-      <li><b>No silent memory features.</b> If memory ever ships, it will be off by default, explained first, used with your consent, and kept on your device.</li>
+      <li><b>No silent memory features.</b> Existing local records remain under your control. Any new online memory service will explain its scope and request the necessary consent.</li>
     </ul>
   </div>
 </section>
@@ -163,7 +163,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       </div>
       <div class="misread-card">
         <h3>“Is it quietly learning about me in the background?”</h3>
-        <p>No. The current version has no long-term memory. If memory features ever ship, they’ll be off by default, used with your consent, and kept on your device.</p>
+        <p>Cloud memory is not enabled silently. Android 1.0.1 includes local household settings and estimates based on confirmed records. Full cloud household memory is not available yet.</p>
       </div>
       <div class="misread-card">
         <h3>“It will shop for me automatically?”</h3>
@@ -219,6 +219,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   </div>
 </footer>
 
-<script src="/assets/main-1e0ecb3bea.js" defer></script>
+<script src="/assets/main-d385b09cd1.js" defer></script>
 </body>
 </html>

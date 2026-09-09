@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-c586095d3d.css"/>
+<link rel="stylesheet" href="/assets/main-28374abed1.css"/>
 </head>
 <body>
 
@@ -119,7 +119,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
         <p class="lead">See what to use first in the morning, settle dinner before you get home, and check what is missing while you shop. FreshLife does not add another chore—it removes one more decision.</p>
       </div>
       <div class="daily-grid">
-        <a class="daily-card reveal" href="#story-2"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="4"/><path d="M12 3.5v2M5.3 5.3l1.4 1.4M3 13.5h2M19 13.5h2M17.3 6.7l-1.4 1.4M4.5 19.5h15M8.5 16.5h7"/></svg></div><span class="when">Morning · Before you leave</span></div><h3>Know your day in 30 seconds</h3><p>Expiry reminders sit on your Home screen: use the milk that needs attention for breakfast, or plan it into tonight’s meal. No last-minute fridge search before you leave.</p><span class="daily-card-cta">See how reminders work <span aria-hidden="true">→</span></span></a>
+        <a class="daily-card reveal" href="#story-2"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="4"/><path d="M12 3.5v2M5.3 5.3l1.4 1.4M3 13.5h2M19 13.5h2M17.3 6.7l-1.4 1.4M4.5 19.5h15M8.5 16.5h7"/></svg></div><span class="when">Morning · Before you leave</span></div><h3>See what matters today</h3><p>Expiry reminders sit on your Home screen: use the milk that needs attention for breakfast, or plan it into tonight’s meal. No last-minute fridge search before you leave.</p><span class="daily-card-cta">See how reminders work <span aria-hidden="true">→</span></span></a>
 <a class="daily-card reveal" href="#story-3"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg></div><span class="when">Evening · On the way home</span></div><h3>Decide dinner before you get there</h3><p>Open Meals to see what you can cook with what’s on hand — expiring items go first. Add the missing bits to your shopping list and pick them up on the way.</p><span class="daily-card-cta">See how a meal comes together <span aria-hidden="true">→</span></span></a>
 <a class="daily-card reveal" href="#story-4"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><span class="when">Shopping · In the aisle</span></div><h3>Check the list, buy once</h3><p>See what’s missing at a glance instead of guessing in the aisle. Back home, snap the new items into your pantry and keep the list connected.</p><span class="daily-card-cta">See how the list returns to your pantry <span aria-hidden="true">→</span></span></a>
       </div>
@@ -165,7 +165,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <div class="section-head reveal">
         <p class="eyebrow">Roadmap</p>
         <h2>Every step should make daily life easier.</h2>
-        <p class="lead">Everything below is still planned: make logging lighter first, then understand household rhythm, then improve weekly planning and restocking. Long-term ideas are never presented as today’s product.</p>
+        <p class="lead">These areas continue to evolve: easier logging, household context, and weekly planning. The Android 1.0.1 review build includes local household settings and usage estimates; full cloud collaboration is not available yet.</p>
       </div>
       <div class="roadmap-rail reveal">
         <div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">01</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L17 4l3 3L8 19l-4 1z"/><path d="M14.5 6.5l3 3"/></svg></span><h3>Easier food entry</h3><p>Make recording food faster and easier: less typing, fewer checks, fewer mistakes.</p></div>
@@ -971,7 +971,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
 <details><summary>How reliable is photo recognition?<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>Recognition runs on-device with Apple Vision and counts as a suggestion. When the app isn’t sure, it asks you to check — and you can always edit the result or type the item yourself. This version doesn’t support retail barcode lookup.</p></div></details>
 <details><summary>Will AI change my pantry on its own?<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>No. AI only recognizes and suggests; it never changes your pantry directly. Recognition results, meal plans and shopping changes all take effect only after you confirm them.</p></div></details>
 <details><summary>Can I fully trust expiry dates and nutrition info?<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>No. Dates and nutrition come from your entry, packaging or recognition — they’re management references. Packaging labels, recall notices, and how food smells and looks come first.</p></div></details>
-<details><summary>Will FreshLife gradually learn my family’s habits?<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>That’s a long-term direction, not a feature of the current version. Today’s FreshLife has no long-term memory and does no automatic shopping. If memory or automatic-suggestion features ever ship, they’ll be off by default, explained first, used only with your consent, and kept on your device. We won’t “learn you” silently in the background.</p></div></details>
+<details><summary>Will FreshLife gradually learn my family’s habits?<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>Local preferences are different from cross-device household memory. Android 1.0.1 includes local household settings and usage estimates based on confirmed records; iOS capabilities depend on its version. Full cloud household memory is not available, and the app does not place orders automatically. Any future online service will explain its data use and request the necessary consent before launch.</p></div></details>
 <details><summary>How do I export or delete my data?<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>In the app, go to Profile → Privacy Center. You can export text data, reset AI memory, or delete all local data. Deleted local data may not be recoverable.</p></div></details>
       </div>
     </div>
@@ -1036,6 +1036,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   </div>
 </footer>
 
-<script src="/assets/main-1e0ecb3bea.js" defer></script>
+<script src="/assets/main-d385b09cd1.js" defer></script>
 </body>
 </html>

@@ -298,7 +298,7 @@
   ).forEach(function (group) {
     Array.prototype.slice.call(group.children).forEach(function (child, i) {
       if (child.classList.contains("reveal")) {
-        child.style.setProperty("--reveal-delay", Math.min(i, 4) * 55 + "ms");
+        child.style.setProperty("--reveal-delay", Math.min(i, 3) * 40 + "ms");
       }
     });
   });
@@ -312,7 +312,7 @@
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px -16px 0px" }
     );
     reveals.forEach(function (el) { io.observe(el); });
   } else {

@@ -92,7 +92,7 @@
     {
       "icon": "sunrise",
       "when": "Morning · Before you leave",
-      "title": "Know your day in 30 seconds",
+      "title": "See what matters today",
       "desc": "Expiry reminders sit on your Home screen: use the milk that needs attention for breakfast, or plan it into tonight’s meal. No last-minute fridge search before you leave.",
       "href": "#story-2",
       "cta": "See how reminders work"
@@ -302,7 +302,7 @@
     },
     {
       "q": "Will FreshLife gradually learn my family’s habits?",
-      "a": "That’s a long-term direction, not a feature of the current version. Today’s FreshLife has no long-term memory and does no automatic shopping. If memory or automatic-suggestion features ever ship, they’ll be off by default, explained first, used only with your consent, and kept on your device. We won’t “learn you” silently in the background."
+      "a": "Local preferences are different from cross-device household memory. Android 1.0.1 includes local household settings and usage estimates based on confirmed records; iOS capabilities depend on its version. Full cloud household memory is not available, and the app does not place orders automatically. Any future online service will explain its data use and request the necessary consent before launch."
     },
     {
       "q": "How do I export or delete my data?",
