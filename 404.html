@@ -14,12 +14,12 @@
 
 
 <!-- 浏览器、Safari 与主屏幕统一使用当前 FreshLife App 图标；新文件名也可避开旧 favicon 缓存。 -->
-<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png"/>
-<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="icon" type="image/png" href="/app-icon.png"/>
+
+<link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-a55a62aa8b.css"/>
+<link rel="stylesheet" href="/assets/main-c586095d3d.css"/>
 </head>
 <body>
 

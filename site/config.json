@@ -59,6 +59,10 @@
     {
       "label": "上线状态",
       "href": "/#download"
+    },
+    {
+      "label": "会员卡",
+      "href": "/#membership"
     }
   ],
   "footerLegalLinks": [

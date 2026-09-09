@@ -28,12 +28,12 @@
 <link rel="alternate" hreflang="en" href="https://www.freshlifeapp.cn/en/"/>
 <link rel="alternate" hreflang="x-default" href="https://www.freshlifeapp.cn/"/>
 <!-- 浏览器、Safari 与主屏幕统一使用当前 FreshLife App 图标；新文件名也可避开旧 favicon 缓存。 -->
-<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png"/>
-<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="icon" type="image/png" href="/app-icon.png"/>
+
+<link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-a55a62aa8b.css"/>
+<link rel="stylesheet" href="/assets/main-c586095d3d.css"/>
 </head>
 <body>
 
@@ -104,7 +104,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
         <span>AI offers <b>suggestions only</b></span>
       </div>
       <p class="hero-status">FreshLife is getting ready for the App Store</p>
-<p class="hero-status">Android 1.0.0 is preparing for release. <a href="/support/#android">Android features and support (Chinese)</a>. Product demonstrations below show the iPhone and iPad version.</p>
+<p class="hero-status">Android 1.0.1 has been submitted for Huawei review and is not publicly released yet. <a href="/support/#android">Android features and support (Chinese)</a>. Product demonstrations below show the iPhone and iPad version.</p>
     </div>
   </section>
 
@@ -177,6 +177,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   </section>
 
   <!-- ================= Story: from fridge to table ================= -->
+  <section class="section section--alt" id="membership"><div class="container member-layout"><div><p class="eyebrow">FreshLife Membership · Planned</p><h2>One card.<br/>A future connection to your shopping.</h2><p class="lead">We plan to offer a free membership card in FreshLife, with support for Apple Wallet. A future FreshLife store and participating local shops would recognize the same membership.</p><ul class="member-benefits"><li><strong>Shopping points</strong><span>Planned rewards for eligible completed orders.</span></li><li><strong>Selected coupons</strong><span>Planned points redemption, with clear eligibility and expiry dates.</span></li><li><strong>Selected member prices</strong><span>Offer terms and the final price shown before checkout.</span></li></ul><p class="member-note">Cards, rewards, the online store and in-store transactions are not available yet. No stored-value balance is offered. Final benefits and participating shops will be announced before launch.</p></div><div class="member-preview"><div class="member-pass" aria-label="Membership card concept, not issued"><div class="member-pass-top"><span><img src="/app-icon.png" width="42" height="42" alt=""/>FreshLife</span><span>Member card</span></div><h3>Freshness, every day.</h3><p>Choose with care. Enjoy the everyday.</p><div class="member-pass-fields"><div><span>Membership</span><strong>Planned</strong></div><div><span>Card status</span><strong>Not issued</strong></div></div></div><p class="member-caption">Design concept · Not a payment card</p><p class="member-note">The card would identify membership and eligible benefits. Payment is separate. Adding a card to Apple Wallet is not available yet.</p></div></div></section>
   <section class="section story" id="story" aria-label="From fridge to table">
     <div class="container">
       <div class="section-head reveal">
@@ -1008,6 +1009,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
 <a href="/en/#ai">FreshLife AI</a>
 <a href="/en/philosophy/">Our philosophy</a>
 <a href="/en/#download">Launch status</a>
+<a href="/en/#membership">Membership</a>
       </div>
       <div class="footer-col">
         <h4>Support</h4>

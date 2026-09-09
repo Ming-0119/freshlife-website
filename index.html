@@ -28,12 +28,12 @@
 <link rel="alternate" hreflang="en" href="https://www.freshlifeapp.cn/en/"/>
 <link rel="alternate" hreflang="x-default" href="https://www.freshlifeapp.cn/"/>
 <!-- 浏览器、Safari 与主屏幕统一使用当前 FreshLife App 图标；新文件名也可避开旧 favicon 缓存。 -->
-<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png"/>
-<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="icon" type="image/png" href="/app-icon.png"/>
+
+<link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-a55a62aa8b.css"/>
+<link rel="stylesheet" href="/assets/main-c586095d3d.css"/>
 </head>
 <body>
 
@@ -104,7 +104,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
         <span>AI 只做<b>辅助建议</b></span>
       </div>
       <p class="hero-status">App Store 上架准备中</p>
-<p class="hero-status">安卓 1.0.0 上架准备中 · <a href="/support/#android">查看安卓功能与支持</a>。本页下方产品演示适用于 iPhone 与 iPad。</p>
+<p class="hero-status">安卓 1.0.1 已提交华为审核，尚未公开上架 · <a href="/support/#android">查看安卓功能与支持</a>。本页下方产品演示适用于 iPhone 与 iPad。</p>
     </div>
   </section>
 
@@ -180,6 +180,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
        桌面：sticky 产品舞台 + 四个章节，内容随滚动交叉淡入；
        小屏 / 无 JS / 开启「减少动态效果」时退化为顺序故事卡片，
        所有文案始终在文档流中可见、顺序合理。 -->
+  <section class="section section--alt" id="membership"><div class="container member-layout"><div><p class="eyebrow">FreshLife Membership · 筹备中</p><h2>一张卡，<br/>连接未来的购物体验。</h2><p class="lead">计划推出免费普通会员卡，在 App 内查看，并支持添加到 Apple 钱包。未来在 FreshLife 商城关联会员，也可在已接入的线下门店出示会员码。</p><ul class="member-benefits"><li><strong>购物积分</strong><span>符合条件的订单完成后，计划累积积分。</span></li><li><strong>指定优惠券</strong><span>计划使用积分兑换，适用范围和期限提前说明。</span></li><li><strong>指定商品会员价</strong><span>活动价格和使用条件在结算前清楚展示。</span></li></ul><p class="member-note">尚未开放领卡、积分兑换、商城或门店消费。不提供充值余额；具体权益和合作门店以正式上线公告为准。</p></div><div class="member-preview"><div class="member-pass" aria-label="会员卡设计示意，尚未发行"><div class="member-pass-top"><span><img src="/app-icon.png" width="42" height="42" alt=""/>FreshLife</span><span>会员卡</span></div><h3>让新鲜成为日常</h3><p>用心选购，认真生活。</p><div class="member-pass-fields"><div><span>会员服务</span><strong>筹备中</strong></div><div><span>发卡状态</span><strong>尚未发行</strong></div></div></div><p class="member-caption">卡片设计示意 · 非支付卡</p><p class="member-note">会员卡用于识别身份和使用权益，付款另行完成。Apple 钱包添加功能尚未启用。</p></div></div></section>
   <section class="section story" id="story" aria-label="从放进冰箱，到端上餐桌">
     <div class="container">
       <div class="section-head reveal">
@@ -1011,6 +1012,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
 <a href="/#ai">FreshLife AI</a>
 <a href="/philosophy/">我们的理念</a>
 <a href="/#download">上线状态</a>
+<a href="/#membership">会员卡</a>
       </div>
       <div class="footer-col">
         <h4>支持</h4>
