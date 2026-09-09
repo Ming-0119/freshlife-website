@@ -114,3 +114,14 @@ node scripts/verify-layout.mjs     # 视觉/布局/对比度/链接自检（可�
 make serve
 # 打开 http://localhost:8080（英文页 http://localhost:8080/en/）
 ```
+
+## 本地网页版 `/app/`
+
+- 源码：`site/static/app/`，构建同步到 `app/`。保持原生静态部署，无新增服务或依赖。
+- `core.mjs`：备份格式校验、日历日期比较、消耗与购物入库规则。
+- `app.mjs`：IndexedDB 事务保存、界面、备份恢复和多窗口冲突检查。业务数据仅在当前浏览器；不兼容原生 App 备份。
+- `sw.js`：限定 `/app/` 的程序缓存，构建时根据源文件生成缓存版本；初次访问联网，缓存成功后可离线打开。数据不放进程序缓存。
+- 记录上限：库存与清单各 2500 条，使用记录 10000 条；备份文件上限 5 MB。写入失败不提交界面成功状态。
+- 修改后运行 `python3 scripts/build.py`、`node --test tests/web-core.test.mjs` 和 `node --check site/static/app/app.mjs`。
+- 本轮交互验证：新增、部分消耗、刷新持久化、采购转库存、多窗口编辑冲突、离线打开/扣减/生成备份；桌面与手机布局。
+- 暂无账号、云同步、后台通知或家庭协作。不要将这些能力描述为可用。

@@ -797,7 +797,8 @@ def main():
         "assets/" + css_name,
         "assets/" + js_name,
     }
-    docs = zh_docs + en_docs + [("404.html", notfound_html)]
+    expected.update("app/" + p.name for p in (STATIC / "app").iterdir() if p.is_file())
+    docs = zh_docs + en_docs + [("404.html", notfound_html), ("app/index.html", (STATIC / "app" / "index.html").read_text())]
     errors = validate(docs, expected)
     if errors:
         print("\n[build] 校验失败：")
@@ -826,6 +827,14 @@ def main():
     copy_static("apple-touch-icon.png")
     copy_static("og-image.png")
     copy_static("og-image-en.png")
+
+    # Local-only web app, delivered by the existing static hosting pipeline.
+    app_sources = sorted((STATIC / "app").iterdir())
+    app_hash = hashlib.sha256(b"".join(p.read_bytes() for p in app_sources if p.is_file())).hexdigest()[:12]
+    for p in app_sources:
+        if p.is_file():
+            content = p.read_bytes().replace(b"__BUILD__", app_hash.encode())
+            changed += write_if_changed(ROOT / "app" / p.name, content)
 
     # 资产
     assets_written = set()
@@ -950,7 +959,7 @@ def validate(docs, expected_files):
         if name != "404.html":
             if "rel=\"canonical\"" not in html:
                 errors.append("%s: 缺少 canonical" % name)
-            if "hreflang=\"zh-CN\"" not in html or "hreflang=\"en\"" not in html:
+            if name != "app/index.html" and ("hreflang=\"zh-CN\"" not in html or "hreflang=\"en\"" not in html):
                 errors.append("%s: 缺少 hreflang 交替链接" % name)
 
         # 相对路径链接与站内链接

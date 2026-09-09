@@ -37,6 +37,10 @@
   },
   "footerProductLinks": [
     {
+      "label": "Web app (Chinese)",
+      "href": "/app/"
+    },
+    {
       "label": "All features",
       "href": "/en/features/"
     },

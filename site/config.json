@@ -37,6 +37,10 @@
   },
   "footerProductLinks": [
     {
+      "label": "打开网页版",
+      "href": "/app/"
+    },
+    {
       "label": "完整功能",
       "href": "/features/"
     },

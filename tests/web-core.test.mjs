@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {emptyState,validateState,status,daysLeft,validDate,consume,purchase} from '../site/static/app/core.mjs';
+const item=()=>({id:'a',name:'牛奶',quantity:2,unit:'瓶',location:'冷藏',expiry:'2026-09-12'});
+const state=()=>({...emptyState(),items:[item()]});
+test('date boundaries are calendar-day based, including leap dates',()=>{assert.equal(validDate('2026-02-29'),false);assert.equal(validDate('2024-02-29'),true);assert.equal(status('2026-09-09','2026-09-09').label,'今天到期');assert.equal(status('2026-09-08','2026-09-09').key,'expired');assert.equal(status('2026-09-12','2026-09-09').key,'soon');assert.equal(status('2026-09-13','2026-09-09').key,'fresh');assert.equal(daysLeft('2026-11-02','2026-11-01'),1);});
+test('partial consumption is exact and records confirmed quantity',()=>{let s=state();s.items[0].quantity=.3;consume(s,'a',.1,'consume','h','2026-09-09T00:00:00Z');assert.equal(s.items[0].quantity,.2);assert.equal(s.history[0].quantity,.1);validateState(s);consume(s,'a',.2,'waste','h2','2026-09-09T00:00:00Z');assert.equal(s.items.length,0);assert.equal(s.history.length,2);});
+test('overconsumption, negative and missing records cannot mutate state',()=>{for(const n of [-1,0,2.1,NaN,Infinity]){const s=state();assert.throws(()=>consume(s,'a',n,'consume','h','2026-09-09'));assert.deepEqual(s,state());}assert.throws(()=>consume(state(),'gone',1,'consume','h','2026-09-09'));});
+test('purchase moves exactly one list item into inventory',()=>{const s=emptyState();s.shopping=[{id:'q',name:'鸡蛋',quantity:3,unit:'个'}];const next=purchase(s,'q',item());assert.equal(next.shopping.length,0);assert.equal(next.items.length,1);assert.throws(()=>purchase(next,'q',item()));});
+test('backup rejects unsupported versions, duplicates, invalid dates, quantities, enums and missing fields',()=>{for(const mutate of [s=>s.version=2,s=>s.items.push(item()),s=>s.items[0].quantity=-1,s=>s.items[0].expiry='2026-02-30',s=>s.items[0].unit='invalid',s=>delete s.shopping,s=>s.revision=-1]){const s=state();mutate(s);assert.throws(()=>validateState(s));}});
+test('backup roundtrip preserves data and strips unexpected fields',()=>{const s=state();s.items[0].unexpected='script';s.unexpected='x';const restored=validateState(JSON.parse(JSON.stringify(s)));assert.deepEqual(restored,state());});
