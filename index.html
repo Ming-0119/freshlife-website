@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-34cc88fc3e.css"/>
+<link rel="stylesheet" href="/assets/main-17c739a109.css"/>
 </head>
 <body>
 
@@ -98,6 +98,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
         <a class="button primary" href="#daily">看看每天怎么用<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></a>
         <a class="button quiet" href="#product">先看产品演示</a>
       </div>
+      <div class="hero-platforms" aria-label="选择你的系统"><a href="/#demo-apple">苹果<span aria-hidden="true"> →</span></a><a href="/#demo-android">安卓<span aria-hidden="true"> →</span></a><a href="/#demo-harmony">鸿蒙<span aria-hidden="true"> →</span></a></div>
       <div class="hero-assurances">
         <span>本地优先，<b>无需注册</b></span><i></i>
         <span>到期前<b>本地提醒</b></span><i></i>

@@ -1707,3 +1707,6 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 @media print{.platform-tabs,.android-tabs{display:none}.platform-panel[hidden],.android-gallery [hidden]{display:block!important}}
 /* Focus on a panel marks its top edge without drawing a frame around a long demo. */
 .platform-panel:focus-visible{outline:none;box-shadow:inset 0 2px var(--green)}
+
+/* Find the right version directly from the first screen. */
+.hero-platforms{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:20px 0}.hero-platforms a{display:inline-flex;align-items:center;gap:12px;min-height:44px;padding:8px 18px;border:1px solid var(--line-strong);border-radius:var(--radius-control);background:var(--surface);font-size:15px;font-weight:600;transition:background-color .16s,border-color .16s}.hero-platforms a:hover{background:var(--green-soft);border-color:var(--green)}
