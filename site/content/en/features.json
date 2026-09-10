@@ -93,7 +93,7 @@
       "icon": "sunrise",
       "when": "Morning · Before you leave",
       "title": "See what matters today",
-      "desc": "Expiry reminders sit on your Home screen: use the milk that needs attention for breakfast, or plan it into tonight’s meal. No last-minute fridge search before you leave.",
+      "desc": "Review expiry dates and quantities, then check packaging and storage conditions before deciding what to use. Keep records current so a quick look is useful.",
       "href": "#story-2",
       "cta": "See how reminders work"
     },
@@ -101,15 +101,15 @@
       "icon": "moon",
       "when": "Evening · On the way home",
       "title": "Decide dinner before you get there",
-      "desc": "Open Meals to see what you can cook with what’s on hand — expiring items go first. Add the missing bits to your shopping list and pick them up on the way.",
+      "desc": "Plan around your pantry and add missing ingredients to your shopping list. The meal-suggestion demo below shows the unreleased iOS version.",
       "href": "#story-3",
       "cta": "See how a meal comes together"
     },
     {
       "icon": "basket",
       "when": "Shopping · In the aisle",
-      "title": "Check the list, buy once",
-      "desc": "See what’s missing at a glance instead of guessing in the aisle. Back home, snap the new items into your pantry and keep the list connected.",
+      "title": "Check your pantry, then your list",
+      "desc": "Check remaining quantities before shopping and confirm purchases into your pantry afterwards. Timely records make your next shop easier to plan.",
       "href": "#story-4",
       "cta": "See how the list returns to your pantry"
     }
@@ -120,14 +120,14 @@
       "tag": "current",
       "tagLabel": "Now · In the app today",
       "title": "Make today easier to read",
-      "desc": "Start with a local pantry, expiry reminders, meal ideas and a shopping list, so what to use and what to buy are both clear. These are the capabilities already in the current version."
+      "desc": "The released Android and HarmonyOS apps focus on local pantry, shopping and usage records. Explore meal suggestions in the iOS preview; see each platform’s guide for its available features."
     },
     {
       "icon": "sparkle",
       "tag": "next",
       "tagLabel": "Next · Not shipped yet",
       "title": "Learn your family’s rhythm",
-      "desc": "Gradually learn your household’s tastes, dietary restrictions and usual buys, so suggestions fit better. Memory would be explained first, enabled by you, and kept on your device."
+      "desc": "Improve usage estimates and preferences based on existing local household settings and confirmed records. Shared accounts, cross-device sync and cloud household collaboration are not available."
     },
     {
       "icon": "globe",
@@ -282,15 +282,15 @@
   "faq": [
     {
       "q": "Do I have to create an account to use it?",
-      "a": "No. Pantry, reminders, meals and shopping all work out of the box, and your profile stays on your device. Accounts and cloud sync are planned capabilities — they’re not in the current version."
+      "a": "No. The released Android, HarmonyOS and web apps let you record pantry items and shopping lists without an account. Features differ by platform; registration and cloud sync are not available."
     },
     {
       "q": "Does it work without a network?",
-      "a": "Yes. Pantry, expiry reminders, meal planning and everything you’ve saved keep working offline. Remote AI is a future optional capability; it isn’t enabled in the current version."
+      "a": "Local pantry and shopping features work offline on Android and HarmonyOS. The web app needs a connection on first use and must finish caching before it can open offline; it has no background notifications. See the iOS preview for local meal features. Remote AI is not available."
     },
     {
       "q": "How reliable is photo recognition?",
-      "a": "Recognition runs on-device with Apple Vision and counts as a suggestion. When the app isn’t sure, it asks you to check — and you can always edit the result or type the item yourself. This version doesn’t support retail barcode lookup."
+      "a": "Photo recognition is part of the unreleased iOS version and runs locally with Apple Vision. Check names, quantities and dates before saving, and edit when needed. Android, HarmonyOS and the web app currently use manual entry, without this recognition feature or retail barcode lookup."
     },
     {
       "q": "Will AI change my pantry on its own?",
@@ -306,7 +306,7 @@
     },
     {
       "q": "How do I export or delete my data?",
-      "a": "In the app, go to Profile → Privacy Center. You can export text data, reset AI memory, or delete all local data. Deleted local data may not be recoverable."
+      "a": "Choose your platform in the Help Center for the correct export and deletion steps. Android and HarmonyOS use local backups, and web exports are saved where you choose. Backup files are not guaranteed to work across platforms. Export before clearing data or changing devices, and manage exported files separately."
     }
   ]
 }

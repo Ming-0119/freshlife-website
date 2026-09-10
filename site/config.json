@@ -95,7 +95,7 @@
   "pages": {
     "index": {
       "title": "FreshLife — 每天吃什么，不必每次从头想",
-      "description": "FreshLife 帮助每个家庭做好每天的食品决策：家里有什么、什么快过期、今晚能做什么、还缺什么、该买什么。核心功能在本机完成，iPhone 与 iPad 通用，无需注册账号。",
+      "description": "FreshLife 帮你记录食材、查看到期日期、整理购物清单。安卓与原生鸿蒙已上架，网页版无需注册即可使用；iOS 上架准备中。",
       "path": "index.html"
     },
     "features": {
@@ -123,7 +123,7 @@
     },
     "support": {
       "title": "帮助中心 — FreshLife",
-      "description": "FreshLife 帮助中心：添加食材、拍照与扫描、AI 助手、隐私与数据的常见问题。",
+      "description": "FreshLife 分平台使用帮助：安卓、鸿蒙、网页版与 iOS 预览，包含安装、数量记录、备份说明及本次更新日志。",
       "path": "support/index.html",
       "content": "support.html"
     },

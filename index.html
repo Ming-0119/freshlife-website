@@ -7,7 +7,7 @@
 <meta name="referrer" content="strict-origin-when-cross-origin"/>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; form-action 'self'; upgrade-insecure-requests"/>
 <title>FreshLife — 每天吃什么，不必每次从头想</title>
-<meta name="description" content="FreshLife 帮助每个家庭做好每天的食品决策：家里有什么、什么快过期、今晚能做什么、还缺什么、该买什么。核心功能在本机完成，iPhone 与 iPad 通用，无需注册账号。"/>
+<meta name="description" content="FreshLife 帮你记录食材、查看到期日期、整理购物清单。安卓与原生鸿蒙已上架，网页版无需注册即可使用；iOS 上架准备中。"/>
 <meta name="theme-color" content="#f8f6ef"/>
 <meta property="og:type" content="website"/>
 <meta property="og:locale" content="zh_CN"/>
@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-b6a646327b.css"/>
+<link rel="stylesheet" href="/assets/main-1bc3824da1.css"/>
 </head>
 <body>
 
@@ -102,11 +102,11 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <div class="hero-platforms" aria-label="选择你的系统"><span class="platform-label">了解各平台</span><a href="/#demo-apple">苹果<span aria-hidden="true"> →</span></a><a href="/#demo-android">安卓<span aria-hidden="true"> →</span></a><a href="/#demo-harmony">鸿蒙<span aria-hidden="true"> →</span></a></div>
       <div class="hero-assurances">
         <span>本地优先，<b>无需注册</b></span><i></i>
-        <span>到期前<b>本地提醒</b></span><i></i>
-        <span>AI 只做<b>辅助建议</b></span>
+        <span>记录变更，<b>由你确认</b></span><i></i>
+        <span>本地数据，<b>自主备份</b></span>
       </div>
-      <div class="hero-actions"><a class="button" href="https://appgallery.huawei.com/app/C118907099">下载安卓版</a><a class="button quiet" href="/support/#harmony">鸿蒙安装说明</a></div><p class="hero-status">App Store 上架准备中</p>
-<p class="hero-status">安卓 1.0.1 与原生鸿蒙 1.0.0 已在华为应用市场发布 · <a href="/support/#android">查看安卓功能与支持</a>。下方可分别查看苹果演示、安卓实拍与鸿蒙版本说明。</p>
+      <p class="hero-status">安卓与鸿蒙已上架华为应用市场 · iOS 上架准备中</p>
+      <p class="hero-status"><a href="#download">下载与版本状态 →</a> · <a href="/support/#updates">查看本次更新内容</a></p>
     </div>
   </section>
 
@@ -118,12 +118,12 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <div class="section-head reveal">
         <p class="eyebrow">Everyday</p>
         <h2>每次打开，都先解决眼前这一件事。</h2>
-        <p class="lead">早上看看今天该先吃什么，下班前想好晚餐，买东西时确认家里还缺什么。FreshLife 不增加一项任务，只替你少想一步。</p>
+        <p class="lead">早上看看今天该先吃什么，下班前想好晚餐，买东西时确认家里还缺什么。及时记下买入与使用情况，下次查看时就少一分猜测。</p>
       </div>
       <div class="daily-grid">
-        <a class="daily-card reveal" href="#story-2"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="4"/><path d="M12 3.5v2M5.3 5.3l1.4 1.4M3 13.5h2M19 13.5h2M17.3 6.7l-1.4 1.4M4.5 19.5h15M8.5 16.5h7"/></svg></div><span class="when">早晨 · 出门前</span></div><h3>快速看清今天</h3><p>临期提醒排在首页：快过期的牛奶可以带出门当早餐，也可以顺手排进今天的餐食。出门前，不必再翻一遍冰箱。</p><span class="daily-card-cta">看看它怎样提醒 <span aria-hidden="true">→</span></span></a>
-<a class="daily-card reveal" href="#story-3"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg></div><span class="when">下班 · 回家路上</span></div><h3>今晚吃什么，先定好</h3><p>打开膳食页看看手头食材能做什么，快过期的优先安排；缺的几样记进购物清单，顺路带回家。</p><span class="daily-card-cta">看看它怎样安排 <span aria-hidden="true">→</span></span></a>
-<a class="daily-card reveal" href="#story-4"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><span class="when">购物 · 在超市</span></div><h3>对照清单，不买重不漏买</h3><p>缺什么一目了然，站在货架前不再凭感觉；买回来再拍照入库，清单和库存自然接上。</p><span class="daily-card-cta">看看清单怎样接回库存 <span aria-hidden="true">→</span></span></a>
+        <a class="daily-card reveal" href="#story-2"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="4"/><path d="M12 3.5v2M5.3 5.3l1.4 1.4M3 13.5h2M19 13.5h2M17.3 6.7l-1.4 1.4M4.5 19.5h15M8.5 16.5h7"/></svg></div><span class="when">早晨 · 出门前</span></div><h3>快速看清今天</h3><p>先查看到期日期与剩余数量，再结合包装和储存情况安排使用。及时记录，让出门前的查看更有依据。</p><span class="daily-card-cta">看看它怎样提醒 <span aria-hidden="true">→</span></span></a>
+<a class="daily-card reveal" href="#story-3"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg></div><span class="when">下班 · 回家路上</span></div><h3>今晚吃什么，先定好</h3><p>根据库存安排晚餐，把缺的食材记进购物清单，顺路带回家。下方餐食建议演示来自 iOS 待上架版本。</p><span class="daily-card-cta">看看它怎样安排 <span aria-hidden="true">→</span></span></a>
+<a class="daily-card reveal" href="#story-4"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><span class="when">购物 · 在超市</span></div><h3>对照库存，再看清单</h3><p>采购前核对家中余量，买回来后确认入库。记录越及时，下次购物就越有数。</p><span class="daily-card-cta">看看清单怎样接回库存 <span aria-hidden="true">→</span></span></a>
       </div>
     </div>
   </section>
@@ -134,7 +134,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <div class="section-head reveal">
         <p class="eyebrow">Why FreshLife</p>
         <h2>不是多管一件事，<br/>是每天少操一点心。</h2>
-        <p class="lead">打开时先看重点，做饭前从现有食材找到答案，购物时只带走真正缺的。每一步，都放在最顺手的位置。</p>
+        <p class="lead">出门前查看库存，采购时核对清单，用过后记录余量。让每次查看都有用。</p>
       </div>
       <div class="why-grid why-grid--outcomes">
         <div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 10h14"/><path d="M10 10v3"/></svg></div><h3>一眼知道家里有什么</h3><p>库存、位置、数量和到期时间集中在一处，少翻一次冰箱，也少买一份重复的。</p></div>
@@ -154,8 +154,8 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
         <p class="lead">每家吃饭的节奏都不同。FreshLife 先把库存、临期、餐食和购物接起来；以后只在你同意的前提下，逐步让建议更贴近你们家的真实生活。</p>
       </div>
       <div class="vision-grid reveal">
-        <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div><span class="vision-tag current">现在 · 今天已具备</span></div><h3>把每天记清楚</h3><p>先把库存、临期提醒、餐食建议与购物清单做好，让今天吃什么、还缺什么都更清楚。这些是当前版本已经具备的能力。</p></div>
-<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></div><span class="vision-tag next">下一步 · 尚未上线</span></div><h3>记住你们家的节奏</h3><p>慢慢了解你们家的口味、忌口与常买清单，让建议更贴切。记忆类能力会先说明用途、由你开启，并只保存在本机。</p></div>
+        <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div><span class="vision-tag current">现在 · 今天已具备</span></div><h3>把每天记清楚</h3><p>已发布的安卓与鸿蒙版本先把本地库存、购物与使用记录做好；餐食建议可在 iOS 功能预览中了解。各平台的具体能力以对应说明为准。</p></div>
+<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></div><span class="vision-tag next">下一步 · 尚未上线</span></div><h3>记住你们家的节奏</h3><p>在已有本地家庭设置和确认记录的基础上，继续完善用量估算与偏好管理。共享账号、跨设备同步和云端家庭协作尚未开放。</p></div>
 <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div><span class="vision-tag long">长期 · 方向</span></div><h3>成为家庭的食品智能层</h3><p>理解季节、习惯与预算带来的变化，在合适的时候给出合适的建议。这是长期方向，不是今天的功能。</p></div>
       </div>
     </div>
@@ -186,7 +186,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   <section class="section story" id="story" aria-label="从放进冰箱，到端上餐桌">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">From Fridge to Table</p>
+        <p class="eyebrow">日常使用流程 · iOS 功能预览</p>
         <h2>从放进冰箱，到端上餐桌。</h2>
         <p class="lead">一件食材从带回家到端上餐桌，FreshLife 顺手接住每一步：记下、提醒、安排、补货。往下滚动，看看这段日常怎样自然连起来。</p>
       </div>
@@ -881,7 +881,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
         </div>
       </div>
 </div>
-<div class="platform-panel" id="demo-android" role="tabpanel" aria-labelledby="platform-android" tabindex="0"><div class="platform-layout"><div class="platform-copy"><p class="platform-status">Android 1.0.1 · 已上架华为应用市场</p><h3>食材和记录，安心留在本机。</h3><p>记录库存、确认消耗与丢弃，把买到的食材加入库存。当前离线版无需注册账号。</p><ul><li>库存、购物清单与本地临期提醒。</li><li>本地家庭设置，以及基于确认记录的用量估算。</li><li>备份导出、恢复与隐私控制。</li></ul><p class="platform-note">本版本不开放云同步、在线商城或会员交易。右侧为安卓 1.0.1 正式包的模拟器实拍截图，可切换查看。</p><a class="button" href="https://appgallery.huawei.com/app/C118907099">下载安卓版</a> <a class="button quiet" href="/support/#android">查看安卓使用说明</a></div><div class="android-gallery"><div class="android-tabs" role="tablist" aria-label="选择安卓截图"><button role="tab" id="shot-family" data-android-shot="family" aria-controls="android-shot-family" aria-selected="true">家庭设置</button><button role="tab" id="shot-privacy" data-android-shot="privacy" aria-controls="android-shot-privacy" aria-selected="false" tabindex="-1">隐私提示</button></div><figure id="android-shot-family" role="tabpanel" aria-labelledby="shot-family"><img src="/android-family-101.png" alt="安卓 1.0.1 家庭设置与用量估算实际界面" width="450" height="800" loading="lazy"/><figcaption>本地家庭设置 · 无记录示例</figcaption></figure><figure id="android-shot-privacy" role="tabpanel" aria-labelledby="shot-privacy"><img src="/android-privacy-101.png" alt="安卓首次启动可阅读、同意或拒绝隐私政策的实际弹窗" width="1080" height="2400" loading="lazy"/><figcaption>先阅读，再决定是否同意</figcaption></figure></div></div><div class="platform-details"><h3>从买回来，到用完：每天这样用</h3><ol class="platform-steps"><li><b>01 · 买回来，记进库存</b><p>填写食材、数量、储存位置和到期日期，让库存对应家里实际拥有的东西。</p></li><li><b>02 · 先看临期，用后确认</b><p>先查看即将到期的食材；吃掉或丢弃后及时确认，让剩余数量和历史记录更可靠。</p></li><li><b>03 · 缺什么，再去补买</b><p>把需要补充的食材放进购物清单，买到后加入库存；换手机前先导出备份。</p></li></ol><div class="platform-help"><details><summary>家庭设置可以让家人共同编辑吗？</summary><p>当前家庭设置保存在本机，用于记录家庭偏好；不会建立共享账号，也不会把记录自动同步到家人的手机。</p></details><details><summary>用量估算该怎么看？</summary><p>估算依赖你确认过的记录。记录不足时，先继续积累；不要把估算当成确定的购买数量或自动下单指令。</p></details><details><summary>换手机或收不到提醒怎么办？</summary><p>离线版不提供云端找回。旧设备还能使用时，先导出备份，再通过恢复入口导入；临期提醒还需要允许通知，请检查系统通知设置。</p></details></div></div></div><div class="platform-panel" id="demo-harmony" role="tabpanel" aria-labelledby="platform-harmony" tabindex="0"><div class="platform-layout"><div class="platform-copy"><p class="platform-status">原生 HarmonyOS 1.0.0 · 已上架</p><h3>食材与购物，留在你的设备上。</h3><p>原生鸿蒙版已于 2026 年 9 月 10 日通过审核并发布。独立安装包，延续 FreshLife 的品牌与本地管理方式。</p><ul><li>记录食材库存，查看到期日期。</li><li>整理购物清单与本地记录。</li><li>无需注册账号，不提供云端同步。</li></ul><p class="platform-note">当前包最低 API 26；请以设备应用市场显示的兼容性为准。没有鸿蒙真机验收记录，不代表所有华为设备都可安装。</p><a class="button" href="/support/#harmony">鸿蒙安装说明</a></div><div class="harmony-state"><img src="/app-icon.png" width="88" height="88" alt="FreshLife"/><h3>FreshLife for HarmonyOS</h3><p>原生版 1.0.0 已发布</p><span>在兼容设备的华为应用市场查找 FreshLife</span></div></div><div class="platform-details"><h3>选择适合设备的版本</h3><p>安卓与原生鸿蒙是两个独立版本。请在设备的应用市场搜索 FreshLife，并核对开发者为闵启航。原生鸿蒙公开网页入口尚待核实，因此此处提供安装说明；如果搜索不到，请先检查系统兼容性与商店地区（中国大陆），也可以使用网页版。</p><a class="button quiet" href="/app/">打开网页版</a></div></div>
+<div class="platform-panel" id="demo-android" role="tabpanel" aria-labelledby="platform-android" tabindex="0"><div class="platform-layout"><div class="platform-copy"><p class="platform-status">Android 1.0.1 · 已上架华为应用市场</p><p class="platform-note">更新版 1.0.2 已提交审核。<a href="/support/#updates">查看更新内容</a>，通过后再由应用市场提供更新。</p><h3>食材和记录，安心留在本机。</h3><p>记录库存、确认消耗与丢弃，把买到的食材加入库存。当前离线版无需注册账号。</p><ul><li>库存、购物清单与本地临期提醒。</li><li>本地家庭设置，以及基于确认记录的用量估算。</li><li>备份导出、恢复与隐私控制。</li></ul><p class="platform-note">本版本不开放云同步、在线商城或会员交易。右侧为安卓 1.0.1 正式包的模拟器实拍截图，可切换查看。</p><a class="button" href="https://appgallery.huawei.com/app/C118907099">下载安卓版</a> <a class="button quiet" href="/support/#android">查看安卓使用说明</a></div><div class="android-gallery"><div class="android-tabs" role="tablist" aria-label="选择安卓截图"><button role="tab" id="shot-family" data-android-shot="family" aria-controls="android-shot-family" aria-selected="true">家庭设置</button><button role="tab" id="shot-privacy" data-android-shot="privacy" aria-controls="android-shot-privacy" aria-selected="false" tabindex="-1">隐私提示</button></div><figure id="android-shot-family" role="tabpanel" aria-labelledby="shot-family"><img src="/android-family-101.png" alt="安卓 1.0.1 家庭设置与用量估算实际界面" width="450" height="800" loading="lazy"/><figcaption>本地家庭设置 · 无记录示例</figcaption></figure><figure id="android-shot-privacy" role="tabpanel" aria-labelledby="shot-privacy"><img src="/android-privacy-101.png" alt="安卓首次启动可阅读、同意或拒绝隐私政策的实际弹窗" width="1080" height="2400" loading="lazy"/><figcaption>先阅读，再决定是否同意</figcaption></figure></div></div><div class="platform-details"><h3>从买回来，到用完：每天这样用</h3><ol class="platform-steps"><li><b>01 · 买回来，记进库存</b><p>填写食材、数量、储存位置和到期日期，让库存对应家里实际拥有的东西。</p></li><li><b>02 · 先看临期，用后确认</b><p>先查看即将到期的食材；吃掉或丢弃后及时确认，让剩余数量和历史记录更可靠。</p></li><li><b>03 · 缺什么，再去补买</b><p>把需要补充的食材放进购物清单，买到后加入库存；换手机前先导出备份。</p></li></ol><div class="platform-help"><details><summary>家庭设置可以让家人共同编辑吗？</summary><p>当前家庭设置保存在本机，用于记录家庭偏好；不会建立共享账号，也不会把记录自动同步到家人的手机。</p></details><details><summary>用量估算该怎么看？</summary><p>估算依赖你确认过的记录。记录不足时，先继续积累；不要把估算当成确定的购买数量或自动下单指令。</p></details><details><summary>换手机或收不到提醒怎么办？</summary><p>离线版不提供云端找回。旧设备还能使用时，先导出备份，再通过恢复入口导入；临期提醒还需要允许通知，请检查系统通知设置。</p></details></div></div></div><div class="platform-panel" id="demo-harmony" role="tabpanel" aria-labelledby="platform-harmony" tabindex="0"><div class="platform-layout"><div class="platform-copy"><p class="platform-status">原生 HarmonyOS 1.0.0 · 已上架</p><p class="platform-note">更新版 1.0.1 已提交，当前处于预审。<a href="/support/#updates">查看更新内容</a>。</p><h3>食材与购物，留在你的设备上。</h3><p>原生鸿蒙版已于 2026 年 9 月 10 日通过审核并发布。独立安装包，延续 FreshLife 的品牌与本地管理方式。</p><ul><li>记录食材库存，查看到期日期。</li><li>整理购物清单与本地记录。</li><li>无需注册账号，不提供云端同步。</li></ul><p class="platform-note">当前包最低 API 26；请以设备应用市场显示的兼容性为准。没有鸿蒙真机验收记录，不代表所有华为设备都可安装。</p><a class="button" href="/support/#harmony">鸿蒙安装说明</a></div><div class="harmony-state"><img src="/app-icon.png" width="88" height="88" alt="FreshLife"/><h3>FreshLife for HarmonyOS</h3><p>原生版 1.0.0 已发布</p><span>在兼容设备的华为应用市场查找 FreshLife</span></div></div><div class="platform-details"><h3>选择适合设备的版本</h3><p>安卓与原生鸿蒙是两个独立版本。请在设备的应用市场搜索 FreshLife，并核对开发者为闵启航。原生鸿蒙公开网页入口尚待核实，因此此处提供安装说明；如果搜索不到，请先检查系统兼容性与商店地区（中国大陆），也可以使用网页版。</p><a class="button quiet" href="/app/">打开网页版</a></div></div>
     </div>
   </section>
 
@@ -889,7 +889,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   <section class="section section--alt" id="add">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Add Food</p><p class="platform-note">以下识别功能介绍 iOS 版本；网页版目前使用手动录入，暂不支持拍照或扫码识别。</p>
+        <p class="eyebrow">Add Food</p><p class="platform-note">以下为 iOS 待上架版本的识别演示。安卓、鸿蒙和网页版目前使用手动录入，不提供这些识别功能。</p>
         <h2>记一件食品，几步就好。</h2>
         <p class="lead">拍照、扫码、从相册选择或手动填写，哪种顺手就用哪种。识别在本机完成，不需要 API Key；不确定的内容，核对后再入库。</p>
       </div>
@@ -907,7 +907,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   <section class="section" id="ai">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">FreshLife AI</p>
+        <p class="eyebrow">FreshLife AI · iOS 功能预览</p><p class="platform-note">安卓、鸿蒙和网页版当前不提供下方的餐食建议功能。</p>
         <h2>从家里已有的食材开始，安排下一餐。</h2>
         <p class="lead">FreshLife AI 从你家现有的库存、临期食材与偏好出发给出建议。本机能力离线可用；<strong>远程 AI 当前版本尚未启用</strong>，未来上线时默认关闭、由你决定是否开启。</p>
       </div>
@@ -918,7 +918,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       </div>
       <details class="disclosure reveal">
         <summary>远程 AI 会处理哪些信息？展开查看数据边界</summary>
-        <div class="disclosure-body"><p>当前版本（1.0.0）尚未启用远程 AI。未来如果上线，会默认关闭；启用前会说明需要处理的信息并征得你的明确同意，只发送完成当次请求所需的内容。过敏信息、健康目标、个人资料、AI 记忆、餐食与购物历史及长期行为记录，不属于当前规划中的远程 AI 请求内容。服务商 API 密钥不会内置在 App 中，App 也不会要求你提供 API Key。AI 建议仅供参考，不构成医疗建议。</p></div>
+        <div class="disclosure-body"><p>iOS 待上架版本尚未启用远程 AI。未来如果上线，会默认关闭；启用前会说明需要处理的信息并征得你的明确同意，只发送完成当次请求所需的内容。过敏信息、健康目标、个人资料、AI 记忆、餐食与购物历史及长期行为记录，不属于当前规划中的远程 AI 请求内容。服务商 API 密钥不会内置在 App 中，App 也不会要求你提供 API Key。AI 建议仅供参考，不构成医疗建议。</p></div>
       </details>
     </div>
   </section>
@@ -973,32 +973,20 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
         <h2>你可能关心的问题。</h2>
       </div>
       <div class="faq">
-        <details open><summary>一定要注册账号才能用吗？<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>不需要。库存、提醒、餐食与购物都可以直接使用，个人资料只保存在本机。账号体系与云同步属于规划中的能力，当前版本不提供。</p></div></details>
-<details><summary>没有网络还能用吗？<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>可以。库存、临期提醒、餐食规划和已保存的内容，离线时照常可用。远程 AI 属于未来可选的能力，当前版本尚未启用。</p></div></details>
-<details><summary>拍照识别靠得住吗？<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>识别在本机由 Apple Vision 完成，属于辅助建议。结果不确定时，App 会请你核对，你也可以直接手动修改或手动录入。本版本不支持零售条码查询。</p></div></details>
+        <details open><summary>一定要注册账号才能用吗？<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>不需要。已发布的安卓、鸿蒙和网页版都可以直接记录库存与购物清单。各平台功能有所不同，账号注册和云同步尚未开放。</p></div></details>
+<details><summary>没有网络还能用吗？<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>安卓与鸿蒙的本地库存和购物功能可离线使用。网页版首次打开需要联网，离线缓存完成后才能离线打开；网页版不提供后台通知。iOS 本地餐食功能见预览说明，远程 AI 尚未开放。</p></div></details>
+<details><summary>拍照识别靠得住吗？<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>拍照识别属于 iOS 待上架版本，使用 Apple Vision 在本机处理。结果只作参考，保存前请核对名称、数量和日期，必要时手动修改。安卓、鸿蒙和网页版当前使用手动录入，不支持此项识别或零售条码查询。</p></div></details>
 <details><summary>AI 会自己改我的库存吗？<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>不会。AI 只负责识别与建议，不会直接改动库存。识别结果、餐食方案和购物变更，都会先经过你的确认再生效。</p></div></details>
 <details><summary>到期日和营养信息能完全相信吗？<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>不能。日期与营养信息来自你的录入、包装或识别结果，只是管理参考。包装标签、召回信息，以及食物的气味与外观更可靠。</p></div></details>
 <details><summary>FreshLife 会慢慢记住我们家的习惯吗？<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>本地偏好记录与跨设备家庭记忆不同。安卓 1.0.1 已包含本地家庭设置和基于已确认记录的用量估算；iOS 功能以对应版本说明为准。完整云端家庭记忆尚未开放，当前不会自动下单或购买。未来联网能力上线前会另行说明处理范围并征求必要同意。</p></div></details>
-<details><summary>想导出或删除数据，怎么做？<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>在 App 的「我的 → 隐私中心」里，可以导出文本数据、重置 AI 记忆，或删除全部本地数据。删除后本地数据可能无法恢复。</p></div></details>
+<details><summary>想导出或删除数据，怎么做？<span class="plus" aria-hidden="true"></span></summary><div class="a"><p>请先在帮助中心选择所用平台，按对应入口导出或删除。安卓与鸿蒙使用本地备份，网页版备份保存在你选择的位置；各平台备份不保证互通。清理数据或换设备前先导出备份，独立导出的文件需要自行保管或删除。</p></div></details>
       </div>
     </div>
   </section>
 
   <!-- ================= 上线状态 ================= -->
-  <section class="section" id="download">
-    <div class="container">
-      <div class="final-card reveal">
-        <h2>少一点浪费，多一点从容。</h2>
-        <p>FreshLife 正在为 App Store 上架做准备。开放下载前，欢迎先看看它能做什么、如何保护你的数据，以及我们为什么做这件事。</p>
-        <div class="hero-actions">
-          <a class="button primary" href="/features/">查看完整功能</a>
-          <a class="button quiet" style="background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.3);color:#fff" href="/philosophy/">了解 FreshLife 理念</a>
-        </div>
-        <p class="statusline"><b>App Store 上架准备中</b> · 开放下载后，就可以从这里找到它</p>
-        <p class="boundary">FreshLife 是管理工具，提供的是参考信息与建议；食品是否可食用，请以包装说明、实际储存状况和气味外观为准。</p>
-      </div>
-    </div>
-  </section>
+  <section class="section section--alt" id="download"><div class="container"><div class="section-head"><h2>选择适合你的使用方式。</h2><p class="lead">安卓与原生鸿蒙已在中国大陆发布。本次更新仍在审核，审核通过后才会开放下载。</p></div><div class="release-grid"><article class="release-card"><h3>安卓</h3><p class="release-status">1.0.1 已上架</p><p>1.0.2 已提交审核</p><a href="https://appgallery.huawei.com/app/C118907099">前往华为应用市场<span aria-hidden="true"> →</span></a></article><article class="release-card"><h3>原生鸿蒙</h3><p class="release-status">1.0.0 已上架</p><p>1.0.1 已提交 · 预审中</p><a href="/support/#harmony">查看安装说明<span aria-hidden="true"> →</span></a></article><article class="release-card"><h3>iPhone 与 iPad</h3><p class="release-status">上架准备中</p><p>暂未提供 App Store 下载</p><a href="/#demo-apple">查看 iOS 演示<span aria-hidden="true"> →</span></a></article><article class="release-card"><h3>网页版</h3><p class="release-status">现在就能使用</p><p>无需注册 · 数据保存在当前浏览器</p><a href="/app/">打开网页版<span aria-hidden="true"> →</span></a></article></div><p class="release-date">状态核对：2026 年 9 月 11 日。审核后的实际可用版本，以应用市场显示为准。</p><p class="section-more"><a href="/support/#updates">阅读本次更新说明 →</a></p></div></section>
+
 </main>
 
 <footer class="site-footer">
@@ -1028,7 +1016,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       </div>
       <div class="footer-col">
         <h4>状态说明</h4>
-        <a href="/features/#status">上线状态</a>
+        <a href="/#download">上线状态</a>
         <a href="/#features">功能清单与状态</a>
         <a href="/#roadmap">接下来的路</a>
       </div>

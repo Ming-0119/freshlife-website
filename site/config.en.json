@@ -95,7 +95,7 @@
   "pages": {
     "index": {
       "title": "FreshLife — What should we eat today?",
-      "description": "FreshLife keeps what’s in your kitchen, what’s about to expire, what to cook and what to buy in one private place. Local-first, no account needed, iPhone and iPad.",
+      "description": "FreshLife helps you track food, expiry dates and shopping lists. Android and native HarmonyOS are available; try the local web app without an account. iOS is preparing for release.",
       "path": "en/index.html"
     },
     "features": {
@@ -123,7 +123,7 @@
     },
     "support": {
       "title": "Help Center — FreshLife",
-      "description": "FreshLife help: adding food, photos and scanning, the AI assistant, and common questions about privacy and your data.",
+      "description": "FreshLife help by platform: Android, HarmonyOS, web and iOS preview. Installation, quantities, backups and submitted update notes.",
       "path": "en/support/index.html",
       "content": "support.html"
     },

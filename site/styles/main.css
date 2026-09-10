@@ -1779,3 +1779,22 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 }
 @media(max-width:360px){.site-header .container{padding-inline:12px;gap:6px}.site-header .brand{font-size:15px;gap:6px}.site-header .nav-cta{padding-inline:10px}.site-header .nav-cta svg{display:none}}
 @media(prefers-reduced-motion:reduce){.hero-secondary span{transition:none;transform:none!important}}
+
+/* Release information uses the existing palette, spacing and corner radii. */
+.release-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.release-card{display:flex;flex-direction:column;align-items:flex-start;padding:24px;border:1px solid var(--line-strong);border-radius:var(--radius-lg);background:var(--surface);min-width:0}
+.release-card h3{font-size:20px;line-height:1.4;margin:0 0 18px;color:var(--ink)}
+.release-card .release-status{font-size:17px;font-weight:600;color:var(--green-strong);margin:0 0 8px}
+.release-card p{font-size:14px;line-height:1.7;color:var(--ink-2);margin:0 0 20px;overflow-wrap:anywhere;text-wrap:pretty}
+#download .lead{text-wrap:pretty}
+.release-card a{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-top:auto;font-size:14px;font-weight:600;color:var(--green-strong);text-underline-offset:4px}
+.release-card a:hover{text-decoration:underline}
+.release-card a:focus-visible,.support-platforms a:focus-visible{outline:2px solid var(--green);outline-offset:4px;border-radius:4px}
+.release-date{font-size:13px;color:var(--ink-3);line-height:1.8;margin-top:22px}
+.support-platforms{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
+.support-platforms a{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border:1px solid var(--line-strong);border-radius:var(--radius-control);color:var(--green-strong);text-decoration:none}
+.support-platforms a:hover{background:var(--green-softer)}
+.update-notes{padding:24px;border:1px solid var(--line-strong);border-radius:var(--radius-lg);background:var(--surface);margin-block:28px}
+.update-notes h2:first-child{margin-top:0}
+@media(max-width:1000px){.release-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.release-grid{grid-template-columns:1fr;gap:12px}.release-card{padding:20px}.release-card h3{margin-bottom:12px}.update-notes{padding:18px}.hero .sub{max-width:32ch;text-wrap:pretty}}
