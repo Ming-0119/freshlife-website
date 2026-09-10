@@ -17,21 +17,70 @@
         <a class="hero-secondary" href="#product">Watch the demo<span aria-hidden="true"> →</span></a>
       </div>
       <p class="web-entry-note">Web app available in Chinese. Pantry, shopping and usage records stay in this browser; no App sync.</p>
-      <div class="hero-platforms" aria-label="Choose your system"><span class="platform-label">Explore platforms</span><a href="/en/#demo-apple">Apple<span aria-hidden="true"> →</span></a><a href="/en/#demo-android">Android<span aria-hidden="true"> →</span></a><a href="/en/#demo-harmony">HarmonyOS<span aria-hidden="true"> →</span></a></div>
-      <div class="hero-assurances">
-        <span>Local-first, <b>no sign-up</b></span><i></i>
-        <span>Changes stay <b>in your control</b></span><i></i>
-        <span><b>Backup</b> your records yourself</span>
-      </div>
-      <div class="hero-downloads" aria-label="Download mobile apps"><a class="button quiet" href="https://appgallery.huawei.com/app/C118907099">Download for Android</a><a class="button quiet" href="https://appgallery.huawei.com/app/detail?id=cn.freshlifeapp.mobile">Download for HarmonyOS</a></div>
+      <div class="hero-download-group"><span class="hero-download-label">Mobile apps</span><div class="hero-downloads" aria-label="Download mobile apps"><a class="button quiet" href="https://appgallery.huawei.com/app/C118907099" aria-label="Download for Android">Android app</a><a class="button quiet" href="https://appgallery.huawei.com/app/detail?id=cn.freshlifeapp.mobile" aria-label="Download for HarmonyOS">HarmonyOS app</a></div></div>
       <p class="hero-status">Android and HarmonyOS are available on Huawei AppGallery. iOS is preparing for release.</p>
       <p class="hero-status"><a href="#download">Downloads and release status →</a> · <a href="/en/support/#updates">What’s in the submitted updates</a></p>
     </div>
   </section>
 
-  <!-- ================= Why open FreshLife every day =================
-       Three concrete moments: before you leave, on the way home,
-       standing in the aisle. -->
+  <section class="section" id="product">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Product</p>
+<h2>Your device.<br/>Your FreshLife.</h2><p class="lead">Choose a platform to see its interface, supported features and release status. Capabilities differ by version.</p>
+      </div>
+
+<div class="platform-tabs" role="tablist" aria-label="Choose platform"><button type="button" role="tab" id="platform-apple" data-platform="apple" aria-controls="demo-apple" aria-selected="true" tabindex="0">Apple</button><button type="button" role="tab" id="platform-android" data-platform="android" aria-controls="demo-android" aria-selected="false" tabindex="-1">Android</button><button type="button" role="tab" id="platform-harmony" data-platform="harmony" aria-controls="demo-harmony" aria-selected="false" tabindex="-1">HarmonyOS</button></div><div class="platform-panel" id="demo-apple" role="tabpanel" aria-labelledby="platform-apple" tabindex="0"><p class="platform-status">iOS · Preparing for App Store release</p><p class="platform-note">Interactive interface demonstration with sample data. Switch between iPhone and iPad below.</p>
+      <div class="device-stage reveal">
+        <div class="device-switch" role="group" aria-label="Switch demo device">
+          <button type="button" class="device-switch-btn active" data-device-view="both" aria-pressed="true">iPhone + iPad</button>
+          <button type="button" class="device-switch-btn" data-device-view="phone" aria-pressed="false">iPhone only</button>
+          <button type="button" class="device-switch-btn" data-device-view="ipad" aria-pressed="false">iPad only</button>
+        </div>
+
+        <div class="device-grid" data-device-grid>
+          <div class="device-col device-col--phone" data-device-col="phone">
+            <div class="device-label">iPhone</div>
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="phone-notch" aria-hidden="true"></div>
+                <div class="mock-status">
+                  <span class="time">9:41</span>
+                  <span class="icons"><i></i><i></i><i></i></span>
+                </div>
+                {{mock_screens}}
+                <div class="mock-tabbar" role="tablist" aria-label="App tab bar (demo)">
+                  <button class="mock-tab" role="tab" aria-selected="true" data-target="today" aria-controls="mock-today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/></svg><span>Today</span></button>
+                  <button class="mock-tab" role="tab" aria-selected="false" data-target="pantry" aria-controls="mock-pantry"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 10h14"/><path d="M10 10v3"/></svg><span>Pantry</span></button>
+                  <button class="mock-tab" role="tab" aria-selected="false" data-target="meals" aria-controls="mock-meals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v5a2.5 2.5 0 0 0 5 0V3"/><path d="M9.5 3v18"/><path d="M18 3v18"/><path d="M18 3c-3 3-3 9 0 12"/></svg><span>Meals</span></button>
+                  <button class="mock-tab" role="tab" aria-selected="false" data-target="explore" aria-controls="mock-explore"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg><span>Explore</span></button>
+                  <button class="mock-tab" role="tab" aria-selected="false" data-target="profile" aria-controls="mock-profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.2-3.6 4.1-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></svg><span>Profile</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="device-col device-col--ipad" data-device-col="ipad">
+            <div class="device-label">iPad</div>
+            {{mock_ipad}}
+          </div>
+        </div>
+
+        <div class="showcase-side reveal">
+          <h3>A clear place for each part of your day.</h3>
+          <p class="lead">Tap the buttons below to switch the iPhone demo, or use the iPad sidebar. All five screens share the same pantry data, so each step stays connected.</p>
+          <div class="tab-switch" data-tab-switch role="tablist" aria-label="Switch core screen demo">
+            {{tab_switch_buttons}}
+          </div>
+          <ul class="tab-points" id="tab-points">
+            {{tab_points_initial}}
+          </ul>
+        </div>
+      </div>
+</div>
+<div class="platform-panel" id="demo-android" role="tabpanel" aria-labelledby="platform-android" tabindex="0"><div class="platform-layout"><div class="platform-copy"><p class="platform-status">Android 1.0.1 · Available on Huawei AppGallery</p><p class="platform-note">Update 1.0.2 has been submitted for review. <a href="/en/support/#updates">See the changes</a>.</p><h3>Your pantry, kept on your device.</h3><p>Track food, record consumption and waste, and move purchased items into your pantry. No account is needed for this offline release.</p><ul><li>Pantry, shopping lists and local expiry reminders.</li><li>Local household settings and usage estimates based on confirmed records.</li><li>Backup export, restore and privacy controls.</li></ul><p class="platform-note">No cloud sync, online store or membership transactions in this release. Screenshots show the real Chinese-language Android 1.0.1 build running in an emulator.</p><a class="button" href="https://appgallery.huawei.com/app/C118907099">Download for Android</a> <a class="button quiet" href="/support/#android">Android guide (Chinese)</a></div><div class="android-gallery"><div class="android-tabs" role="tablist" aria-label="Choose Android screenshot"><button role="tab" id="shot-family" data-android-shot="family" aria-controls="android-shot-family" aria-selected="true">Household</button><button role="tab" id="shot-privacy" data-android-shot="privacy" aria-controls="android-shot-privacy" aria-selected="false" tabindex="-1">Privacy</button></div><figure id="android-shot-family" role="tabpanel" aria-labelledby="shot-family"><img src="/android-family-101.png" alt="Actual Android 1.0.1 household settings and usage estimates screen, in Chinese" width="450" height="800" loading="lazy"/><figcaption>Local household settings · Sample empty state</figcaption></figure><figure id="android-shot-privacy" role="tabpanel" aria-labelledby="shot-privacy"><img src="/android-privacy-101.png" alt="Actual Android first-launch privacy consent prompt, in Chinese" width="1080" height="2400" loading="lazy"/><figcaption>Read, accept or decline the privacy policy</figcaption></figure></div></div><div class="platform-details"><h3>A simple daily routine</h3><ol class="platform-steps"><li><b>01 · Add your food</b><p>Record the item, quantity, storage location and expiry date so your pantry matches what you have.</p></li><li><b>02 · Use it and confirm</b><p>Review what is nearing expiry. Confirm consumption or waste when it happens to keep records useful.</p></li><li><b>03 · Plan your next shop</b><p>Keep what you need in a shopping list and add purchases to your pantry. Export a backup before changing phones.</p></li></ol><div class="platform-help"><details><summary>Can my family share the same pantry?</summary><p>Household settings are stored on this device. They do not create a shared account or synchronize records between family members’ phones.</p></details><details><summary>How should I read usage estimates?</summary><p>Estimates depend on the records you confirm. With too little history, keep recording instead of treating an estimate as a purchase instruction.</p></details><details><summary>What happens when I change phones?</summary><p>This offline release does not offer cloud recovery. Export a backup while your old device is available, then use the restore option. Local reminders also need notification permission.</p></details></div></div></div><div class="platform-panel" id="demo-harmony" role="tabpanel" aria-labelledby="platform-harmony" tabindex="0"><div class="platform-layout"><div class="platform-copy"><p class="platform-status">Native HarmonyOS 1.0.0 · Available</p><p class="platform-note">Update 1.0.1 has been submitted and is in pre-review. <a href="/en/support/#updates">See the changes</a>.</p><h3>Your food and shopping, on your device.</h3><p>The native release passed review and was published on September 10, 2026. Manage local pantry items and shopping records without an account or cloud sync.</p><p class="platform-note">The package requires API 26. Check compatibility in your device’s store. Physical HarmonyOS hardware testing has not been completed.</p><a class="button" href="https://appgallery.huawei.com/app/detail?id=cn.freshlifeapp.mobile">Download for HarmonyOS</a> <a class="button quiet" href="/en/support/#harmony">Installation help</a></div><div class="harmony-state"><img src="/app-icon.png" width="88" height="88" alt="FreshLife"/><h3>FreshLife for HarmonyOS</h3><p>Native 1.0.0 released</p><span>Search FreshLife in AppGallery on a compatible device</span></div></div><div class="platform-details"><h3>Find the right version</h3><p>Android and native HarmonyOS are separate releases, available in mainland China. Check the developer name 闵启航. Use “Download for HarmonyOS” to open the official listing. Continue installation on a compatible device, or try the web app.</p><a class="button quiet" href="/app/">Open web app</a></div></div>
+    </div>
+  </section>
+
   <section class="section" id="daily">
     <div class="container">
       <div class="section-head reveal">
@@ -45,7 +94,6 @@
     </div>
   </section>
 
-  <!-- ================= Lead with outcomes, not feature labels ================= -->
   <section class="section section--alt section--compact" id="why">
     <div class="container">
       <div class="section-head reveal">
@@ -59,37 +107,6 @@
     </div>
   </section>
 
-  <!-- ================= Family rhythm vision follows the daily reason ================= -->
-  <section class="section" id="vision">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Vision</p>
-        <h2>Help with today first.<br/>Learn your household’s rhythm over time.</h2>
-        <p class="lead">No two households eat the same way. FreshLife begins by connecting pantry, due dates, meals and shopping; later, and only with your permission, suggestions can gradually fit the way your household actually lives.</p>
-      </div>
-      <div class="vision-grid reveal">
-        {{vision_cards}}
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Roadmap: the nearest three steps only ================= -->
-  <section class="section section--alt section--compact" id="roadmap">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Roadmap</p>
-        <h2>Every step should make daily life easier.</h2>
-        <p class="lead">These areas continue to evolve: easier logging, household context, and weekly planning. The Android 1.0.1 release includes local household settings and usage estimates; full cloud collaboration is not available yet.</p>
-      </div>
-      <div class="roadmap-rail reveal">
-        {{roadmap_compact}}
-      </div>
-      <p class="section-more reveal"><a href="/en/philosophy/">Why this order? Read the full philosophy and long-term direction <span aria-hidden="true">→</span></a></p>
-    </div>
-  </section>
-
-  <!-- ================= Story: from fridge to table ================= -->
-  <section class="section section--alt" id="membership"><div class="container member-layout"><div><p class="eyebrow">FreshLife Membership · Planned</p><h2>One card.<br/>A future connection to your shopping.</h2><p class="lead">We plan to offer a free membership card in FreshLife, with support for Apple Wallet. A future FreshLife store and participating local shops would recognize the same membership.</p><ul class="member-benefits"><li><strong>Shopping points</strong><span>Planned rewards for eligible completed orders.</span></li><li><strong>Selected coupons</strong><span>Planned points redemption, with clear eligibility and expiry dates.</span></li><li><strong>Selected member prices</strong><span>Offer terms and the final price shown before checkout.</span></li></ul><p class="member-note">Cards, rewards, the online store and in-store transactions are not available yet. No stored-value balance is offered. Final benefits and participating shops will be announced before launch.</p></div><div class="member-preview"><div class="member-pass" aria-label="Membership card concept, not issued"><div class="member-pass-top"><span><img src="/app-icon.png" width="42" height="42" alt=""/>FreshLife</span><span>Member card</span></div><h3>Freshness, every day.</h3><p>Choose with care. Enjoy the everyday.</p><div class="member-pass-fields"><div><span>Membership</span><strong>Planned</strong></div><div><span>Card status</span><strong>Not issued</strong></div></div></div><p class="member-caption">Design concept · Not a payment card</p><p class="member-note">The card would identify membership and eligible benefits. Payment is separate. Adding a card to Apple Wallet is not available yet.</p></div></div></section>
   <section class="section story" id="story" aria-label="From fridge to table">
     <div class="container">
       <div class="section-head reveal">
@@ -316,66 +333,6 @@
     </div>
   </section>
 
-  <!-- ================= Product stage: iPhone + iPad ================= -->
-  <section class="section" id="product">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Product</p>
-<h2>Your device.<br/>Your FreshLife.</h2><p class="lead">Choose a platform to see its interface, supported features and release status. Capabilities differ by version.</p>
-      </div>
-
-<div class="platform-tabs" role="tablist" aria-label="Choose platform"><button type="button" role="tab" id="platform-apple" data-platform="apple" aria-controls="demo-apple" aria-selected="true" tabindex="0">Apple</button><button type="button" role="tab" id="platform-android" data-platform="android" aria-controls="demo-android" aria-selected="false" tabindex="-1">Android</button><button type="button" role="tab" id="platform-harmony" data-platform="harmony" aria-controls="demo-harmony" aria-selected="false" tabindex="-1">HarmonyOS</button></div><div class="platform-panel" id="demo-apple" role="tabpanel" aria-labelledby="platform-apple" tabindex="0"><p class="platform-status">iOS · Preparing for App Store release</p><p class="platform-note">Interactive interface demonstration with sample data. Switch between iPhone and iPad below.</p>
-      <div class="device-stage reveal">
-        <div class="device-switch" role="group" aria-label="Switch demo device">
-          <button type="button" class="device-switch-btn active" data-device-view="both" aria-pressed="true">iPhone + iPad</button>
-          <button type="button" class="device-switch-btn" data-device-view="phone" aria-pressed="false">iPhone only</button>
-          <button type="button" class="device-switch-btn" data-device-view="ipad" aria-pressed="false">iPad only</button>
-        </div>
-
-        <div class="device-grid" data-device-grid>
-          <div class="device-col device-col--phone" data-device-col="phone">
-            <div class="device-label">iPhone</div>
-            <div class="phone">
-              <div class="phone-screen">
-                <div class="phone-notch" aria-hidden="true"></div>
-                <div class="mock-status">
-                  <span class="time">9:41</span>
-                  <span class="icons"><i></i><i></i><i></i></span>
-                </div>
-                {{mock_screens}}
-                <div class="mock-tabbar" role="tablist" aria-label="App tab bar (demo)">
-                  <button class="mock-tab" role="tab" aria-selected="true" data-target="today" aria-controls="mock-today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/></svg><span>Today</span></button>
-                  <button class="mock-tab" role="tab" aria-selected="false" data-target="pantry" aria-controls="mock-pantry"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 10h14"/><path d="M10 10v3"/></svg><span>Pantry</span></button>
-                  <button class="mock-tab" role="tab" aria-selected="false" data-target="meals" aria-controls="mock-meals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v5a2.5 2.5 0 0 0 5 0V3"/><path d="M9.5 3v18"/><path d="M18 3v18"/><path d="M18 3c-3 3-3 9 0 12"/></svg><span>Meals</span></button>
-                  <button class="mock-tab" role="tab" aria-selected="false" data-target="explore" aria-controls="mock-explore"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg><span>Explore</span></button>
-                  <button class="mock-tab" role="tab" aria-selected="false" data-target="profile" aria-controls="mock-profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.2-3.6 4.1-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></svg><span>Profile</span></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="device-col device-col--ipad" data-device-col="ipad">
-            <div class="device-label">iPad</div>
-            {{mock_ipad}}
-          </div>
-        </div>
-
-        <div class="showcase-side reveal">
-          <h3>A clear place for each part of your day.</h3>
-          <p class="lead">Tap the buttons below to switch the iPhone demo, or use the iPad sidebar. All five screens share the same pantry data, so each step stays connected.</p>
-          <div class="tab-switch" data-tab-switch role="tablist" aria-label="Switch core screen demo">
-            {{tab_switch_buttons}}
-          </div>
-          <ul class="tab-points" id="tab-points">
-            {{tab_points_initial}}
-          </ul>
-        </div>
-      </div>
-</div>
-<div class="platform-panel" id="demo-android" role="tabpanel" aria-labelledby="platform-android" tabindex="0"><div class="platform-layout"><div class="platform-copy"><p class="platform-status">Android 1.0.1 · Available on Huawei AppGallery</p><p class="platform-note">Update 1.0.2 has been submitted for review. <a href="/en/support/#updates">See the changes</a>.</p><h3>Your pantry, kept on your device.</h3><p>Track food, record consumption and waste, and move purchased items into your pantry. No account is needed for this offline release.</p><ul><li>Pantry, shopping lists and local expiry reminders.</li><li>Local household settings and usage estimates based on confirmed records.</li><li>Backup export, restore and privacy controls.</li></ul><p class="platform-note">No cloud sync, online store or membership transactions in this release. Screenshots show the real Chinese-language Android 1.0.1 build running in an emulator.</p><a class="button" href="https://appgallery.huawei.com/app/C118907099">Download for Android</a> <a class="button quiet" href="/support/#android">Android guide (Chinese)</a></div><div class="android-gallery"><div class="android-tabs" role="tablist" aria-label="Choose Android screenshot"><button role="tab" id="shot-family" data-android-shot="family" aria-controls="android-shot-family" aria-selected="true">Household</button><button role="tab" id="shot-privacy" data-android-shot="privacy" aria-controls="android-shot-privacy" aria-selected="false" tabindex="-1">Privacy</button></div><figure id="android-shot-family" role="tabpanel" aria-labelledby="shot-family"><img src="/android-family-101.png" alt="Actual Android 1.0.1 household settings and usage estimates screen, in Chinese" width="450" height="800" loading="lazy"/><figcaption>Local household settings · Sample empty state</figcaption></figure><figure id="android-shot-privacy" role="tabpanel" aria-labelledby="shot-privacy"><img src="/android-privacy-101.png" alt="Actual Android first-launch privacy consent prompt, in Chinese" width="1080" height="2400" loading="lazy"/><figcaption>Read, accept or decline the privacy policy</figcaption></figure></div></div><div class="platform-details"><h3>A simple daily routine</h3><ol class="platform-steps"><li><b>01 · Add your food</b><p>Record the item, quantity, storage location and expiry date so your pantry matches what you have.</p></li><li><b>02 · Use it and confirm</b><p>Review what is nearing expiry. Confirm consumption or waste when it happens to keep records useful.</p></li><li><b>03 · Plan your next shop</b><p>Keep what you need in a shopping list and add purchases to your pantry. Export a backup before changing phones.</p></li></ol><div class="platform-help"><details><summary>Can my family share the same pantry?</summary><p>Household settings are stored on this device. They do not create a shared account or synchronize records between family members’ phones.</p></details><details><summary>How should I read usage estimates?</summary><p>Estimates depend on the records you confirm. With too little history, keep recording instead of treating an estimate as a purchase instruction.</p></details><details><summary>What happens when I change phones?</summary><p>This offline release does not offer cloud recovery. Export a backup while your old device is available, then use the restore option. Local reminders also need notification permission.</p></details></div></div></div><div class="platform-panel" id="demo-harmony" role="tabpanel" aria-labelledby="platform-harmony" tabindex="0"><div class="platform-layout"><div class="platform-copy"><p class="platform-status">Native HarmonyOS 1.0.0 · Available</p><p class="platform-note">Update 1.0.1 has been submitted and is in pre-review. <a href="/en/support/#updates">See the changes</a>.</p><h3>Your food and shopping, on your device.</h3><p>The native release passed review and was published on September 10, 2026. Manage local pantry items and shopping records without an account or cloud sync.</p><p class="platform-note">The package requires API 26. Check compatibility in your device’s store. Physical HarmonyOS hardware testing has not been completed.</p><a class="button" href="https://appgallery.huawei.com/app/detail?id=cn.freshlifeapp.mobile">Download for HarmonyOS</a> <a class="button quiet" href="/en/support/#harmony">Installation help</a></div><div class="harmony-state"><img src="/app-icon.png" width="88" height="88" alt="FreshLife"/><h3>FreshLife for HarmonyOS</h3><p>Native 1.0.0 released</p><span>Search FreshLife in AppGallery on a compatible device</span></div></div><div class="platform-details"><h3>Find the right version</h3><p>Android and native HarmonyOS are separate releases, available in mainland China. Check the developer name 闵启航. Use “Download for HarmonyOS” to open the official listing. Continue installation on a compatible device, or try the web app.</p><a class="button quiet" href="/app/">Open web app</a></div></div>
-    </div>
-  </section>
-
-  <!-- ================= Ways to add food ================= -->
   <section class="section section--alt" id="add">
     <div class="container">
       <div class="section-head reveal">
@@ -390,7 +347,6 @@
     </div>
   </section>
 
-  <!-- ================= FreshLife AI ================= -->
   <section class="section" id="ai">
     <div class="container">
       <div class="section-head reveal">
@@ -408,7 +364,6 @@
     </div>
   </section>
 
-  <!-- ================= Privacy ================= -->
   <section class="section section--alt" id="privacy">
     <div class="container">
       <div class="section-head reveal">
@@ -426,7 +381,6 @@
     </div>
   </section>
 
-  <!-- ================= Feature glance; full detail lives on its own page ================= -->
   <section class="section" id="features">
     <div class="container">
       <div class="section-head reveal">
@@ -441,7 +395,35 @@
     </div>
   </section>
 
-  <!-- ================= FAQ ================= -->
+  <section class="section" id="vision">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Vision</p>
+        <h2>Help with today first.<br/>Learn your household’s rhythm over time.</h2>
+        <p class="lead">No two households eat the same way. FreshLife begins by connecting pantry, due dates, meals and shopping; later, and only with your permission, suggestions can gradually fit the way your household actually lives.</p>
+      </div>
+      <div class="vision-grid reveal">
+        {{vision_cards}}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--compact" id="roadmap">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Roadmap</p>
+        <h2>Every step should make daily life easier.</h2>
+        <p class="lead">These areas continue to evolve: easier logging, household context, and weekly planning. The Android 1.0.1 release includes local household settings and usage estimates; full cloud collaboration is not available yet.</p>
+      </div>
+      <div class="roadmap-rail reveal">
+        {{roadmap_compact}}
+      </div>
+      <p class="section-more reveal"><a href="/en/philosophy/">Why this order? Read the full philosophy and long-term direction <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="membership"><div class="container member-layout"><div><p class="eyebrow">FreshLife Membership · Planned</p><h2>One card.<br/>A future connection to your shopping.</h2><p class="lead">We plan to offer a free membership card in FreshLife, with support for Apple Wallet. A future FreshLife store and participating local shops would recognize the same membership.</p><ul class="member-benefits"><li><strong>Shopping points</strong><span>Planned rewards for eligible completed orders.</span></li><li><strong>Selected coupons</strong><span>Planned points redemption, with clear eligibility and expiry dates.</span></li><li><strong>Selected member prices</strong><span>Offer terms and the final price shown before checkout.</span></li></ul><p class="member-note">Cards, rewards, the online store and in-store transactions are not available yet. No stored-value balance is offered. Final benefits and participating shops will be announced before launch.</p></div><div class="member-preview"><div class="member-pass" aria-label="Membership card concept, not issued"><div class="member-pass-top"><span><img src="/app-icon.png" width="42" height="42" alt=""/>FreshLife</span><span>Member card</span></div><h3>Freshness, every day.</h3><p>Choose with care. Enjoy the everyday.</p><div class="member-pass-fields"><div><span>Membership</span><strong>Planned</strong></div><div><span>Card status</span><strong>Not issued</strong></div></div></div><p class="member-caption">Design concept · Not a payment card</p><p class="member-note">The card would identify membership and eligible benefits. Payment is separate. Adding a card to Apple Wallet is not available yet.</p></div></div></section>
+
   <section class="section" id="faq">
     <div class="container">
       <div class="section-head center reveal">
@@ -454,7 +436,6 @@
     </div>
   </section>
 
-  <!-- ================= Launch status ================= -->
   <section class="section section--alt" id="download"><div class="container"><div class="section-head"><h2>Choose your way to use FreshLife.</h2><p class="lead">Android and native HarmonyOS are available in mainland China. Submitted updates become available only after review.</p></div><div class="release-grid"><article class="release-card"><h3>Android</h3><p class="release-status">1.0.1 available</p><p>1.0.2 submitted for review</p><a class="button primary" href="https://appgallery.huawei.com/app/C118907099">Download for Android<span aria-hidden="true"> →</span></a></article><article class="release-card"><h3>HarmonyOS</h3><p class="release-status">1.0.0 available</p><p>1.0.1 submitted · in pre-review</p><a class="button primary" href="https://appgallery.huawei.com/app/detail?id=cn.freshlifeapp.mobile">Download for HarmonyOS<span aria-hidden="true"> →</span></a></article><article class="release-card"><h3>iPhone &amp; iPad</h3><p class="release-status">Preparing for release</p><p>No App Store download yet.</p><a href="/en/#demo-apple">Explore the iOS demo<span aria-hidden="true"> →</span></a></article><article class="release-card"><h3>Web app</h3><p class="release-status">Open now</p><p>Chinese interface · records stay in this browser.</p><a href="/app/">Open web app<span aria-hidden="true"> →</span></a></article></div><p class="release-date">Status checked September 11, 2026. Store availability may change after review.</p><p class="section-more"><a href="/en/support/#updates">Read the update notes →</a></p></div></section>
 
 </main>

@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-f91da85120.css"/>
+<link rel="stylesheet" href="/assets/main-fe6c61a598.css"/>
 </head>
 <body>
 
@@ -99,315 +99,12 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
         <a class="hero-secondary" href="#product">Watch the demo<span aria-hidden="true"> →</span></a>
       </div>
       <p class="web-entry-note">Web app available in Chinese. Pantry, shopping and usage records stay in this browser; no App sync.</p>
-      <div class="hero-platforms" aria-label="Choose your system"><span class="platform-label">Explore platforms</span><a href="/en/#demo-apple">Apple<span aria-hidden="true"> →</span></a><a href="/en/#demo-android">Android<span aria-hidden="true"> →</span></a><a href="/en/#demo-harmony">HarmonyOS<span aria-hidden="true"> →</span></a></div>
-      <div class="hero-assurances">
-        <span>Local-first, <b>no sign-up</b></span><i></i>
-        <span>Changes stay <b>in your control</b></span><i></i>
-        <span><b>Backup</b> your records yourself</span>
-      </div>
-      <div class="hero-downloads" aria-label="Download mobile apps"><a class="button quiet" href="https://appgallery.huawei.com/app/C118907099">Download for Android</a><a class="button quiet" href="https://appgallery.huawei.com/app/detail?id=cn.freshlifeapp.mobile">Download for HarmonyOS</a></div>
+      <div class="hero-download-group"><span class="hero-download-label">Mobile apps</span><div class="hero-downloads" aria-label="Download mobile apps"><a class="button quiet" href="https://appgallery.huawei.com/app/C118907099" aria-label="Download for Android">Android app</a><a class="button quiet" href="https://appgallery.huawei.com/app/detail?id=cn.freshlifeapp.mobile" aria-label="Download for HarmonyOS">HarmonyOS app</a></div></div>
       <p class="hero-status">Android and HarmonyOS are available on Huawei AppGallery. iOS is preparing for release.</p>
       <p class="hero-status"><a href="#download">Downloads and release status →</a> · <a href="/en/support/#updates">What’s in the submitted updates</a></p>
     </div>
   </section>
 
-  <!-- ================= Why open FreshLife every day =================
-       Three concrete moments: before you leave, on the way home,
-       standing in the aisle. -->
-  <section class="section" id="daily">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Everyday</p>
-        <h2>Start with the decision in front of you.</h2>
-        <p class="lead">See what to use first in the morning, settle dinner before you get home, and check what is missing while you shop. FreshLife does not add another chore—it removes one more decision.</p>
-      </div>
-      <div class="daily-grid">
-        <a class="daily-card reveal" href="#story-2"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="4"/><path d="M12 3.5v2M5.3 5.3l1.4 1.4M3 13.5h2M19 13.5h2M17.3 6.7l-1.4 1.4M4.5 19.5h15M8.5 16.5h7"/></svg></div><span class="when">Morning · Before you leave</span></div><h3>See what matters today</h3><p>Review expiry dates and quantities, then check packaging and storage conditions before deciding what to use. Keep records current so a quick look is useful.</p><span class="daily-card-cta">See how reminders work <span aria-hidden="true">→</span></span></a>
-<a class="daily-card reveal" href="#story-3"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg></div><span class="when">Evening · On the way home</span></div><h3>Decide dinner before you get there</h3><p>Plan around your pantry and add missing ingredients to your shopping list. The meal-suggestion demo below shows the unreleased iOS version.</p><span class="daily-card-cta">See how a meal comes together <span aria-hidden="true">→</span></span></a>
-<a class="daily-card reveal" href="#story-4"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><span class="when">Shopping · In the aisle</span></div><h3>Check your pantry, then your list</h3><p>Check remaining quantities before shopping and confirm purchases into your pantry afterwards. Timely records make your next shop easier to plan.</p><span class="daily-card-cta">See how the list returns to your pantry <span aria-hidden="true">→</span></span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Lead with outcomes, not feature labels ================= -->
-  <section class="section section--alt section--compact" id="why">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Why FreshLife</p>
-        <h2>Not one more thing to manage.<br/>One less thing to think about.</h2>
-        <p class="lead">See the priorities when you open the app, find an answer before dinner, and shop only for what is missing. Each step sits where it feels natural.</p>
-      </div>
-      <div class="why-grid why-grid--outcomes">
-        <div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 10h14"/><path d="M10 10v3"/></svg></div><h3>See what’s at home at a glance</h3><p>Pantry, storage spot, quantity and due date live in one place — less fridge searching and fewer accidental doubles.</p></div>
-<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2.5H4.5L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></div><h3>Use what needs using first</h3><p>Near-date food rises naturally to the top, with a gentle reminder while there is still time to plan it in.</p></div>
-<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v5a2.5 2.5 0 0 0 5 0V3"/><path d="M9.5 3v18"/><path d="M18 3v18"/><path d="M18 3c-3 3-3 9 0 12"/></svg></div><h3>Start dinner with what you have</h3><p>See what your ingredients can make and what is still missing, without starting over in a sea of recipes.</p></div>
-<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><h3>Shop with a clear list</h3><p>Missing items collect in one list; confirm them back into your pantry when you get home and the loop stays connected.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Family rhythm vision follows the daily reason ================= -->
-  <section class="section" id="vision">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Vision</p>
-        <h2>Help with today first.<br/>Learn your household’s rhythm over time.</h2>
-        <p class="lead">No two households eat the same way. FreshLife begins by connecting pantry, due dates, meals and shopping; later, and only with your permission, suggestions can gradually fit the way your household actually lives.</p>
-      </div>
-      <div class="vision-grid reveal">
-        <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div><span class="vision-tag current">Now · In the app today</span></div><h3>Make today easier to read</h3><p>The released Android and HarmonyOS apps focus on local pantry, shopping and usage records. Explore meal suggestions in the iOS preview; see each platform’s guide for its available features.</p></div>
-<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></div><span class="vision-tag next">Next · Not shipped yet</span></div><h3>Learn your family’s rhythm</h3><p>Improve usage estimates and preferences based on existing local household settings and confirmed records. Shared accounts, cross-device sync and cloud household collaboration are not available.</p></div>
-<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div><span class="vision-tag long">Long term · Direction</span></div><h3>A food intelligence layer for your home</h3><p>Understand how seasons, habits and budget change your routine, then offer a useful suggestion at the right moment. A direction, not today’s feature.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Roadmap: the nearest three steps only ================= -->
-  <section class="section section--alt section--compact" id="roadmap">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Roadmap</p>
-        <h2>Every step should make daily life easier.</h2>
-        <p class="lead">These areas continue to evolve: easier logging, household context, and weekly planning. The Android 1.0.1 release includes local household settings and usage estimates; full cloud collaboration is not available yet.</p>
-      </div>
-      <div class="roadmap-rail reveal">
-        <div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">01</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L17 4l3 3L8 19l-4 1z"/><path d="M14.5 6.5l3 3"/></svg></span><h3>Easier food entry</h3><p>Make recording food faster and easier: less typing, fewer checks, fewer mistakes.</p></div>
-<div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">02</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></span><h3>Family rhythm &amp; personal context</h3><p>Learn your household’s preferences on-device: tastes, dietary restrictions and regular purchases, so suggestions fit better over time.</p></div>
-<div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">03</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20v-6M12 20V8M18 20v-10"/></svg></span><h3>Better planning &amp; restocking</h3><p>Move from planning tonight’s meal to seeing how the whole week fits together, with smarter meal plans and restock suggestions based on real use.</p></div>
-      </div>
-      <p class="section-more reveal"><a href="/en/philosophy/">Why this order? Read the full philosophy and long-term direction <span aria-hidden="true">→</span></a></p>
-    </div>
-  </section>
-
-  <!-- ================= Story: from fridge to table ================= -->
-  <section class="section section--alt" id="membership"><div class="container member-layout"><div><p class="eyebrow">FreshLife Membership · Planned</p><h2>One card.<br/>A future connection to your shopping.</h2><p class="lead">We plan to offer a free membership card in FreshLife, with support for Apple Wallet. A future FreshLife store and participating local shops would recognize the same membership.</p><ul class="member-benefits"><li><strong>Shopping points</strong><span>Planned rewards for eligible completed orders.</span></li><li><strong>Selected coupons</strong><span>Planned points redemption, with clear eligibility and expiry dates.</span></li><li><strong>Selected member prices</strong><span>Offer terms and the final price shown before checkout.</span></li></ul><p class="member-note">Cards, rewards, the online store and in-store transactions are not available yet. No stored-value balance is offered. Final benefits and participating shops will be announced before launch.</p></div><div class="member-preview"><div class="member-pass" aria-label="Membership card concept, not issued"><div class="member-pass-top"><span><img src="/app-icon.png" width="42" height="42" alt=""/>FreshLife</span><span>Member card</span></div><h3>Freshness, every day.</h3><p>Choose with care. Enjoy the everyday.</p><div class="member-pass-fields"><div><span>Membership</span><strong>Planned</strong></div><div><span>Card status</span><strong>Not issued</strong></div></div></div><p class="member-caption">Design concept · Not a payment card</p><p class="member-note">The card would identify membership and eligible benefits. Payment is separate. Adding a card to Apple Wallet is not available yet.</p></div></div></section>
-  <section class="section story" id="story" aria-label="From fridge to table">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">From Fridge to Table · iOS preview</p>
-        <h2>From fridge to table.</h2>
-        <p class="lead">Follow one ingredient from the moment it comes home to the meal it becomes: log it, get a timely reminder, plan a dish, then add what is missing to your list.</p>
-      </div>
-
-      <div class="story-track">
-        <div class="story-stage-col">
-          <ol class="story-progress" aria-label="Story chapter progress">
-            <li><a class="story-progress-link" href="#story-1" data-story-indicator="1" aria-current="step"><span class="n">1</span><span>Log</span></a></li>
-            <li><a class="story-progress-link" href="#story-2" data-story-indicator="2"><span class="n">2</span><span>Remind</span></a></li>
-            <li><a class="story-progress-link" href="#story-3" data-story-indicator="3"><span class="n">3</span><span>Plan</span></a></li>
-            <li><a class="story-progress-link" href="#story-4" data-story-indicator="4"><span class="n">4</span><span>Shop</span></a></li>
-          </ol>
-
-          <div class="story-stage" data-story-stage data-active="1" aria-hidden="true">
-            <div class="phone story-phone">
-              <div class="phone-screen story-phone-screen">
-                <div class="phone-notch" aria-hidden="true"></div>
-                <div class="mock-status">
-                  <span class="time">9:41</span>
-                  <span class="icons"><i></i><i></i><i></i></span>
-                </div>
-                <div class="story-screens">
-                  <div class="story-screen story-screen--1" data-story-screen="1" data-story-note="Saved to your on-device pantry">
-                    <div class="mock-titlebar">
-                      <div class="t"><b>Pantry</b><small>One item, a few steps</small></div>
-                      <div class="mock-avatar"></div>
-                    </div>
-                    <div class="mock-ai">
-                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span>
-                      <p><b>Logged</b>Fresh milk · 7 days left, stored in “Fridge”</p>
-                    </div>
-                    <div class="mock-group-label">Just added <span class="n">3</span></div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-green">M</span>
-                      <span class="mt"><b>Fresh milk</b><small>Fridge · 7 days left</small></span>
-                      <span class="pill fresh">Fresh</span>
-                    </div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-green">E</span>
-                      <span class="mt"><b>Eggs</b><small>Fridge · 12 days left</small></span>
-                      <span class="pill fresh">Fresh</span>
-                    </div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-amber">T</span>
-                      <span class="mt"><b>Cherry tomatoes</b><small>Pantry · 3 days left</small></span>
-                      <span class="pill warn">Use soon</span>
-                    </div>
-                  </div>
-
-                  <div class="story-screen story-screen--2" data-story-screen="2" data-story-note="Reminder timing is yours to adjust">
-                    <div class="mock-titlebar">
-                      <div class="t"><b>Today</b><small>What to eat first</small></div>
-                      <div class="mock-avatar"></div>
-                    </div>
-                    <div class="mock-card">
-                      <div class="mock-eyebrow">Expiring soon · use this first</div>
-                      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-                        <b class="mock-focus-title">Fresh milk</b>
-                        <span class="pill warn">2 days left</span>
-                      </div>
-                      <div class="mock-focus-cap">Perfect for tonight’s rice dish</div>
-                    </div>
-                    <div class="mock-group-label">Expiring soon <span class="n">2</span></div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-amber">M</span>
-                      <span class="mt"><b>Fresh milk</b><small>Fridge · 2 days left</small></span>
-                      <span class="pill warn">Use soon</span>
-                    </div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-amber">T</span>
-                      <span class="mt"><b>Cherry tomatoes</b><small>Pantry · 3 days left</small></span>
-                      <span class="pill warn">Use soon</span>
-                    </div>
-                    <div class="mock-ai">
-                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2.5H4.5L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></span>
-                      <p><b>Expiry reminder</b>A quiet nudge in your notifications. Nothing pushy.</p>
-                    </div>
-                  </div>
-
-                  <div class="story-screen story-screen--3" data-story-screen="3" data-story-note="Suggestions are generated, then you choose">
-                    <div class="mock-titlebar">
-                      <div class="t"><b>Meals</b><small>Built from what’s on hand</small></div>
-                      <div class="mock-avatar"></div>
-                    </div>
-                    <div class="mock-ai">
-                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span>
-                      <p><b>FreshLife AI</b>Try creamy tomato rice with fresh milk and cherry tomatoes.</p>
-                    </div>
-                    <div class="mock-group-label">This week</div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-green">R</span>
-                      <span class="mt"><b>Creamy tomato rice</b><small>18 min · all ingredients ready</small></span>
-                      <span class="pill fresh">Ready</span>
-                    </div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-amber">B</span>
-                      <span class="mt"><b>Garlic broccoli &amp; egg</b><small>12 min · 1 item missing</small></span>
-                      <span class="pill warn">Miss 1</span>
-                    </div>
-                  </div>
-
-                  <div class="story-screen story-screen--4" data-story-screen="4" data-story-note="After you buy, confirm to add to pantry">
-                    <div class="mock-titlebar">
-                      <div class="t"><b>Shopping list</b><small>Everything missing, in one place</small></div>
-                      <div class="mock-avatar"></div>
-                    </div>
-                    <div class="mock-group-label">This run <span class="n">3</span></div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-green">S</span>
-                      <span class="mt"><b>Scallions</b><small>For the rice dish</small></span>
-                      <span class="chev"></span>
-                    </div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-green">C</span>
-                      <span class="mt"><b>Cheese</b><small>For the creamy rice</small></span>
-                      <span class="chev"></span>
-                    </div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-green">Mu</span>
-                      <span class="mt"><b>Mushrooms</b><small>Side dish</small></span>
-                      <span class="chev"></span>
-                    </div>
-                    <div class="mock-ai">
-                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M2.5 4h2l2.2 11.5a1.5 1.5 0 0 0 1.5 1.2h8.9a1.5 1.5 0 0 0 1.5-1.2L20.5 8H6"/></svg></span>
-                      <p><b>Add it when you get home</b>Once you have it, snap or type it into your pantry.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="story-dock" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="story-chapters">
-          <article class="story-chapter" id="story-1" data-story-chapter="1">
-            <div class="story-mini" aria-hidden="true">
-              <div class="mock-row">
-                <span class="mock-thumb thumb-green">M</span>
-                <span class="mt"><b>Fresh milk</b><small>Fridge · 7 days left</small></span>
-                <span class="pill fresh">Fresh</span>
-              </div>
-              <div class="mock-row">
-                <span class="mock-thumb thumb-green">E</span>
-                <span class="mt"><b>Eggs</b><small>Fridge · 12 days left</small></span>
-                <span class="pill fresh">Fresh</span>
-              </div>
-              <div class="mock-row">
-                <span class="mock-thumb thumb-amber">T</span>
-                <span class="mt"><b>Cherry tomatoes</b><small>Pantry · 3 days left</small></span>
-                <span class="pill warn">Use soon</span>
-              </div>
-            </div>
-            <div class="story-copy">
-              <span class="story-step">01 · Log</span>
-              <h3>Know what’s at home</h3>
-              <p>Anything you bring home — snap it, scan it, or type it in. Where it lives and how long it keeps: FreshLife remembers for you.</p>
-              <p class="story-state"><span>On screen: fresh milk just logged, 7 days left.</span></p>
-            </div>
-          </article>
-
-          <article class="story-chapter" id="story-2" data-story-chapter="2">
-            <div class="story-mini" aria-hidden="true">
-              <div class="mock-row">
-                <span class="mock-thumb thumb-amber">M</span>
-                <span class="mt"><b>Fresh milk</b><small>Fridge · 2 days left</small></span>
-                <span class="pill warn">Use soon</span>
-              </div>
-              <div class="mock-row">
-                <span class="mock-thumb thumb-amber">T</span>
-                <span class="mt"><b>Cherry tomatoes</b><small>Pantry · 3 days left</small></span>
-                <span class="pill warn">Use soon</span>
-              </div>
-            </div>
-            <div class="story-copy">
-              <span class="story-step">02 · Remind</span>
-              <h3>A timely reminder before food is due</h3>
-              <p>Items nearing their date surface on Home and in your notifications. No more daily fridge checks — you can see at a glance what to eat first.</p>
-              <p class="story-state"><span>On screen: fresh milk has 2 days left, top of “Expiring soon”.</span></p>
-            </div>
-          </article>
-
-          <article class="story-chapter" id="story-3" data-story-chapter="3">
-            <div class="story-mini" aria-hidden="true">
-              <div class="mock-row">
-                <span class="mock-thumb thumb-green">R</span>
-                <span class="mt"><b>Creamy tomato rice</b><small>18 min · all ingredients ready</small></span>
-                <span class="pill fresh">Ready</span>
-              </div>
-              <div class="mock-row">
-                <span class="mock-thumb thumb-amber">B</span>
-                <span class="mt"><b>Garlic broccoli &amp; egg</b><small>12 min · 1 item missing</small></span>
-                <span class="pill warn">Miss 1</span>
-              </div>
-            </div>
-            <div class="story-copy">
-              <span class="story-step">03 · Plan</span>
-              <h3>Cook with what’s on hand</h3>
-              <p>Open Meals and FreshLife suggests dishes from what is already in your pantry. Items about to expire come first, and anything missing is called out. Pick one you like and follow along.</p>
-              <p class="story-state"><span>On screen: creamy tomato rice — ingredients ready, <span class="keep-together">about 18 minutes.</span></span></p>
-            </div>
-          </article>
-
-          <article class="story-chapter" id="story-4" data-story-chapter="4">
-            <div class="story-mini" aria-hidden="true">
-              <div class="mock-row">
-                <span class="mock-thumb thumb-green">S</span>
-                <span class="mt"><b>Scallions · Cheese · Mushrooms</b><small>3 items · one trip</small></span>
-              </div>
-            </div>
-            <div class="story-copy">
-              <span class="story-step">04 · Shop</span>
-              <h3>Everything missing, in one list</h3>
-              <p>Anything a recipe is missing goes straight to your shopping list. Shop from the list, then log what you brought home to keep your pantry up to date.</p>
-              <p class="story-state"><span>On screen: scallions, cheese, mushrooms — 3 items to buy.</span></p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Product stage: iPhone + iPad ================= -->
   <section class="section" id="product">
     <div class="container">
       <div class="section-head reveal">
@@ -883,7 +580,263 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= Ways to add food ================= -->
+  <section class="section" id="daily">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Everyday</p>
+        <h2>Start with the decision in front of you.</h2>
+        <p class="lead">See what to use first in the morning, settle dinner before you get home, and check what is missing while you shop. FreshLife does not add another chore—it removes one more decision.</p>
+      </div>
+      <div class="daily-grid">
+        <a class="daily-card reveal" href="#story-2"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="4"/><path d="M12 3.5v2M5.3 5.3l1.4 1.4M3 13.5h2M19 13.5h2M17.3 6.7l-1.4 1.4M4.5 19.5h15M8.5 16.5h7"/></svg></div><span class="when">Morning · Before you leave</span></div><h3>See what matters today</h3><p>Review expiry dates and quantities, then check packaging and storage conditions before deciding what to use. Keep records current so a quick look is useful.</p><span class="daily-card-cta">See how reminders work <span aria-hidden="true">→</span></span></a>
+<a class="daily-card reveal" href="#story-3"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg></div><span class="when">Evening · On the way home</span></div><h3>Decide dinner before you get there</h3><p>Plan around your pantry and add missing ingredients to your shopping list. The meal-suggestion demo below shows the unreleased iOS version.</p><span class="daily-card-cta">See how a meal comes together <span aria-hidden="true">→</span></span></a>
+<a class="daily-card reveal" href="#story-4"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><span class="when">Shopping · In the aisle</span></div><h3>Check your pantry, then your list</h3><p>Check remaining quantities before shopping and confirm purchases into your pantry afterwards. Timely records make your next shop easier to plan.</p><span class="daily-card-cta">See how the list returns to your pantry <span aria-hidden="true">→</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--compact" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Why FreshLife</p>
+        <h2>Not one more thing to manage.<br/>One less thing to think about.</h2>
+        <p class="lead">See the priorities when you open the app, find an answer before dinner, and shop only for what is missing. Each step sits where it feels natural.</p>
+      </div>
+      <div class="why-grid why-grid--outcomes">
+        <div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 10h14"/><path d="M10 10v3"/></svg></div><h3>See what’s at home at a glance</h3><p>Pantry, storage spot, quantity and due date live in one place — less fridge searching and fewer accidental doubles.</p></div>
+<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2.5H4.5L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></div><h3>Use what needs using first</h3><p>Near-date food rises naturally to the top, with a gentle reminder while there is still time to plan it in.</p></div>
+<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v5a2.5 2.5 0 0 0 5 0V3"/><path d="M9.5 3v18"/><path d="M18 3v18"/><path d="M18 3c-3 3-3 9 0 12"/></svg></div><h3>Start dinner with what you have</h3><p>See what your ingredients can make and what is still missing, without starting over in a sea of recipes.</p></div>
+<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><h3>Shop with a clear list</h3><p>Missing items collect in one list; confirm them back into your pantry when you get home and the loop stays connected.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section story" id="story" aria-label="From fridge to table">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">From Fridge to Table · iOS preview</p>
+        <h2>From fridge to table.</h2>
+        <p class="lead">Follow one ingredient from the moment it comes home to the meal it becomes: log it, get a timely reminder, plan a dish, then add what is missing to your list.</p>
+      </div>
+
+      <div class="story-track">
+        <div class="story-stage-col">
+          <ol class="story-progress" aria-label="Story chapter progress">
+            <li><a class="story-progress-link" href="#story-1" data-story-indicator="1" aria-current="step"><span class="n">1</span><span>Log</span></a></li>
+            <li><a class="story-progress-link" href="#story-2" data-story-indicator="2"><span class="n">2</span><span>Remind</span></a></li>
+            <li><a class="story-progress-link" href="#story-3" data-story-indicator="3"><span class="n">3</span><span>Plan</span></a></li>
+            <li><a class="story-progress-link" href="#story-4" data-story-indicator="4"><span class="n">4</span><span>Shop</span></a></li>
+          </ol>
+
+          <div class="story-stage" data-story-stage data-active="1" aria-hidden="true">
+            <div class="phone story-phone">
+              <div class="phone-screen story-phone-screen">
+                <div class="phone-notch" aria-hidden="true"></div>
+                <div class="mock-status">
+                  <span class="time">9:41</span>
+                  <span class="icons"><i></i><i></i><i></i></span>
+                </div>
+                <div class="story-screens">
+                  <div class="story-screen story-screen--1" data-story-screen="1" data-story-note="Saved to your on-device pantry">
+                    <div class="mock-titlebar">
+                      <div class="t"><b>Pantry</b><small>One item, a few steps</small></div>
+                      <div class="mock-avatar"></div>
+                    </div>
+                    <div class="mock-ai">
+                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span>
+                      <p><b>Logged</b>Fresh milk · 7 days left, stored in “Fridge”</p>
+                    </div>
+                    <div class="mock-group-label">Just added <span class="n">3</span></div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-green">M</span>
+                      <span class="mt"><b>Fresh milk</b><small>Fridge · 7 days left</small></span>
+                      <span class="pill fresh">Fresh</span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-green">E</span>
+                      <span class="mt"><b>Eggs</b><small>Fridge · 12 days left</small></span>
+                      <span class="pill fresh">Fresh</span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-amber">T</span>
+                      <span class="mt"><b>Cherry tomatoes</b><small>Pantry · 3 days left</small></span>
+                      <span class="pill warn">Use soon</span>
+                    </div>
+                  </div>
+
+                  <div class="story-screen story-screen--2" data-story-screen="2" data-story-note="Reminder timing is yours to adjust">
+                    <div class="mock-titlebar">
+                      <div class="t"><b>Today</b><small>What to eat first</small></div>
+                      <div class="mock-avatar"></div>
+                    </div>
+                    <div class="mock-card">
+                      <div class="mock-eyebrow">Expiring soon · use this first</div>
+                      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                        <b class="mock-focus-title">Fresh milk</b>
+                        <span class="pill warn">2 days left</span>
+                      </div>
+                      <div class="mock-focus-cap">Perfect for tonight’s rice dish</div>
+                    </div>
+                    <div class="mock-group-label">Expiring soon <span class="n">2</span></div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-amber">M</span>
+                      <span class="mt"><b>Fresh milk</b><small>Fridge · 2 days left</small></span>
+                      <span class="pill warn">Use soon</span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-amber">T</span>
+                      <span class="mt"><b>Cherry tomatoes</b><small>Pantry · 3 days left</small></span>
+                      <span class="pill warn">Use soon</span>
+                    </div>
+                    <div class="mock-ai">
+                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2.5H4.5L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></span>
+                      <p><b>Expiry reminder</b>A quiet nudge in your notifications. Nothing pushy.</p>
+                    </div>
+                  </div>
+
+                  <div class="story-screen story-screen--3" data-story-screen="3" data-story-note="Suggestions are generated, then you choose">
+                    <div class="mock-titlebar">
+                      <div class="t"><b>Meals</b><small>Built from what’s on hand</small></div>
+                      <div class="mock-avatar"></div>
+                    </div>
+                    <div class="mock-ai">
+                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span>
+                      <p><b>FreshLife AI</b>Try creamy tomato rice with fresh milk and cherry tomatoes.</p>
+                    </div>
+                    <div class="mock-group-label">This week</div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-green">R</span>
+                      <span class="mt"><b>Creamy tomato rice</b><small>18 min · all ingredients ready</small></span>
+                      <span class="pill fresh">Ready</span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-amber">B</span>
+                      <span class="mt"><b>Garlic broccoli &amp; egg</b><small>12 min · 1 item missing</small></span>
+                      <span class="pill warn">Miss 1</span>
+                    </div>
+                  </div>
+
+                  <div class="story-screen story-screen--4" data-story-screen="4" data-story-note="After you buy, confirm to add to pantry">
+                    <div class="mock-titlebar">
+                      <div class="t"><b>Shopping list</b><small>Everything missing, in one place</small></div>
+                      <div class="mock-avatar"></div>
+                    </div>
+                    <div class="mock-group-label">This run <span class="n">3</span></div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-green">S</span>
+                      <span class="mt"><b>Scallions</b><small>For the rice dish</small></span>
+                      <span class="chev"></span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-green">C</span>
+                      <span class="mt"><b>Cheese</b><small>For the creamy rice</small></span>
+                      <span class="chev"></span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-green">Mu</span>
+                      <span class="mt"><b>Mushrooms</b><small>Side dish</small></span>
+                      <span class="chev"></span>
+                    </div>
+                    <div class="mock-ai">
+                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M2.5 4h2l2.2 11.5a1.5 1.5 0 0 0 1.5 1.2h8.9a1.5 1.5 0 0 0 1.5-1.2L20.5 8H6"/></svg></span>
+                      <p><b>Add it when you get home</b>Once you have it, snap or type it into your pantry.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="story-dock" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-chapters">
+          <article class="story-chapter" id="story-1" data-story-chapter="1">
+            <div class="story-mini" aria-hidden="true">
+              <div class="mock-row">
+                <span class="mock-thumb thumb-green">M</span>
+                <span class="mt"><b>Fresh milk</b><small>Fridge · 7 days left</small></span>
+                <span class="pill fresh">Fresh</span>
+              </div>
+              <div class="mock-row">
+                <span class="mock-thumb thumb-green">E</span>
+                <span class="mt"><b>Eggs</b><small>Fridge · 12 days left</small></span>
+                <span class="pill fresh">Fresh</span>
+              </div>
+              <div class="mock-row">
+                <span class="mock-thumb thumb-amber">T</span>
+                <span class="mt"><b>Cherry tomatoes</b><small>Pantry · 3 days left</small></span>
+                <span class="pill warn">Use soon</span>
+              </div>
+            </div>
+            <div class="story-copy">
+              <span class="story-step">01 · Log</span>
+              <h3>Know what’s at home</h3>
+              <p>Anything you bring home — snap it, scan it, or type it in. Where it lives and how long it keeps: FreshLife remembers for you.</p>
+              <p class="story-state"><span>On screen: fresh milk just logged, 7 days left.</span></p>
+            </div>
+          </article>
+
+          <article class="story-chapter" id="story-2" data-story-chapter="2">
+            <div class="story-mini" aria-hidden="true">
+              <div class="mock-row">
+                <span class="mock-thumb thumb-amber">M</span>
+                <span class="mt"><b>Fresh milk</b><small>Fridge · 2 days left</small></span>
+                <span class="pill warn">Use soon</span>
+              </div>
+              <div class="mock-row">
+                <span class="mock-thumb thumb-amber">T</span>
+                <span class="mt"><b>Cherry tomatoes</b><small>Pantry · 3 days left</small></span>
+                <span class="pill warn">Use soon</span>
+              </div>
+            </div>
+            <div class="story-copy">
+              <span class="story-step">02 · Remind</span>
+              <h3>A timely reminder before food is due</h3>
+              <p>Items nearing their date surface on Home and in your notifications. No more daily fridge checks — you can see at a glance what to eat first.</p>
+              <p class="story-state"><span>On screen: fresh milk has 2 days left, top of “Expiring soon”.</span></p>
+            </div>
+          </article>
+
+          <article class="story-chapter" id="story-3" data-story-chapter="3">
+            <div class="story-mini" aria-hidden="true">
+              <div class="mock-row">
+                <span class="mock-thumb thumb-green">R</span>
+                <span class="mt"><b>Creamy tomato rice</b><small>18 min · all ingredients ready</small></span>
+                <span class="pill fresh">Ready</span>
+              </div>
+              <div class="mock-row">
+                <span class="mock-thumb thumb-amber">B</span>
+                <span class="mt"><b>Garlic broccoli &amp; egg</b><small>12 min · 1 item missing</small></span>
+                <span class="pill warn">Miss 1</span>
+              </div>
+            </div>
+            <div class="story-copy">
+              <span class="story-step">03 · Plan</span>
+              <h3>Cook with what’s on hand</h3>
+              <p>Open Meals and FreshLife suggests dishes from what is already in your pantry. Items about to expire come first, and anything missing is called out. Pick one you like and follow along.</p>
+              <p class="story-state"><span>On screen: creamy tomato rice — ingredients ready, <span class="keep-together">about 18 minutes.</span></span></p>
+            </div>
+          </article>
+
+          <article class="story-chapter" id="story-4" data-story-chapter="4">
+            <div class="story-mini" aria-hidden="true">
+              <div class="mock-row">
+                <span class="mock-thumb thumb-green">S</span>
+                <span class="mt"><b>Scallions · Cheese · Mushrooms</b><small>3 items · one trip</small></span>
+              </div>
+            </div>
+            <div class="story-copy">
+              <span class="story-step">04 · Shop</span>
+              <h3>Everything missing, in one list</h3>
+              <p>Anything a recipe is missing goes straight to your shopping list. Shop from the list, then log what you brought home to keep your pantry up to date.</p>
+              <p class="story-state"><span>On screen: scallions, cheese, mushrooms — 3 items to buy.</span></p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--alt" id="add">
     <div class="container">
       <div class="section-head reveal">
@@ -901,7 +854,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= FreshLife AI ================= -->
   <section class="section" id="ai">
     <div class="container">
       <div class="section-head reveal">
@@ -921,7 +873,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= Privacy ================= -->
   <section class="section section--alt" id="privacy">
     <div class="container">
       <div class="section-head reveal">
@@ -945,7 +896,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= Feature glance; full detail lives on its own page ================= -->
   <section class="section" id="features">
     <div class="container">
       <div class="section-head reveal">
@@ -963,7 +913,39 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= FAQ ================= -->
+  <section class="section" id="vision">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Vision</p>
+        <h2>Help with today first.<br/>Learn your household’s rhythm over time.</h2>
+        <p class="lead">No two households eat the same way. FreshLife begins by connecting pantry, due dates, meals and shopping; later, and only with your permission, suggestions can gradually fit the way your household actually lives.</p>
+      </div>
+      <div class="vision-grid reveal">
+        <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div><span class="vision-tag current">Now · In the app today</span></div><h3>Make today easier to read</h3><p>The released Android and HarmonyOS apps focus on local pantry, shopping and usage records. Explore meal suggestions in the iOS preview; see each platform’s guide for its available features.</p></div>
+<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></div><span class="vision-tag next">Next · Not shipped yet</span></div><h3>Learn your family’s rhythm</h3><p>Improve usage estimates and preferences based on existing local household settings and confirmed records. Shared accounts, cross-device sync and cloud household collaboration are not available.</p></div>
+<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div><span class="vision-tag long">Long term · Direction</span></div><h3>A food intelligence layer for your home</h3><p>Understand how seasons, habits and budget change your routine, then offer a useful suggestion at the right moment. A direction, not today’s feature.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--compact" id="roadmap">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Roadmap</p>
+        <h2>Every step should make daily life easier.</h2>
+        <p class="lead">These areas continue to evolve: easier logging, household context, and weekly planning. The Android 1.0.1 release includes local household settings and usage estimates; full cloud collaboration is not available yet.</p>
+      </div>
+      <div class="roadmap-rail reveal">
+        <div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">01</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L17 4l3 3L8 19l-4 1z"/><path d="M14.5 6.5l3 3"/></svg></span><h3>Easier food entry</h3><p>Make recording food faster and easier: less typing, fewer checks, fewer mistakes.</p></div>
+<div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">02</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></span><h3>Family rhythm &amp; personal context</h3><p>Learn your household’s preferences on-device: tastes, dietary restrictions and regular purchases, so suggestions fit better over time.</p></div>
+<div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">03</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20v-6M12 20V8M18 20v-10"/></svg></span><h3>Better planning &amp; restocking</h3><p>Move from planning tonight’s meal to seeing how the whole week fits together, with smarter meal plans and restock suggestions based on real use.</p></div>
+      </div>
+      <p class="section-more reveal"><a href="/en/philosophy/">Why this order? Read the full philosophy and long-term direction <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="membership"><div class="container member-layout"><div><p class="eyebrow">FreshLife Membership · Planned</p><h2>One card.<br/>A future connection to your shopping.</h2><p class="lead">We plan to offer a free membership card in FreshLife, with support for Apple Wallet. A future FreshLife store and participating local shops would recognize the same membership.</p><ul class="member-benefits"><li><strong>Shopping points</strong><span>Planned rewards for eligible completed orders.</span></li><li><strong>Selected coupons</strong><span>Planned points redemption, with clear eligibility and expiry dates.</span></li><li><strong>Selected member prices</strong><span>Offer terms and the final price shown before checkout.</span></li></ul><p class="member-note">Cards, rewards, the online store and in-store transactions are not available yet. No stored-value balance is offered. Final benefits and participating shops will be announced before launch.</p></div><div class="member-preview"><div class="member-pass" aria-label="Membership card concept, not issued"><div class="member-pass-top"><span><img src="/app-icon.png" width="42" height="42" alt=""/>FreshLife</span><span>Member card</span></div><h3>Freshness, every day.</h3><p>Choose with care. Enjoy the everyday.</p><div class="member-pass-fields"><div><span>Membership</span><strong>Planned</strong></div><div><span>Card status</span><strong>Not issued</strong></div></div></div><p class="member-caption">Design concept · Not a payment card</p><p class="member-note">The card would identify membership and eligible benefits. Payment is separate. Adding a card to Apple Wallet is not available yet.</p></div></div></section>
+
   <section class="section" id="faq">
     <div class="container">
       <div class="section-head center reveal">
@@ -982,7 +964,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= Launch status ================= -->
   <section class="section section--alt" id="download"><div class="container"><div class="section-head"><h2>Choose your way to use FreshLife.</h2><p class="lead">Android and native HarmonyOS are available in mainland China. Submitted updates become available only after review.</p></div><div class="release-grid"><article class="release-card"><h3>Android</h3><p class="release-status">1.0.1 available</p><p>1.0.2 submitted for review</p><a class="button primary" href="https://appgallery.huawei.com/app/C118907099">Download for Android<span aria-hidden="true"> →</span></a></article><article class="release-card"><h3>HarmonyOS</h3><p class="release-status">1.0.0 available</p><p>1.0.1 submitted · in pre-review</p><a class="button primary" href="https://appgallery.huawei.com/app/detail?id=cn.freshlifeapp.mobile">Download for HarmonyOS<span aria-hidden="true"> →</span></a></article><article class="release-card"><h3>iPhone &amp; iPad</h3><p class="release-status">Preparing for release</p><p>No App Store download yet.</p><a href="/en/#demo-apple">Explore the iOS demo<span aria-hidden="true"> →</span></a></article><article class="release-card"><h3>Web app</h3><p class="release-status">Open now</p><p>Chinese interface · records stay in this browser.</p><a href="/app/">Open web app<span aria-hidden="true"> →</span></a></article></div><p class="release-date">Status checked September 11, 2026. Store availability may change after review.</p><p class="section-more"><a href="/en/support/#updates">Read the update notes →</a></p></div></section>
 
 </main>

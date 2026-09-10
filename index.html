@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-f91da85120.css"/>
+<link rel="stylesheet" href="/assets/main-fe6c61a598.css"/>
 </head>
 <body>
 
@@ -99,318 +99,12 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
         <a class="hero-secondary" href="#product">观看产品演示<span aria-hidden="true"> →</span></a>
       </div>
       <p class="web-entry-note">网页版已开放：库存、购物与使用记录，保存在当前浏览器；暂不与 App 同步。</p>
-      <div class="hero-platforms" aria-label="选择你的系统"><span class="platform-label">了解各平台</span><a href="/#demo-apple">苹果<span aria-hidden="true"> →</span></a><a href="/#demo-android">安卓<span aria-hidden="true"> →</span></a><a href="/#demo-harmony">鸿蒙<span aria-hidden="true"> →</span></a></div>
-      <div class="hero-assurances">
-        <span>本地优先，<b>无需注册</b></span><i></i>
-        <span>记录变更，<b>由你确认</b></span><i></i>
-        <span>本地数据，<b>自主备份</b></span>
-      </div>
-      <div class="hero-downloads" aria-label="下载手机应用"><a class="button quiet" href="https://appgallery.huawei.com/app/C118907099">下载安卓版</a><a class="button quiet" href="https://appgallery.huawei.com/app/detail?id=cn.freshlifeapp.mobile">下载鸿蒙版</a></div>
+      <div class="hero-download-group"><span class="hero-download-label">手机应用</span><div class="hero-downloads" aria-label="下载手机应用"><a class="button quiet" href="https://appgallery.huawei.com/app/C118907099">下载安卓版</a><a class="button quiet" href="https://appgallery.huawei.com/app/detail?id=cn.freshlifeapp.mobile">下载鸿蒙版</a></div></div>
       <p class="hero-status">安卓与鸿蒙已上架华为应用市场 · iOS 上架准备中</p>
       <p class="hero-status"><a href="#download">下载与版本状态 →</a> · <a href="/support/#updates">查看本次更新内容</a></p>
     </div>
   </section>
 
-  <!-- ================= 每天打开的理由 =================
-       三个具体瞬间：出门前、回家路上、站在货架前；
-       说明用户每天为什么打开 FreshLife，而不是多维护一个 App。 -->
-  <section class="section" id="daily">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Everyday</p>
-        <h2>每次打开，都先解决眼前这一件事。</h2>
-        <p class="lead">早上看看今天该先吃什么，下班前想好晚餐，买东西时确认家里还缺什么。及时记下买入与使用情况，下次查看时就少一分猜测。</p>
-      </div>
-      <div class="daily-grid">
-        <a class="daily-card reveal" href="#story-2"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="4"/><path d="M12 3.5v2M5.3 5.3l1.4 1.4M3 13.5h2M19 13.5h2M17.3 6.7l-1.4 1.4M4.5 19.5h15M8.5 16.5h7"/></svg></div><span class="when">早晨 · 出门前</span></div><h3>快速看清今天</h3><p>先查看到期日期与剩余数量，再结合包装和储存情况安排使用。及时记录，让出门前的查看更有依据。</p><span class="daily-card-cta">看看它怎样提醒 <span aria-hidden="true">→</span></span></a>
-<a class="daily-card reveal" href="#story-3"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg></div><span class="when">下班 · 回家路上</span></div><h3>今晚吃什么，先定好</h3><p>根据库存安排晚餐，把缺的食材记进购物清单，顺路带回家。下方餐食建议演示来自 iOS 待上架版本。</p><span class="daily-card-cta">看看它怎样安排 <span aria-hidden="true">→</span></span></a>
-<a class="daily-card reveal" href="#story-4"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><span class="when">购物 · 在超市</span></div><h3>对照库存，再看清单</h3><p>采购前核对家中余量，买回来后确认入库。记录越及时，下次购物就越有数。</p><span class="daily-card-cta">看看清单怎样接回库存 <span aria-hidden="true">→</span></span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 用户先看到结果，而不是功能名词 ================= -->
-  <section class="section section--alt section--compact" id="why">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Why FreshLife</p>
-        <h2>不是多管一件事，<br/>是每天少操一点心。</h2>
-        <p class="lead">出门前查看库存，采购时核对清单，用过后记录余量。让每次查看都有用。</p>
-      </div>
-      <div class="why-grid why-grid--outcomes">
-        <div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 10h14"/><path d="M10 10v3"/></svg></div><h3>一眼知道家里有什么</h3><p>库存、位置、数量和到期时间集中在一处，少翻一次冰箱，也少买一份重复的。</p></div>
-<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2.5H4.5L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></div><h3>先把该吃的吃掉</h3><p>临期食材自然排到前面，在还能安排的时候轻轻提醒，不必天天自己核对。</p></div>
-<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v5a2.5 2.5 0 0 0 5 0V3"/><path d="M9.5 3v18"/><path d="M18 3v18"/><path d="M18 3c-3 3-3 9 0 12"/></svg></div><h3>晚饭从现有食材开始</h3><p>先看手头能做什么，再告诉你还缺什么；不用面对一堆食谱重新做选择。</p></div>
-<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><h3>买菜时心里有数</h3><p>缺的集中进清单，买回后再确认入库，让记录、安排和采购顺手接起来。</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 家庭节奏愿景：紧接每天使用理由 ================= -->
-  <section class="section" id="vision">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Vision</p>
-        <h2>先帮好今天，<br/>再慢慢懂得你们家的节奏。</h2>
-        <p class="lead">每家吃饭的节奏都不同。FreshLife 先把库存、临期、餐食和购物接起来；以后只在你同意的前提下，逐步让建议更贴近你们家的真实生活。</p>
-      </div>
-      <div class="vision-grid reveal">
-        <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div><span class="vision-tag current">现在 · 今天已具备</span></div><h3>把每天记清楚</h3><p>已发布的安卓与鸿蒙版本先把本地库存、购物与使用记录做好；餐食建议可在 iOS 功能预览中了解。各平台的具体能力以对应说明为准。</p></div>
-<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></div><span class="vision-tag next">下一步 · 尚未上线</span></div><h3>记住你们家的节奏</h3><p>在已有本地家庭设置和确认记录的基础上，继续完善用量估算与偏好管理。共享账号、跨设备同步和云端家庭协作尚未开放。</p></div>
-<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div><span class="vision-tag long">长期 · 方向</span></div><h3>成为家庭的食品智能层</h3><p>理解季节、习惯与预算带来的变化，在合适的时候给出合适的建议。这是长期方向，不是今天的功能。</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 路线图：只讲最近三步，完整愿景放在理念页 ================= -->
-  <section class="section section--alt section--compact" id="roadmap">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Roadmap</p>
-        <h2>每一步，都先让日常更轻松。</h2>
-        <p class="lead">这些是持续完善的方向：先减轻录入，再理解家庭节奏，然后改进一周规划与补货。安卓 1.0.1 的本地家庭设置和用量估算已包含在上架版本中；完整云端协作尚未开放。</p>
-      </div>
-      <div class="roadmap-rail reveal">
-        <div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">01</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L17 4l3 3L8 19l-4 1z"/><path d="M14.5 6.5l3 3"/></svg></span><h3>更轻松的录入</h3><p>让「记一笔」更快、更省心：少打字、少核对，也少出错。</p></div>
-<div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">02</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></span><h3>家庭节奏与个性化上下文</h3><p>在设备上慢慢记住你们家的偏好：口味、忌口、常买的清单，让建议越来越贴切。</p></div>
-<div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">03</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20v-6M12 20V8M18 20v-10"/></svg></span><h3>更好的规划与补货</h3><p>从「今天吃什么」走向「这周怎么吃」：让餐食计划与补货建议更贴近家里的实际用量。</p></div>
-      </div>
-      <p class="section-more reveal"><a href="/philosophy/">为什么这样安排？阅读完整理念与长期方向 <span aria-hidden="true">→</span></a></p>
-    </div>
-  </section>
-
-  <!-- ================= 滚动叙事：从放进冰箱，到端上餐桌 =================
-       桌面：sticky 产品舞台 + 四个章节，内容随滚动交叉淡入；
-       小屏 / 无 JS / 开启「减少动态效果」时退化为顺序故事卡片，
-       所有文案始终在文档流中可见、顺序合理。 -->
-  <section class="section section--alt" id="membership"><div class="container member-layout"><div><p class="eyebrow">FreshLife Membership · 筹备中</p><h2>一张卡，<br/>连接未来的购物体验。</h2><p class="lead">计划推出免费普通会员卡，在 App 内查看，并支持添加到 Apple 钱包。未来在 FreshLife 商城关联会员，也可在已接入的线下门店出示会员码。</p><ul class="member-benefits"><li><strong>购物积分</strong><span>符合条件的订单完成后，计划累积积分。</span></li><li><strong>指定优惠券</strong><span>计划使用积分兑换，适用范围和期限提前说明。</span></li><li><strong>指定商品会员价</strong><span>活动价格和使用条件在结算前清楚展示。</span></li></ul><p class="member-note">尚未开放领卡、积分兑换、商城或门店消费。不提供充值余额；具体权益和合作门店以正式上线公告为准。</p></div><div class="member-preview"><div class="member-pass" aria-label="会员卡设计示意，尚未发行"><div class="member-pass-top"><span><img src="/app-icon.png" width="42" height="42" alt=""/>FreshLife</span><span>会员卡</span></div><h3>让新鲜成为日常</h3><p>用心选购，认真生活。</p><div class="member-pass-fields"><div><span>会员服务</span><strong>筹备中</strong></div><div><span>发卡状态</span><strong>尚未发行</strong></div></div></div><p class="member-caption">卡片设计示意 · 非支付卡</p><p class="member-note">会员卡用于识别身份和使用权益，付款另行完成。Apple 钱包添加功能尚未启用。</p></div></div></section>
-  <section class="section story" id="story" aria-label="从放进冰箱，到端上餐桌">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">日常使用流程 · iOS 功能预览</p>
-        <h2>从放进冰箱，到端上餐桌。</h2>
-        <p class="lead">一件食材从带回家到端上餐桌，FreshLife 顺手接住每一步：记下、提醒、安排、补货。往下滚动，看看这段日常怎样自然连起来。</p>
-      </div>
-
-      <div class="story-track">
-        <div class="story-stage-col">
-          <ol class="story-progress" aria-label="故事章节进度">
-            <li><a class="story-progress-link" href="#story-1" data-story-indicator="1" aria-current="step"><span class="n">1</span><span>记录</span></a></li>
-            <li><a class="story-progress-link" href="#story-2" data-story-indicator="2"><span class="n">2</span><span>提醒</span></a></li>
-            <li><a class="story-progress-link" href="#story-3" data-story-indicator="3"><span class="n">3</span><span>安排</span></a></li>
-            <li><a class="story-progress-link" href="#story-4" data-story-indicator="4"><span class="n">4</span><span>清单</span></a></li>
-          </ol>
-
-          <div class="story-stage" data-story-stage data-active="1" aria-hidden="true">
-            <div class="phone story-phone">
-              <div class="phone-screen story-phone-screen">
-                <div class="phone-notch" aria-hidden="true"></div>
-                <div class="mock-status">
-                  <span class="time">9:41</span>
-                  <span class="icons"><i></i><i></i><i></i></span>
-                </div>
-                <div class="story-screens">
-                  <div class="story-screen story-screen--1" data-story-screen="1" data-story-note="保存到本机库存">
-                    <div class="mock-titlebar">
-                      <div class="t"><b>库存</b><small>记一件，几步就好</small></div>
-                      <div class="mock-avatar"></div>
-                    </div>
-                    <div class="mock-ai">
-                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span>
-                      <p><b>已记下</b>鲜牛奶 · 保质期 7 天，放进「冷藏」</p>
-                    </div>
-                    <div class="mock-group-label">刚刚添加 <span class="n">3</span></div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-green">奶</span>
-                      <span class="mt"><b>鲜牛奶</b><small>冷藏 · 还有 7 天</small></span>
-                      <span class="pill fresh">新鲜</span>
-                    </div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-green">蛋</span>
-                      <span class="mt"><b>鸡蛋</b><small>冷藏 · 还有 12 天</small></span>
-                      <span class="pill fresh">新鲜</span>
-                    </div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-amber">茄</span>
-                      <span class="mt"><b>小番茄</b><small>常温 · 还有 3 天</small></span>
-                      <span class="pill warn">先用</span>
-                    </div>
-                  </div>
-
-                  <div class="story-screen story-screen--2" data-story-screen="2" data-story-note="提醒时间可以自己调整">
-                    <div class="mock-titlebar">
-                      <div class="t"><b>首页</b><small>今天先吃什么</small></div>
-                      <div class="mock-avatar"></div>
-                    </div>
-                    <div class="mock-card">
-                      <div class="mock-eyebrow">快到期 · 先吃这件</div>
-                      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-                        <b class="mock-focus-title">鲜牛奶</b>
-                        <span class="pill warn">还有 2 天</span>
-                      </div>
-                      <div class="mock-focus-cap">今晚炖饭正好用掉它</div>
-                    </div>
-                    <div class="mock-group-label">临期 <span class="n">2</span></div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-amber">奶</span>
-                      <span class="mt"><b>鲜牛奶</b><small>冷藏 · 还有 2 天</small></span>
-                      <span class="pill warn">先用</span>
-                    </div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-amber">茄</span>
-                      <span class="mt"><b>小番茄</b><small>常温 · 还有 3 天</small></span>
-                      <span class="pill warn">先用</span>
-                    </div>
-                    <div class="mock-ai">
-                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2.5H4.5L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></span>
-                      <p><b>到期提醒</b>在通知里轻轻提醒一声，不打扰。</p>
-                    </div>
-                  </div>
-
-                  <div class="story-screen story-screen--3" data-story-screen="3" data-story-note="建议生成后，再由你选择">
-                    <div class="mock-titlebar">
-                      <div class="t"><b>膳食</b><small>从现有食材出发</small></div>
-                      <div class="mock-avatar"></div>
-                    </div>
-                    <div class="mock-ai">
-                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span>
-                      <p><b>FreshLife AI</b>用鲜牛奶和小番茄，试试「番茄奶香炖饭」。</p>
-                    </div>
-                    <div class="mock-group-label">本周安排</div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-green">饭</span>
-                      <span class="mt"><b>番茄奶香炖饭</b><small>18 分钟 · 食材齐了</small></span>
-                      <span class="pill fresh">备齐</span>
-                    </div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-amber">菜</span>
-                      <span class="mt"><b>蒜香西兰花炒蛋</b><small>12 分钟 · 还差 1 件</small></span>
-                      <span class="pill warn">缺 1</span>
-                    </div>
-                  </div>
-
-                  <div class="story-screen story-screen--4" data-story-screen="4" data-story-note="买到后，再确认加入库存">
-                    <div class="mock-titlebar">
-                      <div class="t"><b>购物清单</b><small>缺的都在这里</small></div>
-                      <div class="mock-avatar"></div>
-                    </div>
-                    <div class="mock-group-label">本次采购 <span class="n">3</span></div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-green">葱</span>
-                      <span class="mt"><b>小葱</b><small>炖饭调味</small></span>
-                      <span class="chev"></span>
-                    </div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-green">芝</span>
-                      <span class="mt"><b>芝士</b><small>奶香炖饭</small></span>
-                      <span class="chev"></span>
-                    </div>
-                    <div class="mock-row">
-                      <span class="mock-thumb thumb-green">蘑</span>
-                      <span class="mt"><b>口蘑</b><small>配菜</small></span>
-                      <span class="chev"></span>
-                    </div>
-                    <div class="mock-ai">
-                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M2.5 4h2l2.2 11.5a1.5 1.5 0 0 0 1.5 1.2h8.9a1.5 1.5 0 0 0 1.5-1.2L20.5 8H6"/></svg></span>
-                      <p><b>买回后再入库</b>确认买到后，再拍照或手动加入库存。</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="story-dock" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="story-chapters">
-          <article class="story-chapter" id="story-1" data-story-chapter="1">
-            <div class="story-mini" aria-hidden="true">
-              <div class="mock-row">
-                <span class="mock-thumb thumb-green">奶</span>
-                <span class="mt"><b>鲜牛奶</b><small>冷藏 · 还有 7 天</small></span>
-                <span class="pill fresh">新鲜</span>
-              </div>
-              <div class="mock-row">
-                <span class="mock-thumb thumb-green">蛋</span>
-                <span class="mt"><b>鸡蛋</b><small>冷藏 · 还有 12 天</small></span>
-                <span class="pill fresh">新鲜</span>
-              </div>
-              <div class="mock-row">
-                <span class="mock-thumb thumb-amber">茄</span>
-                <span class="mt"><b>小番茄</b><small>常温 · 还有 3 天</small></span>
-                <span class="pill warn">先用</span>
-              </div>
-            </div>
-            <div class="story-copy">
-              <span class="story-step">01 · 记录</span>
-              <h3>记下家里有什么</h3>
-              <p>买回来的东西，拍照、扫码或者手动记一笔，就进了你的库存。放在哪个位置、还有多久到期，FreshLife 替你记着。</p>
-              <p class="story-state"><span>屏幕里：鲜牛奶刚记下，显示还有 7 天。</span></p>
-            </div>
-          </article>
-
-          <article class="story-chapter" id="story-2" data-story-chapter="2">
-            <div class="story-mini" aria-hidden="true">
-              <div class="mock-row">
-                <span class="mock-thumb thumb-amber">奶</span>
-                <span class="mt"><b>鲜牛奶</b><small>冷藏 · 还有 2 天</small></span>
-                <span class="pill warn">临期</span>
-              </div>
-              <div class="mock-row">
-                <span class="mock-thumb thumb-amber">茄</span>
-                <span class="mt"><b>小番茄</b><small>常温 · 还有 3 天</small></span>
-                <span class="pill warn">先用</span>
-              </div>
-            </div>
-            <div class="story-copy">
-              <span class="story-step">02 · 提醒</span>
-              <h3>临期前，及时提醒</h3>
-              <p>快到期的那几件，会提前出现在首页和通知里。不用每天翻冰箱核对，今天先吃哪件，一眼就明白。</p>
-              <p class="story-state"><span>屏幕里：鲜牛奶还有 2 天，排在「临期」第一位。</span></p>
-            </div>
-          </article>
-
-          <article class="story-chapter" id="story-3" data-story-chapter="3">
-            <div class="story-mini" aria-hidden="true">
-              <div class="mock-row">
-                <span class="mock-thumb thumb-green">饭</span>
-                <span class="mt"><b>番茄奶香炖饭</b><small>18 分钟 · 食材齐了</small></span>
-                <span class="pill fresh">备齐</span>
-              </div>
-              <div class="mock-row">
-                <span class="mock-thumb thumb-amber">菜</span>
-                <span class="mt"><b>蒜香西兰花炒蛋</b><small>12 分钟 · 还差 1 件</small></span>
-                <span class="pill warn">缺 1</span>
-              </div>
-            </div>
-            <div class="story-copy">
-              <span class="story-step">03 · 安排</span>
-              <h3>根据现有食材，安排一餐</h3>
-              <p>打开膳食页，FreshLife 会参考你现有的库存给建议：优先用掉快过期的，缺什么也会明说。挑个合口味的，照着做就好。</p>
-              <p class="story-state"><span>屏幕里：番茄奶香炖饭，食材齐了，<span class="keep-together">约 18 分钟。</span></span></p>
-            </div>
-          </article>
-
-          <article class="story-chapter" id="story-4" data-story-chapter="4">
-            <div class="story-mini" aria-hidden="true">
-              <div class="mock-row">
-                <span class="mock-thumb thumb-green">葱</span>
-                <span class="mt"><b>小葱 · 芝士 · 口蘑</b><small>3 件 · 一起采购</small></span>
-              </div>
-            </div>
-            <div class="story-copy">
-              <span class="story-step">04 · 清单</span>
-              <h3>需要补充的，集中进购物清单</h3>
-              <p>做菜缺的那几样，可以收进购物清单。下次采购照着买，买回来再记一笔，库存又补齐了。</p>
-              <p class="story-state"><span>屏幕里：小葱、芝士、口蘑，3 件待采购。</span></p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 产品舞台：iPhone + iPad ================= -->
   <section class="section" id="product">
     <div class="container">
       <div class="section-head reveal">
@@ -886,7 +580,263 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= 记录方式 ================= -->
+  <section class="section" id="daily">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Everyday</p>
+        <h2>每次打开，都先解决眼前这一件事。</h2>
+        <p class="lead">早上看看今天该先吃什么，下班前想好晚餐，买东西时确认家里还缺什么。及时记下买入与使用情况，下次查看时就少一分猜测。</p>
+      </div>
+      <div class="daily-grid">
+        <a class="daily-card reveal" href="#story-2"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="4"/><path d="M12 3.5v2M5.3 5.3l1.4 1.4M3 13.5h2M19 13.5h2M17.3 6.7l-1.4 1.4M4.5 19.5h15M8.5 16.5h7"/></svg></div><span class="when">早晨 · 出门前</span></div><h3>快速看清今天</h3><p>先查看到期日期与剩余数量，再结合包装和储存情况安排使用。及时记录，让出门前的查看更有依据。</p><span class="daily-card-cta">看看它怎样提醒 <span aria-hidden="true">→</span></span></a>
+<a class="daily-card reveal" href="#story-3"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg></div><span class="when">下班 · 回家路上</span></div><h3>今晚吃什么，先定好</h3><p>根据库存安排晚餐，把缺的食材记进购物清单，顺路带回家。下方餐食建议演示来自 iOS 待上架版本。</p><span class="daily-card-cta">看看它怎样安排 <span aria-hidden="true">→</span></span></a>
+<a class="daily-card reveal" href="#story-4"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><span class="when">购物 · 在超市</span></div><h3>对照库存，再看清单</h3><p>采购前核对家中余量，买回来后确认入库。记录越及时，下次购物就越有数。</p><span class="daily-card-cta">看看清单怎样接回库存 <span aria-hidden="true">→</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--compact" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Why FreshLife</p>
+        <h2>不是多管一件事，<br/>是每天少操一点心。</h2>
+        <p class="lead">出门前查看库存，采购时核对清单，用过后记录余量。让每次查看都有用。</p>
+      </div>
+      <div class="why-grid why-grid--outcomes">
+        <div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 10h14"/><path d="M10 10v3"/></svg></div><h3>一眼知道家里有什么</h3><p>库存、位置、数量和到期时间集中在一处，少翻一次冰箱，也少买一份重复的。</p></div>
+<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2.5H4.5L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></div><h3>先把该吃的吃掉</h3><p>临期食材自然排到前面，在还能安排的时候轻轻提醒，不必天天自己核对。</p></div>
+<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v5a2.5 2.5 0 0 0 5 0V3"/><path d="M9.5 3v18"/><path d="M18 3v18"/><path d="M18 3c-3 3-3 9 0 12"/></svg></div><h3>晚饭从现有食材开始</h3><p>先看手头能做什么，再告诉你还缺什么；不用面对一堆食谱重新做选择。</p></div>
+<div class="why-card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.5a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3L4 9z"/><path d="M8 9l3-5.5M16 9l-3-5.5"/><path d="M9.5 13v4M12 13v4M14.5 13v4"/></svg></div><h3>买菜时心里有数</h3><p>缺的集中进清单，买回后再确认入库，让记录、安排和采购顺手接起来。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section story" id="story" aria-label="从放进冰箱，到端上餐桌">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">日常使用流程 · iOS 功能预览</p>
+        <h2>从放进冰箱，到端上餐桌。</h2>
+        <p class="lead">一件食材从带回家到端上餐桌，FreshLife 顺手接住每一步：记下、提醒、安排、补货。往下滚动，看看这段日常怎样自然连起来。</p>
+      </div>
+
+      <div class="story-track">
+        <div class="story-stage-col">
+          <ol class="story-progress" aria-label="故事章节进度">
+            <li><a class="story-progress-link" href="#story-1" data-story-indicator="1" aria-current="step"><span class="n">1</span><span>记录</span></a></li>
+            <li><a class="story-progress-link" href="#story-2" data-story-indicator="2"><span class="n">2</span><span>提醒</span></a></li>
+            <li><a class="story-progress-link" href="#story-3" data-story-indicator="3"><span class="n">3</span><span>安排</span></a></li>
+            <li><a class="story-progress-link" href="#story-4" data-story-indicator="4"><span class="n">4</span><span>清单</span></a></li>
+          </ol>
+
+          <div class="story-stage" data-story-stage data-active="1" aria-hidden="true">
+            <div class="phone story-phone">
+              <div class="phone-screen story-phone-screen">
+                <div class="phone-notch" aria-hidden="true"></div>
+                <div class="mock-status">
+                  <span class="time">9:41</span>
+                  <span class="icons"><i></i><i></i><i></i></span>
+                </div>
+                <div class="story-screens">
+                  <div class="story-screen story-screen--1" data-story-screen="1" data-story-note="保存到本机库存">
+                    <div class="mock-titlebar">
+                      <div class="t"><b>库存</b><small>记一件，几步就好</small></div>
+                      <div class="mock-avatar"></div>
+                    </div>
+                    <div class="mock-ai">
+                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span>
+                      <p><b>已记下</b>鲜牛奶 · 保质期 7 天，放进「冷藏」</p>
+                    </div>
+                    <div class="mock-group-label">刚刚添加 <span class="n">3</span></div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-green">奶</span>
+                      <span class="mt"><b>鲜牛奶</b><small>冷藏 · 还有 7 天</small></span>
+                      <span class="pill fresh">新鲜</span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-green">蛋</span>
+                      <span class="mt"><b>鸡蛋</b><small>冷藏 · 还有 12 天</small></span>
+                      <span class="pill fresh">新鲜</span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-amber">茄</span>
+                      <span class="mt"><b>小番茄</b><small>常温 · 还有 3 天</small></span>
+                      <span class="pill warn">先用</span>
+                    </div>
+                  </div>
+
+                  <div class="story-screen story-screen--2" data-story-screen="2" data-story-note="提醒时间可以自己调整">
+                    <div class="mock-titlebar">
+                      <div class="t"><b>首页</b><small>今天先吃什么</small></div>
+                      <div class="mock-avatar"></div>
+                    </div>
+                    <div class="mock-card">
+                      <div class="mock-eyebrow">快到期 · 先吃这件</div>
+                      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                        <b class="mock-focus-title">鲜牛奶</b>
+                        <span class="pill warn">还有 2 天</span>
+                      </div>
+                      <div class="mock-focus-cap">今晚炖饭正好用掉它</div>
+                    </div>
+                    <div class="mock-group-label">临期 <span class="n">2</span></div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-amber">奶</span>
+                      <span class="mt"><b>鲜牛奶</b><small>冷藏 · 还有 2 天</small></span>
+                      <span class="pill warn">先用</span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-amber">茄</span>
+                      <span class="mt"><b>小番茄</b><small>常温 · 还有 3 天</small></span>
+                      <span class="pill warn">先用</span>
+                    </div>
+                    <div class="mock-ai">
+                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2.5H4.5L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></span>
+                      <p><b>到期提醒</b>在通知里轻轻提醒一声，不打扰。</p>
+                    </div>
+                  </div>
+
+                  <div class="story-screen story-screen--3" data-story-screen="3" data-story-note="建议生成后，再由你选择">
+                    <div class="mock-titlebar">
+                      <div class="t"><b>膳食</b><small>从现有食材出发</small></div>
+                      <div class="mock-avatar"></div>
+                    </div>
+                    <div class="mock-ai">
+                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span>
+                      <p><b>FreshLife AI</b>用鲜牛奶和小番茄，试试「番茄奶香炖饭」。</p>
+                    </div>
+                    <div class="mock-group-label">本周安排</div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-green">饭</span>
+                      <span class="mt"><b>番茄奶香炖饭</b><small>18 分钟 · 食材齐了</small></span>
+                      <span class="pill fresh">备齐</span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-amber">菜</span>
+                      <span class="mt"><b>蒜香西兰花炒蛋</b><small>12 分钟 · 还差 1 件</small></span>
+                      <span class="pill warn">缺 1</span>
+                    </div>
+                  </div>
+
+                  <div class="story-screen story-screen--4" data-story-screen="4" data-story-note="买到后，再确认加入库存">
+                    <div class="mock-titlebar">
+                      <div class="t"><b>购物清单</b><small>缺的都在这里</small></div>
+                      <div class="mock-avatar"></div>
+                    </div>
+                    <div class="mock-group-label">本次采购 <span class="n">3</span></div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-green">葱</span>
+                      <span class="mt"><b>小葱</b><small>炖饭调味</small></span>
+                      <span class="chev"></span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-green">芝</span>
+                      <span class="mt"><b>芝士</b><small>奶香炖饭</small></span>
+                      <span class="chev"></span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="mock-thumb thumb-green">蘑</span>
+                      <span class="mt"><b>口蘑</b><small>配菜</small></span>
+                      <span class="chev"></span>
+                    </div>
+                    <div class="mock-ai">
+                      <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M2.5 4h2l2.2 11.5a1.5 1.5 0 0 0 1.5 1.2h8.9a1.5 1.5 0 0 0 1.5-1.2L20.5 8H6"/></svg></span>
+                      <p><b>买回后再入库</b>确认买到后，再拍照或手动加入库存。</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="story-dock" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-chapters">
+          <article class="story-chapter" id="story-1" data-story-chapter="1">
+            <div class="story-mini" aria-hidden="true">
+              <div class="mock-row">
+                <span class="mock-thumb thumb-green">奶</span>
+                <span class="mt"><b>鲜牛奶</b><small>冷藏 · 还有 7 天</small></span>
+                <span class="pill fresh">新鲜</span>
+              </div>
+              <div class="mock-row">
+                <span class="mock-thumb thumb-green">蛋</span>
+                <span class="mt"><b>鸡蛋</b><small>冷藏 · 还有 12 天</small></span>
+                <span class="pill fresh">新鲜</span>
+              </div>
+              <div class="mock-row">
+                <span class="mock-thumb thumb-amber">茄</span>
+                <span class="mt"><b>小番茄</b><small>常温 · 还有 3 天</small></span>
+                <span class="pill warn">先用</span>
+              </div>
+            </div>
+            <div class="story-copy">
+              <span class="story-step">01 · 记录</span>
+              <h3>记下家里有什么</h3>
+              <p>买回来的东西，拍照、扫码或者手动记一笔，就进了你的库存。放在哪个位置、还有多久到期，FreshLife 替你记着。</p>
+              <p class="story-state"><span>屏幕里：鲜牛奶刚记下，显示还有 7 天。</span></p>
+            </div>
+          </article>
+
+          <article class="story-chapter" id="story-2" data-story-chapter="2">
+            <div class="story-mini" aria-hidden="true">
+              <div class="mock-row">
+                <span class="mock-thumb thumb-amber">奶</span>
+                <span class="mt"><b>鲜牛奶</b><small>冷藏 · 还有 2 天</small></span>
+                <span class="pill warn">临期</span>
+              </div>
+              <div class="mock-row">
+                <span class="mock-thumb thumb-amber">茄</span>
+                <span class="mt"><b>小番茄</b><small>常温 · 还有 3 天</small></span>
+                <span class="pill warn">先用</span>
+              </div>
+            </div>
+            <div class="story-copy">
+              <span class="story-step">02 · 提醒</span>
+              <h3>临期前，及时提醒</h3>
+              <p>快到期的那几件，会提前出现在首页和通知里。不用每天翻冰箱核对，今天先吃哪件，一眼就明白。</p>
+              <p class="story-state"><span>屏幕里：鲜牛奶还有 2 天，排在「临期」第一位。</span></p>
+            </div>
+          </article>
+
+          <article class="story-chapter" id="story-3" data-story-chapter="3">
+            <div class="story-mini" aria-hidden="true">
+              <div class="mock-row">
+                <span class="mock-thumb thumb-green">饭</span>
+                <span class="mt"><b>番茄奶香炖饭</b><small>18 分钟 · 食材齐了</small></span>
+                <span class="pill fresh">备齐</span>
+              </div>
+              <div class="mock-row">
+                <span class="mock-thumb thumb-amber">菜</span>
+                <span class="mt"><b>蒜香西兰花炒蛋</b><small>12 分钟 · 还差 1 件</small></span>
+                <span class="pill warn">缺 1</span>
+              </div>
+            </div>
+            <div class="story-copy">
+              <span class="story-step">03 · 安排</span>
+              <h3>根据现有食材，安排一餐</h3>
+              <p>打开膳食页，FreshLife 会参考你现有的库存给建议：优先用掉快过期的，缺什么也会明说。挑个合口味的，照着做就好。</p>
+              <p class="story-state"><span>屏幕里：番茄奶香炖饭，食材齐了，<span class="keep-together">约 18 分钟。</span></span></p>
+            </div>
+          </article>
+
+          <article class="story-chapter" id="story-4" data-story-chapter="4">
+            <div class="story-mini" aria-hidden="true">
+              <div class="mock-row">
+                <span class="mock-thumb thumb-green">葱</span>
+                <span class="mt"><b>小葱 · 芝士 · 口蘑</b><small>3 件 · 一起采购</small></span>
+              </div>
+            </div>
+            <div class="story-copy">
+              <span class="story-step">04 · 清单</span>
+              <h3>需要补充的，集中进购物清单</h3>
+              <p>做菜缺的那几样，可以收进购物清单。下次采购照着买，买回来再记一笔，库存又补齐了。</p>
+              <p class="story-state"><span>屏幕里：小葱、芝士、口蘑，3 件待采购。</span></p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--alt" id="add">
     <div class="container">
       <div class="section-head reveal">
@@ -904,7 +854,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= FreshLife AI ================= -->
   <section class="section" id="ai">
     <div class="container">
       <div class="section-head reveal">
@@ -924,7 +873,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= 隐私 ================= -->
   <section class="section section--alt" id="privacy">
     <div class="container">
       <div class="section-head reveal">
@@ -948,7 +896,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= 功能速览：详细说明进入独立页面 ================= -->
   <section class="section" id="features">
     <div class="container">
       <div class="section-head reveal">
@@ -966,7 +913,39 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= FAQ ================= -->
+  <section class="section" id="vision">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Vision</p>
+        <h2>先帮好今天，<br/>再慢慢懂得你们家的节奏。</h2>
+        <p class="lead">每家吃饭的节奏都不同。FreshLife 先把库存、临期、餐食和购物接起来；以后只在你同意的前提下，逐步让建议更贴近你们家的真实生活。</p>
+      </div>
+      <div class="vision-grid reveal">
+        <div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div><span class="vision-tag current">现在 · 今天已具备</span></div><h3>把每天记清楚</h3><p>已发布的安卓与鸿蒙版本先把本地库存、购物与使用记录做好；餐食建议可在 iOS 功能预览中了解。各平台的具体能力以对应说明为准。</p></div>
+<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></div><span class="vision-tag next">下一步 · 尚未上线</span></div><h3>记住你们家的节奏</h3><p>在已有本地家庭设置和确认记录的基础上，继续完善用量估算与偏好管理。共享账号、跨设备同步和云端家庭协作尚未开放。</p></div>
+<div class="vision-card reveal"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div><span class="vision-tag long">长期 · 方向</span></div><h3>成为家庭的食品智能层</h3><p>理解季节、习惯与预算带来的变化，在合适的时候给出合适的建议。这是长期方向，不是今天的功能。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--compact" id="roadmap">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Roadmap</p>
+        <h2>每一步，都先让日常更轻松。</h2>
+        <p class="lead">这些是持续完善的方向：先减轻录入，再理解家庭节奏，然后改进一周规划与补货。安卓 1.0.1 的本地家庭设置和用量估算已包含在上架版本中；完整云端协作尚未开放。</p>
+      </div>
+      <div class="roadmap-rail reveal">
+        <div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">01</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L17 4l3 3L8 19l-4 1z"/><path d="M14.5 6.5l3 3"/></svg></span><h3>更轻松的录入</h3><p>让「记一笔」更快、更省心：少打字、少核对，也少出错。</p></div>
+<div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">02</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.9 2.6L22.5 18.5l-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9L19 15z"/></svg></span><h3>家庭节奏与个性化上下文</h3><p>在设备上慢慢记住你们家的偏好：口味、忌口、常买的清单，让建议越来越贴切。</p></div>
+<div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">03</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20v-6M12 20V8M18 20v-10"/></svg></span><h3>更好的规划与补货</h3><p>从「今天吃什么」走向「这周怎么吃」：让餐食计划与补货建议更贴近家里的实际用量。</p></div>
+      </div>
+      <p class="section-more reveal"><a href="/philosophy/">为什么这样安排？阅读完整理念与长期方向 <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="membership"><div class="container member-layout"><div><p class="eyebrow">FreshLife Membership · 筹备中</p><h2>一张卡，<br/>连接未来的购物体验。</h2><p class="lead">计划推出免费普通会员卡，在 App 内查看，并支持添加到 Apple 钱包。未来在 FreshLife 商城关联会员，也可在已接入的线下门店出示会员码。</p><ul class="member-benefits"><li><strong>购物积分</strong><span>符合条件的订单完成后，计划累积积分。</span></li><li><strong>指定优惠券</strong><span>计划使用积分兑换，适用范围和期限提前说明。</span></li><li><strong>指定商品会员价</strong><span>活动价格和使用条件在结算前清楚展示。</span></li></ul><p class="member-note">尚未开放领卡、积分兑换、商城或门店消费。不提供充值余额；具体权益和合作门店以正式上线公告为准。</p></div><div class="member-preview"><div class="member-pass" aria-label="会员卡设计示意，尚未发行"><div class="member-pass-top"><span><img src="/app-icon.png" width="42" height="42" alt=""/>FreshLife</span><span>会员卡</span></div><h3>让新鲜成为日常</h3><p>用心选购，认真生活。</p><div class="member-pass-fields"><div><span>会员服务</span><strong>筹备中</strong></div><div><span>发卡状态</span><strong>尚未发行</strong></div></div></div><p class="member-caption">卡片设计示意 · 非支付卡</p><p class="member-note">会员卡用于识别身份和使用权益，付款另行完成。Apple 钱包添加功能尚未启用。</p></div></div></section>
+
   <section class="section" id="faq">
     <div class="container">
       <div class="section-head center reveal">
@@ -985,7 +964,6 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     </div>
   </section>
 
-  <!-- ================= 上线状态 ================= -->
   <section class="section section--alt" id="download"><div class="container"><div class="section-head"><h2>选择适合你的使用方式。</h2><p class="lead">安卓与原生鸿蒙已在中国大陆发布。本次更新仍在审核，审核通过后才会开放下载。</p></div><div class="release-grid"><article class="release-card"><h3>安卓</h3><p class="release-status">1.0.1 已上架</p><p>1.0.2 已提交审核</p><a class="button primary" href="https://appgallery.huawei.com/app/C118907099">下载安卓版<span aria-hidden="true"> →</span></a></article><article class="release-card"><h3>原生鸿蒙</h3><p class="release-status">1.0.0 已上架</p><p>1.0.1 已提交 · 预审中</p><a class="button primary" href="https://appgallery.huawei.com/app/detail?id=cn.freshlifeapp.mobile">下载鸿蒙版<span aria-hidden="true"> →</span></a></article><article class="release-card"><h3>iPhone 与 iPad</h3><p class="release-status">上架准备中</p><p>暂未提供 App Store 下载</p><a href="/#demo-apple">查看 iOS 演示<span aria-hidden="true"> →</span></a></article><article class="release-card"><h3>网页版</h3><p class="release-status">现在就能使用</p><p>无需注册 · 数据保存在当前浏览器</p><a href="/app/">打开网页版<span aria-hidden="true"> →</span></a></article></div><p class="release-date">状态核对：2026 年 9 月 11 日。审核后的实际可用版本，以应用市场显示为准。</p><p class="section-more"><a href="/support/#updates">阅读本次更新说明 →</a></p></div></section>
 
 </main>
