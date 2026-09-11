@@ -612,9 +612,47 @@
  document.querySelectorAll('.platform-tabs,.download-tabs,.android-tabs,.device-switch').forEach(function(group){
   var buttons=Array.from(group.querySelectorAll('button'));if(!buttons.length)return;
   var glass=document.createElement('span');glass.className='selection-glass';glass.setAttribute('aria-hidden','true');group.classList.add('glass-options');group.append(glass);
-  var frame;
-  function position(){frame=null;var selected=buttons.find(function(b){return b.getAttribute('aria-selected')==='true'||b.getAttribute('aria-pressed')==='true';});if(!selected||!group.getClientRects().length){glass.hidden=true;return;}var r=selected.getBoundingClientRect(),g=group.getBoundingClientRect();if(!r.width){glass.hidden=true;return;}glass.hidden=false;glass.style.width=r.width+'px';glass.style.height=r.height+'px';glass.style.transform='translate('+(r.left-g.left-group.clientLeft+group.scrollLeft)+'px,'+(r.top-g.top-group.clientTop+group.scrollTop)+'px)';group.classList.add('glass-ready');}
+  var frame, drag=null, suppressClick=false;
+  function position(){frame=null;if(drag&&drag.moved)return;var selected=buttons.find(function(b){return b.getAttribute('aria-selected')==='true'||b.getAttribute('aria-pressed')==='true';});if(!selected||!group.getClientRects().length){glass.hidden=true;return;}var r=selected.getBoundingClientRect(),g=group.getBoundingClientRect();if(!r.width){glass.hidden=true;return;}glass.hidden=false;glass.style.width=r.width+'px';glass.style.height=r.height+'px';glass.style.transform='translate('+(r.left-g.left-group.clientLeft+group.scrollLeft)+'px,'+(r.top-g.top-group.clientTop+group.scrollTop)+'px)';group.classList.add('glass-ready');}
   function queue(){if(frame==null)frame=requestAnimationFrame(position);}
+  function finish(e,cancel){
+   if(!drag||e.pointerId!==drag.id)return;
+   var ended=drag;drag=null;group.classList.remove('is-dragging');
+   if(group.hasPointerCapture(e.pointerId))group.releasePointerCapture(e.pointerId);
+   if(ended.moved){
+    suppressClick=true;setTimeout(function(){suppressClick=false;},0);
+    var bounds=group.getBoundingClientRect();
+    if(!cancel&&e.clientX>=bounds.left&&e.clientX<=bounds.right&&e.clientY>=bounds.top&&e.clientY<=bounds.bottom){
+     ended.target.focus({preventScroll:true});
+     // Programmatic activation is allowed; the following native click is suppressed.
+     suppressClick=false;ended.target.click();suppressClick=true;
+    }
+   }
+   queue();
+  }
+  group.addEventListener('pointerdown',function(e){
+   var b=e.target.closest('button');
+   if(e.button!==0||e.pointerType==='touch'||!buttons.includes(b)||drag)return;
+   var rect=b.getBoundingClientRect();
+   drag={id:e.pointerId,x:e.clientX,y:e.clientY,offsetX:e.clientX-rect.left,offsetY:e.clientY-rect.top,width:rect.width,height:rect.height,target:b,moved:false};
+  });
+  group.addEventListener('pointermove',function(e){
+   if(!drag||e.pointerId!==drag.id)return;
+   if(!drag.moved&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)<5)return;
+   if(!drag.moved)group.setPointerCapture(e.pointerId);
+   drag.moved=true;group.classList.add('is-dragging');
+   var g=group.getBoundingClientRect(),nearest=Infinity;
+   buttons.forEach(function(b){var r=b.getBoundingClientRect(),distance=Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2));if(distance<nearest){nearest=distance;drag.target=b;}});
+   var x=Math.max(0,Math.min(group.clientWidth-drag.width,e.clientX-g.left-group.clientLeft-drag.offsetX));
+   var y=Math.max(0,Math.min(group.clientHeight-drag.height,e.clientY-g.top-group.clientTop-drag.offsetY));
+   glass.style.width=drag.width+'px';glass.style.height=drag.height+'px';glass.style.transform='translate('+x+'px,'+y+'px)';
+  });
+  group.addEventListener('pointerleave',function(){if(drag&&!drag.moved)drag=null;});
+  group.addEventListener('pointerup',function(e){finish(e,false);});
+  group.addEventListener('pointercancel',function(e){finish(e,true);});
+  group.addEventListener('lostpointercapture',function(e){finish(e,true);});
+  group.addEventListener('keydown',function(e){if(e.key==='Escape'&&drag){finish({pointerId:drag.id},true);e.preventDefault();}});
+  group.addEventListener('click',function(e){if(suppressClick){e.preventDefault();e.stopImmediatePropagation();}},true);
   new MutationObserver(queue).observe(group,{subtree:true,attributes:true,attributeFilter:['aria-selected','aria-pressed']});
   if(typeof ResizeObserver!=='undefined'){var observer=new ResizeObserver(queue);observer.observe(group);buttons.forEach(function(b){observer.observe(b);});}
   window.addEventListener('resize',queue,{passive:true});queue();
