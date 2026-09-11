@@ -1,9 +1,9 @@
 FreshLife 官网构建产物
 =====================
 Source: site/ (templates, partials, content, styles, scripts) + scripts/build.py
-Build date: 2026-09-11T05:27:51Z
+Build date: 2026-09-11T05:29:53Z
 Command: python3 scripts/build.py
 CSS: assets/main-732935b3e7.css
 JS:  assets/main-5fe03368c2.js
 Pages: zh (root) + en (/en/) × 9
-Checksum (index.html, sha256): 45021b717b421eca56e2163b6ea5d0958df27032f92c92ce4bb2f96ca7d60913
+Checksum (index.html, sha256): 9e0051a5866c20da8d6a152c0888cc382c8efb8b88ada5849423fb8643a58527
