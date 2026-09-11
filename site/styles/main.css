@@ -1927,3 +1927,17 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
  }
 }
 @keyframes homeArrival{from{opacity:.35;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+/* Keep press feedback visible even while the pointer remains over a control. */
+@media(prefers-reduced-motion:no-preference){
+ .home-motion .button:active{transform:translateY(0) scale(.97);box-shadow:none}
+ .home-motion .daily-card:active{transform:translateY(-1px) scale(.99)}
+}
+.demo-food .button{max-width:100%;white-space:normal;overflow-wrap:anywhere;margin-top:10px}
+.demo-food strong{overflow-wrap:anywhere}
+/* Information and primary actions stay readable during entrance motion. */
+@media(prefers-reduced-motion:no-preference){
+ .js.home-motion .hero-lockup,.js .home-motion .hero-lockup,
+ .js .home-motion .hero h1,.js .home-motion .hero .sub,
+ .js .home-motion .hero .hero-actions,.js .home-motion .hero .hero-status{opacity:1;animation-name:homeReadableArrival;animation-duration:.5s}
+}
+@keyframes homeReadableArrival{from{opacity:1;transform:translateY(14px)}to{opacity:1;transform:none}}
