@@ -57,3 +57,29 @@ nav button[aria-current=page]{border-color:var(--edge-active)}
 .install-body ol{padding-left:24px}.install-body li{padding:6px 0}
 @media(display-mode:standalone){.install-guide{display:none}}
 @media(max-width:700px){.install-body{font-size:13px}}
+
+/* Glass belongs to floating controls; content keeps an opaque reading surface. */
+:root{--glass-bg:color-mix(in srgb,var(--surface) 88%,transparent);--glass-edge:color-mix(in srgb,var(--line) 70%,white);--glass-shadow:0 12px 36px #17231d14,inset 0 1px 0 #ffffff88}
+html[data-theme=dark]{--glass-bg:color-mix(in srgb,var(--surface) 92%,transparent);--glass-edge:#506254;--glass-shadow:0 12px 36px #0004,inset 0 1px 0 #ffffff16}
+.context-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:-10px 0 24px;color:var(--sub);font-size:12px}
+.context-bar p{margin:0}.context-bar a{margin-left:8px}.context-bar button{font-size:12px;white-space:nowrap;min-height:44px}
+#install-dialog .install-body{padding:0;border:0}
+#install-dialog .install-body ol{list-style:none;counter-reset:steps;padding:0}
+#install-dialog .install-body li{counter-increment:steps;position:relative;padding:12px 12px 12px 46px;margin:8px 0;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+#install-dialog .install-body li::before{content:counter(steps);position:absolute;left:12px;top:13px;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:var(--soft);color:var(--green);font-weight:700}
+dialog{border-color:var(--glass-edge);box-shadow:var(--glass-shadow),0 24px 90px #17231d33}
+#toast{display:flex;align-items:center;gap:12px;width:max-content;overflow-wrap:anywhere}
+#toast button{flex:none;margin-left:0}.toast-dismiss{border:0!important;min-width:36px;padding:0!important;font-size:22px}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ dialog,.sidebar nav{background:var(--glass-bg);-webkit-backdrop-filter:blur(22px) saturate(125%);backdrop-filter:blur(22px) saturate(125%)}
+}
+@media(min-width:701px){.sidebar nav{padding:6px;border:1px solid var(--glass-edge);border-radius:20px;box-shadow:var(--glass-shadow)}nav button{padding-inline:10px;gap:10px}}
+@media(max-width:700px){
+ .context-bar{align-items:flex-start;flex-wrap:wrap;gap:4px;margin-top:-6px;margin-bottom:18px}.context-bar p{align-self:center}.context-bar button{padding:6px 10px}
+ .sidebar nav{border-color:var(--glass-edge);box-shadow:var(--glass-shadow)}
+ dialog{width:calc(100% - 16px);max-height:calc(100dvh - 24px);padding:22px;border-radius:26px}
+ #toast{gap:8px;font-size:13px;padding:10px 12px}
+}
+@media(display-mode:standalone){#install-open{display:none}}
+@media(prefers-reduced-transparency:reduce){dialog,.sidebar nav{background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none}dialog::backdrop{backdrop-filter:none}}
+@media(forced-colors:active){dialog,.sidebar nav{border:1px solid CanvasText;box-shadow:none;background:Canvas}nav button[aria-current=page]{outline:2px solid Highlight}}
