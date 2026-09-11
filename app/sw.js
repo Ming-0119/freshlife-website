@@ -1,5 +1,5 @@
-const CACHE='freshlife-web-shell-9b5a598665e9';
-const ASSET_HASHES={"/app/app.css": "5e9d88d095bfe2b904aac66f58825843034038b416f18c32e4bdccd5f5498b7d", "/app/app.mjs": "0cc03e6841c76dd92fc03dba9ab7d6073846d1daa4a664807c68c73fe2bbc61e", "/app/core.mjs": "e3fc678ee2508b27775d74f760682670a81f77ebe84ff78e9a7aea6f4cf76348", "/app/index.html": "1f41f245978668cde1a376cd46989676673d0e45397e8112d22187ea1c346c3a", "/app/manifest.webmanifest": "85507985a907d7c292ba9131a20169ccfa2b3670be7ceaf44aa9be0d224a5f37", "/app/": "1f41f245978668cde1a376cd46989676673d0e45397e8112d22187ea1c346c3a", "/app-icon.png": "fbad508baae338bade7cedf9a40db0e3412758d3c65898e21ddc854e34147294"};
+const CACHE='freshlife-web-shell-613a511eb7f6';
+const ASSET_HASHES={"/app/app.css": "d098940a4a3f4f8dc9a7779b2852b15347460a2ca91c77a8c238d8291775003d", "/app/app.mjs": "0cc03e6841c76dd92fc03dba9ab7d6073846d1daa4a664807c68c73fe2bbc61e", "/app/core.mjs": "e3fc678ee2508b27775d74f760682670a81f77ebe84ff78e9a7aea6f4cf76348", "/app/index.html": "b47d9e41fc321ae0c59eb85b12a2edc1f88b89ba00f0341a2108f27269bf8aab", "/app/manifest.webmanifest": "64469554ef76a85d0c5b271b0e4ccbea4e7145617d13ef3a25fe4d1ce3851124", "/app/": "b47d9e41fc321ae0c59eb85b12a2edc1f88b89ba00f0341a2108f27269bf8aab", "/app-icon.png": "fbad508baae338bade7cedf9a40db0e3412758d3c65898e21ddc854e34147294"};
 const SHELL=Object.keys(ASSET_HASHES);
 // Install one verified bundle. A partial deployment must not mix old and new modules.
 self.addEventListener('install',event=>event.waitUntil((async()=>{
