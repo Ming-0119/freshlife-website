@@ -594,3 +594,15 @@
     draw();
   });
 })();
+
+/* One download decision at a time; all cards remain readable without JavaScript. */
+(function(){
+ var grid=document.querySelector('#download .release-grid');if(!grid)return;
+ var cards=Array.from(grid.querySelectorAll('.release-card'));if(cards.length!==4)return;
+ var en=document.documentElement.lang==='en',tabs=document.createElement('div');tabs.className='download-tabs';tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label',en?'Choose a version':'选择使用版本');
+ var order=[3,0,1,2],buttons=[];
+ order.forEach(function(index){var card=cards[index],b=document.createElement('button');b.type='button';b.id='download-tab-'+index;b.textContent=card.querySelector('h3').textContent;b.setAttribute('role','tab');b.setAttribute('aria-controls','download-panel-'+index);card.id='download-panel-'+index;card.setAttribute('role','tabpanel');card.setAttribute('aria-labelledby',b.id);card.tabIndex=0;buttons.push(b);tabs.append(b);b.addEventListener('click',function(){select(index);});});
+ function select(index){cards.forEach(function(c,i){c.hidden=i!==index;if(i===index)c.classList.add('in-view');});buttons.forEach(function(b,i){var active=order[i]===index;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});}
+ tabs.addEventListener('keydown',function(e){var i=buttons.indexOf(document.activeElement);if(i<0)return;var next;if(e.key==='ArrowRight')next=(i+1)%4;else if(e.key==='ArrowLeft')next=(i+3)%4;else if(e.key==='Home')next=0;else if(e.key==='End')next=3;else return;e.preventDefault();buttons[next].focus();buttons[next].click();});
+ grid.before(tabs);grid.classList.add('release-picker');select(3);
+})();

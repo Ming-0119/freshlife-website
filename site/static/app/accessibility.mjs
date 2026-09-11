@@ -23,12 +23,22 @@ html[data-reading-size]:not([data-reading-size="100"]) .site-header .container{f
 html[data-reading-size]:not([data-reading-size="100"]) .phone-screen,html[data-reading-size]:not([data-reading-size="100"]) .ipad-screen{overflow:auto}
 `;
 document.head.append(style);
-const button=document.createElement('button');button.type='button';button.className='reading-open';button.textContent=t('阅读与无障碍','Reading & accessibility');button.setAttribute('aria-haspopup','dialog');
-const host=document.querySelector('.top-actions')||document.querySelector('.hero-actions')||document.querySelector('.footer-utility');
-if(host)host.append(button);
+const button=document.createElement('button');button.type='button';button.className='reading-open';button.textContent=t('显示设置','Display settings');button.setAttribute('aria-label',t('显示设置：字体、动画与主题','Display settings: text, motion and theme'));button.setAttribute('aria-haspopup','dialog');
+const host=document.querySelector('.top-actions')||document.querySelector('.site-header .container')||document.querySelector('.footer-utility');
+const mobileMenu=document.querySelector('.mobile-nav'),primaryEntry=document.querySelector('.site-header .nav-cta');
+if(mobileMenu&&primaryEntry&&!mobileMenu.querySelector('a[href="/app/"]')){const entry=primaryEntry.cloneNode(true);entry.className='';mobileMenu.prepend(entry);}
+if(host){const menu=host.querySelector('.nav-toggle');host.insertBefore(button,menu||null);}
 const dialog=document.createElement('dialog');dialog.id='reading-dialog';dialog.setAttribute('aria-labelledby','reading-title');
 dialog.innerHTML=`<h2 id="reading-title">${t('按你的习惯阅读','Read your way')}</h2><p>${t('设置在官网和网页版间共用，仅保存在当前浏览器。','Preferences apply to this website and web app, and stay in this browser.')}</p><label>${t('文字大小','Text size')}<select id="reading-size"><option value="100">100% · ${t('默认','Default')}</option><option value="125">125%</option><option value="150">150%</option><option value="200">200%</option></select></label><label><input type="checkbox" id="reading-motion"> ${t('减少动态效果','Reduce motion')}</label><p>${t('也会尊重系统的减少动态效果设置。可使用键盘 Tab 切换，Esc 关闭；浏览器缩放仍可使用。','System reduced-motion preferences are also respected. Use Tab to navigate and Esc to close. Browser zoom remains available.')}</p><p role="status" id="reading-status"></p><div class="reading-actions"><button type="button" id="reading-reset">${t('恢复默认','Reset')}</button><button type="button" id="reading-done">${t('完成','Done')}</button></div>`;
 document.body.append(dialog);
+const appearance=document.createElement('div');appearance.className='reading-appearance';
+const caption=document.createElement('p');caption.textContent=t('主题与语言','Theme and language');appearance.append(caption);
+const theme=document.querySelector('.site-header .theme-toggle')||document.querySelector('#theme');
+const language=document.querySelector('.site-header .lang-switch');
+if(theme)appearance.append(theme);if(language)appearance.append(language);
+if(theme||language)dialog.querySelector('.reading-actions').before(appearance);
+document.querySelectorAll('.mobile-nav .theme-toggle,.mobile-nav .lang-switch').forEach(el=>el.hidden=true);
+
 const size=dialog.querySelector('select'),motion=dialog.querySelector('input'),status=dialog.querySelector('[role=status]');
 function apply(save=false){document.documentElement.dataset.readingSize=prefs.size;document.documentElement.toggleAttribute('data-reading-motion',prefs.motion);size.value=prefs.size;motion.checked=prefs.motion;if(save){try{localStorage.setItem(key,JSON.stringify(prefs));status.textContent=t('设置已保存。','Preferences saved.');}catch{status.textContent=t('已应用。浏览器不允许保存，关闭后可能需要重新设置。','Applied. Storage is unavailable; you may need to set this again.');}}}
 button.addEventListener('click',()=>{status.textContent='';dialog.showModal();});dialog.addEventListener('close',()=>button.focus());
