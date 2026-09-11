@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-fe6c61a598.css"/>
+<link rel="stylesheet" href="/assets/main-24fb0ab1fd.css"/>
 </head>
 <body>
 
@@ -78,7 +78,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     <p class="kicker">理念 · Philosophy</p>
     <h1>我们相信，家里的每一餐，<br/><em>都值得更从容。</em></h1>
     <p class="intro">这一页说清楚 FreshLife 相信什么、今天在做什么、接下来准备走向哪里。我们不把愿景写成口号，也不把未来的想法说成已经实现的功能。</p>
-    <div class="legal-meta"><span>最后更新：2026 年 8 月</span><span>与<a href="/#features">功能清单</a>和<a href="/#roadmap">路线图</a>保持同步</span></div>
+    <div class="legal-meta"><span>最后更新：2026 年 9 月 11 日</span><span>与<a href="/#features">功能清单</a>和<a href="/#roadmap">路线图</a>保持同步</span></div>
   </div>
 </section>
 
@@ -99,8 +99,8 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
   <div class="container">
     <h2>今天在做什么</h2>
     <div class="phase-block">
-      <span class="phase-tag current">Current · 现在已具备</span>
-      <p>FreshLife 的 1.0 版本正在为 App Store 上线做准备。它是一款<strong>本地优先的家庭食品管理工具</strong>：</p>
+      <span class="phase-tag current">当前发布与 iOS 功能预览</span>
+      <p>FreshLife 是一款<strong>本地优先的家庭食品管理工具</strong>。安卓与原生鸿蒙已发布，支持各自版本的本地库存与购物管理；网页版也已开放。iOS 正在准备上架，以下为 iOS 功能预览，不代表所有平台都具备：</p>
       <ul class="phase-list">
         <li>库存与临期提醒：家里有什么、放在哪、还有多久到期，一眼看清；到期前由 iOS 本地通知提醒。</li>
         <li>四种录入方式：拍照、相册、扫码与手动，识别在本机完成，不需要 API Key。</li>
@@ -118,7 +118,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
     <h2>接下来想做什么</h2>
     <div class="phase-block">
       <span class="phase-tag next">Next · 下一阶段</span>
-      <p>方向有明确的顺序，会一步步来，<strong>均未上线</strong>：</p>
+      <p>这些方向会在现有本地功能基础上逐步完善，<strong>不代表完整能力已经上线</strong>：</p>
       <ol class="phase-steps">
         <li><b>更轻松的录入。</b>让「记一笔」更快更省心：相册批量导入、更聪明的识别核对、常用食品模板。</li>
         <li><b>家庭节奏与个性化上下文。</b>在设备上慢慢记住你们家的口味、忌口与常买清单，让建议越来越贴切。</li>
@@ -171,6 +171,62 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       </div>
     </div>
     <p class="philo-more">想看看每一步走到哪了？<a href="/#roadmap">路线图</a> · <a href="/#features">功能清单与状态</a> · <a href="/safety/">安全与透明度</a></p>
+  </div>
+</section>
+
+<section class="philo-sec philo-sec--alt circular-detail" id="circularity">
+  <div class="container">
+    <p class="eyebrow">减废与循环 · 设计与合作探索中</p>
+    <h2>先把范围收窄，再让去向清楚。</h2>
+    <p>FreshLife 计划把食品使用、剩余物分类和回收去向连接起来。<strong>三端交互原型已完成，回收记录尚未接入已发布 App；目前不接收物料，不提供预约、寄送、上门收集或可兑换奖励。</strong>首期先完善本地记录与官方指引，再探索有明确接收方和处理去向的小范围试点。</p>
+    <p>App 的处理记录可以包含一般处理或未知去向，但“可以记录”不等于“FreshLife 接收”。以下边界专指拟议实体试点。</p>
+    <div class="circular-scope">
+      <article><span class="phase-tag next">拟试点 · 须先确认接收方</span><h3>单独收集的茶渣、咖啡渣</h3><p>优先探索来自指定社区或门店、能够分开收集的两类物料。是否接收，取决于合作方对成分、杂质、含水状态和交付时间的明确要求。茶包袋、滤纸、胶囊和容器不自动包含在内。</p></article>
+      <article><span class="phase-tag">指引范围 · 不自营收集</span><h3>当地设施明确接收的食品包装</h3><p>只提供按地区核对的分类与投放指引。材质不明、复合包装或受污染的包装不能一概标为可回收；瓶、盖与内容物按设施要求分别处理。</p></article>
+      <article><span class="phase-tag">不纳入拟议试点</span><h3>混合厨余与危险物</h3><p>剩饭剩菜、肉骨、废油、混合垃圾，以及电池、电子产品、药品、医疗废物、化学品和危险锐器不进入上述物料试点。鲜花、园林废弃物及其他生物质也不因“有机”而自动纳入。按当地适用渠道处理。</p></article>
+    </div>
+    <p class="circular-note">这是 FreshLife 拟议服务的边界，不是对所有回收设施的通用判断。任何未来活动都必须公布具体接收清单；未列明的物料先询问，不自行投放。不要为回收而提前丢弃食品，也不要向 FreshLife 寄送物料。</p>
+
+    <h3 class="circular-subtitle">从产生剩余物，到知道它去了哪里</h3>
+    <ol class="circular-flow">
+      <li><strong>01 · 先少浪费</strong><p>采购前核对库存，实际用完后记录。包装、正常残余物和食物丢弃分开，不重复扣库存。</p></li>
+      <li><strong>02 · 先核对接收条件</strong><p>选择活动与地点，查看物料、准备方式、开放时间和容量。条件不符或活动未开放，就不安排交付。</p></li>
+      <li><strong>03 · 分类后定点交付</strong><p>试点拟采用指定门店或社区集中点，不默认上门。按活动说明准备，不自行长期囤积、混装或寄送。</p></li>
+      <li><strong>04 · 接收方验收</strong><p>现场检查类别、杂质和净重，记录接收或拒收原因。用户与接收方对应同一回执，部分接收只记录实际接收部分。</p></li>
+      <li><strong>05 · 批次处理与追踪</strong><p>接收物料交给具备对应处理能力及适用资质的合作方，记录交接、处理路线、产出和残余物去向。没有凭证时显示“待更新”。</p></li>
+      <li><strong>06 · 反馈去向与权益</strong><p>展示已核实的批次结果；符合活动条件时结算奖励。再生产品的下一次使用与最终处理也需另行说明，不把一次投放称作无限循环。</p></li>
+    </ol>
+
+    <div class="circular-faq">
+      <details><summary>回收以后，具体变成什么？</summary><div>
+        <p>计划按物料和合作方确认的能力选择路线：合格茶渣或咖啡渣可探索再生材料方向；其他处理路线只有在明确接收与处理条件后才纳入。不能保证每份茶渣都变成某件产品，也不保证全部物料都能再生。</p>
+        <p>每批拟展示接收重量、处理方、实际处理方式、再生材料或产品用途，以及未利用部分的处置情况。湿重、干重和成品重量分别标注，不直接画等号。仅有交付记录时不显示“再生完成”；能量利用、堆肥与材料再生也分别说明，不混称为同一种循环。</p>
+        <p>如果未来提供再生商品，应说明材料来源与可验证含量、适用用途和再次处理渠道。是否适用于食品接触等用途，必须经过相应验证后再作说明；购买不是获得回收奖励的前提。</p>
+      </div></details>
+      <details><summary>客户应该得到什么激励？</summary><div>
+        <p><strong>先做有用的反馈，再做有经费的权益。</strong>本地记录阶段只计划提供个人进度与分类回顾，自行打卡不产生可兑换积分。合作试点才考虑由合作方出资的限定权益，例如明确列出的优惠券或小礼品；不承诺现金收益、充值余额、碳信用或积分升值。</p>
+        <p>拟议机制：接收方确认合格交付后产生待核验记录，通过核验再结算；一张回执只结算一次。按活动规定的参与周期设置个人上限和活动总预算，不鼓励拆单、增加含水量或制造更多废物。少量但正确分类的参与也应有合理门槛，不以重量无限累加。</p>
+        <p>活动开放前必须写清资格、合格物料、最低条件、结算时间、奖励数量、领取方式、有效期、兑换库存、是否有消费门槛及争议渠道。没有合作预算和可兑现权益，就不开启可兑换激励。</p>
+      </div></details>
+      <details><summary>怎么避免刷积分和错发奖励？</summary><div>
+        <p>试点拟使用唯一回执、活动规则版本和必要的参与标识核对重复记录；称重扣除容器，污染部分不计入合格量。用户自行填写数量、照片或位置不能单独替代接收方确认。原食物丢弃记录也不能因为回收而被抹去。</p>
+        <p>重复回执、短时间异常拆分或交付争议进入人工复核，不自动认定作弊。结算前显示状态和原因，提供补充说明与申诉入口。若需更正已发权益，应告知依据并保留处理记录，不产生未经约定的现金欠款。</p>
+      </div></details>
+      <details><summary>拒收、满额、停运或处理失败怎么办？</summary><div>
+        <p>容量达到上限时先暂停新交付提示；不要等用户到现场才告知。拒收说明具体原因和合适的后续渠道，拒收部分不记作已回收。接收后若处理路线变更、延误或无法再生，应更新真实状态和最终去向。</p>
+        <p>奖励以活动预先公布的合格交付条件为准。用户已完成合格交付后的合作方处理失败，不应事后变成用户不合格；按活动规则处理权益和通知。停止活动时说明截止时间、已接收批次和未结算权益如何收尾。</p>
+      </div></details>
+      <details><summary>谁负责回收，谁承担费用？</summary><div>
+        <p>拟议分工：FreshLife 负责记录界面、状态反馈和规则展示；收集点负责现场分类验收与回执；运输及处理方负责相应交接、处理与去向证明；活动出资方负责已公布的权益预算。实际合作方、责任和适用条件须在活动开放前明确。</p>
+        <p>目前没有已确认的 FreshLife 收集网络或处理合作。首期无需付费账户和回收服务，只做本地能力。实体试点必须先落实收集点、运输、处理、异常处理和奖励成本；预算不足就不启动，不把物流成本假装成零。</p>
+      </div></details>
+      <details><summary>哪些数据会留下，什么时候能用？</summary><div>
+        <p>计划中的本地记录由用户管理，不默认请求精确定位。未来核验权益若需要联网或身份关联，须先说明最少必要数据、使用方、保存期限和删除方式，再由用户选择参加。不会把完整家庭库存交给回收方。</p>
+        <p>iOS、安卓和鸿蒙共用设计规则，当前仅完成可交互原型。原生实现及测试完成前不会标为已上线；实体回收与积分还需独立完成合作、规则、经费和运行验证。目前没有试点日期、地点或兑换承诺。</p>
+      </div></details>
+    </div>
+    <p class="circular-note">地区资料参考：<a href="https://www.wastereduction.gov.hk/zh-hk/waste-reduction-programme/food-waste-recycling-schemes">香港环保署厨余回收计划</a>说明了当地收集与处理渠道，仅用于帮助理解地区差异，不代表 FreshLife 已接入该计划，也不适用于所有城市。资料核对：2026 年 9 月 11 日。</p>
+    <p class="philo-more"><a href="/#circularity">返回首页计划概览 →</a></p>
   </div>
 </section>
 

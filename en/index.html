@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-fe6c61a598.css"/>
+<link rel="stylesheet" href="/assets/main-24fb0ab1fd.css"/>
 </head>
 <body>
 
@@ -941,6 +941,19 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
 <div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">03</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20v-6M12 20V8M18 20v-10"/></svg></span><h3>Better planning &amp; restocking</h3><p>Move from planning tonight’s meal to seeing how the whole week fits together, with smarter meal plans and restock suggestions based on real use.</p></div>
       </div>
       <p class="section-more reveal"><a href="/en/philosophy/">Why this order? Read the full philosophy and long-term direction <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section class="section circular-overview" id="circularity">
+    <div class="container">
+      <div class="section-head reveal"><p class="eyebrow">Waste reduction &amp; circularity · Planned</p><h2>After use,<br/>a clearer next step.</h2><p class="lead">Prevent food waste first, then explore a small pilot for separated tea leaves and coffee grounds. Packaging receives local guidance; mixed food waste and hazardous items are outside the proposed pilot.</p></div>
+      <div class="circular-grid reveal">
+        <article><span>01 · Defined scope</span><h3>Confirm what is accepted</h3><p>Explore only separately collected materials explicitly accepted by a recipient. “Organic” or “eco-friendly packaging” is not automatic eligibility.</p></article>
+        <article><span>02 · Documented destination</span><h3>Follow the batch</h3><p>Connect designated drop-off, inspection and processing evidence. Keep self-reports separate from recipient confirmation and show unknown destinations honestly.</p></article>
+        <article><span>03 · Fair incentives</span><h3>Reward correct participation</h3><p>Future funded campaigns could offer limited benefits after verification, with participation and budget caps rather than incentives to create more waste.</p></article>
+      </div>
+      <p class="circular-note">Only an interactive design exists for iOS, Android and HarmonyOS; it is not in released apps. Collection, bookings and redeemable rewards are unavailable. Do not send materials to FreshLife.</p>
+      <p class="section-more"><a href="/en/philosophy/#circularity">Read the scope, full process and incentive plan <span aria-hidden="true">→</span></a></p>
     </div>
   </section>
 

@@ -1741,6 +1741,33 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 
 .web-entry-note{font-size:13px;color:var(--ink-3);max-width:52ch;margin:0 auto 18px;line-height:1.8}
 
+/* Planned circularity: a concise overview with progressively disclosed rules. */
+.circular-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.circular-grid article,.circular-scope article{padding:24px;border:1px solid var(--line-strong);border-radius:var(--radius-lg);background:var(--surface);min-width:0}
+.circular-grid article>span{font-size:12px;color:var(--green-strong);font-weight:600}
+.circular-grid h3,.circular-scope h3{font-size:20px;line-height:1.5;margin:12px 0}
+.circular-grid p,.circular-scope p{font-size:15px;line-height:1.85;color:var(--ink-2);margin:0}
+.circular-note{font-size:14px;line-height:1.9;color:var(--ink-2);margin-top:24px;max-width:85ch;text-wrap:pretty}
+.circular-detail>.container{max-width:1000px}
+.circular-detail>.container>p{line-height:1.9}
+.circular-scope{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.circular-scope .phase-tag{font-size:11px;white-space:normal;line-height:1.7}
+.circular-subtitle{font-size:24px;line-height:1.5;margin:42px 0 24px}
+.circular-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;list-style:none;padding:0;margin:0 0 32px}
+.circular-flow li{border-top:2px solid var(--line-strong);padding-top:16px;min-width:0}
+.circular-flow strong{font-size:16px;color:var(--green-strong)}
+.circular-flow p{font-size:14px;line-height:1.9;color:var(--ink-2);margin:10px 0 0}
+.circular-faq{border-top:1px solid var(--line-strong)}
+.circular-faq details{border-bottom:1px solid var(--line-strong)}
+.circular-faq summary{cursor:pointer;padding:20px 4px;min-height:48px;font-size:17px;font-weight:600;line-height:1.7}
+.circular-faq summary:hover{color:var(--green-strong)}
+.circular-faq summary:focus-visible{outline:2px solid var(--green);outline-offset:4px;border-radius:4px}
+.circular-faq details>div{padding:0 4px 20px;max-width:80ch}
+.circular-faq p{font-size:15px;line-height:1.9;color:var(--ink-2);margin:0 0 12px}
+.circular-detail a,.circular-note a{text-underline-offset:4px}
+@media(max-width:800px){.circular-grid,.circular-scope{grid-template-columns:1fr}.circular-flow{grid-template-columns:repeat(2,minmax(0,1fr))}.circular-grid article,.circular-scope article{padding:22px}}
+@media(max-width:520px){.circular-flow{grid-template-columns:1fr;gap:18px}.circular-subtitle{font-size:22px}.circular-faq summary{font-size:16px}.circular-note{font-size:13px}}
+
 /* Keyboard and touch feedback follows the same border language as hover. */
 .feature-glance-card:focus-visible,.daily-card:focus-visible,.support-grid a:focus-visible{border-color:var(--green);box-shadow:var(--shadow-sm)}
 .disclosure:focus-within,.faq details:focus-within{border-color:var(--green)}

@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-fe6c61a598.css"/>
+<link rel="stylesheet" href="/assets/main-24fb0ab1fd.css"/>
 </head>
 <body>
 
@@ -941,6 +941,19 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
 <div class="roadmap-rail-step reveal"><span class="roadmap-rail-number">03</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20v-6M12 20V8M18 20v-10"/></svg></span><h3>更好的规划与补货</h3><p>从「今天吃什么」走向「这周怎么吃」：让餐食计划与补货建议更贴近家里的实际用量。</p></div>
       </div>
       <p class="section-more reveal"><a href="/philosophy/">为什么这样安排？阅读完整理念与长期方向 <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section class="section circular-overview" id="circularity">
+    <div class="container">
+      <div class="section-head reveal"><p class="eyebrow">减废与循环 · 筹备中</p><h2>用完以后，<br/>让剩下的有清楚去向。</h2><p class="lead">先减少食品浪费，再探索单独收集茶渣、咖啡渣的小范围试点。食品包装提供当地分类指引，混合厨余和危险物不纳入拟议试点。</p></div>
+      <div class="circular-grid reveal">
+        <article><span>01 · 限定范围</span><h3>先确认收什么</h3><p>只探索接收方明确接受、能够分开收集的物料；不因“有机”或“环保包装”就自动接收。</p></article>
+        <article><span>02 · 真实去向</span><h3>从交付到批次反馈</h3><p>计划连接定点交付、现场验收和处理凭证。自行记录与接收方确认分开，去向未知时如实显示。</p></article>
+        <article><span>03 · 合理激励</span><h3>奖励正确参与</h3><p>未来合作活动才考虑核验后的限定权益，设置参与和预算上限，不鼓励制造更多垃圾。</p></article>
+      </div>
+      <p class="circular-note">当前仅完成 iOS、安卓与鸿蒙的交互设计原型，未接入已发布 App。实体回收、预约和可兑换奖励均未开放；请勿向 FreshLife 寄送物料。</p>
+      <p class="section-more"><a href="/philosophy/#circularity">了解接收范围、完整流程与激励机制 <span aria-hidden="true">→</span></a></p>
     </div>
   </section>
 
