@@ -72,6 +72,10 @@
     {
       "label": "Membership",
       "href": "/en/#membership"
+    },
+    {
+      "label": "Circularity plan",
+      "href": "/en/circularity/"
     }
   ],
   "footerLegalLinks": [
@@ -137,6 +141,18 @@
       "title": "Page not found — FreshLife",
       "description": "This page doesn’t exist or has moved. Head back to the FreshLife homepage or the Help Center.",
       "path": "404.html"
+    },
+    "circularity": {
+      "title": "Waste reduction & circularity — FreshLife",
+      "description": "Explore the proposed scope, participant journey, material destinations and reward rules. In design; no collection or redeemable benefits are available.",
+      "path": "en/circularity/index.html",
+      "content": "circularity.html"
+    },
+    "materials": {
+      "title": "Material scope & preparation — FreshLife",
+      "description": "Understand proposed tea and coffee streams, packaging guidance and exclusions. Acceptance is recipient-specific; this is not a drop-off service.",
+      "path": "en/circularity/materials/index.html",
+      "content": "materials.html"
     }
   }
 }

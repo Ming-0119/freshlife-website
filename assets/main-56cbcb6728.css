@@ -1742,6 +1742,38 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 .web-entry-note{font-size:13px;color:var(--ink-3);max-width:52ch;margin:0 auto 18px;line-height:1.8}
 
 /* Planned circularity: a concise overview with progressively disclosed rules. */
+.cycle-hero{padding:70px 0 42px;background:var(--bg-elev);border-bottom:1px solid var(--line)}
+.cycle-hero .container{max-width:1000px}
+.cycle-hero h1{font-size:clamp(34px,5vw,58px);line-height:1.16;letter-spacing:-.035em;margin:18px 0 24px;max-width:20ch}
+.cycle-hero h1 em{font-style:normal;color:var(--green-strong)}
+.cycle-hero .lead{max-width:65ch;line-height:1.85}
+.cycle-status{color:var(--green-strong);font-size:13px;line-height:1.9;margin:20px 0}
+.cycle-actions{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 0}
+.cycle-actions a{white-space:normal;text-align:center}
+.cycle-back{display:inline-flex;min-height:44px;align-items:center;color:var(--green-strong);font-weight:600}
+.cycle-index{display:flex;flex-wrap:wrap;gap:8px;padding-top:24px;padding-bottom:24px}
+.cycle-index a{display:flex;align-items:center;min-height:44px;padding:8px 14px;border:1px solid var(--line-strong);border-radius:var(--radius-control);font-size:14px;color:var(--green-strong);background:var(--surface)}
+.cycle-index a:hover{background:var(--green-softer)}
+.cycle-index a:focus-visible,.material-card>a:focus-visible{outline:2px solid var(--green);outline-offset:4px}
+.circular-grid article>a{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;font-size:14px;color:var(--green-strong)}
+.cycle-evidence{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.cycle-evidence article{border-top:2px solid var(--line-strong);padding-top:18px;min-width:0}
+.cycle-evidence article>span{font-size:12px;color:var(--ink-3)}
+.cycle-evidence h3{font-size:20px;line-height:1.5;margin:12px 0}
+.cycle-evidence p{font-size:15px;line-height:1.85;color:var(--ink-2)}
+.cycle-example{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:40px;padding:28px;border:1px solid var(--line-strong);border-radius:var(--radius-lg);background:var(--surface)}
+.cycle-example h3{font-size:23px;line-height:1.5;margin:10px 0}.cycle-example p{font-size:14px;line-height:1.85;color:var(--ink-2)}
+.cycle-example dl{margin:0}.cycle-example dl>div{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid var(--line)}
+.cycle-example dt,.cycle-example dd{font-size:14px;line-height:1.8;margin:0}.cycle-example dd{color:var(--ink-2)}
+.material-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
+.material-card{padding:28px;background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-lg);min-width:0}
+.material-heading{display:flex;gap:16px;align-items:flex-start}.material-heading>span{font-size:14px;color:var(--green-strong);padding-top:3px}.material-heading .eyebrow{font-size:11px;margin:0 0 10px}
+.material-card h2{font-size:24px;line-height:1.45;margin:0}.material-card dl{margin:24px 0 0}.material-card dl>div{margin-bottom:20px}
+.material-card dt{font-size:14px;font-weight:650;margin-bottom:6px}.material-card dd{margin:0;font-size:14px;line-height:1.85;color:var(--ink-2)}
+.material-card>a{display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--green-strong)}
+.cycle-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 44px;padding-left:24px;margin-top:24px;color:var(--ink-2);line-height:1.85}
+@media(max-width:800px){.cycle-evidence,.cycle-example,.material-grid{grid-template-columns:1fr}.cycle-example{gap:16px}.cycle-hero{padding:46px 0 30px}}
+@media(max-width:520px){.material-card{padding:22px}.material-card h2{font-size:22px}.cycle-example{padding:22px}.cycle-example dl>div{flex-direction:column;gap:3px}.cycle-checks{grid-template-columns:1fr}.cycle-actions{flex-direction:column}.cycle-index a{font-size:13px}}
 .circular-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .circular-grid article,.circular-scope article{padding:24px;border:1px solid var(--line-strong);border-radius:var(--radius-lg);background:var(--surface);min-width:0}
 .circular-grid article>span{font-size:12px;color:var(--green-strong);font-weight:600}

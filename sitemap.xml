@@ -55,6 +55,42 @@
 <xhtml:link rel="alternate" hreflang="x-default" href="https://www.freshlifeapp.cn/philosophy/"/>
 </url>
 <url>
+<loc>https://www.freshlifeapp.cn/circularity/</loc>
+<lastmod>2026-09-11</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.freshlifeapp.cn/circularity/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://www.freshlifeapp.cn/en/circularity/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://www.freshlifeapp.cn/circularity/"/>
+</url>
+<url>
+<loc>https://www.freshlifeapp.cn/en/circularity/</loc>
+<lastmod>2026-09-11</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.freshlifeapp.cn/circularity/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://www.freshlifeapp.cn/en/circularity/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://www.freshlifeapp.cn/circularity/"/>
+</url>
+<url>
+<loc>https://www.freshlifeapp.cn/circularity/materials/</loc>
+<lastmod>2026-09-11</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.freshlifeapp.cn/circularity/materials/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://www.freshlifeapp.cn/en/circularity/materials/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://www.freshlifeapp.cn/circularity/materials/"/>
+</url>
+<url>
+<loc>https://www.freshlifeapp.cn/en/circularity/materials/</loc>
+<lastmod>2026-09-11</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.freshlifeapp.cn/circularity/materials/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://www.freshlifeapp.cn/en/circularity/materials/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://www.freshlifeapp.cn/circularity/materials/"/>
+</url>
+<url>
 <loc>https://www.freshlifeapp.cn/privacy/</loc>
 <lastmod>2026-09-11</lastmod>
 <changefreq>monthly</changefreq>

@@ -51,6 +51,8 @@ PAGE_PAIRS = {
     "index": ("/", "/en/"),
     "features": ("/features/", "/en/features/"),
     "philosophy": ("/philosophy/", "/en/philosophy/"),
+    "circularity": ("/circularity/", "/en/circularity/"),
+    "materials": ("/circularity/materials/", "/en/circularity/materials/"),
     "privacy": ("/privacy/", "/en/privacy/"),
     "terms": ("/terms/", "/en/terms/"),
     "support": ("/support/", "/en/support/"),
@@ -321,7 +323,7 @@ def build_site_header(nav_html, nav_mobile_html, lang, page_key,
     })
 
 
-def build_site_footer(product_links, legal_links, year, developer, js_tag, lang):
+def build_site_footer(product_links, legal_links, year, developer, js_tag, lang, page_key=None):
     L = LANG_STRINGS[lang]
     tpl = partial("_site_footer.html")
     launch, launch_href = L["status_launch"]
@@ -343,7 +345,7 @@ def build_site_footer(product_links, legal_links, year, developer, js_tag, lang)
         "year": year,
         "developer_line": L["developer_prefix"] + developer,
         "footer_utility_aria": "页脚辅助导航" if lang == "zh" else "Footer utility navigation",
-        "footer_language_href": "/en/" if lang == "zh" else "/",
+        "footer_language_href": PAGE_PAIRS[page_key][1 if lang == "zh" else 0] if page_key else ("/en/" if lang == "zh" else "/"),
         "footer_language_hreflang": "en" if lang == "zh" else "zh-CN",
         "footer_language_label": "English" if lang == "zh" else "简体中文",
         "safety_href": "/safety/" if lang == "zh" else "/en/safety/",
@@ -681,19 +683,19 @@ def render_lang(lang, cfg, features, content_dir, css_tag, js_tag):
     }
     add_page("features", feat_meta["path"], render_template("features.html", feat_subs))
 
-    # ---- 理念页 ----
-    philo_meta = cfg["pages"]["philosophy"]
-    philo_subs = {
-        "head": page_head("philosophy"),
-        "header": build_site_header(
-            nav_html, nav_mobile_html, lang, "philosophy",
-            cta_href="/features/" if is_zh else "/en/features/",
-            cta_label="查看完整功能" if is_zh else "All features"),
-        "footer": build_site_footer(
-            footer_product, footer_legal, year, developer, js_tag, lang),
-        "content": (content_dir / "philosophy.html").read_text(encoding="utf-8"),
-    }
-    add_page("philosophy", philo_meta["path"], render_template("philosophy.html", philo_subs))
+    # Editorial pages share navigation, accessibility and bilingual metadata.
+    for key in ("philosophy", "circularity", "materials"):
+        meta = cfg["pages"][key]
+        subs = {
+            "head": page_head(key),
+            "header": build_site_header(
+                nav_html, nav_mobile_html, lang, key,
+                cta_href="/app/", cta_label="打开网页版" if is_zh else "Open web app"),
+            "footer": build_site_footer(
+                footer_product, footer_legal, year, developer, js_tag, lang, key),
+            "content": (content_dir / meta["content"]).read_text(encoding="utf-8"),
+        }
+        add_page(key, meta["path"], render_template("philosophy.html", subs))
 
     # ---- 法律 / 支持页 ----
     for key in ("privacy", "terms", "support", "safety"):
@@ -773,6 +775,8 @@ def main():
         "index.html",
         "features/index.html",
         "philosophy/index.html",
+        "circularity/index.html",
+        "circularity/materials/index.html",
         "privacy/index.html",
         "terms/index.html",
         "support/index.html",
@@ -780,6 +784,8 @@ def main():
         "en/index.html",
         "en/features/index.html",
         "en/philosophy/index.html",
+        "en/circularity/index.html",
+        "en/circularity/materials/index.html",
         "en/privacy/index.html",
         "en/terms/index.html",
         "en/support/index.html",
@@ -880,12 +886,14 @@ def main():
     changed += write_if_changed(ROOT / "robots.txt", robots)
 
     # sitemap.xml（含 hreflang 交替链接）
-    order = ["index", "features", "philosophy", "privacy", "terms", "support", "safety"]
+    order = ["index", "features", "philosophy", "circularity", "materials", "privacy", "terms", "support", "safety"]
     freqs = {"index": "weekly", "features": "weekly", "philosophy": "monthly",
              "privacy": "monthly", "terms": "monthly", "support": "monthly",
              "safety": "monthly"}
     prios = {"index": "1.0", "features": "0.9", "philosophy": "0.8",
              "privacy": "0.7", "terms": "0.7", "support": "0.7", "safety": "0.7"}
+    freqs.update({"circularity": "monthly", "materials": "monthly"})
+    prios.update({"circularity": "0.8", "materials": "0.7"})
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
                'xmlns:xhtml="http://www.w3.org/1999/xhtml">']
@@ -935,7 +943,7 @@ def main():
         "Command: python3 scripts/build.py\n"
         "CSS: assets/%s\n"
         "JS:  assets/%s\n"
-        "Pages: zh (root) + en (/en/) × 7\n"
+        "Pages: zh (root) + en (/en/) × 9\n"
         "Checksum (index.html, sha256): %s\n"
         % (now.strftime("%Y-%m-%dT%H:%M:%SZ"), css_name, js_name,
            hashlib.sha256(zh_pages["index.html"].encode("utf-8")).hexdigest())
@@ -943,8 +951,8 @@ def main():
     changed += write_if_changed(ROOT / "BUILD_PROVENANCE.txt", provenance)
 
     print("[build] 完成。")
-    print("  页面: index / features / philosophy / privacy / terms / support / safety / 404")
-    print("  English: /en/ /en/features/ /en/philosophy/ /en/privacy/ /en/terms/ /en/support/ /en/safety/")
+    print("  页面: index / features / philosophy / circularity / circularity/materials / privacy / terms / support / safety / 404")
+    print("  English: matching pages under /en/")
     print("  资产: assets/%s, assets/%s" % (css_name, js_name))
     if removed:
         print("  已清理旧产物: %s" % ", ".join(removed))

@@ -72,6 +72,10 @@
     {
       "label": "会员卡",
       "href": "/#membership"
+    },
+    {
+      "label": "减废与循环计划",
+      "href": "/circularity/"
     }
   ],
   "footerLegalLinks": [
@@ -137,6 +141,18 @@
       "title": "页面不存在 — FreshLife",
       "description": "你访问的页面不存在或已被移动。返回 FreshLife 首页、了解我们的理念，或前往帮助中心。",
       "path": "404.html"
+    },
+    "circularity": {
+      "title": "减废与循环计划 — FreshLife",
+      "description": "了解 FreshLife 拟议回收范围、用户流程、批次去向与激励规则。目前处于设计阶段，未开放实体回收或可兑换奖励。",
+      "path": "circularity/index.html",
+      "content": "circularity.html"
+    },
+    "materials": {
+      "title": "物料范围与准备指引 — FreshLife",
+      "description": "区分茶渣、咖啡渣、食品包装及试点排除物料，了解为何接收条件因地区与处理方而不同。当前非投放服务。",
+      "path": "circularity/materials/index.html",
+      "content": "materials.html"
     }
   }
 }
