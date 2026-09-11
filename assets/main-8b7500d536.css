@@ -2001,3 +2001,42 @@ html[data-reading-size="150"] .demo-handset,html[data-reading-size="200"] .demo-
  .site-header .reading-open{font-size:.875rem;padding:8px 10px}
  .release-picker .release-card{text-align:left}.release-picker .release-card a{margin-left:0;margin-right:16px}
 }
+
+/* Large text has its own flowing layout, rather than larger text in fixed frames. */
+html.reading-reflow .hero h1{font-size:clamp(2rem,5vw,3rem);line-height:1.2;letter-spacing:-.025em}
+html.reading-reflow :is(.why-grid,.daily-grid,.ai-grid,.vision-grid,.method-grid,.feature-glance-grid,.circular-grid,.circular-scope,.circular-flow,.cycle-evidence,.material-grid,.platform-steps){grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr))}
+html.reading-reflow :is(.device-grid,.platform-layout,.cycle-example){grid-template-columns:minmax(0,1fr);gap:32px}
+html.reading-reflow .device-grid{max-width:900px;margin-inline:auto}
+html.reading-reflow #demo-android>.hands-on,html.reading-reflow #demo-harmony>.hands-on{grid-template-columns:minmax(0,1fr);gap:28px;padding-inline:0}
+html.reading-reflow .demo-handset{position:relative!important;top:auto!important;max-width:32rem!important;min-height:0!important;margin-inline:auto}
+html.reading-reflow .phone{width:min(100%,28rem)}
+html.reading-reflow .phone-screen,html.reading-reflow .ipad-screen{aspect-ratio:auto;height:auto;overflow:visible;border-radius:24px}
+html.reading-reflow .phone-notch{display:none}
+html.reading-reflow .mock-tabbar{position:relative;inset:auto;margin:12px;flex-wrap:wrap;gap:8px}
+html.reading-reflow .mock-tab{flex:1 1 4rem;min-height:44px}
+html.reading-reflow .ipad-screen{display:block}
+html.reading-reflow .ipad-sidebar{width:100%;max-width:none;border-right:0;border-bottom:1px solid var(--line)}
+html.reading-reflow .ipad-nav{grid-template-columns:repeat(auto-fit,minmax(7rem,1fr))}
+html.reading-reflow .ipad{width:100%!important}
+html.reading-reflow :is(.device-switch,.platform-tabs,.download-tabs,.tab-switch){flex-wrap:wrap;max-width:100%;height:auto}
+html.reading-reflow .glass-options>button{white-space:normal;min-width:0;overflow-wrap:anywhere}
+html.reading-reflow .story-track{grid-template-columns:minmax(0,1fr)}
+html.reading-reflow .story-stage-col{position:static;display:block}
+html.reading-reflow .story-stage{display:none}
+html.reading-reflow .story-mini{display:block}
+html.reading-reflow .story-progress{flex-direction:row;flex-wrap:wrap}
+html.reading-reflow .story-chapter{min-height:0;padding-block:24px}
+html.reading-reflow .story-copy{opacity:1!important;transform:none!important}
+html.reading-reflow .story-chapters{padding-top:0}
+html.reading-reflow :is(.footer-grid,.fcard-grid){grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr))}
+html.reading-reflow :is(.mock-row,.mock-titlebar,.ipad-row){flex-wrap:wrap}
+@media(max-width:700px){
+ html.reading-reflow .container{padding-inline:16px}
+ html.reading-reflow .site-header .brand span{font-size:1rem}
+ html.reading-reflow .site-header .reading-open{white-space:normal}
+ html.reading-reflow .hero h1{font-size:2rem}
+ html.reading-reflow .demo-steps{grid-template-columns:1fr}
+ html.reading-reflow .download-tabs{grid-template-columns:1fr}
+ html.reading-reflow .phone,html.reading-reflow .ipad{padding:6px;border-radius:30px}
+ html.reading-reflow .hero-actions>*{flex:1 1 100%}
+}

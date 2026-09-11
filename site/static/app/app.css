@@ -96,3 +96,20 @@ html[data-reading-size] .heading{flex-wrap:wrap}html[data-reading-size] .local-t
 .top-actions .local-tag,.top-actions button{font-size:.875rem;line-height:1.5}
 .top-actions{gap:12px;flex-wrap:wrap}.topbar{gap:12px;padding-block:14px}
 @media(max-width:700px){.topbar{align-items:flex-start;flex-direction:column}.top-actions{width:100%;justify-content:space-between}.top-actions .local-tag{flex:1;min-width:12ch}.top-actions button{padding:8px 12px;min-height:44px}}
+html.reading-reflow .tools{flex-wrap:wrap}html.reading-reflow .tools>*{flex:1 1 14rem;min-width:0}
+html.reading-reflow :is(.stats,.data-grid){grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr))}
+html.reading-reflow :is(.context-bar,.dialog-top,.dialog-actions,.list-toolbar){flex-wrap:wrap;gap:12px}
+html.reading-reflow .context-bar button{white-space:normal}
+html.reading-reflow .sidebar{overflow:auto}
+html.reading-reflow :is(input,select,button){max-width:100%}
+html.reading-reflow .item{grid-template-columns:minmax(0,1fr)}
+html.reading-reflow .item-actions{padding-left:0;grid-column:1/-1}
+html.reading-reflow .badge{white-space:normal}
+@media(max-width:700px){html.reading-reflow main{padding-inline:16px}html.reading-reflow .sidebar nav{grid-template-columns:1fr 1fr}html.reading-reflow .sidebar nav button{overflow-wrap:anywhere}html.reading-reflow .heading .primary{width:100%}html.reading-reflow .top-actions .local-tag{flex-basis:100%}html.reading-reflow dialog{padding:16px}html.reading-reflow .form-grid{grid-template-columns:1fr}}
+@media(max-width:700px){
+ html.reading-reflow .form-row{grid-template-columns:minmax(0,1fr)}
+ html.reading-reflow .dialog-actions{display:flex;flex-direction:column;align-items:stretch}
+ html.reading-reflow .dialog-actions>button{width:100%;flex:none;white-space:normal;min-height:48px}
+ html.reading-reflow .dialog-actions>.primary{order:-1}
+ html.reading-reflow dialog{width:calc(100% - 24px);max-width:none}
+}
