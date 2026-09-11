@@ -24,7 +24,7 @@ html[data-reading-size]:not([data-reading-size="100"]) .phone-screen,html[data-r
 `;
 document.head.append(style);
 const button=document.createElement('button');button.type='button';button.className='reading-open';button.textContent=t('显示设置','Display settings');button.setAttribute('aria-label',t('显示设置：字体、动画与主题','Display settings: text, motion and theme'));button.setAttribute('aria-haspopup','dialog');
-const host=document.querySelector('.top-actions')||document.querySelector('.site-header .container')||document.querySelector('.footer-utility');
+const host=document.querySelector('.top-actions')||document.querySelector('.site-header .container')||document.querySelector('.legal-nav-right')||document.querySelector('.footer-utility');
 const mobileMenu=document.querySelector('.mobile-nav'),primaryEntry=document.querySelector('.site-header .nav-cta');
 if(mobileMenu&&primaryEntry&&!mobileMenu.querySelector('a[href="/app/"]')){const entry=primaryEntry.cloneNode(true);entry.className='';mobileMenu.prepend(entry);}
 if(host){const menu=host.querySelector('.nav-toggle');host.insertBefore(button,menu||null);}
@@ -32,9 +32,9 @@ const dialog=document.createElement('dialog');dialog.id='reading-dialog';dialog.
 dialog.innerHTML=`<h2 id="reading-title">${t('按你的习惯阅读','Read your way')}</h2><p>${t('设置在官网和网页版间共用，仅保存在当前浏览器。','Preferences apply to this website and web app, and stay in this browser.')}</p><label>${t('文字大小','Text size')}<select id="reading-size"><option value="100">100% · ${t('默认','Default')}</option><option value="125">125%</option><option value="150">150%</option><option value="200">200%</option></select></label><label><input type="checkbox" id="reading-motion"> ${t('减少动态效果','Reduce motion')}</label><p>${t('也会尊重系统的减少动态效果设置。可使用键盘 Tab 切换，Esc 关闭；浏览器缩放仍可使用。','System reduced-motion preferences are also respected. Use Tab to navigate and Esc to close. Browser zoom remains available.')}</p><p role="status" id="reading-status"></p><div class="reading-actions"><button type="button" id="reading-reset">${t('重置文字与动画','Reset text & motion')}</button><button type="button" id="reading-done">${t('完成','Done')}</button></div>`;
 document.body.append(dialog);
 const appearance=document.createElement('div');appearance.className='reading-appearance';
-const caption=document.createElement('p');caption.textContent=t(document.querySelector('.site-header .lang-switch')?'主题与语言':'主题',document.querySelector('.site-header .lang-switch')?'Theme and language':'Theme');appearance.append(caption);
-const theme=document.querySelector('.site-header .theme-toggle')||document.querySelector('#theme');
-const language=document.querySelector('.site-header .lang-switch');
+const caption=document.createElement('p');caption.textContent=t(document.querySelector('.site-header .lang-switch,.legal-nav .lang-switch')?'主题与语言':'主题',document.querySelector('.site-header .lang-switch,.legal-nav .lang-switch')?'Theme and language':'Theme');appearance.append(caption);
+const theme=document.querySelector('.site-header .theme-toggle,.legal-nav .theme-toggle')||document.querySelector('#theme');
+const language=document.querySelector('.site-header .lang-switch,.legal-nav .lang-switch');
 if(theme)appearance.append(theme);if(language)appearance.append(language);
 if(theme||language)dialog.querySelector('.reading-actions').before(appearance);
 document.querySelectorAll('.mobile-nav .theme-toggle,.mobile-nav .lang-switch').forEach(el=>el.hidden=true);

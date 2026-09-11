@@ -2040,3 +2040,7 @@ html.reading-reflow :is(.mock-row,.mock-titlebar,.ipad-row){flex-wrap:wrap}
  html.reading-reflow .phone,html.reading-reflow .ipad{padding:6px;border-radius:30px}
  html.reading-reflow .hero-actions>*{flex:1 1 100%}
 }
+html.reading-reflow .legal-nav{height:auto;min-height:64px;flex-wrap:wrap;gap:12px;padding-block:14px}
+html.reading-reflow .legal-nav-right{flex-wrap:wrap;gap:12px}
+html.reading-reflow .legal-page{overflow-wrap:anywhere}
+@media(max-width:600px){html.reading-reflow .legal-nav{padding-inline:16px}html.reading-reflow .legal-page{padding-inline:16px}}
