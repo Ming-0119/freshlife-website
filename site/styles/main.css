@@ -1941,3 +1941,19 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
  .js .home-motion .hero .hero-actions,.js .home-motion .hero .hero-status{opacity:1;animation-name:homeReadableArrival;animation-duration:.5s}
 }
 @keyframes homeReadableArrival{from{opacity:1;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* Give each platform the same product-first visual hierarchy. */
+#demo-android>.hands-on,#demo-harmony>.hands-on{border:0;background:transparent;border-radius:0;grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:80px;padding:40px 24px;margin:0 0 48px;align-items:start}
+#demo-android .demo-handset,#demo-harmony .demo-handset{position:sticky;top:calc(var(--header-h) + 28px);width:100%;min-height:640px;border-width:12px;border-radius:48px;box-shadow:0 24px 60px #182c2020,inset 0 0 0 1px #ffffff30;padding:30px 22px 38px}
+.hands-on-copy .demo-steps{margin-top:32px;gap:12px}.demo-step-caption{font-size:1rem;line-height:1.7;color:var(--ink-2);margin:8px 0 0 48px;max-width:30ch}.hands-on-copy .demo-steps li{padding-bottom:24px}
+#demo-android>.platform-layout,#demo-harmony>.platform-layout{border-top:1px solid var(--line);padding-top:48px}
+@media(prefers-reduced-motion:no-preference){.demo-steps button{transition:background-color .2s,border-color .2s,transform .2s}.demo-steps button:active{transform:scale(.98)}}
+@media(max-width:760px){
+ #demo-android>.hands-on,#demo-harmony>.hands-on{grid-template-columns:1fr;gap:24px;padding:24px 0;margin-bottom:32px}
+ #demo-android .demo-handset,#demo-harmony .demo-handset{position:relative;top:auto;max-width:360px;min-height:560px;border-width:9px;border-radius:40px}
+ .hands-on-copy .demo-steps{gap:10px;margin-top:20px}.hands-on-copy .demo-steps li{padding-bottom:8px}.demo-step-caption{margin:8px 4px;font-size:.875rem}
+}
+@media(prefers-reduced-motion:reduce){.demo-steps button:active{transform:none}}
+/* Short windows and enlarged text must not trap part of the device under the header. */
+@media(max-height:800px){#demo-android .demo-handset,#demo-harmony .demo-handset{position:relative;top:auto}}
+html[data-reading-size="150"] .demo-handset,html[data-reading-size="200"] .demo-handset{position:relative!important;top:auto!important}
