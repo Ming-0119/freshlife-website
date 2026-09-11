@@ -374,7 +374,7 @@ html[lang="en"] .hero h1 { max-width: 20ch; }
 .js .hero { --hero-shrink: 0; }
 .js .hero .container {
   transform: translateY(calc(var(--hero-shrink) * -34px)) scale(calc(1 - var(--hero-shrink) * 0.012));
-  opacity: calc(1 - var(--hero-shrink) * 0.44);
+  opacity: 1;
 }
 .js .hero-aura { opacity: calc(1 - var(--hero-shrink) * 0.6); }
 
@@ -1470,10 +1470,10 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 
 /* ---------- 滚动显现（分组轻微错峰；只动 transform / opacity，保持清晰与流畅） ---------- */
 .js .reveal {
-  opacity: 0; transform: translateY(20px);
+  opacity: .72; transform: translateY(12px);
   transition: opacity 0.32s ease, transform 0.42s var(--ease-out);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: transform, opacity;
+  /* Avoid retaining compositor layers for every offscreen card. */
 }
 .js .reveal.in-view { opacity: 1; transform: none; will-change: auto; }
 
@@ -1873,3 +1873,27 @@ html:not(.js) [data-ipad-page="today"] { display: block; }
 .update-notes h2:first-child{margin-top:0}
 @media(max-width:1000px){.release-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.release-grid{grid-template-columns:1fr;gap:12px}.release-card{padding:20px}.release-card h3{margin-bottom:12px}.update-notes{padding:18px}.hero .sub{max-width:32ch;text-wrap:pretty}}
+
+/* Shared glass and reading rhythm across every marketing/platform page. */
+:root{--glass-surface:color-mix(in srgb,var(--surface) 90%,transparent);--glass-rim:color-mix(in srgb,var(--line-strong) 65%,white);--glass-highlight:inset 0 1px 0 #ffffff99}
+:root[data-theme=dark]{--glass-surface:color-mix(in srgb,var(--surface) 94%,transparent);--glass-rim:rgba(218,239,224,.24);--glass-highlight:inset 0 1px 0 #ffffff14}
+.site-header,.fpage-index{border-bottom-color:var(--glass-rim);box-shadow:var(--glass-highlight)}
+.platform-tabs,.android-tabs,.device-switch{border-color:var(--glass-rim);box-shadow:var(--glass-highlight),var(--shadow);border-radius:20px}
+.platform-tabs button,.android-tabs button,.device-switch-btn{transition:background-color var(--duration-fast) ease,color var(--duration-fast) ease,box-shadow var(--duration-medium) ease,transform var(--duration-fast) var(--ease-out)}
+.platform-tabs [aria-selected=true],.android-tabs [aria-selected=true]{box-shadow:0 2px 8px #17231d18,inset 0 1px 0 #ffffff24}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ .site-header,.site-header.is-scrolled,.fpage-index,.mobile-nav,.platform-tabs,.android-tabs,.device-switch{background:var(--glass-surface);backdrop-filter:blur(20px) saturate(120%);-webkit-backdrop-filter:blur(20px) saturate(120%)}
+}
+.release-card,.circular-grid article,.circular-scope article,.update-notes{box-shadow:var(--shadow-sm);transition:border-color var(--duration-fast) ease,box-shadow var(--duration-medium) ease}
+.release-card:focus-within,.circular-grid article:focus-within,.circular-scope article:focus-within{border-color:var(--green);box-shadow:var(--shadow)}
+.release-card h3{margin-bottom:12px}.release-card .release-status{display:inline-block;padding:4px 10px;background:var(--green-softer);border-radius:10px;font-size:15px}
+.platform-panel p,.release-card p,.fcard p{line-height:1.8}
+.js .reveal:focus-within{opacity:1;transform:none;transition:none}
+@media(hover:hover) and (pointer:fine){.release-card:hover{border-color:color-mix(in srgb,var(--green) 40%,var(--line-strong));box-shadow:var(--shadow)}}
+@media(prefers-reduced-motion:no-preference){
+ .circular-faq details[open]>div{animation:disclosureIn .24s var(--ease-out)}
+ .platform-panel{animation:platformIn .24s var(--ease-out)}
+}
+@media(prefers-reduced-transparency:reduce){.site-header,.site-header.is-scrolled,.fpage-index,.mobile-nav,.platform-tabs,.android-tabs,.device-switch{background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media(prefers-reduced-motion:reduce){.js .hero .container,.js .hero-aura{transform:none;opacity:1}.js .reveal{opacity:1;transform:none}.platform-panel,.circular-faq details[open]>div{animation:none!important}}
+@media(forced-colors:active){.platform-tabs,.android-tabs,.device-switch{border:1px solid CanvasText}.platform-tabs [aria-selected=true],.android-tabs [aria-selected=true]{outline:2px solid Highlight}.js .reveal{opacity:1}}

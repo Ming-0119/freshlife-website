@@ -378,12 +378,12 @@
   }
 
   /* ---------- 滚动显现 ---------- */
-  document.querySelectorAll(".fsec-head, .fcard, .member-preview").forEach(function (el) { el.classList.add("reveal"); });
+  document.querySelectorAll(".fsec-head, .fcard, .member-preview, .release-card, .circular-grid article, .circular-scope article").forEach(function (el) { el.classList.add("reveal"); });
   var reveals = document.querySelectorAll(".reveal");
   /* 同一组卡片轻微错峰，最大延迟控制在 120ms，保持节奏而不拖沓。 */
   document.querySelectorAll(
     ".daily-grid, .why-grid, .method-grid, .ai-grid, .vision-grid, " +
-    ".roadmap-grid, .roadmap-rail, .feature-glance-grid, .privacy-grid, .misread-grid, .fsec-grid"
+    ".roadmap-grid, .roadmap-rail, .feature-glance-grid, .privacy-grid, .misread-grid, .fsec-grid, .release-grid, .circular-grid, .circular-scope"
   ).forEach(function (group) {
     Array.prototype.slice.call(group.children).forEach(function (child, i) {
       if (child.classList.contains("reveal")) {
