@@ -617,7 +617,8 @@
   function queue(){if(frame==null)frame=requestAnimationFrame(position);}
   function finish(e,cancel){
    if(!drag||e.pointerId!==drag.id)return;
-   var ended=drag;drag=null;group.classList.remove('is-dragging');
+   var ended=drag;drag=null;group.classList.remove('is-dragging');group.classList.remove('is-held');
+   glass.style.setProperty('--lens-x','1');glass.style.setProperty('--lens-y','1');glass.style.setProperty('--light-x','35%');
    if(group.hasPointerCapture(e.pointerId))group.releasePointerCapture(e.pointerId);
    if(ended.moved){
     suppressClick=true;setTimeout(function(){suppressClick=false;},0);
@@ -634,7 +635,8 @@
    var b=e.target.closest('button');
    if(e.button!==0||e.pointerType==='touch'||!buttons.includes(b)||drag)return;
    var rect=b.getBoundingClientRect();
-   drag={id:e.pointerId,x:e.clientX,y:e.clientY,offsetX:e.clientX-rect.left,offsetY:e.clientY-rect.top,width:rect.width,height:rect.height,target:b,moved:false};
+   drag={id:e.pointerId,x:e.clientX,y:e.clientY,offsetX:e.clientX-rect.left,offsetY:e.clientY-rect.top,width:rect.width,height:rect.height,target:b,moved:false,lastX:e.clientX,lastY:e.clientY,lastTime:e.timeStamp||Date.now()};
+   group.classList.add('is-held');
   });
   group.addEventListener('pointermove',function(e){
    if(!drag||e.pointerId!==drag.id)return;
@@ -645,9 +647,15 @@
    buttons.forEach(function(b){var r=b.getBoundingClientRect(),distance=Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2));if(distance<nearest){nearest=distance;drag.target=b;}});
    var x=Math.max(0,Math.min(group.clientWidth-drag.width,e.clientX-g.left-group.clientLeft-drag.offsetX));
    var y=Math.max(0,Math.min(group.clientHeight-drag.height,e.clientY-g.top-group.clientTop-drag.offsetY));
+   var now=e.timeStamp||Date.now(),dt=Math.max(8,now-drag.lastTime),dx=e.clientX-drag.lastX,dy=e.clientY-drag.lastY;
+   var stretch=Math.min(.13,Math.hypot(dx,dy)/dt*.065),horizontal=Math.abs(dx)>=Math.abs(dy);
+   glass.style.setProperty('--lens-x',String(horizontal?1+stretch:1-stretch*.35));
+   glass.style.setProperty('--lens-y',String(horizontal?1-stretch*.35:1+stretch));
+   glass.style.setProperty('--light-x',(dx>=0?'72%':'28%'));
+   drag.lastX=e.clientX;drag.lastY=e.clientY;drag.lastTime=now;
    glass.style.width=drag.width+'px';glass.style.height=drag.height+'px';glass.style.transform='translate('+x+'px,'+y+'px)';
   });
-  group.addEventListener('pointerleave',function(){if(drag&&!drag.moved)drag=null;});
+  group.addEventListener('pointerleave',function(){if(drag&&!drag.moved){drag=null;group.classList.remove('is-held');}});
   group.addEventListener('pointerup',function(e){finish(e,false);});
   group.addEventListener('pointercancel',function(e){finish(e,true);});
   group.addEventListener('lostpointercapture',function(e){finish(e,true);});
