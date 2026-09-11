@@ -572,12 +572,12 @@
         html += '<form data-demo-form><label>'+t('食材名称','Food name')+'<input name="food" maxlength="30" required value="'+t('牛奶','Milk')+'"></label><label>'+t('数量（瓶）','Quantity (bottles)')+'<input name="quantity" type="number" min="1" max="99" step="1" required value="3"></label><p>'+t('演示日期：2 天后到期；存放位置：冷藏。','Sample expiry: in 2 days. Storage: fridge.')+'</p><button class="button primary" type="submit">'+t('加入示例库存','Add to sample pantry')+'</button></form>';
       } else if (step === 1 || step === 2) {
         var near = lots.filter(function(x){return x.days<=2&&x.quantity>0;});
-        html += '<p>'+t('仅查看 2 天内到期的示例食材。日期不代表食用安全判断。','Showing sample food due within 2 days. Dates are not a food safety assessment.')+'</p>';
+        html += '<p>'+t('这里列出 2 天内到期的示例食材。实际食用前，还要检查包装和储存情况。','Showing sample food due within 2 days. Dates are not a food safety assessment.')+'</p>';
         if (!near.length) html += '<p class="demo-empty">'+t('暂无临期食材。可以先添加一件示例。','No food nearing expiry. Add a sample first.')+'</p><button type="button" data-demo-go="0">'+t('去添加','Add food')+'</button>';
         near.forEach(function(x){html+='<div class="demo-food"><strong>'+safe(x.name)+'</strong><span>'+x.quantity+' '+t('瓶 · 还有 2 天','bottles · due in 2 days')+'</span>'+(step===2?'<button class="button quiet" type="button" data-demo-use="'+lots.indexOf(x)+'">'+t('用掉 1 瓶','Use 1 bottle')+' · '+safe(x.name)+'</button>':'')+'</div>';});
         if (step===1&&near.length) html+='<button class="button primary" type="button" data-demo-go="2">'+t('试试记录用量','Try recording usage')+'</button>';
       } else {
-        html+='<div class="demo-food"><strong>'+t('牛奶','Milk')+'</strong><span>'+shopping+' '+t('瓶待购买','bottles to buy')+'</span></div><p>'+t('本次买到 2 瓶，示例到期日为 7 天后。与之前的批次分别记录。','Buy 2 bottles, due in 7 days in this sample. They stay separate from earlier batches.')+'</p><button class="button primary" type="button" data-demo-buy '+(!shopping?'disabled':'')+'>'+t(shopping?'确认买到 2 瓶':'这项采购已完成',shopping?'Confirm buying 2 bottles':'Purchase completed')+'</button>';
+        html+='<div class="demo-food"><strong>'+t('牛奶','Milk')+'</strong><span>'+shopping+' '+t('瓶待购买','bottles to buy')+'</span></div><p>'+t('这次买到 2 瓶，示例到期日是 7 天后，会与之前的食材分开记录。','Buy 2 bottles, due in 7 days in this sample. They stay separate from earlier batches.')+'</p><button class="button primary" type="button" data-demo-buy '+(!shopping?'disabled':'')+'>'+t(shopping?'确认买到 2 瓶':'这项采购已完成',shopping?'Confirm buying 2 bottles':'Purchase completed')+'</button>';
       }
       var restoreFocus = screen.contains(document.activeElement);
       screen.innerHTML=html;
@@ -588,7 +588,7 @@
       if(b.hasAttribute('data-demo-reset')){step=0;lots=[];shopping=2;feedback.textContent=t('示例已重置。','Sample reset.');draw();}
       else if(b.hasAttribute('data-demo-step')||b.hasAttribute('data-demo-go')){step=Number(b.dataset.demoStep??b.dataset.demoGo);feedback.textContent='';draw();}
       else if(b.hasAttribute('data-demo-use')){var lot=lots[Number(b.dataset.demoUse)];if(lot&&lot.quantity>0&&lot.days<=2){lot.quantity--;feedback.textContent=t('已记录用掉 1 瓶。库存剩余：','Recorded 1 bottle used. Remaining: ')+total()+t(' 瓶。',' bottles.');draw();}}
-      else if(b.hasAttribute('data-demo-buy')&&shopping){lots.push({name:t('牛奶','Milk'),quantity:shopping,days:7});shopping=0;feedback.textContent=t('已加入库存，待购数量归零。','Added to pantry; shopping list completed.');draw();}
+      else if(b.hasAttribute('data-demo-buy')&&shopping){lots.push({name:t('牛奶','Milk'),quantity:shopping,days:7});shopping=0;feedback.textContent=t('已加入库存，这项购物已完成。','Added to pantry; shopping list completed.');draw();}
     });
     demo.addEventListener('submit',function(e){if(!e.target.matches('[data-demo-form]'))return;e.preventDefault();var f=e.target,n=f.elements.food.value.trim(),q=Number(f.elements.quantity.value);if(!n||!Number.isInteger(q)||q<1||q>99){feedback.textContent=t('请输入名称和 1–99 的整数数量。','Enter a name and a whole quantity from 1 to 99.');return;}lots.push({name:n,quantity:q,days:2});step=1;draw();feedback.textContent=t('已加入示例库存，可以查看临期或继续记录用量。','Added to sample pantry. Check dates or record usage.');});
     draw();
