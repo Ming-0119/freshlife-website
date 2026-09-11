@@ -522,12 +522,14 @@
      首屏向上收束时，第二屏同步轻微上移，避免两段像静态海报一样断开。 */
   var heroEl = document.querySelector(".hero");
   var headerEl = document.querySelector(".site-header");
+  if (heroEl) document.body.classList.add("home-motion");
   if ((heroEl || headerEl) && !reduceMotion) {
     var scrollTicking = false;
     function updateScrollEffects() {
       scrollTicking = false;
       if (document.hidden) return;
       var y = window.scrollY || window.pageYOffset || 0;
+      if (heroEl) root.style.setProperty("--reading-progress", Math.min(1, y / Math.max(1, document.documentElement.scrollHeight - window.innerHeight)).toFixed(4));
       if (headerEl) headerEl.classList.toggle("is-scrolled", y > 18);
       if (heroEl) {
         var p = Math.min(1, y / (window.innerHeight * 0.5));
