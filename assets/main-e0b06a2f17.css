@@ -1966,3 +1966,15 @@ html[data-reading-size="150"] .demo-handset,html[data-reading-size="200"] .demo-
 @media(max-width:600px){.download-tabs{display:grid;grid-template-columns:1fr 1fr}.download-tabs button{padding:10px}.release-picker .release-card{padding:24px}.site-header .reading-open{font-size:.75rem;padding:6px 8px}.site-header .container{gap:8px}}
 @media print{.download-tabs{display:none}.release-picker .release-card[hidden]{display:block!important}}
 @media(max-width:600px){.site-header .nav-cta{display:none}.site-header .brand{margin-right:auto}.site-header .reading-open{margin-left:0}}
+
+/* Selective liquid glass: only segmented choices, not content or forms. */
+.glass-options{position:relative;isolation:isolate;padding:6px;border:1px solid var(--glass-rim);border-radius:22px;background:var(--glass-surface);box-shadow:inset 0 1px 0 #ffffff55,0 5px 18px #1731260c}
+.glass-options>button{position:relative;z-index:1;border-color:transparent;background:transparent;transition:color .2s ease;transform:none}
+.selection-glass{position:absolute;inset:0 auto auto 0;z-index:0;pointer-events:none;border-radius:16px;border:1px solid color-mix(in srgb,var(--green) 32%,var(--line));background:linear-gradient(145deg,color-mix(in srgb,var(--surface) 94%,transparent),var(--green-soft));box-shadow:inset 0 1px 1px #ffffff99,inset 0 -1px 0 #1731260c,0 3px 9px #17312614}
+.glass-ready>button[aria-selected=true],.glass-ready>button[aria-pressed=true]{background:transparent;color:var(--green-strong);box-shadow:none;border-color:transparent;font-weight:700}
+.glass-options>button:focus-visible{outline:3px solid var(--green);outline-offset:-3px}
+@supports(backdrop-filter:blur(1px)){.selection-glass{backdrop-filter:blur(12px) saturate(125%);-webkit-backdrop-filter:blur(12px) saturate(125%)}}
+@media(prefers-reduced-motion:no-preference){.glass-ready .selection-glass{transition:transform .32s cubic-bezier(.22,.8,.25,1),width .32s ease,height .32s ease}}
+@media(hover:hover){.glass-options>button:hover{background:color-mix(in srgb,var(--green-soft) 45%,transparent);border-radius:16px}}
+@media(prefers-reduced-transparency:reduce){.glass-options,.selection-glass{background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none}.selection-glass{border:2px solid var(--green);box-shadow:none}}
+@media(forced-colors:active){.selection-glass{display:none}.glass-options>button[aria-selected=true],.glass-options>button[aria-pressed=true]{outline:2px solid Highlight;background:Highlight;color:HighlightText}}

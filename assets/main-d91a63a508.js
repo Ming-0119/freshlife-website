@@ -606,3 +606,17 @@
  tabs.addEventListener('keydown',function(e){var i=buttons.indexOf(document.activeElement);if(i<0)return;var next;if(e.key==='ArrowRight')next=(i+1)%4;else if(e.key==='ArrowLeft')next=(i+3)%4;else if(e.key==='Home')next=0;else if(e.key==='End')next=3;else return;e.preventDefault();buttons[next].focus();buttons[next].click();});
  grid.before(tabs);grid.classList.add('release-picker');select(3);
 })();
+
+/* Glass selection surface belongs only to compact, mutually exclusive controls. */
+(function(){
+ document.querySelectorAll('.platform-tabs,.download-tabs,.android-tabs,.device-switch').forEach(function(group){
+  var buttons=Array.from(group.querySelectorAll('button'));if(!buttons.length)return;
+  var glass=document.createElement('span');glass.className='selection-glass';glass.setAttribute('aria-hidden','true');group.classList.add('glass-options');group.append(glass);
+  var frame;
+  function position(){frame=null;var selected=buttons.find(function(b){return b.getAttribute('aria-selected')==='true'||b.getAttribute('aria-pressed')==='true';});if(!selected||!group.getClientRects().length){glass.hidden=true;return;}var r=selected.getBoundingClientRect(),g=group.getBoundingClientRect();if(!r.width){glass.hidden=true;return;}glass.hidden=false;glass.style.width=r.width+'px';glass.style.height=r.height+'px';glass.style.transform='translate('+(r.left-g.left-group.clientLeft+group.scrollLeft)+'px,'+(r.top-g.top-group.clientTop+group.scrollTop)+'px)';group.classList.add('glass-ready');}
+  function queue(){if(frame==null)frame=requestAnimationFrame(position);}
+  new MutationObserver(queue).observe(group,{subtree:true,attributes:true,attributeFilter:['aria-selected','aria-pressed']});
+  if(typeof ResizeObserver!=='undefined'){var observer=new ResizeObserver(queue);observer.observe(group);buttons.forEach(function(b){observer.observe(b);});}
+  window.addEventListener('resize',queue,{passive:true});queue();
+ });
+})();
