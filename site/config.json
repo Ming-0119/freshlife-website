@@ -104,7 +104,7 @@
     },
     "features": {
       "title": "完整功能 — FreshLife",
-      "description": "FreshLife 功能一览：库存与临期提醒、四种录入方式、餐食与烹饪、购物清单、iPhone 与 iPad、隐私与数据控制、FreshLife AI。每项功能都写明能帮什么、怎么用、注意什么、当前状态。",
+      "description": "查看 FreshLife 各平台的库存、购物清单与数据管理功能，区分已发布功能、网页测试版和 iOS 演示，并了解安装与使用方式。",
       "path": "features/index.html"
     },
     "philosophy": {

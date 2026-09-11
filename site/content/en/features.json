@@ -84,8 +84,8 @@
   ],
   "why": [
     { "icon": "fridge", "title": "See what’s at home at a glance", "desc": "Pantry, storage spot, quantity and due date live in one place — less fridge searching and fewer accidental doubles." },
-    { "icon": "bell", "title": "Use what needs using first", "desc": "Near-date food rises naturally to the top, with a gentle reminder while there is still time to plan it in." },
-    { "icon": "fork", "title": "Start dinner with what you have", "desc": "See what your ingredients can make and what is still missing, without starting over in a sea of recipes." },
+    { "icon": "bell", "title": "Use what needs using first", "desc": "Review upcoming dates from your own records. Check packaging and storage conditions before deciding whether food is suitable to eat." },
+    { "icon": "fork", "title": "Start dinner with what you have", "desc": "Check your pantry before planning dinner. Automatic meal suggestions are shown only in the unreleased iOS demo below." },
     { "icon": "basket", "title": "Shop with a clear list", "desc": "Missing items collect in one list; confirm them back into your pantry when you get home and the loop stays connected." }
   ],
   "dailyScenarios": [
