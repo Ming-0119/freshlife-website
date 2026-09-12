@@ -98,7 +98,7 @@
   ],
   "pages": {
     "index": {
-      "title": "FreshLife — What should we eat today?",
+      "title": "FreshLife — Know what you have",
       "description": "FreshLife helps you track food, expiry dates and shopping lists. Android and native HarmonyOS are available; try the local web app without an account. iOS is preparing for release.",
       "path": "en/index.html"
     },

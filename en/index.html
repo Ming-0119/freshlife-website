@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light dark"/>
 <meta name="referrer" content="strict-origin-when-cross-origin"/>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; form-action 'self'; upgrade-insecure-requests"/>
-<title>FreshLife — What should we eat today?</title>
+<title>FreshLife — Know what you have</title>
 <meta name="description" content="FreshLife helps you track food, expiry dates and shopping lists. Android and native HarmonyOS are available; try the local web app without an account. iOS is preparing for release."/>
 <meta name="theme-color" content="#f8f6ef"/>
 <meta property="og:type" content="website"/>
@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" href="/app-icon.png"/>
 <script>/* 主题初始化：先读用户选择，没有则跟随系统；在 CSS 之前执行避免闪动 */
 try{(function(){var d=document.documentElement;d.classList.add("js");var k="freshlife-theme";var saved=null;try{saved=localStorage.getItem(k)}catch(e){}var m=window.matchMedia("(prefers-color-scheme: dark)");var t=(saved==="light"||saved==="dark")?saved:(m.matches?"dark":"light");d.setAttribute("data-theme",t);window.__freshThemeSystem=m.matches?"dark":"light"})()}catch(e){}</script>
-<link rel="stylesheet" href="/assets/main-f4be748b55.css"/>
+<link rel="stylesheet" href="/assets/main-a3ea8595d6.css"/>
 </head>
 <body>
 
@@ -83,7 +83,7 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
 </nav>
 
 
-<main id="main">
+<main id="main" class="marketing-home">
   <!-- ================= Hero ================= -->
   <section class="hero" id="top">
     <div class="hero-aura" aria-hidden="true"></div>
@@ -91,28 +91,31 @@ try{(function(){var d=document.documentElement;d.classList.add("js");var k="fres
       <div class="hero-copy">
       <div class="hero-lockup">
         <img src="/app-icon.png" alt="FreshLife app icon" width="58" height="58"/>
-        <span class="txt"><b>FreshLife</b><small>Household food management · Local-first</small></span>
+        <span class="txt"><b>FreshLife</b><small>Everyday food, thoughtfully organized</small></span>
       </div>
-      <h1>What should we eat today?<br/><em>Don’t start from scratch.</em></h1>
-      <p class="sub">Track <strong>what you have, when it expires, and what to buy</strong>. Record purchases and usage so your next check stays useful.</p>
+      <h1>Know what you have.<br/><em>Make room for fresh.</em></h1>
+      <p class="sub">Your pantry, dates and shopping list. Together.<br/>A quick note when you buy. Another when you use.</p>
       <div class="hero-actions">
         <a class="button primary" href="/app/">Open web app<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></a>
         <a class="button hero-app-download" href="#download">Get the app<span aria-hidden="true"> →</span></a>
       </div>
       <p class="web-entry-note">Web beta · Chinese interface · Saved in this browser, without App sync. <a href="/en/support/#web-install">iPhone installation guide</a></p>
-<p class="hero-download-link"><a href="#product">Explore the product demo →</a> <a href="#latest">Recent improvements →</a></p>
-      <p class="hero-status">Android and HarmonyOS are available on Huawei AppGallery. iOS is preparing for release.</p>
       </div>
       <figure class="hero-preview" aria-labelledby="hero-preview-title">
         <div class="hero-preview-heading"><span class="hero-preview-label">Start with what you have</span><span class="hero-preview-sample">Sample</span></div>
         <h2 id="hero-preview-title">Check the pantry before you shop.</h2>
-        <ul class="hero-preview-foods">
+        <div class="hero-preview-content"><ul class="hero-preview-foods">
           <li><span><strong>Milk</strong><small>Fridge · 1 bottle left</small></span><span class="hero-preview-date">Due in 2 days</span></li>
           <li><span><strong>Eggs</strong><small>Fridge · 6 eggs left</small></span><span class="hero-preview-neutral">Already at home</span></li>
         </ul>
-        <div class="hero-preview-next"><span>Before shopping</span><p>You still have eggs. Check how many you need.</p></div>
+        <div class="hero-preview-next"><span>Your next shop</span><h3>Check home.<br/>Then fill the gaps.</h3><p>You still have eggs. Take a look before you go, and check how many you need.</p></div>
+        </div>
         <figcaption>Illustrative sample, not your pantry. Dates help you organize food.</figcaption>
       </figure>
+      <div class="hero-support">
+      <p class="hero-status">Android and HarmonyOS are available on Huawei AppGallery. iOS is preparing for release.</p>
+      <p class="hero-download-link"><a href="#product">Explore the product demo →</a> <a href="#latest">Recent improvements →</a></p>
+      </div>
     </div>
   </section>
 

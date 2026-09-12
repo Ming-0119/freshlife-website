@@ -98,7 +98,7 @@
   ],
   "pages": {
     "index": {
-      "title": "FreshLife — 每天吃什么，不必每次从头想",
+      "title": "FreshLife — 家里有什么，心里都有数",
       "description": "FreshLife 帮你记录食材、查看到期日期、整理购物清单。安卓与原生鸿蒙已上架，网页版无需注册即可使用；iOS 上架准备中。",
       "path": "index.html"
     },
