@@ -302,7 +302,7 @@
     },
     {
       "q": "Will FreshLife gradually learn my family’s habits?",
-      "a": "Local preferences are different from cross-device household memory. Android 1.0.1 includes local household settings and usage estimates based on confirmed records; iOS capabilities depend on its version. Full cloud household memory is not available, and the app does not place orders automatically. Any future online service will explain its data use and request the necessary consent before launch."
+      "a": "Local preferences are different from cross-device household memory. Android 1.0.2 includes local household settings and usage estimates based on confirmed records; iOS capabilities depend on its version. Full cloud household memory is not available, and the app does not place orders automatically. Any future online service will explain its data use and request the necessary consent before launch."
     },
     {
       "q": "How do I export or delete my data?",
