@@ -2204,3 +2204,34 @@ html.motion-static .principles-chapter,html.reading-reflow .principles-chapter{m
  html[lang="en"] .principles-scene h3{font-size:1.25rem}
  html[lang="en"] .principles-animated .principles-chapter{scroll-margin-top:calc(var(--measured-header-h,var(--header-h)) + 370px)}
 }
+
+/* The first screen introduces the brand; the next scroll introduces its beliefs. */
+.marketing-home .brand-hero{min-height:calc(100svh - var(--header-h));padding:clamp(32px,6svh,64px) 0;background:var(--surface)}
+.brand-hero .hero-layout{gap:28px}
+.brand-hero .hero-lockup{flex-direction:column;gap:20px;margin-bottom:28px}
+.brand-hero .hero-lockup img{width:clamp(120px,20svh,168px);height:auto;border-radius:25%;box-shadow:0 18px 48px #0967431a}
+.brand-hero .hero-lockup .txt{text-align:center}
+.brand-hero .hero-lockup b{font-size:clamp(1.75rem,3vw,2.25rem);font-weight:700;letter-spacing:-.035em}
+.brand-hero .hero-copy h1,html[lang="en"] .brand-hero .hero-copy h1{font-size:clamp(2rem,4.8vw,3.75rem);line-height:1.25;margin-bottom:20px;letter-spacing:-.035em}
+.brand-hero .hero-copy .sub{font-size:1.125rem;max-width:32em;margin:0 auto;line-height:1.9;text-wrap:balance}
+.brand-hero .principles-cue{color:var(--ink-3);gap:14px}
+.product-intro .section-head{margin:0 auto;text-align:center}
+.product-intro .hero-layout{gap:24px}
+.product-intro .hero-layout .web-entry-note{margin:0 auto}
+.product-intro .hero-preview{margin-top:12px}
+@media(prefers-reduced-motion:no-preference){
+ .brand-hero .hero-lockup{animation:brandArrival 650ms var(--ease-out) both}
+ .brand-hero .hero-copy h1{animation:brandArrival 650ms var(--ease-out) 90ms both}
+ @keyframes brandArrival{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+}
+@media(max-width:760px){
+ .marketing-home .brand-hero{padding:36px 0;min-height:calc(100svh - var(--header-h))}
+ .brand-hero .hero-lockup{gap:18px;margin-bottom:26px}
+ .brand-hero .hero-lockup img{width:128px}
+ .brand-hero .hero-copy h1,html[lang="en"] .brand-hero .hero-copy h1{font-size:clamp(1.875rem,8.2vw,2.5rem)}
+ .brand-hero .hero-copy .sub{font-size:1rem;max-width:23em}
+ .brand-hero .principles-cue{font-size:.875rem}
+}
+@media(max-height:650px){.brand-hero .hero-lockup img{width:100px}.brand-hero .hero-lockup{gap:12px;margin-bottom:18px}.brand-hero .hero-layout{gap:18px}}
+html.reading-reflow .brand-hero{min-height:0}
+html.reading-reflow .brand-hero .hero-copy h1{font-size:2rem}
