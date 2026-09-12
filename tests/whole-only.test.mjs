@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {emptyState,validateState,consume,purchase,restoreBackup} from '../site/static/app/core.mjs';
+const food=(wholeOnly=true)=>({id:'egg',name:'鸡蛋',quantity:3,unit:'个',location:'冷藏',expiry:'2026-10-01',wholeOnly});
+const state=()=>({...emptyState(),items:[food()]});
+test('legacy backups upgrade without inventing whole-only restrictions',()=>{const old={...state(),version:1};delete old.items[0].wholeOnly;const next=validateState(old);assert.equal(next.version,2);assert.equal(next.items[0].wholeOnly,undefined);assert.equal(old.version,1);});
+test('whole-only survives backup and restore with local revision',()=>{const s=state();s.revision=8;const backup=validateState(JSON.parse(JSON.stringify(s)));assert.equal(backup.items[0].wholeOnly,true);assert.equal(restoreBackup(s,backup,8).items[0].wholeOnly,true);});
+test('fractional consumption and discard leave inventory and history intact',()=>{for(const kind of ['consume','waste']){const s=state(),before=structuredClone(s);assert.throws(()=>consume(s,'egg',.5,kind,'e','2026-09-12T00:00:00Z'),/整数/);assert.deepEqual(s,before);}});
+test('integer usage preserves flag through partial and complete use',()=>{const s=state();consume(s,'egg',1,'consume','e1','2026-09-12T00:00:00Z');assert.equal(s.items[0].quantity,2);assert.equal(s.items[0].wholeOnly,true);consume(s,'egg',2,'waste','e2','2026-09-12T00:00:00Z');assert.equal(s.items.length,0);assert.equal(s.history.length,2);});
+test('invalid flags and fractional whole-only stock are rejected',()=>{for(const value of [null,'true',1]){const s=state();s.items[0].wholeOnly=value;assert.throws(()=>validateState(s));}const s=state();s.items[0].quantity=.5;assert.throws(()=>validateState(s));});
+test('ordinary stock retains fractional usage',()=>{const s=state();s.items[0].wholeOnly=false;consume(s,'egg',.5,'consume','e','2026-09-12T00:00:00Z');assert.equal(s.items[0].quantity,2.5);});
+test('purchase preserves the rule and invalid purchase never changes shopping',()=>{const s=emptyState();s.shopping=[{id:'q',name:'鸡蛋',quantity:3,unit:'个'}];assert.equal(purchase(s,'q',food()).items[0].wholeOnly,true);const before=structuredClone(s);assert.throws(()=>purchase(s,'q',{...food(),quantity:.5}));assert.deepEqual(s,before);});

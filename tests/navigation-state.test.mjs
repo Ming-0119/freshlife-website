@@ -1,0 +1,22 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+const code=readFileSync(new URL('../site/static/app/app.mjs',import.meta.url),'utf8');
+const start=code.indexOf('let presentedView=null;');
+const end=code.indexOf('\n',code.indexOf('function setView(',start));
+test('tabs restore independent positions and repeat selection does not render or steal focus',()=>{
+ const nodes=new Map();let renders=0,focuses=0;
+ const $=id=>{if(!nodes.has(id))nodes.set(id,{setAttribute(){},focus(options){assert.equal(options.preventScroll,true);focuses++;}});return nodes.get(id);};
+ const window={scrollY:0,scrollTo(x,y){this.scrollY=y;}};
+ const location={hash:'#pantry'};
+ const history={pushState(a,b,hash){location.hash=hash;},replaceState(a,b,hash){location.hash=hash;}};
+ const context={$,window,location,history,view:'pantry',document:{querySelectorAll:()=>[]},render(){renders++;}};
+ vm.createContext(context);vm.runInContext(code.slice(start,end),context);
+ vm.runInContext("setView('pantry')",context);window.scrollY=487;
+ vm.runInContext("setView('shopping',true)",context);assert.equal(window.scrollY,0);
+ window.scrollY=88;vm.runInContext("setView('pantry',true)",context);assert.equal(window.scrollY,487);
+ const count=renders,focusCount=focuses;vm.runInContext("setView('pantry',true)",context);
+ assert.equal(window.scrollY,487);assert.equal(renders,count);assert.equal(focuses,focusCount);
+ vm.runInContext("setView('shopping',true)",context);assert.equal(window.scrollY,88);
+});

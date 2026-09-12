@@ -163,14 +163,14 @@ INDEX_OG = {
         '<meta property="og:locale" content="zh_CN"/>\n'
         '<meta property="og:url" content="https://www.freshlifeapp.cn/"/>\n'
         '<meta property="og:title" content="FreshLife — 每天吃什么，不必每次从头想"/>\n'
-        '<meta property="og:description" content="本地优先的家庭食品决策助手：库存、临期提醒、餐食规划与购物清单。iPhone 与 iPad 通用，无需注册账号。"/>\n'
+        '<meta property="og:description" content="记录库存、到期日期与购物清单。无需注册即可体验网页测试版，也可查看安卓、鸿蒙下载与 iOS 开发进度。"/>\n'
         '<meta property="og:image" content="https://www.freshlifeapp.cn/og-image.png"/>\n'
         '<meta property="og:image:width" content="1200"/>\n'
         '<meta property="og:image:height" content="630"/>\n'
         '<meta property="og:image:alt" content="FreshLife — 每天吃什么，不必每次从头想"/>\n'
         '<meta name="twitter:card" content="summary_large_image"/>\n'
         '<meta name="twitter:title" content="FreshLife — 每天吃什么，不必每次从头想"/>\n'
-        '<meta name="twitter:description" content="本地优先的家庭食品决策助手，适用于 iPhone 与 iPad。"/>\n'
+        '<meta name="twitter:description" content="食材库存与购物清单，本地优先。体验网页测试版，了解各平台功能与下载方式。"/>\n'
         '<meta name="twitter:image" content="https://www.freshlifeapp.cn/og-image.png"/>'
     ),
     "en": (
@@ -178,14 +178,14 @@ INDEX_OG = {
         '<meta property="og:locale" content="en_US"/>\n'
         '<meta property="og:url" content="https://www.freshlifeapp.cn/en/"/>\n'
         '<meta property="og:title" content="FreshLife — What should we eat today?"/>\n'
-        '<meta property="og:description" content="A local-first helper for daily food decisions: what’s in your kitchen, what’s expiring, what to cook, and what to buy. iPhone and iPad, no account needed."/>\n'
+        '<meta property="og:description" content="Track pantry items, expiry dates and shopping lists. Try the web beta without an account, or check Android, HarmonyOS and iOS availability."/>\n'
         '<meta property="og:image" content="https://www.freshlifeapp.cn/og-image-en.png"/>\n'
         '<meta property="og:image:width" content="1200"/>\n'
         '<meta property="og:image:height" content="630"/>\n'
         '<meta property="og:image:alt" content="FreshLife — What should we eat today? Don’t start from scratch."/>\n'
         '<meta name="twitter:card" content="summary_large_image"/>\n'
         '<meta name="twitter:title" content="FreshLife — What should we eat today?"/>\n'
-        '<meta name="twitter:description" content="A local-first food decision helper for iPhone and iPad."/>\n'
+        '<meta name="twitter:description" content="Local-first pantry and shopping lists. Try the web beta and check platform availability."/>\n'
         '<meta name="twitter:image" content="https://www.freshlifeapp.cn/og-image-en.png"/>'
     ),
 }
@@ -648,6 +648,7 @@ def render_lang(lang, cfg, features, content_dir, css_tag, js_tag):
             cta_label="查看完整功能" if is_zh else "All features"),
         "footer": build_site_footer(
             footer_product, footer_legal, year, developer, js_tag, lang),
+        "recent_updates": (content_dir / "recent-updates.html").read_text(encoding="utf-8"),
         "mock_screens": (content_dir / "mock_screens.html").read_text(encoding="utf-8"),
         "mock_ipad": (content_dir / "mock_ipad.html").read_text(encoding="utf-8"),
         "tab_points_json": build_tab_points_json(features),
@@ -744,6 +745,9 @@ def main():
     css_tag = '<link rel="stylesheet" href="/assets/%s"/>' % css_name
     js_tag = '<script src="/assets/%s" defer></script>' % js_name
 
+    reading_source = STATIC / "app" / "accessibility.mjs"
+    reading_name = "reading-%s.mjs" % hash_file(reading_source)
+
     # ---- 渲染两种语言 ----
     zh_docs, zh_pages = render_lang("zh", CONFIG, FEATURES, CONTENT, css_tag, js_tag)
     en_docs, en_pages = render_lang("en", CONFIG_EN, FEATURES_EN, CONTENT_EN, css_tag, js_tag)
@@ -769,6 +773,15 @@ def main():
         "js": js_tag,
     }
     notfound_html = render_template("404.html", nf_subs)
+
+    # Public pages use immutable shared UI assets; the PWA keeps its verified bundle.
+    def reading_asset(html):
+        return html.replace('src="/app/accessibility.mjs"', 'src="/assets/%s"' % reading_name)
+    zh_pages = {path: reading_asset(html) for path, html in zh_pages.items()}
+    en_pages = {path: reading_asset(html) for path, html in en_pages.items()}
+    zh_docs = [(path, reading_asset(html)) for path, html in zh_docs]
+    en_docs = [(path, reading_asset(html)) for path, html in en_docs]
+    notfound_html = reading_asset(notfound_html)
 
     # ---- 自检（在任何写入之前先校验渲染结果） ----
     expected = {
@@ -803,6 +816,7 @@ def main():
         "og-image-en.png",
         "assets/" + css_name,
         "assets/" + js_name,
+        "assets/" + reading_name,
     }
     expected.update("app/" + p.name for p in (STATIC / "app").iterdir() if p.is_file())
     docs = zh_docs + en_docs + [("404.html", notfound_html), ("app/index.html", (STATIC / "app" / "index.html").read_text())]
@@ -852,6 +866,8 @@ def main():
     assets_written = set()
     assets_written.add(css_name)
     assets_written.add(js_name)
+    assets_written.add(reading_name)
+    changed += write_if_changed(ASSETS / reading_name, reading_source.read_bytes())
     changed += write_if_changed(ASSETS / css_name, css_raw)
     changed += write_if_changed(ASSETS / js_name, js_raw)
 
