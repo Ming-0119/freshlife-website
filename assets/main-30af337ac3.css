@@ -2058,3 +2058,39 @@ html.reading-reflow .legal-page{overflow-wrap:anywhere}
 html[data-reading-motion] .selection-glass::before{transform:none!important}
 @media(prefers-reduced-transparency:reduce){.glass-options{background:var(--surface)}.selection-glass::before{background:var(--green-soft)!important;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;border:2px solid var(--green)}}
 @media(max-width:600px){.download-tabs.glass-options{border-radius:24px}}
+
+/* Mobile reading rhythm: clear entry points, fluid type, comfortable touch targets. */
+@media(max-width:600px){
+ .hero{min-height:0;padding:30px 0 32px;text-align:left}
+ .hero .container{padding-inline:22px}
+ .hero-lockup{gap:12px;margin-bottom:24px;max-width:100%}
+ .hero-lockup img{width:44px;height:44px;border-radius:13px;flex:none;animation:none}
+ .hero-lockup b{font-size:1.125rem}.hero-lockup small{font-size:.8125rem;line-height:1.5}
+ .hero h1,html[lang=en] .hero h1{max-width:none;margin:0 0 20px;font-size:clamp(1.875rem,8.4vw,2.75rem);line-height:1.2;letter-spacing:-.035em;text-wrap:pretty}
+ .hero .sub{margin:0 0 24px;max-width:36ch;font-size:1rem;line-height:1.8}
+ .hero-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+ .hero-actions .button{width:100%;min-width:0;min-height:50px;padding:12px 10px;font-size:.9375rem;justify-content:center;border-radius:16px;white-space:normal}
+ .hero-app-download{background:var(--surface);border:1px solid var(--line-strong)}
+ .web-entry-note{margin:0;max-width:none;font-size:.8125rem;line-height:1.7}
+ .web-entry-note a{display:inline-block;padding-block:6px}
+ .hero-download-link{margin:14px 0 8px;font-size:.9375rem}.hero-download-link a{display:inline-flex;align-items:center;min-height:44px}
+ .hero-status{margin:0;max-width:none;padding-top:14px;border-top:1px solid var(--line);font-size:.8125rem;line-height:1.7}
+ .section{padding-block:44px}.section-head{margin-bottom:24px}.section-head h2{font-size:clamp(1.5rem,6.5vw,2rem);line-height:1.3;text-wrap:pretty}.section-head .lead{font-size:1rem;line-height:1.8}
+ .platform-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;gap:4px;padding:5px;margin-bottom:20px}
+ .platform-tabs button{min-width:0;min-height:48px;padding:10px 6px;font-size:1rem}
+ .platform-note{font-size:.875rem;line-height:1.8}
+ .device-switch{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+ .device-switch-btn{white-space:normal;min-height:48px;font-size:.8125rem;line-height:1.4}
+ .phone{width:min(100%,320px)}.ipad{max-width:100%}
+ .hands-on{padding:18px 14px;gap:20px;border-radius:24px}
+ .demo-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.demo-steps button{min-height:48px;font-size:.875rem;line-height:1.4;white-space:normal}
+ .demo-step-caption{font-size:.8125rem;line-height:1.65}.demo-handset{max-width:100%;min-width:0}
+ .download-tabs{gap:4px;padding:5px;margin-bottom:14px}.download-tabs button{font-size:.9375rem;min-height:48px;white-space:normal;line-height:1.4}
+ .release-picker .release-card{padding:22px;border-radius:24px}.release-picker .release-card a{display:flex;width:100%;margin:12px 0 0;min-height:48px;justify-content:center;text-align:center}
+ .release-picker .release-card a:not(.button){border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+ .release-date{font-size:.8125rem;line-height:1.75}
+ .site-header .container{min-width:0}.site-header .brand{min-width:0;gap:8px}.site-header .brand span{font-size:1rem}.site-header .reading-open{font-size:.8125rem;padding:8px}
+ html.reading-reflow .hero-actions{grid-template-columns:minmax(0,1fr)}
+ html.reading-reflow .platform-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:350px){.site-header .container{padding-inline:12px;gap:6px}.site-header .brand img{width:26px;height:26px}.site-header .brand span{font-size:.875rem}.hero .container{padding-inline:18px}}
