@@ -488,6 +488,59 @@
     navTargets.forEach(function (target) { navIO.observe(target); });
   }
 
+  /* principles-controller:start — joins the existing scroll scheduler. */
+  function createPrinciplesMotion(section) {
+    if (!section) return { measure: function () {}, render: function () {} };
+    var chapters = Array.from(section.querySelectorAll('[data-principle-chapter]'));
+    var scenes = Array.from(section.querySelectorAll('[data-principle-scene]'));
+    var stage = section.querySelector('.principles-stage');
+    var points = [], enabled = false, previous = '', active = -1;
+    var focusRatio = .5, stageStart = 0, stageEnd = 0;
+    return {
+      measure: function (y, height, motionAllowed) {
+        enabled = motionAllowed && !root.classList.contains('reading-reflow') && height >= 600;
+        section.classList.toggle('principles-animated', enabled);
+        focusRatio = window.innerWidth <= 760 ? .78 : .5;
+        points = enabled ? chapters.map(function (chapter) {
+          var rect = chapter.getBoundingClientRect();
+          return y + rect.top + Math.min(rect.height / 2, height * .3);
+        }) : [];
+        var rect = section.getBoundingClientRect();
+        stageStart = y + rect.top - height;
+        stageEnd = y + rect.bottom;
+        previous = '';
+        if (!enabled) {
+          scenes.forEach(function (scene) { scene.style.removeProperty('opacity'); scene.style.removeProperty('transform'); });
+          section.style.removeProperty('--principles-progress');
+        }
+      },
+      render: function (y, height) {
+        if (!enabled || !points.length || y < stageStart || y > stageEnd) return;
+        var position = y + height * focusRatio;
+        var blend = storyBlend(points, position);
+        var progress = Math.max(0, Math.min(1, (position - points[0]) / Math.max(1, points[points.length - 1] - points[0])));
+        var key = blend.weights.map(function (w) { return w.toFixed(4); }).join(',') + ':' + progress.toFixed(4);
+        if (key === previous) return;
+        previous = key;
+        section.style.setProperty('--principles-progress', progress.toFixed(4));
+        scenes.forEach(function (scene, i) {
+          var weight = blend.weights[i] || 0;
+          var direction = position < points[i] ? 1 : -1;
+          scene.style.opacity = weight.toFixed(4);
+          scene.style.transform = 'translate3d(0,' + (direction * (1 - weight) * 36).toFixed(2) + 'px,0) scale(' + (.96 + .04 * weight).toFixed(4) + ')';
+          scene.style.zIndex = weight >= .5 ? '2' : '1';
+        });
+        if (blend.index !== active) {
+          active = blend.index;
+          stage.setAttribute('data-active', String(active + 1));
+          chapters.forEach(function (chapter, i) { chapter.classList.toggle('is-active', i === active); });
+        }
+      }
+    };
+  }
+  var principlesMotion = createPrinciplesMotion(document.querySelector('#principles'));
+  /* principles-controller:end */
+
   /* One event-driven frame for hero, header, reading progress and story.
      No perpetual loop, scroll interception or layout reads after style writes. */
   var heroEl = document.querySelector(".hero");
@@ -505,6 +558,7 @@
     var y = window.scrollY || 0;
     if (geometryDirty) {
       viewportHeight = window.innerHeight;
+      principlesMotion.measure(y, viewportHeight, !reduceMotion);
       scrollRange = Math.max(1, root.scrollHeight - viewportHeight);
       centers = storyChapters.map(function (ch) {
         var r = ch.getBoundingClientRect(); return y + r.top + r.height / 2;
@@ -512,6 +566,7 @@
       stageVisible = !!(storyStage && storyStage.getClientRects().length);
       geometryDirty = false;
     }
+    principlesMotion.render(y, viewportHeight);
     var blend = storyBlend(centers, y + viewportHeight / 2);
     var heroProgress = (!reduceMotion && window.innerWidth > 760 ? Math.min(1, y / (viewportHeight * .5)) : 0).toFixed(4);
     var reading = (reduceMotion ? 0 : Math.min(1, y / scrollRange)).toFixed(4);
