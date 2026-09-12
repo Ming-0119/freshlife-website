@@ -7,7 +7,8 @@
 (function () {
   "use strict";
 
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var reduceMotion = motionQuery.matches || document.documentElement.hasAttribute("data-reading-motion");
   var THEME_KEY = "freshlife-theme";
 
   /* 界面文案按页面语言（html lang）切换：英文页不会被脚本注入中文。 */
@@ -47,7 +48,7 @@
       clearTimeout(applyTheme._t);
       applyTheme._t = setTimeout(function () {
         root.classList.remove("theme-switching");
-      }, 420);
+      }, 300);
     }
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute("content", theme === "dark" ? "#101715" : "#f8f6ef");
@@ -287,15 +288,12 @@
         if (active) b.classList.add("active");
         else b.classList.remove("active");
       });
-      if (changed && animate && !reduceMotion) {
-        deviceGrid.classList.remove("just-swapped");
-        /* 重新触发一次短暂进入动画；属性先更新，辅助技术与自动测试无需等待。 */
-        void deviceGrid.offsetWidth;
-        deviceGrid.classList.add("just-swapped");
-        clearTimeout(setDeviceView._t);
-        setDeviceView._t = setTimeout(function () {
-          deviceGrid.classList.remove("just-swapped");
-        }, 680);
+      if (setDeviceView._animation) setDeviceView._animation.cancel();
+      if (changed && animate && !reduceMotion && deviceGrid.animate) {
+        setDeviceView._animation = deviceGrid.animate(
+          [{ opacity: .9, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }],
+          { duration: 220, easing: 'cubic-bezier(.2,.7,.2,1)' }
+        );
       }
     }
     deviceBtns.forEach(function (b) {
@@ -380,17 +378,6 @@
   /* ---------- 滚动显现 ---------- */
   document.querySelectorAll(".fsec-head, .fcard, .member-preview, .release-card, .circular-grid article, .circular-scope article").forEach(function (el) { el.classList.add("reveal"); });
   var reveals = document.querySelectorAll(".reveal");
-  /* 同一组卡片轻微错峰，最大延迟控制在 120ms，保持节奏而不拖沓。 */
-  document.querySelectorAll(
-    ".daily-grid, .why-grid, .method-grid, .ai-grid, .vision-grid, " +
-    ".roadmap-grid, .roadmap-rail, .feature-glance-grid, .privacy-grid, .misread-grid, .fsec-grid, .release-grid, .circular-grid, .circular-scope"
-  ).forEach(function (group) {
-    Array.prototype.slice.call(group.children).forEach(function (child, i) {
-      if (child.classList.contains("reveal")) {
-        child.style.setProperty("--reveal-delay", Math.min(i, 3) * 40 + "ms");
-      }
-    });
-  });
   if ("IntersectionObserver" in window && !reduceMotion) {
     var io = new IntersectionObserver(
       function (entries) {
@@ -408,60 +395,44 @@
     reveals.forEach(function (el) { el.classList.add("in-view"); });
   }
 
-  /* ---------- 品牌滚动叙事：章节联动 ----------
-     用 IntersectionObserver 感知当前章节（根边距只留视口中央细带），
-     只更新舞台 data-active 与进度指示 aria-current，不做每帧读写；
-     reduced-motion 下完全跳过，内容保持静态可见。 */
+  /* Scroll geometry is measured on layout changes, never once per animation frame.
+     A narrow crossfade links adjacent chapters; text remains fully readable. */
   var storyStage = document.querySelector("[data-story-stage]");
-  var storyChapters = Array.prototype.slice.call(
-    document.querySelectorAll("[data-story-chapter]")
-  );
+  var storyChapters = Array.from(document.querySelectorAll("[data-story-chapter]"));
+  var storyScreens = Array.from(document.querySelectorAll("[data-story-screen]"));
   var storyIndicators = document.querySelectorAll("[data-story-indicator]");
-
-  function setStoryChapter(n) {
-    if (!storyStage) return;
-    var previous = parseInt(storyStage.getAttribute("data-active") || "1", 10);
-    storyStage.setAttribute("data-direction", Number(n) < previous ? "back" : "forward");
-    storyStage.setAttribute("data-active", String(n));
-    storyChapters.forEach(function (chapter) {
-      chapter.classList.toggle(
-        "is-active",
-        chapter.getAttribute("data-story-chapter") === String(n)
-      );
+  var activeChapter = -1;
+  function setStoryChapter(index) {
+    if (activeChapter === index) return;
+    activeChapter = index;
+    if (storyStage) storyStage.setAttribute("data-active", String(index + 1));
+    storyChapters.forEach(function (ch, i) { ch.classList.toggle("is-active", i === index); });
+    storyIndicators.forEach(function (a, i) {
+      if (i === index) a.setAttribute("aria-current", "step");
+      else a.removeAttribute("aria-current");
     });
-    storyIndicators.forEach(function (a) {
-      if (a.getAttribute("data-story-indicator") === String(n)) {
-        a.setAttribute("aria-current", "step");
-      } else {
-        a.removeAttribute("aria-current");
+  }
+
+  /* motion-math:start — pure, covered by forward/reverse/skip/resize tests. */
+  function storyBlend(centers, position) {
+    if (!centers.length) return { index: -1, weights: [] };
+    var weights = centers.map(function () { return 0; });
+    var index = centers.length - 1;
+    for (var i = 0; i < centers.length - 1; i++) {
+      if (position < centers[i + 1]) {
+        var progress = Math.max(0, Math.min(1, (position - centers[i]) / Math.max(1, centers[i + 1] - centers[i])));
+        var mix = Math.max(0, Math.min(1, (progress - .38) / .24));
+        mix = mix * mix * (3 - 2 * mix);
+        weights[i] = 1 - mix;
+        weights[i + 1] = mix;
+        index = mix < .5 ? i : i + 1;
+        return { index: index, weights: weights };
       }
-    });
-  }
-
-  if (storyStage && storyChapters.length && !reduceMotion) {
-    setStoryChapter(storyStage.getAttribute("data-active") || "1");
-    if ("IntersectionObserver" in window) {
-      var storyIO = new IntersectionObserver(
-        function (entries) {
-          var best = null;
-          var bestDist = Infinity;
-          var vh = window.innerHeight;
-          entries.forEach(function (entry) {
-            if (!entry.isIntersecting) return;
-            var r = entry.target.getBoundingClientRect();
-            var d = Math.abs((r.top + r.bottom) / 2 - vh / 2);
-            if (d < bestDist) {
-              bestDist = d;
-              best = entry.target;
-            }
-          });
-          if (best) setStoryChapter(best.getAttribute("data-story-chapter"));
-        },
-        { rootMargin: "-42% 0px -42% 0px", threshold: 0 }
-      );
-      storyChapters.forEach(function (ch) { storyIO.observe(ch); });
     }
+    weights[index] = 1;
+    return { index: index, weights: weights };
   }
+  /* motion-math:end */
 
   /* ---------- 导航当前位置 ----------
      只标记当前页面已有的页内章节；理念等独立页面链接保持普通状态。
@@ -517,33 +488,70 @@
     navTargets.forEach(function (target) { navIO.observe(target); });
   }
 
-  /* ---------- Hero 与第二屏连续交接 ----------
-     rAF 节流，只写两个 CSS 变量；页面隐藏时不更新；
-     首屏向上收束时，第二屏同步轻微上移，避免两段像静态海报一样断开。 */
+  /* One event-driven frame for hero, header, reading progress and story.
+     No perpetual loop, scroll interception or layout reads after style writes. */
   var heroEl = document.querySelector(".hero");
   var headerEl = document.querySelector(".site-header");
+  var motionFrame = null, geometryDirty = true, centers = [], viewportHeight = 1, scrollRange = 1;
+  var stageVisible = false, previousWeights = '', previousHero = '', previousReading = '';
   if (heroEl) document.body.classList.add("home-motion");
-  if ((heroEl || headerEl) && !reduceMotion) {
-    var scrollTicking = false;
-    function updateScrollEffects() {
-      scrollTicking = false;
-      if (document.hidden) return;
-      var y = window.scrollY || window.pageYOffset || 0;
-      if (heroEl) root.style.setProperty("--reading-progress", Math.min(1, y / Math.max(1, document.documentElement.scrollHeight - window.innerHeight)).toFixed(4));
-      if (headerEl) headerEl.classList.toggle("is-scrolled", y > 18);
-      if (heroEl) {
-        var p = Math.min(1, y / (window.innerHeight * 0.5));
-        heroEl.style.setProperty("--hero-shrink", p.toFixed(4));
-        root.style.setProperty("--hero-progress", p.toFixed(4));
-      }
-    }
-    window.addEventListener("scroll", function () {
-      if (scrollTicking) return;
-      scrollTicking = true;
-      requestAnimationFrame(updateScrollEffects);
-    }, { passive: true });
-    updateScrollEffects();
+  function queueMotion() {
+    if (motionFrame === null && !document.hidden) motionFrame = requestAnimationFrame(updateMotion);
   }
+  function measureMotion() { geometryDirty = true; queueMotion(); }
+  function updateMotion() {
+    motionFrame = null;
+    if (document.hidden) return;
+    var y = window.scrollY || 0;
+    if (geometryDirty) {
+      viewportHeight = window.innerHeight;
+      scrollRange = Math.max(1, root.scrollHeight - viewportHeight);
+      centers = storyChapters.map(function (ch) {
+        var r = ch.getBoundingClientRect(); return y + r.top + r.height / 2;
+      });
+      stageVisible = !!(storyStage && storyStage.getClientRects().length);
+      geometryDirty = false;
+    }
+    var blend = storyBlend(centers, y + viewportHeight / 2);
+    var heroProgress = (!reduceMotion && window.innerWidth > 760 ? Math.min(1, y / (viewportHeight * .5)) : 0).toFixed(4);
+    var reading = (reduceMotion ? 0 : Math.min(1, y / scrollRange)).toFixed(4);
+    if (headerEl) headerEl.classList.toggle("is-scrolled", y > 18);
+    if (reading !== previousReading) { root.style.setProperty("--reading-progress", reading); previousReading = reading; }
+    if (heroEl && heroProgress !== previousHero) {
+      heroEl.style.setProperty("--hero-shrink", heroProgress); previousHero = heroProgress;
+    }
+    setStoryChapter(blend.index);
+    if (stageVisible && !reduceMotion) {
+      var key = blend.weights.map(function (w) { return w.toFixed(4); }).join(',');
+      if (key !== previousWeights) {
+        storyScreens.forEach(function (screen, i) { screen.style.opacity = (blend.weights[i] || 0).toFixed(4); });
+        previousWeights = key;
+      }
+    } else if (previousWeights) {
+      storyScreens.forEach(function (screen) { screen.style.removeProperty('opacity'); });
+      previousWeights = '';
+    }
+  }
+  function refreshMotionPreference() {
+    reduceMotion = motionQuery.matches || root.hasAttribute('data-reading-motion');
+    root.classList.toggle('motion-static', reduceMotion);
+    root.classList.toggle('smooth-scroll-ready', !reduceMotion);
+    if (reduceMotion) {
+      if (typeof io !== 'undefined' && io) io.disconnect();
+      reveals.forEach(function (el) { el.classList.add('in-view'); });
+      if (typeof setDeviceView === 'function' && setDeviceView._animation) setDeviceView._animation.cancel();
+    }
+    measureMotion();
+  }
+  window.addEventListener('scroll', queueMotion, { passive: true });
+  window.addEventListener('resize', measureMotion, { passive: true });
+  window.addEventListener('pageshow', measureMotion);
+  document.addEventListener('visibilitychange', queueMotion);
+  if (typeof ResizeObserver !== 'undefined') new ResizeObserver(measureMotion).observe(document.body);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureMotion);
+  if (motionQuery.addEventListener) motionQuery.addEventListener('change', refreshMotionPreference);
+  new MutationObserver(refreshMotionPreference).observe(root, { attributes: true, attributeFilter: ['data-reading-motion', 'data-reading-size'] });
+  refreshMotionPreference();
 
   /* ---------- 当前年份 ---------- */
   var yearEls = document.querySelectorAll("[data-year]");
