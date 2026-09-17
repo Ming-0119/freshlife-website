@@ -5,6 +5,14 @@ export const locations = ['冷藏', '冷冻', '常温'];
 export const units = ['份', '个', '盒', '袋', '瓶', '克', '千克', '毫升', '升'];
 export const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; };
 export function validDate(s) { if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return false; const d = new Date(s+'T00:00:00Z'); return Number.isFinite(+d) && d.toISOString().slice(0,10) === s && s >= '1900-01-01' && s <= '2200-12-31'; }
+// Accept explicit year-first dates only; never guess a missing year or roll invalid days forward.
+export function parseEnteredDate(value) {
+ const text=String(value).normalize('NFKC').trim();
+ const match=/^(\d{4})(?:[-/.](\d{1,2})[-/.](\d{1,2})|年\s*(\d{1,2})月\s*(\d{1,2})日?|(\d{2})(\d{2}))$/.exec(text);
+ if(!match)return null;
+ const date=`${match[1]}-${(match[2]||match[4]||match[6]).padStart(2,'0')}-${(match[3]||match[5]||match[7]).padStart(2,'0')}`;
+ return validDate(date)?date:null;
+}
 export function daysLeft(date, base = today()) { return Math.round((Date.parse(date+'T00:00:00Z') - Date.parse(base+'T00:00:00Z')) / 86400000); }
 export function status(date, base = today()) { const n=daysLeft(date,base); return n<0 ? {key:'expired',label:`已过期 ${-n} 天`} : n===0 ? {key:'soon',label:'今天到期'} : n<=2 ? {key:'soon',label:`还有 ${n} 天`} : {key:'fresh',label:`还有 ${n} 天`}; }
 export const emptyState = () => ({format:'freshlife-web',version:2,revision:0,items:[],shopping:[],history:[]});

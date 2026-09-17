@@ -161,3 +161,6 @@ button[data-pending]:disabled{opacity:1;cursor:progress;transform:none;border-st
 .dialog-actions button[type="submit"]{min-inline-size:min(7.5em,100%)}
 
 .whole-only{display:flex;align-items:center;gap:12px;min-height:48px;line-height:1.5}.whole-only input[type="checkbox"]{flex:0 0 24px;width:24px;height:24px;min-height:24px;accent-color:var(--green)}
+
+.expiry-field{min-width:0}.expiry-field>input{width:100%;min-width:0}.expiry-field .muted{font-size:.8125rem;line-height:1.6;margin:6px 0}.expiry-field .form-error:empty{display:none}.expiry-field summary{cursor:pointer;min-height:44px;display:flex;align-items:center;color:var(--green);text-decoration:underline;text-underline-offset:4px}.expiry-field input[aria-invalid="true"]{border-color:#bd3d31}.expiry-field details input{max-width:100%;min-width:0}
+#pantry-fields{align-items:start}.expiry-field>label{margin-bottom:7px}.expiry-field details>label{margin-bottom:7px}.expiry-field{margin-bottom:16px}@media(max-width:480px){#pantry-fields{grid-template-columns:minmax(0,1fr);gap:0}}
