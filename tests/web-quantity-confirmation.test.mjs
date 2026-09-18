@@ -22,3 +22,20 @@ test('quantity confirmation requires an explicit amount and resets a previous va
   assert.equal($('#amount').required,false);
   assert.equal($('#amount').disabled,true);
 });
+
+test('usage preview rejects fractional whole items and unsupported precision',()=>{
+  const source=readFileSync(new URL('../site/static/app/app.mjs',import.meta.url),'utf8');
+  const start=source.indexOf('function updateUsagePreview(');
+  const end=source.indexOf('\nfunction configureUsage',start);
+  const amount={value:'0.5'}, preview={textContent:''};
+  const context=vm.createContext({$:key=>key==='#amount'?amount:preview});
+  vm.runInContext(source.slice(start,end),context);
+  vm.runInContext('updateUsagePreview(2,"个",true)',context);
+  assert.doesNotMatch(preview.textContent,/本次 0.5/);
+  amount.value='1';vm.runInContext('updateUsagePreview(2,"个",true)',context);
+  assert.match(preview.textContent,/本次 1 个 · 剩余 1 个/);
+  amount.value='0.3333';vm.runInContext('updateUsagePreview(1,"份",false)',context);
+  assert.doesNotMatch(preview.textContent,/本次 0.3333/);
+  amount.value='0.333';vm.runInContext('updateUsagePreview(1,"份",false)',context);
+  assert.match(preview.textContent,/剩余 0.667 份/);
+});
