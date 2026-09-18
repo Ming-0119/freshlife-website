@@ -1,3 +1,4 @@
+import {sortingGuide} from './sorting-guide.mjs';
 import {foodSearchMatches} from './food-identity.mjs';
 import {usageOptions,parseEnteredDate,emptyState,validateState,status,today,consume,purchase,MAX_ITEMS,matchingHistory,shoppingText,sortedInventory,matchingShopping,MAX_BACKUP_BYTES,restoreBackup,shoppingStockReminders} from './core.mjs';
 const $=s=>document.querySelector(s);
@@ -99,18 +100,32 @@ $('#expiry-entry').addEventListener('input',()=>{$('#expiry-error').textContent=
 $('#expiry-entry').addEventListener('blur',()=>{if($('#expiry-entry').value.trim())checkExpiry();});
 $('#expiry-picker').addEventListener('change',()=>{$('#expiry-entry').value=$('#expiry-picker').value;checkExpiry();});
 $('#item-form').addEventListener('submit',async e=>{e.preventDefault();if(busy)return;const f=e.currentTarget;const data={name:f.elements.name.value.trim(),quantity:Number(f.elements.quantity.value),unit:f.elements.unit.value};if(!data.name){$('#editor-error').textContent='请填写食材名称。';return;}const keepAdding=e.submitter?.value==='next'&&['add','shop'].includes(editing.mode);const mode=editing.mode,isShop=['shop','edit-shop','restock'].includes(mode);if(!isShop&&!checkExpiry()){f.elements.expiry.focus();return;}if(!isShop)Object.assign(data,{location:f.elements.location.value,expiry:f.elements.expiry.value,wholeOnly:f.elements.wholeOnly.checked});if(data.wholeOnly&&!Number.isInteger(data.quantity)){$('#editor-error').textContent='按整件使用时，请填写整数数量。';f.elements.quantity.focus();return;}busy=true;const finishPending=pendingForm(f,e.submitter||f.querySelector('[type=submit]'),'正在保存…');try{await update(s=>{if(['edit','edit-shop','purchase'].includes(mode)){const list=mode==='edit'?s.items:s.shopping;const i=list.findIndex(x=>x.id===editing.id);if(i<0||JSON.stringify(list[i])!==editing.original)throw new Error('这条记录已在其他窗口更改，请关闭后重新编辑。');if(mode==='purchase')return purchase(s,editing.id,{id:uid(),...data});list[i]={id:editing.id,...data};}else{const list=isShop?s.shopping:s.items;if(list.length>=MAX_ITEMS)throw new Error('记录数量已满，请先整理。');list.push({id:uid(),...data});}return s;});rememberQuantityEducation('completed');finishPending();if(keepAdding){$('#quantity-help').open=false;$('#editor-success').textContent=`已保存「${data.name}」，可以继续添加下一件。`;$('#editor-success').hidden=false;f.elements.name.value='';f.elements.quantity.value='1';f.elements.expiry.value='';$('#expiry-picker').value='';$('#expiry-calendar').open=false;$('#expiry-error').textContent='';f.elements.wholeOnly.checked=false;$('#editor-error').textContent='';$('#discard-warning').hidden=true;formBaseline=formSnapshot();f.elements.name.focus();}else $('#editor').close();const remaining=mode==='purchase'?state.shopping.find(x=>x.id===editing.id):null;if(!keepAdding)toast(mode==='purchase'?(remaining?`已入库，清单还需购买 ${remaining.quantity} ${remaining.unit}`:'已入库，这项采购已完成'):'已保存到此浏览器');}catch(err){$('#editor-error').textContent=message(err);}finally{busy=false;finishPending();}});
+let lastUsageGuide=false;
+function openSorting(){
+ $('#sorting-dialog').showModal();$('#sorting-material').focus();
+}
+const materialSelect=$('#sorting-material');
+for(const [index,row] of sortingGuide.entries()){const option=document.createElement('option');option.value=String(index);option.textContent=row[0];materialSelect.append(option);}
+materialSelect.onchange=()=>{$('#sorting-detail').textContent=sortingGuide[Number(materialSelect.value)][1];};
+materialSelect.onchange();$('#open-sorting').onclick=openSorting;
+$('#sorting-close').onclick=()=>$('#sorting-dialog').close();
+function updateUsagePreview(quantity,unit,wholeOnly=false){
+ const value=Number($('#amount').value);
+ const valid=Number.isFinite(value)&&value>=0.001&&value<=quantity&&(!wholeOnly||Number.isInteger(value))&&Math.abs(value*1000-Math.round(value*1000))<1e-7;
+ $('#amount-preview').textContent=valid?`本次 ${value} ${unit} · 剩余 ${Math.round((quantity-value)*1000)/1000} ${unit}。`+(value<quantity?'库存仍有剩余；只有实际用空的包装才进入分类。':'库存将清空；包装和食品残余请分别判断，未产生废物无需分类。'):'选择快捷用量，或输入实际用量；确认前不会扣库存。';
+}
 function configureUsage(quantity,unit,wholeOnly){
  const choices=$('#amount-options');choices.replaceChildren();choices.hidden=quantity===undefined;
- $('#amount-help').hidden=quantity===undefined;
+ $('#amount-help').hidden=quantity===undefined;$('#amount-preview').hidden=quantity===undefined;$('#amount-preview').textContent='选择快捷用量，或输入实际用量；确认前不会扣库存。';$('#amount').oninput=()=>updateUsagePreview(quantity,unit,wholeOnly);
  $('#amount-help').textContent=`按当前单位 ${unit} 记录；半份和三分之一指一份的用量，不是剩余量的比例。三分之一按 0.333 近似记录，最后一次可选全部剩余。重量、容量请按实际单位填写，不自动换算份数。`;
  if(quantity===undefined)return;
  for(const option of usageOptions(quantity,unit,wholeOnly)){
   const button=document.createElement('button');button.type='button';button.className='quiet';button.textContent=option.label;
-  button.onclick=()=>{$('#amount').value=String(option.amount);$('#action-error').textContent='';};choices.append(button);
+  button.onclick=()=>{$('#amount').value=String(option.amount);$('#action-error').textContent='';updateUsagePreview(quantity,unit,wholeOnly);};choices.append(button);
  }
 }
-function ask(title,description,run,quantity,wholeOnly=false,unit="份"){configureUsage(quantity,unit,wholeOnly);pending=run;$('#action-title').textContent=title;$('#action-description').textContent=description;$('#amount-label').hidden=quantity===undefined;$('#amount').required=quantity!==undefined;$('#amount').disabled=quantity===undefined;$('#amount').step=wholeOnly?'1':'any';$('#amount').min=wholeOnly?'1':'0.001';$('#amount').value='';$('#amount').placeholder=quantity===undefined?'':`填写本次数量，最多 ${quantity}`;$('#amount').max=quantity??1000000;$('#action-error').textContent='';$('#action-discard-warning').hidden=true;$('#action-dialog').showModal();if(quantity!==undefined)$('#amount').focus();}
-$('#action-form').addEventListener('submit',async e=>{e.preventDefault();if(busy)return;busy=true;const finishPending=pendingForm(e.currentTarget,$('#action-submit'),'正在保存…');try{await pending(Number($('#amount').value));$('#action-dialog').close();toast('已完成，并保存在此浏览器',Boolean(lastUndo));}catch(err){$('#action-error').textContent=message(err);}finally{busy=false;finishPending();}});
+function ask(title,description,run,quantity,wholeOnly=false,unit="份"){lastUsageGuide=quantity!==undefined;configureUsage(quantity,unit,wholeOnly);pending=run;$('#action-title').textContent=title;$('#action-description').textContent=description;$('#amount-label').hidden=quantity===undefined;$('#amount').required=quantity!==undefined;$('#amount').disabled=quantity===undefined;$('#amount').step=wholeOnly?'1':'any';$('#amount').min=wholeOnly?'1':'0.001';$('#amount').value='';$('#amount').placeholder=quantity===undefined?'':`填写本次数量，最多 ${quantity}`;$('#amount').max=quantity??1000000;$('#action-error').textContent='';$('#action-discard-warning').hidden=true;$('#action-dialog').showModal();if(quantity!==undefined)$('#amount').focus();}
+$('#action-form').addEventListener('submit',async e=>{e.preventDefault();if(busy)return;busy=true;const finishPending=pendingForm(e.currentTarget,$('#action-submit'),'正在保存…');try{await pending(Number($('#amount').value));$('#action-dialog').close();toast('已完成，并保存在此浏览器',Boolean(lastUndo));if(lastUsageGuide){const guide=document.createElement('button');guide.textContent='剩余物和包装怎么处理';guide.onclick=openSorting;$('#toast').append(guide);}}catch(err){$('#action-error').textContent=message(err);}finally{busy=false;finishPending();}});
 function closeDialog(dialog){if(busy)return;if(dialog.id==='action-dialog'&&!$('#amount').disabled&&$('#amount').value!==''){$('#action-discard-warning').hidden=false;$('#keep-action').focus();return;}if(dialog.id==='editor'&&hasDraft()){$('#discard-warning').hidden=false;$('#keep-editing').focus();return;}dialog.close();}
 for(const dialog of document.querySelectorAll('dialog')){dialog.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>closeDialog(dialog));dialog.addEventListener('cancel',e=>{e.preventDefault();closeDialog(dialog);});}
 $('#keep-action').onclick=()=>{$('#action-discard-warning').hidden=true;$('#amount').focus();};

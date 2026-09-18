@@ -166,3 +166,5 @@ button[data-pending]:disabled{opacity:1;cursor:progress;transform:none;border-st
 #pantry-fields{align-items:start}.expiry-field>label{margin-bottom:7px}.expiry-field details>label{margin-bottom:7px}.expiry-field{margin-bottom:16px}@media(max-width:480px){#pantry-fields{grid-template-columns:minmax(0,1fr);gap:0}}
 
 .usage-options{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.usage-options[hidden]{display:none}.usage-options button{min-height:44px}
+
+.sorting-detail{white-space:pre-line;line-height:1.8}#sorting-dialog{max-width:600px}#sorting-material{width:100%;min-height:48px}#amount-preview{transition:background-color .18s ease} @media(prefers-reduced-motion:reduce){#amount-preview{transition:none}}

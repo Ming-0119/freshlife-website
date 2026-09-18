@@ -10,7 +10,7 @@ test('quantity confirmation requires an explicit amount and resets a previous va
   assert.ok(start>=0&&end>start);
   const nodes=new Map();
   const $=key=>{if(!nodes.has(key))nodes.set(key,{value:'99',focus(){this.focused=true;},showModal(){this.open=true;}});return nodes.get(key);};
-  const context=vm.createContext({$,pending:null,configureUsage(){}});
+  const context=vm.createContext({$,pending:null,lastUsageGuide:false,configureUsage(){}});
   vm.runInContext(source.slice(start,end)+';ask("用量","牛奶",()=>{},6);',context);
   assert.equal($('#amount').value,'');
   assert.equal($('#amount').required,true);
