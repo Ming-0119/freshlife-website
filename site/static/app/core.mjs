@@ -96,3 +96,12 @@ export function shoppingStockReminders(items, shopping, base = today()) {
  }
  return result;
 }
+
+// Fractions refer to one recorded unit, never an inferred package weight.
+export function usageOptions(quantity, unit, wholeOnly=false) {
+  const measured=['克','毫升'].includes(unit), large=['千克','升'].includes(unit);
+  const amounts=measured?[50,100,250]:large?[0.05,0.1,0.25,1]:[1,0.5,0.333];
+  return amounts.filter(n=>n<=quantity&&(!wholeOnly||Number.isInteger(n))).map(n=>({
+    amount:n, label:!measured&&!large&&n===0.5?`半${unit}（0.5 ${unit}）`:!measured&&!large&&n===0.333?`三分之一${unit}（约 0.333 ${unit}）`:`${n} ${unit}`
+  })).concat([{amount:quantity,label:`全部剩余（${quantity} ${unit}）`}]);
+}

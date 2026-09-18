@@ -164,3 +164,5 @@ button[data-pending]:disabled{opacity:1;cursor:progress;transform:none;border-st
 
 .expiry-field{min-width:0}.expiry-field>input{width:100%;min-width:0}.expiry-field .muted{font-size:.8125rem;line-height:1.6;margin:6px 0}.expiry-field .form-error:empty{display:none}.expiry-field summary{cursor:pointer;min-height:44px;display:flex;align-items:center;color:var(--green);text-decoration:underline;text-underline-offset:4px}.expiry-field input[aria-invalid="true"]{border-color:#bd3d31}.expiry-field details input{max-width:100%;min-width:0}
 #pantry-fields{align-items:start}.expiry-field>label{margin-bottom:7px}.expiry-field details>label{margin-bottom:7px}.expiry-field{margin-bottom:16px}@media(max-width:480px){#pantry-fields{grid-template-columns:minmax(0,1fr);gap:0}}
+
+.usage-options{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.usage-options[hidden]{display:none}.usage-options button{min-height:44px}
